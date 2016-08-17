@@ -1,0 +1,230 @@
+.. _telegram:
+
+======================
+Telegram Bot Tutorials
+======================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+
+
+
+.. TODO:: This is how to write a TODO
+
+In this tutorial we'll show how to program a simple inline bot for Telegram
+using the Yelp API in ChatFlow_. The following video shows the final bot:
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/telegram/inline_yelp_bot.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+.. _telegram_echo_bot:
+
+A simple Echo Bot
+=================
+
+First let's create a new bot by talking to the `Bot Father <https://telegram.me/botfather>`_:
+
+.. image:: _static/img/telegram/create_bot.png
+   :align: center
+   :scale: 50%
+
+
+Bot Father will give you a token to control this bot. Let's save it and drag
+the **Telegram In** and **Telegram Out** nodes to ChatFlow canvas:
+
+.. image:: _static/img/telegram/echo_bot.png
+   :align: center
+   :width: 400
+
+Double click the **Telegram** nodes and input the access tokens. Now you can talk
+with the bot on the Telegram messenger. Here's a full video for it:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/ikBml7fvf6c?rel=0"
+       frameborder="0" allowfullscreen></iframe>
+
+
+Setting up Inline Bot
+=====================
+
+In Telegram bots can either take direct messages, or accept inline mentions.
+`Inline bots <https://telegram.org/blog/inline-bots>`_ have quite some merits:
+
+* users stay/focus on current chat window instead of jumping back and forth
+  between apps
+* inline bots give a more compact representation of results for fast browsing
+  and selection
+
+In the following we'll introduce an inline Yelp bot. But first of
+all, let's set up the bot to be inline-ready.
+
+Set inline status
+-----------------
+
+Simply send the ``/setinline`` command to Bot Father:
+
+.. image:: _static/img/telegram/set_inline.png
+   :align: center
+
+Then select your bot and set inline status:
+
+.. image:: _static/img/telegram/set_inline_status.png
+   :align: center
+
+
+Set inline location awareness
+-----------------------------
+
+Telegram also allows bots to request your location in GPS coordinates. We can
+enable this with the ``/setinlinegeo`` command to Bot Father:
+
+.. image:: _static/img/telegram/set_inline_geo.png
+   :align: center
+
+Now next time the bot is mentioned, it will request user to share GPS location.
+Even on desktop browser it can still get rough location coordinates.
+
+An inline Yelp Bot
+=====================
+
+We want to program an inline Yelp bot that supports the following two inline
+mention modes:
+
+1. "*seafood near seattle*" --> Bot will search Yelp *seafood* near *Seattle*.
+2. "*seafood*" --> Bot will search Yelp *seafood* using phone's GPS location.
+
+But it won't accept direct messages. The following is a demo:
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/telegram/inline_yelp_bot.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+The flow
+--------
+
+The following is a screenshot of the flow and here is the :download:`flow file <_static/json/YelpTelegramBot.json>`.
+It is also a sample project from "CREATE NEW APP" -> "Use a sample project".
+
+.. image:: _static/img/telegram/yelp_bot_canvas.png
+   :align: center
+   :width: 640
+
+
+Feel free to import it into your own project and play with it. In order to make
+it work, you'll need:
+
+1. Bot access token (already covered in :ref:`telegram_echo_bot` )
+2. Yelp app `credentials <https://www.yelp.com/developers>`_, including **Consumer Key**,
+   **Consumer Secret**, **Token** and **Token Secret**.
+
+In this flow we do not accept direct messages but just inline mentions. We assume
+very simple input structure, taken care of by the ``Dumb NLU for Inline Query`` node:
+
+.. code-block:: javascript
+   :linenos:
+
+    var query = msg.payload.trim();
+    if (!query)
+        // don't output empty msg
+        return;
+
+    var splits = query.split(" near ");
+    var split_len = splits.length;
+
+    if (!msg.NLU) {
+        msg.NLU = {};
+    }
+
+    if (split_len == 1) {
+        msg.NLU.business = splits[0];
+    } else {
+        // "chinese food near downtown seattle"
+        msg.NLU.business = splits[0];
+        msg.NLU.address = splits[1];
+    }
+
+    try {
+        if (msg.telegram.inline_query.location.latitude) {
+            // we got GPS coordinates from mobile
+            msg.NLU.ll = msg.telegram.inline_query.location.latitude+","+
+                msg.telegram.inline_query.location.longitude;
+        }
+    } catch (err) {}
+
+    return msg;
+
+
+Once we get the ``business`` type and ``address`` or ``ll`` (latitude & longitude),
+we can go ahead and search Yelp. The final result is sent throw the ``Send Result``
+node:
+
+.. code-block:: javascript
+   :linenos:
+
+    var results = msg.payload.businesses;
+
+    if (results.length > 0) {
+    var responses = [];
+    for (var i=0; i<results.length; i++) {
+        var result = results[i];
+        var categories = [];
+        for (var j=0; j<result.categories.length; j++) {
+            categories.push(result.categories[j][0]);
+        }
+        responses.push({
+            type: "venue",
+            id: result.id,
+            title: result.name + " (" + categories.join(", ") + ")",
+            thumb_url: result.image_url,
+            latitude: result.location.coordinate.latitude,
+            longitude: result.location.coordinate.longitude,
+            address: result.review_count + " reviews. Rating: " + result.rating + ". \n" +
+                    result.location.display_address.join(" ")
+        });
+    }
+        msg.payload = responses;
+        return msg;
+    } else {
+        msg.payload = [{
+            type: "article",
+            id: "no-result",
+            title: "No Yelp Result Found",
+            input_message_content: {
+                message_text: 'e.g., "dinner near downtown Chicago"'
+            },
+            description: 'e.g., "dinner near downtown Chicago"'
+        }];
+
+        return msg;
+    }
+
+
+The result, encoded in ``msg.payload``, is a list of venues that'll be sent via
+the Telegram `SendVenue <https://core.telegram.org/bots/api#sendvenue>`_ method.
+
+This Yelp Bot so far is very limited in understanding human language, yet it also
+does not support direct messages. To improve it, you can take a look at the full
+tutorial of :ref:`extended_example`.

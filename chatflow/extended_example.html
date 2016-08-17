@@ -1,0 +1,788 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Extended Example: A conversational Yelp bot &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Telegram Bot Tutorials" href="telegram.html"/>
+        <link rel="prev" title="Dialogue Nodes" href="dialogue_nodes.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> ChatFlow
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Extended Example: A conversational Yelp bot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#starting-your-conversational-project">Starting your conversational project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-an-nlu-node">Adding an NLU node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-your-flow">Creating your flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#create-an-alexa-skill">Create an Alexa Skill</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#skill-information">1. Skill Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#sample-utterances">2. Sample Utterances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#configuration">3. Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#ssl-certificate">4. SSL Certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#test">5. Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#finishing-up">6. Finishing up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#incoming-message-structures">Incoming Message Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#launch-skill">Launch Skill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#intent-request">Intent Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#card-and-reprompt">Card and Reprompt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#ask-or-tell">Ask or Tell?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy Chatflow app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#state-tracking">State tracking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChatFlow</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Extended Example: A conversational Yelp bot</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/extended_example.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="extended-example-a-conversational-yelp-bot">
+<span id="extended-example"></span><h1>Extended Example: A conversational Yelp bot<a class="headerlink" href="#extended-example-a-conversational-yelp-bot" title="Permalink to this headline">¶</a></h1>
+<p>In this example we will show how to create a conversational bot that fulfills an end-user information need by
+accessing external resources. Specifically, we will build a natural language <em>conversational</em> interface to Yelp. In
+contrast with simpler natural language interfaces that let users say things like &#8220;show me Mexican restaurants in
+Bellevue&#8221; just as a simple replacement to the search box,
+our agent will go beyond this type of capability through the kind of multiturn interaction that can be
+authored easily with ChatFlow.</p>
+<p>This project is avaiable as a sample when creating a new app. You may
+select it and follow this document while consulting the sample, or just
+build the content from scratch while following the instructions.</p>
+<p>The following dialogue illustrates what our conversational agent will be able to do.</p>
+<blockquote>
+<div><p><strong>User</strong>: Hello.</p>
+<p><strong>System</strong>: Welcome! I can find restaurants for you in Yelp! What are you looking for?</p>
+<p><strong>User</strong>: I&#8217;m looking for an Italian place near Fremont.</p>
+<p><strong>System</strong>: I found 10 places that might work. The first 3 are: 1. Ristorante Il Porcino; 2. Massimo&#8217;s; 3. Strizzi&#8217;s. Do any of these sound okay?</p>
+<p><strong>User</strong>: The second one sounds good.</p>
+<p><strong>System</strong>: Great, Massimo&#8217;s. It&#8217;s got 304 reviews on Yelp, and the rating is 3.5 stars.</p>
+<p><strong>User</strong>: Where is it?</p>
+<p><strong>System</strong>: The address for Massimo&#8217;s is 5200 Mowry Ave, Ste M, and the phone number is +1-510-792-2000.</p>
+<p><strong>User</strong>: How about the first one?</p>
+<p><strong>System</strong>: The address for Ristorante Il Porcino is 3339 Walnut Ave, Fremont, CA 94538, and the phone number is +1-510-791-7383.</p>
+<p><strong>User</strong>: What&#8217;s the rating?</p>
+<p><strong>System</strong>: It&#8217;s got 451 reviews on Yelp, and the rating is 3.5 stars.</p>
+</div></blockquote>
+<p>Of course, there are many ways to create a ChatFlow agent that is capable of dialogues of this type. Let&#8217;s go through
+an example that implements one such way, step-by-step. The interaction will be driven by the agents goal of fulfilling
+a user&#8217;s information need.</p>
+<div class="section" id="starting-your-conversational-project">
+<h2>Starting your conversational project<a class="headerlink" href="#starting-your-conversational-project" title="Permalink to this headline">¶</a></h2>
+<p>Open ChatFlow and start from an empty canvas. As it is often the case, we&#8217;ll start by adding a <strong>router</strong> node to our
+project. Let&#8217;s name it <em>Yelp Router</em>. Next, we&#8217;ll choose the input and output channel for the interaction with end
+users. In this example, we&#8217;ll use <strong>Chat In</strong> and <strong>Chat Out</strong>, but it should be easy to replace those with other
+input/output app nodes (e.g. Slack bot). Add Chat In and Chat Out nodes and connect the output of Yelp Router to Chat Out. Do not connect Chat In yet; we will need an NLU
+node in our project, and it will sit between Chat In and Yelp Router.</p>
+<div class="section" id="adding-an-nlu-node">
+<h3>Adding an NLU node<a class="headerlink" href="#adding-an-nlu-node" title="Permalink to this headline">¶</a></h3>
+<p>In any conversational project that deals with more than trivial natural language input, it is important to use a
+properly configured Natural Language Understanding (<strong>NLU</strong>) node, such
+as KITT.AI NLU, available as the KITT.AI node.</p>
+<p>To configure an NLU node for ChatFlow, we must first create the NLU <em>model</em>, which comes from a set of examples of
+user utterances, each mapped to an <em>intent</em>, and annotated for <em>entities</em>. For example, in our Yelp example, the intents
+in our system will include: <code class="docutils literal"><span class="pre">request_suggestion</span></code>, which requests a restaurant suggestion from the agent (e.g.
+&#8220;I&#8217;d like a Chinese restaurant in Seattle&#8221;), <code class="docutils literal"><span class="pre">state_choice</span></code>, which states a user choice from a list (e.g. &#8220;The first one,
+please.&#8221;), <code class="docutils literal"><span class="pre">request_more_options</span></code> (e.g. &#8220;Give me more options.&#8221;), etc. An intent like <code class="docutils literal"><span class="pre">request_suggestion</span></code> would be
+expected to contain at least one <em>entity</em>, but could contain more (e.g. &#8220;A Mexican place in Downtown Seattle,&#8221; where &#8220;Mexican&#8221;
+is a <code class="docutils literal"><span class="pre">businesstype</span></code> and &#8220;Downtown Seattle&#8221; is a <code class="docutils literal"><span class="pre">location</span></code>. The specific set of intents and entites is arbitrary,
+typically application-specific (what information a Yelp bot needs from what you say may be different from what a pizza shop
+bot needs), and defined by the
+application developer.</p>
+<p>For more information on creating effective NLU models using the intent and entity paradigm,
+see INSERT LINK TO NLU docs.</p>
+<p>A sample NLU project that can be imported straight into KITT.AI&#8217;s NLU
+to create an NLU model to be used in our Yelp example
+can be downloaded here: <code class="xref download docutils literal"><span class="pre">yelp_example_nlu.json</span></code>. You can use this NLU content or build
+your own. If you choose to build your own from scratch,
+you will find it useful
+to inspect the sample file manually to familiarize yourself with the intents and entities used in our ChatFlow content.</p>
+<p>Once you have an NLU model ready to use, simply add an NLU node to your canvas, connect its input to Chat In, and its output
+to the router&#8217;s input. Doubleclick on the NLU node and enter your app ID and subscription key, and your NLU node is ready
+to use in ChatFlow!</p>
+</div>
+</div>
+<div class="section" id="creating-your-flow">
+<h2>Creating your flow<a class="headerlink" href="#creating-your-flow" title="Permalink to this headline">¶</a></h2>
+<p>Before we start adding nodes to our flow, let&#8217;s consider the overall objective and behavior of our conversation agent.
+The agent ultimately wants to provide the user with a satisfactory restaurant suggestion. To achieve this goal, the
+system must know the user&#8217;s preferences. In this example, we will consider two common user preferences when looking for
+restaurants in Yelp: location, and restaurant type.</p>
+<p>We will structure our interaction by having the agent try to gather the necessary information (location and resturant type),
+while giving the user the freedom to provide it in a natural way. The general structure of our flow will be: check
+what information is missing, and ask the user for it, while being responsive to any kind of relevant user input at any
+time.</p>
+<div class="section" id="initialization">
+<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<p>We will start by adding an <strong>enter</strong> node and a <strong>state</strong> node. Set up the enter node (by doubleclicking the node) by
+removing the default entrance condition (click on the X), and check the box that says <em>Initial state</em>, since we want
+this enter node always to be the first one chosen when the conversation starts. Finally, name the enter node anything you
+like (e.g. <em>Enter initial state</em>). Now that the enter node is ready, close
+the enter node set up, and doubleclick on the state node. Give it a name (e.g. <em>Initialize state</em>), and add the following
+code:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">business_type</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">req_pending</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This simply initializes the state variables (user variables that keep track of the state of the conversation) we will
+use. The <code class="docutils literal"><span class="pre">location</span></code> variable keeps the location where Yelp will look for restaurants. Initially we don&#8217;t know the
+location, so we set it to <code class="docutils literal"><span class="pre">null</span></code>. The <code class="docutils literal"><span class="pre">business_type</span></code> variable is the kind of restaurant the agent will look for.
+The <code class="docutils literal"><span class="pre">req_pending</span></code> variable is <code class="docutils literal"><span class="pre">true</span></code> if we have all the information we need for a Yelp query, but have not yet issued
+the query. This is useful to make sure we don&#8217;t issue the query before we have all of the necessary information, and to
+make sure we don&#8217;t issue the same query again, once we already have the results for it. This will become more apparent
+as we go through the rest of the example. Finally, the <code class="docutils literal"><span class="pre">user_choice</span></code> variable keeps track of which restaurant the user
+has chosen.</p>
+<p>Finally, in the <em>Output text</em> box, write a welcome message, such as &#8220;<em>Welcome! I can find restaurants for you in Yelp!</em>&#8220;</p>
+<p>Now, connect the output of the enter node to the input of the state node. This pair of connected enter and state nodes is
+the simplest flow substructure in ChatFlow, and it is common for simple tasks, like initializing the system, or answering
+a simple question.</p>
+</div>
+<div class="section" id="prompting-the-user-and-understanding-the-user-s-request">
+<h3>Prompting the user and understanding the user&#8217;s request<a class="headerlink" href="#prompting-the-user-and-understanding-the-user-s-request" title="Permalink to this headline">¶</a></h3>
+<p>Next, let&#8217;s create the parts of the conversational flow that allow the agent to collect information from the user.
+Add an enter node to be used when the system has not yet obtained a location or business type (i.e. both
+<code class="docutils literal"><span class="pre">location</span></code> and <code class="docutils literal"><span class="pre">business_type</span></code> are set to <code class="docutils literal"><span class="pre">null</span></code>. Let&#8217;s call that enter node <em>state: no location, no type</em>
+(because it is a node name that describes what this enter node checks for), and add the following two entrance
+conditions: <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.location</span> <span class="pre">is</span> <span class="pre">null</span></code> and <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.business_type</span> <span class="pre">is</span> <span class="pre">null</span></code>. Next, add a new
+state node and connect it to this enter node. Name the state node <em>prompt for query</em> (or any other short descriptive name
+that reflects roughly what the state node does), leave the code as <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code>, and in the <em>Output text</em> box, write
+a prompt like <em>What can I help you find?</em> or <em>What are you looking for?</em> Note that typically this prompt will be used
+immediately after the initial state, which will already add something like &#8220;<em>Welcome! I can find restaurants for you in Yelp!</em>
+so it shouldn&#8217;t be necessary to mention Yelp or restaurants in the current state node. What users will see will come
+from multiple nodes, and will be something like &#8220;<em>Welcome! I can find restaurants for you in Yelp! What are you looking for?</em>&#8220;</p>
+<p>Now that the system is ready to recognize that it needs to fill the location and business type variables, we need an enter
+node that will be triggered when the NLU module determines that the user has generated input with the intent of providing
+that information. The intent label in our NLU model that corresponds to this situation is <code class="docutils literal"><span class="pre">request_suggestion</span></code> (the name
+of this intent label reflects that the user is requesting a suggestion, for example, by saying <em>I would like an Italian
+restaurant in Downtown Seattle</em>.) To set up this new enter node, edit the entrance condition to be <code class="docutils literal"><span class="pre">Property</span>
+<span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_suggestion</span></code>, and finally name the entrance node <em>U: request suggestion</em>. Of course, you may
+name the node anything you want; our suggested name reflects that this enter node checks for user input (U:) and that
+the user input is a request for a suggestion.</p>
+<p>This enter node will be available to receive messages from the router any time the user says something that the NLU
+interprets as a <code class="docutils literal"><span class="pre">request_suggestion</span></code> intent. Additionally, we want this enter node to be the preferred enter node after
+the system prompts the user for a suggestion. To reflect this, connect the output of the state node <em>prompt for query</em> to
+the input of the enter node <em>U: request suggestion</em>. Notice that once the nodes are connected, there is a dashed line
+between them, not a regular wire, as with other connected nodes. Wires (solid lines) are used so that messages can go
+from one node to another. Dashed lines, which we get from state nodes to enter nodes, simply indicate ordering preferences.
+In other words, this dashed line does not mean a message will go from the state node to the enter node when the state node
+is executed. Instead, the message from the state node will still go to the router, as usual, and the message to the enter
+node will still be sent by the router, as usual. The dashed line simply indicates that the enter node will be prefered after
+that state node, so the effect will be that the enter node will follow the state node, <em>if possible</em>. This is useful,
+because we get to choose the explicit conversational flow, but the system will be robust to deviations to that flow.
+If the user expresses a different intent at that point, instead of simply answering the system prompt, the enter node&#8217;s
+entrance condition will not be met, and the router will simply choose another enter node.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is the beauty of ChatFlow&#8217;s
+conversational authoring: while the authoring process revolves around a typical flow for the desired conversation, it is
+capable of adapting and adjusting to a wide variety of unforeseen user behaviors!</p>
+</div>
+<p>Next, let&#8217;s add a state node to follow that enter node. Let&#8217;s call this state node <em>Save type and location, if available</em>,
+and add the following code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre>if(&#39;business_type&#39; in msg.NLU.entities) {
+    msg.kitt.business_type = msg.NLU.entities.business_type;
+}
+if(&#39;location&#39; in msg.NLU.entities) {
+    msg.kitt.location = msg.NLU.entities.location;
+}
+
+return msg;
+</pre></div>
+</div>
+<p>The code in this state node does a couple of interesting things. First, it shows how to use NLU output inside state
+nodes. We had already seen entrance conditions in enter nodes involving NLU intents, but here we get to see how NLU
+output can be accessed in code in a state node. In this particular case, we are looking at the entities, but accessing
+the intent would be done similarly (<code class="docutils literal"><span class="pre">msg.kitt.intent</span></code> is a string correspoding to the intent label). First, we check
+if there is an entity of type <code class="docutils literal"><span class="pre">business_type</span></code> in the most recent result from the NLU module. If there is, we
+set the user variable <code class="docutils literal"><span class="pre">business_type</span></code> to the string correspoding to the NLU entity <code class="docutils literal"><span class="pre">business_type</span></code>. For example, if
+the user input to the agent is <em>&#8220;I am looking for a Chinese place,&#8221;</em> the NLU intent would be <code class="docutils literal"><span class="pre">request_suggestion</span></code> and
+the substring &#8220;<em>Chinese</em>&#8221; will be marked as a <code class="docutils literal"><span class="pre">business_type</span></code> entity, allowing us to set the <code class="docutils literal"><span class="pre">business_type</span></code> variable
+(accessed in state nodes as <code class="docutils literal"><span class="pre">msg.kitt.business_type</span></code>) to the string &#8220;Chinese&#8221;. We then do the same with <code class="docutils literal"><span class="pre">location</span></code>.
+In our Chinese restaurant utterance, we did not specify a location and the NLU did not mark any part of the input as a
+<code class="docutils literal"><span class="pre">location</span></code> entity, so the variable <code class="docutils literal"><span class="pre">location</span></code> would remain <code class="docutils literal"><span class="pre">null</span></code>. Finally, we pass the message along, including
+our updated user variables. When this state node is executed, its message will go back to the router.</p>
+<p>Let&#8217;s now add four new enter nodes that handle the cases where the state node above set: (1) both type and location,
+(2) only type, (3) only location, or (4) neither type nor location. The first of these four new enter nodes should have the
+following two entrance conditions: <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.business_type</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code> and <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.location</span> <span class="pre">is</span>
+<span class="pre">not</span> <span class="pre">null</span></code>. Additionally, we want this enter node to be used <strong>only</strong> after the state node above, so let&#8217;s check the box
+that says <em>Enter only from direct link</em>. The other three enter nodes will also have the <em>Enter only from direct link</em> option
+checked. The second enter node will have the conditions: <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.business_type</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code> and
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.location</span> <span class="pre">is</span> <span class="pre">null</span></code>. The other two enter nodes will follow this pattern, looking at both location
+and business type, and checking whether or not they are null.</p>
+<p>Connect the inputs of each of these four enter nodes to the output of the last state node we added. After the first of
+these four enter nodes, let&#8217;s connect a state node with the code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">req_pending</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This will indicate to the agent that we are now ready to issue a Yelp request.</p>
+<p>After the second enter node of the four new enter nodes, add a state node, leave the code as simply <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code> and
+add the following output text: <em>Ok, I got {{business_type}}, but I didn&#8217;t get the location.</em> This state node will be
+executed, of course, when <code class="docutils literal"><span class="pre">location</span></code> is still <code class="docutils literal"><span class="pre">null</span></code>, but <code class="docutils literal"><span class="pre">business_type</span></code> has been set. Add a new state node
+connected to the third of the four enter nodes, and similarly add the output text:
+<em>Ok, a place in {{location}}, but I didn&#8217;t get the restaurant type.</em> In both of these last two state nodes, we used
+user variables in <a class="reference external" href="https://mustache.github.io/">mustache</a> notation in the system output. Finally, after the last
+enter node, add a state node with the output text <em>I didn&#8217;t get the restaurant type or location</em>. This will cover the
+case where the NLU decided that the user expressed a request for a restaurant suggestion, but the NLU couldn&#8217;t get a
+restaurant type of a location, either because they weren&#8217;t there, or because of an NLU error.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Although it is crucially important to make sure the NLU performs adequately, it is also important to understand
+that the NLU <em>will</em> make mistakes, and plan for those mistakes in the way we design our flow.</p>
+</div>
+<p>Your flow should now look like the one below.</p>
+<p>[INSERT FLOW HERE]</p>
+<p>Notice that we named the last four enter nodes we added with the prefix <em>state:</em> followed by a descriptive string
+reflecting what conditions are checked. In general, it is useful to indicate in the node name whether the node checks for
+NLU conditions, state conditions (i.e. conditions based on user variables, or the state of the conversation), or both.
+State names are irrelevant for the execution of the flow, but they are important to make the flow understandable without
+the need to click inside each node. In larger flows, it is very helpful to get a general understanding of the flow just
+by looking at it.</p>
+<p>Now we have a network that allows the agent to welcome the user, prompt the user to request a restaurant suggestion,
+determine whether the agent picked up a location and restaurant type from the user&#8217;s request, and give the user feedback.
+Recall that the agent prompts the user for a request because the agent does not have a location or restaurant type yet.
+After the user&#8217;s request, the agent may have a location, a restaurant type, both, or neither. If for some reason
+(most likely an NLU error) the agent has neither, the same <em>no location, no type</em> conditions will be met, and the agent
+will prompt the user again. Now let&#8217;s see how we add additional nodes that take care of the situations where we
+have either just type or just location.</p>
+<p>Add an enter node (call it <em>state: no location</em>) with the entrance condition <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.location</span> <span class="pre">is</span> <span class="pre">null</span></code>,
+and connect to it a new state node (call it <em>ask for location</em>) with the code <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code> and the output text
+<em>What&#8217;s the desired location?</em> This will prompt the user for a location, if the agent failed to get a location, either
+because the user didn&#8217;t provide it, or because the NLU failed to identify it in user input. Now that the prompt is ready,
+let&#8217;s add a new state node that will serve as the entry point for when the user does express a location. Name this state
+node <em>entity: location</em> to reflect that we will be checking an <em>entity</em>. Add the single entrance condition
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.location</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>. Connect the state node <em>ask for location</em> to this new enter node
+<em>entity: location</em>. This creates an <strong>ordering preference</strong> (denoted by a dashed line), which ensures that once the
+agent asks for a location, a user utterance that expresses a location will result in this enter node being chosen next
+by the router. Finally, connect the output of this enter node to the input for the state node called <em>save type and location,
+if available</em> that we had already created for the original prompt. Because of the way that node was written, it can
+just be used here too, and there is no need to create a new state node.</p>
+<p>Now add another enter node (call it <em>state: no business type</em>) with the entrance condition <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.business_type</span> <span class="pre">is</span> <span class="pre">null</span></code>,
+and connect to it a new state node (call it <em>ask for business type</em>) with the code <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code> and the output text
+<em>What kind of restaurant are you looking for?</em> Also, create a new enter node (<em>entity: business_type</em>) with the
+entrance condition <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.business_type</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>, and create an ordering constraint so that this
+enter node is chosen after the state node we just created (i.e. connect the state node to the enter node). Finally,
+connect the enter node to the state node called <em>save type and location, if available</em>. Now the system is ready to
+accept user requests, and to clarify requests when needed.</p>
+</div>
+<div class="section" id="fulfilling-the-user-s-request-through-a-yelp-query">
+<h3>Fulfilling the user&#8217;s request through a Yelp query<a class="headerlink" href="#fulfilling-the-user-s-request-through-a-yelp-query" title="Permalink to this headline">¶</a></h3>
+<p>Once we have the location and restaurant type, the agent is ready to get a list of restaurant suggestions by issuing a
+query to Yelp through the Yelp API, which is already conveniently packaged as a ChatFlow node. Examining the Yelp node,
+we see that it requires a <em>Consumer key</em>, a <em>Consumer secret</em>, a <em>Token</em> and a <em>Token secret</em>. You must provide these
+values to configure your Yelp node, and you can obtain these by signinig up for the <a class="reference external" href="http://www.yelp.com/developers">Yelp developer API</a>.
+From the Yelp node&#8217;s documentation, we see that it will build a Yelp query by using a term in <code class="docutils literal"><span class="pre">msg.yelp_term</span></code>, a
+location in <code class="docutils literal"><span class="pre">msg.yelp_location</span></code>, and a limit on the number of candidates in the output, in <code class="docutils literal"><span class="pre">msg.yelp_limit</span></code>. The
+result of the Yelp query will be placed in the <code class="docutils literal"><span class="pre">msg.payload</span></code> coming out of the Yelp node. We can add the Yelp node to
+our canvas, and configure it using our credentials. We can leave the <em>Search Term</em>, <em>Location</em> and <em>Limit</em> fields blank,
+since we&#8217;ll get these values dynamically through the messages coming into the node. Next, let&#8217;s see how we will build the
+query that will go into this node.</p>
+<p>Add a new enter node (call it <em>state: got type and location</em>) with the following three entrance conditions:
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.business_type</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>, <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.location</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code> and
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.req_pending</span> <span class="pre">is</span> <span class="pre">true</span></code>. The first two entrance conditions are self-explantory (we have both location
+and business type). The third condition simply checks whether we have already issued a Yelp query for this location
+and business type. If the request is pending (<code class="docutils literal"><span class="pre">req_pending</span></code> is true, which we set when we collected both type and
+location), we should go ahead with the request. If <code class="docutils literal"><span class="pre">req_pending</span></code> is false (because we set it to false after issuing
+the request to Yelp), we won&#8217;t issue the query to Yelp again. Connect to this enter node a new state node
+(call it <em>Yelp request</em>) with the following code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre>// prepare yelp search
+msg.yelp_term = msg.kitt.businesstype;
+msg.yelp_location = msg.kitt.location;
+msg.yelp_limit = 10;
+
+// don&#39;t request the same search again
+msg.kitt.req_pending = false;
+
+return msg;
+</pre></div>
+</div>
+<p>Finally, connect this state node to the input of the Yelp node. Now the agent is ready to issue Yelp queries through the
+Yelp API, and we need to be able to process the output of the Yelp node, which is simply what the API returns, and
+accessible as <code class="docutils literal"><span class="pre">msg.payload</span></code>. For details on how the output is formatted,
+see the <a class="reference external" href="http://www.yelp.com/developers">Yelp API documentation</a>.</p>
+</div>
+<div class="section" id="presenting-yelp-results-to-the-user">
+<h3>Presenting Yelp results to the user<a class="headerlink" href="#presenting-yelp-results-to-the-user" title="Permalink to this headline">¶</a></h3>
+<p>From our query, we will get at most ten results from Yelp. Presenting all ten at once would be suboptimal in a dialogue.
+Consider, for example, how to present choices in a speech-to-speech setting (e.g. through the Amazon Echo); a few choices
+at a time is probably best. Even in a chat scenario, it would be best to limit the number of choices presented at once to
+a smaller number. Let&#8217;s present three choices at a time, but give the user the option to hear further choices.</p>
+<p>Add a new state node (call it <em>list choices</em>). Here, we will need to add some code to process the Yelp API results,
+and present them in a way that makes sense in a conversation. Add the following code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre>msg.kitt.yelp_results = msg.payload.businesses;
+msg.payload = &quot;&quot;;
+
+var numresults = msg.kitt.yelp_results.length;
+
+msg.responses = [&#39;I found &#39; + numresults + &quot; places that might work. &quot;];
+
+if(numresults &gt; 3) {
+    numresults = 3;
+    msg.responses[0] += &#39;The first 3 are: &#39;;
+}
+
+for(var i = 1; i &lt;= numresults; i++) {
+    msg.responses[0] += &quot; &quot; + i + &quot;. &quot; + msg.kitt.yelp_results[i-1].name;
+    if(i &lt; 3) {
+        msg.responses[0] += &#39;; &#39;;
+    }
+}
+
+msg.responses[0] += &quot;. Do any of these sound okay?&quot;
+
+return msg;
+</pre></div>
+</div>
+<p>First, we are saving the results in a user variable called <code class="docutils literal"><span class="pre">yelp_results</span></code>, so we can access these results at any time.
+Then, we are starting to format the agent&#8217;s utterance to the user, but instead of using the output text field, we are
+setting the agent&#8217;s utterance directly in <code class="docutils literal"><span class="pre">msg.responses</span></code>. Using the output text field simply sets
+<code class="docutils literal"><span class="pre">msg.responses[0]</span></code> with the content of the text field. We are setting <code class="docutils literal"><span class="pre">msg.responses</span></code> directly here because
+we want to use a loop to add the names of the restaurants to the agent&#8217;s utterance. (We could have, instead, prepared the
+desired string, placed it in a user variable, and added that user variable to the agent&#8217;s utterance through the
+Output text field by using mustache notation.)</p>
+<p>Our list of choices ends with a question to the user: <em>Do any of these sound okay?</em> From here, we expect user input, which
+may be affirmative or negative, or a request for more choices, or an explicit choice. Let&#8217;s see how we handle each of
+these cases using enter nodes.</p>
+<p>First, let&#8217;s add an enter node called <em>U: yes</em> with the entrance condition <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">accept</span></code>. The
+<em>accept</em> intent corresponds to user utterances such as <em>yes</em>, <em>sure</em>, etc. Because we don&#8217;t want this enter node
+to be chosen <em>any time</em> the user says something like <em>yes</em>, and rather only when <em>yes</em> is a response to the question
+we just posed (<em>Do any of these sound okay?</em>), let&#8217;s check the box that says <em>Enter only from direct link</em>, and create
+an ordering preference link from the last state node we created to this enter node. Now, let&#8217;s add a new state node
+(<em>request choice</em>), leave the code as <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code>, and add <em>Great! Which one?</em> to the Output text field.</p>
+<p>Now add a new state node called <em>U: no</em> with the entrance condition <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">reject</span></code>, which will
+handle user input such as <em>no</em>, <em>not really</em>, <em>no way</em>, etc. Let&#8217;s check <em>Enter only from direct link</em> and create an
+ordering preference link just as with the previous enter node. Let&#8217;s add a new state node that will give use user
+more options from the Yelp list of results when the user says <em>no</em>. Let&#8217;s call this state node <em>list more choices</em>, and
+add the following code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre>for(var i = 0; i &lt; 3; i++) {
+    msg.kitt.yelp_results.shift();
+}
+
+var numresults = msg.kitt.yelp_results.length;
+
+if(numresults == 0) {
+    msg.responses = [&quot;Sorry, I&#39;m all out of options, but you can try a different search request.&quot; ];
+    return msg;
+}
+
+msg.responses = [&#39;Ok, I have &#39; + numresults + &quot; more places. &quot;];
+
+if(numresults &gt; 3) {
+    numresults = 3;
+    msg.responses[0] += &#39;The next 3 are: &#39;;
+}
+
+for(var i = 1; i &lt;= numresults; i++) {
+    msg.responses[0] += &quot; &quot; + i + &quot;. &quot; + msg.kitt.yelp_results[i-1].name;
+    if(i &lt; 3) {
+        msg.responses[0] += &#39;; &#39;;
+    }
+}
+
+msg.responses[0] += &quot;. Do any of these sound okay?&quot;
+
+return msg;
+</pre></div>
+</div>
+<p>This will remove the restaurant options we already used, check if there are still options available, and if so,
+present them to the user.</p>
+<p>Finally, let&#8217;s add another enter node (<em>U: list more</em>) with the following two entrance conditions:
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_more_options</span></code> and <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>. Here, we do
+<strong>not</strong> check <em>Enter only from direct link</em>, since we want the user to be able to request more choices at any time,
+as long as we already have Yelp results (which we check with the second entrance condition). Link this enter node
+to the state node called <em>list more choices</em>. Now, let&#8217;s create ordering preference links from <em>list more choices</em> to each
+of the enter nodes <em>U: yes</em>, <em>U: no</em>, and <em>U: list mode</em>. We now have the capability of preseting a small number of
+choices, and going down a list if necessary.</p>
+</div>
+<div class="section" id="getting-a-choice-from-the-user">
+<h3>Getting a choice from the user<a class="headerlink" href="#getting-a-choice-from-the-user" title="Permalink to this headline">¶</a></h3>
+<p>Now we are ready to have the user choose a restaurant from the options presented by the agent. Let&#8217;s add a new state node
+called <em>U: state choice</em> with the entrance conditions <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">state_choice</span></code> and
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span></code> is not null. The second condition, again, just make sure we already have
+results from Yelp (otherwise choosing one wouldn&#8217;t make sense). The first condition checks that the user expressed
+the intent of choosing an option (e.g. <em>The first one</em>, <em>the second one sounds ok</em>, <em>option 2 please</em>, <em>2 sounds good</em>, etc.).
+Connect to this enter node a new state node (<em>set and repeat choice</em>), which will set the user&#8217;s choice in a user
+variable, and say it back to the user. Add the following code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre>var choice = null;
+switch(msg.NLU.entities.enum_choice) {
+    case &quot;first&quot;:
+    case &quot;1&quot;:
+    case &quot;one&quot;:
+        choice = 1;
+        break;
+    case &quot;two&quot;:
+    case &quot;2&quot;:
+    case &quot;second&quot;:
+        choice = 2;
+        break;
+    case &quot;three&quot;:
+    case &quot;last&quot;:
+    case &quot;3&quot;:
+    case &quot;third&quot;:
+        choice = 3;
+        break;
+    default:
+        choice = 0;
+}
+
+msg.responses = [&quot;&quot;];
+if(choice === 0) {
+    msg.responses[0] = &quot;Sorry, I didn&#39;t get what your choice was. &quot;;
+}
+else {
+    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
+    msg.responses[0] = &quot;Great, &quot; + msg.kitt.yelp_results[choice-1].name + &quot;. &quot;;
+    msg.kitt.user_choice = &quot;&quot; + (choice - 1);
+}
+
+return msg;
+</pre></div>
+</div>
+<p>Here, we are checking an entity <code class="docutils literal"><span class="pre">enum_choice</span></code> coming from NLU against strings like <em>first</em>, <em>1</em>, <em>one</em>, etc., and
+setting a <code class="docutils literal"><span class="pre">choice</span></code> variable appropriately. Finally, if a choice is made, we set a user variable <code class="docutils literal"><span class="pre">user_choice</span></code>,
+which we can access at any time in other nodes.</p>
+<p>Let&#8217;s create another state node called <em>say rating</em>, which will give use the star rating for the current user choice,
+with the following code:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre>msg.responses[0] += &quot;It&#39;s got &quot; +
+    msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
+    &quot; reviews on Yelp, and the rating is &quot; +
+    msg.kitt.yelp_results[msg.kitt.user_choice].rating + &quot; stars.&quot;;
+
+return msg;
+</pre></div>
+</div>
+<p>Connect the node <em>set and repeat choice</em> to <em>say rating</em>, so that whenever the user makes a choice, the agent says
+the choice back, then tells the user the Yelp star rating.</p>
+</div>
+<div class="section" id="answering-user-questions-about-the-choices-presented">
+<h3>Answering user questions about the choices presented<a class="headerlink" href="#answering-user-questions-about-the-choices-presented" title="Permalink to this headline">¶</a></h3>
+<p>Of course, we can also use the <em>say rating</em> state node
+to answer questions like <em>What&#8217;s the star rating?</em> or <em>Is it good?</em> To do that, let&#8217;s add a new enter node called
+<em>U: request rating</em> with three entrance conditions: <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code>, which makes sure
+that the user is requesting a star rating, or asking a question that can be answered with the star rating (e.g.
+<em>Is this restaurant good?</em>); <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.user_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>, whch makes sure that we already have
+a user choice, otherwise we wouldn&#8217;t know what restaurant we are talking about; and finally
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span></code>, to make sure that the user is not asking a question about a new choice
+(e.g. &#8220;What is the star rating for the second restaurant?&#8221;). Now, connect this enter node to <em>say rating</em>.</p>
+<p>To handle questions that refer to a specific restaurant (like <em>What is the star rating for the second option?</em>),
+we add a new enter node called <em>U: rating request with choice</em> with the following entrance conditions:
+<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code>, which makes sure the user is requesting a star rating or asking a
+question that can be answered with a star rating; an <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span></code>, which checks
+that the output of NLU includes an entity that refers to an explicity choice from an enumerated list (i.e. the
+user utterance includes a string like <em>the last one</em>, <em>the second place</em>, <em>option 1</em>, etc.). We connect this enter node
+to a new state node called <em>say rating by choice</em>, with the following code:</p>
+<p>Here, we have similar code to what we used before to make a choice, but we follow that immediately with code to build
+a system utterance that tells the user the star rating.</p>
+<p>From here, we can add enter and state nodes to handle questions about address (the NLU intent would be
+<code class="docutils literal"><span class="pre">request_address</span></code>) or hours (NLU intent <code class="docutils literal"><span class="pre">request_hours</span></code>) in the same way we handled start ratings.</p>
+<p>Finally, we can add additional enter and state nodes to handle things like <em>thanking</em> (when the user says <em>thanks</em>,
+the system should reply appropriately), and <em>closing</em> (when the user says <em>goodbye</em>, or <em>that will be all</em>, or something
+to that effect, the system should end the interaction with a state node that has the <em>Dialogue ends here</em> box checked).</p>
+</div>
+<div class="section" id="final-thoughts">
+<h3>Final thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h3>
+<p>That&#8217;s it! We now have a fully functional conversational interface to Yelp. Can you make it better? (Of course you can!)</p>
+<p>This example illustrated how to access external resources and use the ability to add code inside state nodes to use that
+information within a conversation. We also saw how to structure a flow around system goals, and how to handle different
+kinds of user input.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="telegram.html" class="btn btn-neutral float-right" title="Telegram Bot Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dialogue_nodes.html" class="btn btn-neutral" title="Dialogue Nodes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Aug 17, 2016.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

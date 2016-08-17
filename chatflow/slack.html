@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Slack Bot Tutorials &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Twilio Bot Tutorials" href="twilio.html"/>
+        <link rel="prev" title="Telegram Bot Tutorials" href="telegram.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> ChatFlow
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#adding-an-nlu-node">Adding an NLU node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Slack Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-slack-bot">1. Create a new slack bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#copy-bot-api-token">2. Copy Bot API Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-the-bot">4. Configure the bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deploy-the-application">5. Deploy the application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-slack-application">1. Creating a slack application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nlu-setup">3. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#slack-app-setup">4. Slack app setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#slash-command">Slash command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Interactive messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#redirect-url">Redirect URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChatFlow</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Slack Bot Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/slack.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="slack-bot-tutorials">
+<span id="slack"></span><h1>Slack Bot Tutorials<a class="headerlink" href="#slack-bot-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial we will start with creating a simple Slack bot to echo your message,
+then we will create a voting bot with advanced slack abilities, such as:</p>
+<ul class="simple">
+<li>interactive messages</li>
+<li>custom slash commands</li>
+</ul>
+</div>
+<div class="section" id="a-simple-echo-bot">
+<h2>A simple echo bot<a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
+<p>First of all, let us show how to connect ChatFlow to the slack. You should create the new bot and input credentials in
+slack nodes.</p>
+<div class="section" id="create-a-new-slack-bot">
+<h3>1. Create a new slack bot<a class="headerlink" href="#create-a-new-slack-bot" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Please visit <a class="reference external" href="https://my.slack.com/services/new/bot">creating a new bot user</a> page to create your bot.</li>
+</ol>
+<p>Name the new bot as &#64;echo and click on &#8220;Add bot integration&#8221; button</p>
+<img alt="_images/newBot.png" class="align-center" src="_images/newBot.png" />
+</div>
+<div class="section" id="copy-bot-api-token">
+<h3>2. Copy Bot API Token<a class="headerlink" href="#copy-bot-api-token" title="Permalink to this headline">¶</a></h3>
+<p>After you created your bot, you can see Bot API Token. Copy it&#8217;s value to clipboard.</p>
+<img alt="_images/botToken.png" class="align-center" src="_images/botToken.png" />
+</div>
+<div class="section" id="create-a-new-chatflow-application">
+<h3>3. Create a new ChatFlow application<a class="headerlink" href="#create-a-new-chatflow-application" title="Permalink to this headline">¶</a></h3>
+<p>Now create a new application on <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</p>
+<p>Name it &#8220;Slack echo bot&#8221;. Click on the application name to go to the editor page.
+On the panel, input &#8220;slack&#8221; into Search field, to filter slack nodes and move them to the workflow. Connect them as you
+see on image below</p>
+<img alt="_images/slackEchoSetup.png" class="align-center" src="_images/slackEchoSetup.png" />
+</div>
+<div class="section" id="configure-the-bot">
+<h3>4. Configure the bot<a class="headerlink" href="#configure-the-bot" title="Permalink to this headline">¶</a></h3>
+<p>Now double click the <strong>Slack In</strong> node, select &#8220;Add new selectbot-controller...&#8221; and click &#8220;Edit&#8221; button.</p>
+<p>Name it &#8220;Echo bot&#8221;. This name the name of the slackbot-controller node. Special node with configuration that can be
+used by other nodes.
+Paste the Bot API Token you copied before. Click &#8220;Add&#8221; button.</p>
+<img alt="_images/botTokenPaste.png" class="align-center" src="_images/botTokenPaste.png" />
+<p>Double click the <strong>Slack Out</strong> node and select &#8220;Echo bot&#8221;:</p>
+<img alt="_images/selectEchoBot.png" class="align-center" src="_images/selectEchoBot.png" />
+</div>
+<div class="section" id="deploy-the-application">
+<h3>5. Deploy the application<a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h3>
+<p>Click on deploy button to deploy your application.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You cannot run more applications than your limit allows you. If you ran out of quota, you should:</p>
+<ul class="last simple">
+<li>save the current application</li>
+<li>go to <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a></li>
+<li>stop some other application</li>
+<li>start the &#8220;Slack echo bot&#8221; application</li>
+</ul>
+</div>
+<p>After the application is deployed, your bot should be online. It will respond to you with the same message you send.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Xuchen&#8217;s suggestion: why not show a quick video of talking to your Echo bot?</p>
+</div>
+</div>
+</div>
+<div class="section" id="advanced-slash-commands-and-interactive-messages">
+<h2>Advanced: slash commands and interactive messages<a class="headerlink" href="#advanced-slash-commands-and-interactive-messages" title="Permalink to this headline">¶</a></h2>
+<p>In this part we will show you how to use more advanced bot features. You will learn how to create application that
+uses custom <a class="reference external" href="https://api.slack.com/slash-commands">slash commands</a> and
+<a class="reference external" href="https://api.slack.com/docs/message-buttons">interactive messages</a>.
+We will create a small voting game. The idea is simple: bot will show you two cat images and all members of your
+slack channel can cast their vote.</p>
+<div class="section" id="creating-a-slack-application">
+<h3>1. Creating a slack application<a class="headerlink" href="#creating-a-slack-application" title="Permalink to this headline">¶</a></h3>
+<p>Please go to the <a class="reference external" href="https://api.slack.com/apps">slack applications</a>  page and click &#8220;Create New App Page&#8221;.
+Set the application name - &#8220;ChatFlow Cat Choose&#8221;.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The fields &#8220;App Name&#8221;, &#8220;Short Description&#8221; and &#8220;Long description&#8221; are required</p>
+</div>
+<p>We will set &#8220;Redirect URI(s)&#8221; later. Click &#8220;Create App&#8221; button.</p>
+<img alt="_images/createSlackApp.png" class="align-center" src="_images/createSlackApp.png" />
+<p>Click on the &#8220;Bot users&#8221; on the left and click &#8220;Add bot to this app&#8221; button. Name your bot &#8220;chatflow_cat_choose&#8221; and
+then click &#8220;Add bot user&#8221;.</p>
+<img alt="_images/addBotUser.png" class="align-center" src="_images/addBotUser.png" />
+<p>We will later use this bot for slash command and interactive messages.</p>
+</div>
+<div class="section" id="importing-the-cat-choose-application">
+<span id="import-cat-choose-app"></span><h3>2. Importing the &#8220;Cat Choose&#8221; application<a class="headerlink" href="#importing-the-cat-choose-application" title="Permalink to this headline">¶</a></h3>
+<p>Import the application to ChatFlow. You can either:</p>
+<ul class="simple">
+<li>Download <a class="reference download internal" href="_downloads/SlackCatChoose.json"><code class="xref download docutils literal"><span class="pre">json</span></code></a> of our application and import the project on the
+<a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page, or,</li>
+<li>Use the &#8220;Slack - Cat Choose&#8221; sample application when clicking &#8220;CREATE NEW APP&#8221; on the
+<a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
+</ul>
+<p>Also please download <a class="reference download internal" href="_downloads/SlackCatChoose-nlu.json"><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> to import it as
+<a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</p>
+</div>
+<div class="section" id="nlu-setup">
+<h3>3. NLU setup<a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h3>
+<p>First, go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json you get from <a class="reference internal" href="#import-cat-choose-app"><span>2. Importing the &#8220;Cat Choose&#8221; application</span></a>.
+Come back to ChatFlow and open the KITT.AI node and paste URL you got from NLU there.
+Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>, so your final string would look like:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+</pre></div>
+</div>
+<img alt="_images/nluNode.png" class="align-center" src="_images/nluNode.png" />
+</div>
+<div class="section" id="slack-app-setup">
+<h3>4. Slack app setup<a class="headerlink" href="#slack-app-setup" title="Permalink to this headline">¶</a></h3>
+<p>Now we need to configure slash command, interactive messages and redirect URL for
+your Slack app. They all need a (different) callback endpoint.</p>
+<p>We can use the <strong>http</strong> node for serving this callback endpoint:</p>
+<img alt="_images/httpNode.png" class="align-center" src="_images/httpNode.png" />
+<p>Each <strong>http</strong> node has a unique URL.</p>
+<p>In the &#8220;Slack - Cat Choose&#8221; app, there are three callback nodes:</p>
+<img alt="_images/callbackNodes.png" class="align-center" src="_images/callbackNodes.png" />
+<p>Each of them is an individual HTTPs server that accepts a <code class="docutils literal"><span class="pre">POST</span></code>/<code class="docutils literal"><span class="pre">GET</span></code> request.
+Correspondingly, they provide the callback endpoints for slash command, interactive messages and redirect URL.</p>
+<div class="section" id="slash-command">
+<h4>Slash command<a class="headerlink" href="#slash-command" title="Permalink to this headline">¶</a></h4>
+<p>The Cat Choose app supports <a class="reference external" href="https://api.slack.com/slash-commands">slash commands</a>.
+Let&#8217;s create one.</p>
+<p>Click <strong>Slash Commands</strong> on the left side of the <a class="reference external" href="https://api.slack.com/apps">slack applications</a> page
+and then <strong>Create new command</strong>. Enter the command &#8220;/randomcat&#8221; and
+write a short description &#8220;Shows random cat&#8221;.</p>
+<p>Now you have to input &#8220;Request URL&#8221;, which is served by the <strong>slash command</strong> node.
+Return to your ChatFlow application, click on the <strong>slash command</strong> node and copy &#8220;Final URL&#8221; by clicking it.</p>
+<img alt="_images/copyCommandURL.png" class="align-center" src="_images/copyCommandURL.png" />
+<p>Paste this URL on the &#8220;Create new command&#8221; page and click &#8220;Save&#8221;.</p>
+<img alt="_images/pasteCommandURL.png" class="align-center" src="_images/pasteCommandURL.png" />
+</div>
+<div class="section" id="id6">
+<h4>Interactive messages<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<p>Go to <strong>Interactive Messages</strong> by clicking on it on the left side of the page. Click &#8220;Enable Interactive Messages&#8221;.</p>
+<p><a class="reference external" href="https://api.slack.com/docs/message-buttons">Interactive Messages</a> require a callback URL once actions happen.</p>
+<p>Return to your ChatFlow app and
+click on &#8220;buttons callback&#8221; node. Click on &#8220;Final URL&#8221; input filed to copy your URL to clipboard.
+The <em>buttons callback</em> <strong>http</strong> node will then serve as a webhook and catch HTTP callbacks from
+slack, when a user clicks on buttons in Slack interactive messages.</p>
+<img alt="_images/copyButtonsURL.png" class="align-center" src="_images/copyButtonsURL.png" />
+<p>Click the &#8220;Enable Interactive Messages&#8221; button and paste this URL on the &#8220;Interactive Messages&#8221; page.</p>
+<img alt="_images/pasteButtonsURL.png" class="align-center" src="_images/pasteButtonsURL.png" />
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">write more about the &#8220;Cat 1&#8221; and &#8220;Cat 2&#8221; buttons that correspond to interactive messages.</p>
+</div>
+</div>
+<div class="section" id="redirect-url">
+<h4>Redirect URL<a class="headerlink" href="#redirect-url" title="Permalink to this headline">¶</a></h4>
+<p>We created a simple node chain inside &#8220;Cat Choose&#8221; application to help you authenticate with your app.</p>
+<p>Go to your application setup from the <a class="reference external" href="https://api.slack.com/apps">slack applications</a> page. Click &#8220;App Credentials&#8221;
+on the left side. Copy &#8220;Client ID&#8221;. Return to ChatFlow and double click the node, called &#8220;App credential&#8221;.
+Paste &#8220;Client ID&#8221; there. Do the same for &#8220;Client Secret&#8221;.</p>
+<img alt="_images/appCredentials.png" class="align-center" src="_images/appCredentials.png" />
+<p>Go to ChatFlow, double click on node, called &#8220;redirect&#8221; and click &#8220;Final URL&#8221; input field to copy it&#8217;s URL to clipboard.</p>
+<img alt="_images/copyRedirectURL.png" class="align-center" src="_images/copyRedirectURL.png" />
+<p>Now you should paste this URL to two places, to the &#8220;App Credentials&#8221; node from previous step and to the &#8220;App Credentials&#8221;
+slack page. Click &#8220;Save changes&#8221; after pastin &#8220;Redirect URI(s)&#8221;</p>
+<img alt="_images/pasteRedirectURL.png" class="align-center" src="_images/pasteRedirectURL.png" />
+</div>
+</div>
+<div class="section" id="connect-your-slack-application-with-your-team">
+<h3>5. Connect your slack application with your team<a class="headerlink" href="#connect-your-slack-application-with-your-team" title="Permalink to this headline">¶</a></h3>
+<p>When application setup is ready, you should connect your team with your application to see how it works.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You have to be administrator of the team to be able to connect the application to the team</p>
+</div>
+<p>Go to <a class="reference external" href="https://api.slack.com/docs/slack-button#button-widget">Add the Slack button</a>. Check all checkboxes and select
+&#8220;ChatFlow Cat Choose&#8221; from drop-down menu. Then click &#8220;Add to Slack&#8221; button.</p>
+<img alt="_images/addToSlack.png" class="align-center" src="_images/addToSlack.png" />
+<p>Select your team and channel, for example #random and press &#8220;Authorize&#8221;. It will redirect you to the blank page, telling
+you the Bot API Token for your Slack App. Copy that token.</p>
+<p>Now double click the Slack In node, select &#8220;Add new selectbot-controller...&#8221; and click &#8220;Edit&#8221; button. Name it &#8220;Cat bot&#8221;.
+Paste the Bot API Token you copied before. Click &#8220;Add&#8221; button.</p>
+<p>Double click the Slack Out node and select &#8220;Cat bot&#8221; there.</p>
+<img alt="_images/pasteCatChooseToken.png" class="align-center" src="_images/pasteCatChooseToken.png" />
+<p>Deploy your application.</p>
+</div>
+<div class="section" id="testing-the-cat-choose-application">
+<h3>6. Testing the &#8220;Cat Choose&#8221; application<a class="headerlink" href="#testing-the-cat-choose-application" title="Permalink to this headline">¶</a></h3>
+<p>When you successfully connected your slack application to ChatFlow application, you may test it.</p>
+<p>You may write the following text to your bot:</p>
+<ul class="simple">
+<li>&#8220;Hello&#8221; - the bot will answer with the greeting</li>
+<li>Mention &#8220;cats&#8221; - the bot will start the voting game, showing you two cat images, asking you to choose one of them.</li>
+</ul>
+<p>You may also try slash command. Write in any chat:</p>
+<div class="highlight-python"><div class="highlight"><pre>/randomcat
+</pre></div>
+</div>
+<p>to see a random cat there.</p>
+<div class="admonition-todo admonition" id="index-2">
+<p class="first admonition-title">Todo</p>
+<p class="last">&#64;xuchen. Could you please make a quick video, showing how it works?</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="twilio.html" class="btn btn-neutral float-right" title="Twilio Bot Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="telegram.html" class="btn btn-neutral" title="Telegram Bot Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Aug 11, 2016.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

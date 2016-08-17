@@ -1,0 +1,356 @@
+{
+  "name": "kik - Colored Cats",
+  "description": "Shows you different cat photos, communicating through the kik nodes",
+  "data": [
+    {
+        "id": "9fc32404.603cd8",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "17916687.e86e99",
+        "type": "kikbot-controller",
+        "z": "9fc32404.603cd8",
+        "name": "$kikName",
+        "bot_token": "$kikAPI"
+    },
+    {
+        "id": "f24211b0.0dbdf",
+        "type": "enter",
+        "z": "9fc32404.603cd8",
+        "name": "Initial state",
+        "rules": [],
+        "directlink": false,
+        "initialstate": true,
+        "outputs": 1,
+        "x": 110,
+        "y": 100,
+        "wires": [
+            [
+                "4241462.fbdbeb8"
+            ]
+        ]
+    },
+    {
+        "id": "2ad77b06.d52884",
+        "type": "state",
+        "z": "9fc32404.603cd8",
+        "name": "bye",
+        "response": "Goodbye.",
+        "finalstate": true,
+        "func": "\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 310,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7508df70.8af72",
+        "type": "state",
+        "z": "9fc32404.603cd8",
+        "name": "Don't understand",
+        "response": "I don't understand you. Could you please rephrase that?",
+        "finalstate": false,
+        "func": "\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 334,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8539ea55.7ac618",
+        "type": "enter",
+        "z": "9fc32404.603cd8",
+        "name": "U: off-topic",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "greeting"
+            },
+            {
+                "t": "lt",
+                "p": "NLU.intent_score",
+                "v": "0.45"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 320,
+        "wires": [
+            [
+                "7508df70.8af72"
+            ]
+        ]
+    },
+    {
+        "id": "f4b06ae7.0b4f98",
+        "type": "kikbot-listen",
+        "z": "9fc32404.603cd8",
+        "kikbot": "17916687.e86e99",
+        "name": "",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "be83a90e.417c58"
+            ]
+        ]
+    },
+    {
+        "id": "68464cef.97b9b4",
+        "type": "enter",
+        "z": "9fc32404.603cd8",
+        "name": "U: greeting",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "greeting"
+            },
+            {
+                "t": "gte",
+                "p": "NLU.intent_score",
+                "v": "0.45"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "4241462.fbdbeb8"
+            ]
+        ]
+    },
+    {
+        "id": "35653a55.ca9ac6",
+        "type": "enter",
+        "z": "9fc32404.603cd8",
+        "name": "U: closing",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "bye"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 110,
+        "y": 260,
+        "wires": [
+            [
+                "2ad77b06.d52884"
+            ]
+        ]
+    },
+    {
+        "id": "ac16e843.53e918",
+        "type": "state",
+        "z": "9fc32404.603cd8",
+        "name": "state",
+        "response": "msg",
+        "finalstate": false,
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.responses (a list):\n// members of msg.responses will be randomly\n// selected and concatenated to msg.reply,\n// which is the final output message back to user.\n\n// msg.responses = [???];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1780,
+        "y": 551,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4241462.fbdbeb8",
+        "type": "state",
+        "z": "9fc32404.603cd8",
+        "name": "Initialize",
+        "response": "I can show you cat images. What cat would you like to see?",
+        "finalstate": false,
+        "func": "msg.kitt.color2cat = {\"red\": \"http://i1.irishmirror.ie/incoming/article6745850.ece/ALTERNATES/s615b/Ginger-tabby-cat.jpg\",\n    \"white\": \"https://i.ytimg.com/vi/54Br5mQ8idE/maxresdefault.jpg\",\n    \"grey\": \"https://s-media-cache-ak0.pinimg.com/236x/25/1e/4d/251e4d685cd4960ccfd624c03ac11c7c.jpg\",\n    \"black\": \"http://dingo.care2.com/pictures/greenliving/uploads/2013/10/black-cat-outside.jpg\",\n    \"brown\": \"http://petful.supercopyeditors.netdna-cdn.com/wp-content/uploads/2013/04/Havana_Brown-featured.jpg\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ced0ff37.312f",
+        "type": "router",
+        "z": "9fc32404.603cd8",
+        "name": "",
+        "debugOutput": "console",
+        "sessionprop": "kik.chatId",
+        "userprop": "kik.user",
+        "timeout": "0",
+        "x": 507,
+        "y": 41,
+        "wires": [
+            [
+                "493dbb54.4c9bf4"
+            ]
+        ]
+    },
+    {
+        "id": "be83a90e.417c58",
+        "type": "KITT.AI",
+        "z": "9fc32404.603cd8",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "$kittURL{{{payload}}}",
+        "x": 310,
+        "y": 40,
+        "wires": [
+            [
+                "ced0ff37.312f"
+            ]
+        ]
+    },
+    {
+        "id": "e72fc6b5.18d038",
+        "type": "kikbot-reply",
+        "z": "9fc32404.603cd8",
+        "kikbot": "17916687.e86e99",
+        "name": "",
+        "x": 1006,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "649baf9a.9b645",
+        "type": "enter",
+        "z": "9fc32404.603cd8",
+        "name": "colored cat",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "cat type"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.entities.cat_color"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 534,
+        "y": 137,
+        "wires": [
+            [
+                "61ace79a.8e24b8"
+            ]
+        ]
+    },
+    {
+        "id": "61ace79a.8e24b8",
+        "type": "state",
+        "z": "9fc32404.603cd8",
+        "name": "Show colored cat",
+        "response": "",
+        "finalstate": false,
+        "func": "\nvar color = (msg.NLU.entities['cat_color'] || \"\").toLowerCase();\nif (color in msg.kitt.color2cat) {\n    msg.kitt._responses = [msg.kitt.color2cat[color]];\n    msg.kik.type=\"picture\";\n} else {\n    msg.kitt._responses = [\"I know only red, black, white, grey, brown and random cats!\"];\n    msg.kik.type=\"text\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 762.40625,
+        "y": 139,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8ebf7933.0d5c18",
+        "type": "enter",
+        "z": "9fc32404.603cd8",
+        "name": "random cat",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "cat type"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.entities['random color']"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 523,
+        "y": 225,
+        "wires": [
+            [
+                "abfecc55.dda01"
+            ]
+        ]
+    },
+    {
+        "id": "abfecc55.dda01",
+        "type": "http request",
+        "z": "9fc32404.603cd8",
+        "name": "random.cat/meow",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://random.cat/meow",
+        "x": 715.90625,
+        "y": 224,
+        "wires": [
+            [
+                "62b25fb1.3c503"
+            ]
+        ]
+    },
+    {
+        "id": "62b25fb1.3c503",
+        "type": "state",
+        "z": "9fc32404.603cd8",
+        "name": "Show random cat",
+        "response": "",
+        "finalstate": false,
+        "func": "\n// output from random cat: {\"file\":\"http:\\/\\/random.cat\\/i\\/Tr08p.jpg\"}\n\nmsg.kitt._responses = [msg.payload.file];\nmsg.kik.type=\"picture\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 947,
+        "y": 224,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "493dbb54.4c9bf4",
+        "type": "function",
+        "z": "9fc32404.603cd8",
+        "name": "Update Custom Keyboard",
+        "func": "msg.kik.suggestions=[\n    'Hello',\n    'Show me the red cat',\n    'I want to see the black cat',\n    'Brown cat',\n    'White one is adorable!',\n    'Random cat',\n    'Bye'];\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 761.40625,
+        "y": 40,
+        "wires": [
+            [
+                "e72fc6b5.18d038"
+            ]
+        ]
+    }
+]
+}

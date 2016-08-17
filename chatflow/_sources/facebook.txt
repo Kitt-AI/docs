@@ -1,0 +1,169 @@
+.. _facebook:
+
+======================
+Facebook Tutorials
+======================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+Abstract
+========
+This tutorial will teach you how to create a simple facebook bot. In addition, we will teach you how to import and 
+setup the application with advanced message features (such as templates and buttons).
+
+.. _create_simple_bot:
+
+Creating a simple echo bot
+========================
+
+In this part of the tutorial, we will show you how to connect the facebook nodes with a facebook page.
+
+
+1. Create a new facebook page
+_____________________________
+
+Go to `Create a Page <https://www.facebook.com/pages/create/>`_. 
+
+Once there, choose a category, name your organization, and click on "Get Started".
+
+.. image:: _static/img/facebook/createPage.png
+   :align: center
+
+You can skip 4 next steps.
+
+.. _create_facebook_app:
+
+2. Create the facebook application
+______________________________
+
+Go to the `Create Facebook Application <https://developers.facebook.com/quickstarts/?platform=web>`_ page.
+
+Enter your application's name (ex. "ChatFlow app") and click "Create New Facebook App ID".
+
+.. image:: _static/img/facebook/createApp.png
+   :align: center
+
+Enter your email into the email field, choose a category, and click "Create App ID". You can skip all other 
+steps on that page by clicking "Skip Quick Start" button.
+
+Now you are on the dashboard page. This is where you can setup your new Facebook application by follow these 
+steps:
+
+1. Click on "+ Add Product"
+2. Click on "Get Started" button in the "Messenger" section. A new page will load.
+3. Click on "Get Started"
+
+You are now on the Messenger Setup Page. We will return to this page after you create your ChatFlow 
+application.
+
+.. image:: _static/img/facebook/messengerSetup.png
+   :align: center
+
+3. Create the ChatFlow application
+______________________________
+
+Go to the `apps <https://chatflow.kitt.ai/apps>`_ page. Click on "CREATE NEW APP" button.  Under "Start with a 
+clean project", enter your project's name and click on create. You see the app under your appliactions list. To 
+edit, click on the newly created app's name.
+
+In the Node Library, search for "facebook" to filter facebook nodes. Drag **Facebook In** and **Facebook Out** into 
+the workspace and connect them.
+
+Double click the **Facebook In** node. Select "Add new facebook-controller..." and click the "edit" button.
+
+Click "Start Verification Process" button.
+
+
+.. image:: _static/img/facebook/startVerification.png
+   :align: center
+
+Click the "Webhook URL" input field to copy URL to clipboard.
+
+On "Messenger Settings" page from the ref:`create_facebook_app`, click on "Setup Webhooks". Paste the Webhook URL 
+stored on your clipboard.
+
+On ChatFlow page near the "Verify Token" field, click on the "Random" button. Then click on "Copy". It will copy the
+"Verify Token" to the clipboard. Pate it on the "Messenger Settings" page. 
+
+Select by checking all options under the "Subscriptions" section. Click "Verify and Save"
+
+.. image:: _static/img/facebook/pasteVerify.png
+   :align: center
+
+Under the "Token Generation" section, select the page you created. Click on the access token to copy it onto the 
+clipboard. Under webhooks select your page and click "Subscribe". 
+
+On the ChatFlow page, paste your token to the "Access Token" field. In the "Config Name" Fields, name your config 
+(ex. "Facebook"). Click the "Add" button.
+
+.. image:: _static/img/facebook/pasteToken.png
+   :align: center
+
+Double click the **Facebook Out** node. Under the "Facebook" token field, select "Faebook" configuration.
+
+After deploying the applciation, you may test the result. Write the private message to your page and it should 
+send that message back to you.
+
+Adnvanced: templates and buttons
+================================
+
+In this part of the tutorial, we will import the application that use advanced features, such as generic template and 
+buttons.
+
+.. _import_weather_app:
+
+1. Importing the "Weather forecast" application
+_________________________________________
+
+Import the application to ChatFlow. You can either:
+
+* Download :download:`json <_static/json/FacebookWeatherForecast.json>` our application and import the project on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page, 
+  or,
+* Use the "Facebook - Weather forecast" sample application under "Use a Sample Project" when clicking "CREATE NEW APP" 
+  on the `applications <https://chatflow.kitt.ai/apps>`_ page.
+
+
+In addition, please download :download:`NLU json <_static/json/FacebookWeatherForecast-nlu.json>` and import it as
+`an NLU application <https://nlu.kitt.ai>`_.
+
+.. image:: _static/img/facebook/weather.png
+   :align: center
+
+2. NLU setup
+___________________________
+
+First, go to NLU_  and import the NLU json you downloaded from :ref:`import_weather_app`. Under "Deployment Information", 
+copy the Deployment URL.
+
+Go back to ChatFlow. Open the **KITT.AI NLU** node and paste the Deployment URL.
+Add ``{{{payload}}}``, so your final string would look like: ::
+   http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+.. image:: _static/img/facebook/kitt.png
+   :align: center
+
+3. Setup Weather forecast application
+_____________________________________
+
+Repeat all steps, described in :ref:`create_simple_bot` to connect ChatFlow to the Facebook page.
+
+After deploying your applciation, You may ask about the weather in any city. Example requests:
+* "Hello" - the bot will answer with the greeting
+* "Is it Raining in Cambridge?" - will show you the weather for current day in Cambridge.
+* "Show the weather forecast for Cleveland" - shows you 7 days weather forecast for Cleveland.

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Welcome to ChatFlow &mdash; ChatFlow 0.1 documentation</title>
+  <title>Facebook Tutorials &mdash; ChatFlow 0.1 documentation</title>
   
 
   
@@ -30,8 +30,8 @@
   
 
   
-    <link rel="top" title="ChatFlow 0.1 documentation" href="#"/>
-        <link rel="next" title="ChatFlow Quick Start" href="quickstart.html"/> 
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Kik Bot Tutorials" href="kik.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -48,7 +48,7 @@
         
 
         
-          <a href="#" class="icon icon-home"> ChatFlow
+          <a href="index.html" class="icon icon-home"> ChatFlow
         
 
         
@@ -70,7 +70,7 @@
         
           
           
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
@@ -186,40 +186,18 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#create-an-alexa-skill">Create an Alexa Skill</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#skill-information">1. Skill Information</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#sample-utterances">2. Sample Utterances</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#configuration">3. Configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#ssl-certificate">4. SSL Certificate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#test">5. Test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#finishing-up">6. Finishing up</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Facebook Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-simple-echo-bot">Creating a simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-facebook-page">1. Create a new facebook page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-facebook-application">2. Create the facebook application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-chatflow-application">3. Create the ChatFlow application</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#incoming-message-structures">Incoming Message Structures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#launch-skill">Launch Skill</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#intent-request">Intent Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#card-and-reprompt">Card and Reprompt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#ask-or-tell">Ask or Tell?</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy Chatflow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#state-tracking">State tracking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adnvanced-templates-and-buttons">Adnvanced: templates and buttons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#importing-the-weather-forecast-application">1. Importing the &#8220;Weather forecast&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-weather-forecast-application">3. Setup Weather forecast application</a></li>
 </ul>
 </li>
 </ul>
@@ -237,7 +215,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">ChatFlow</a>
+        <a href="index.html">ChatFlow</a>
       </nav>
 
 
@@ -246,13 +224,13 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
+    <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Welcome to ChatFlow</li>
+    <li>Facebook Tutorials</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/facebook.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -261,82 +239,105 @@
 </div>
           <div role="main" class="document">
             
-  <div class="section" id="welcome-to-chatflow">
-<h1>Welcome to ChatFlow<a class="headerlink" href="#welcome-to-chatflow" title="Permalink to this headline">¶</a></h1>
-<p>ChatFlow is a platform that provides a simple way to
-create conversational agents, or smart bots, using a visual interface.
-ChatFlow bots understand natural language, keep track of
-context in conversations, connect to a number of APIs
-to access external services and resources, and communicate
-with users through various text and speech platforms, such
-as Facebook Messenger, Slack, Kik, Telegram, SMS, and
-Amazon&#8217;s Alexa platform (Amazon Echo).</p>
+  <div class="section" id="facebook-tutorials">
+<span id="facebook"></span><h1>Facebook Tutorials<a class="headerlink" href="#facebook-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial will teach you how to create a simple facebook bot. In addition, we will teach you how to import and
+setup the application with advanced message features (such as templates and buttons).</p>
 </div>
-<div class="section" id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a></li>
+<div class="section" id="creating-a-simple-echo-bot">
+<span id="create-simple-bot"></span><h2>Creating a simple echo bot<a class="headerlink" href="#creating-a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
+<p>In this part of the tutorial, we will show you how to connect the facebook nodes with a facebook page.</p>
+<div class="section" id="create-a-new-facebook-page">
+<h3>1. Create a new facebook page<a class="headerlink" href="#create-a-new-facebook-page" title="Permalink to this headline">¶</a></h3>
+<p>Go to <a class="reference external" href="https://www.facebook.com/pages/create/">Create a Page</a>.</p>
+<p>Once there, choose a category, name your organization, and click on &#8220;Get Started&#8221;.</p>
+<img alt="_images/createPage.png" class="align-center" src="_images/createPage.png" />
+<p>You can skip 4 next steps.</p>
+</div>
+<div class="section" id="create-the-facebook-application">
+<span id="create-facebook-app"></span><h3>2. Create the facebook application<a class="headerlink" href="#create-the-facebook-application" title="Permalink to this headline">¶</a></h3>
+<p>Go to the <a class="reference external" href="https://developers.facebook.com/quickstarts/?platform=web">Create Facebook Application</a> page.</p>
+<p>Enter your application&#8217;s name (ex. &#8220;ChatFlow app&#8221;) and click &#8220;Create New Facebook App ID&#8221;.</p>
+<img alt="_images/createApp.png" class="align-center" src="_images/createApp.png" />
+<p>Enter your email into the email field, choose a category, and click &#8220;Create App ID&#8221;. You can skip all other
+steps on that page by clicking &#8220;Skip Quick Start&#8221; button.</p>
+<p>Now you are on the dashboard page. This is where you can setup your new Facebook application by follow these
+steps:</p>
+<ol class="arabic simple">
+<li>Click on &#8220;+ Add Product&#8221;</li>
+<li>Click on &#8220;Get Started&#8221; button in the &#8220;Messenger&#8221; section. A new page will load.</li>
+<li>Click on &#8220;Get Started&#8221;</li>
+</ol>
+<p>You are now on the Messenger Setup Page. We will return to this page after you create your ChatFlow
+application.</p>
+<img alt="_images/messengerSetup.png" class="align-center" src="_images/messengerSetup.png" />
+</div>
+<div class="section" id="create-the-chatflow-application">
+<h3>3. Create the ChatFlow application<a class="headerlink" href="#create-the-chatflow-application" title="Permalink to this headline">¶</a></h3>
+<p>Go to the <a class="reference external" href="https://chatflow.kitt.ai/apps">apps</a> page. Click on &#8220;CREATE NEW APP&#8221; button.  Under &#8220;Start with a
+clean project&#8221;, enter your project&#8217;s name and click on create. You see the app under your appliactions list. To
+edit, click on the newly created app&#8217;s name.</p>
+<p>In the Node Library, search for &#8220;facebook&#8221; to filter facebook nodes. Drag <strong>Facebook In</strong> and <strong>Facebook Out</strong> into
+the workspace and connect them.</p>
+<p>Double click the <strong>Facebook In</strong> node. Select &#8220;Add new facebook-controller...&#8221; and click the &#8220;edit&#8221; button.</p>
+<p>Click &#8220;Start Verification Process&#8221; button.</p>
+<img alt="_images/startVerification.png" class="align-center" src="_images/startVerification.png" />
+<p>Click the &#8220;Webhook URL&#8221; input field to copy URL to clipboard.</p>
+<p>On &#8220;Messenger Settings&#8221; page from the ref:<cite>create_facebook_app</cite>, click on &#8220;Setup Webhooks&#8221;. Paste the Webhook URL
+stored on your clipboard.</p>
+<p>On ChatFlow page near the &#8220;Verify Token&#8221; field, click on the &#8220;Random&#8221; button. Then click on &#8220;Copy&#8221;. It will copy the
+&#8220;Verify Token&#8221; to the clipboard. Pate it on the &#8220;Messenger Settings&#8221; page.</p>
+<p>Select by checking all options under the &#8220;Subscriptions&#8221; section. Click &#8220;Verify and Save&#8221;</p>
+<img alt="_images/pasteVerify.png" class="align-center" src="_images/pasteVerify.png" />
+<p>Under the &#8220;Token Generation&#8221; section, select the page you created. Click on the access token to copy it onto the
+clipboard. Under webhooks select your page and click &#8220;Subscribe&#8221;.</p>
+<p>On the ChatFlow page, paste your token to the &#8220;Access Token&#8221; field. In the &#8220;Config Name&#8221; Fields, name your config
+(ex. &#8220;Facebook&#8221;). Click the &#8220;Add&#8221; button.</p>
+<img alt="_images/pasteToken.png" class="align-center" src="_images/pasteToken.png" />
+<p>Double click the <strong>Facebook Out</strong> node. Under the &#8220;Facebook&#8221; token field, select &#8220;Faebook&#8221; configuration.</p>
+<p>After deploying the applciation, you may test the result. Write the private message to your page and it should
+send that message back to you.</p>
+</div>
+</div>
+<div class="section" id="adnvanced-templates-and-buttons">
+<h2>Adnvanced: templates and buttons<a class="headerlink" href="#adnvanced-templates-and-buttons" title="Permalink to this headline">¶</a></h2>
+<p>In this part of the tutorial, we will import the application that use advanced features, such as generic template and
+buttons.</p>
+<div class="section" id="importing-the-weather-forecast-application">
+<span id="import-weather-app"></span><h3>1. Importing the &#8220;Weather forecast&#8221; application<a class="headerlink" href="#importing-the-weather-forecast-application" title="Permalink to this headline">¶</a></h3>
+<p>Import the application to ChatFlow. You can either:</p>
+<ul class="simple">
+<li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast.json"><code class="xref download docutils literal"><span class="pre">json</span></code></a> our application and import the project on the
+<a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page,
+or,</li>
+<li>Use the &#8220;Facebook - Weather forecast&#8221; sample application under &#8220;Use a Sample Project&#8221; when clicking &#8220;CREATE NEW APP&#8221;
+on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
 </ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy Chatflow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a></li>
-</ul>
-</li>
-</ul>
+<p>In addition, please download <a class="reference download internal" href="_downloads/FacebookWeatherForecast-nlu.json"><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> and import it as
+<a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</p>
+<img alt="_images/weather.png" class="align-center" src="_images/weather.png" />
+</div>
+<div class="section" id="nlu-setup">
+<h3>2. NLU setup<a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h3>
+<p>First, go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json you downloaded from <a class="reference internal" href="#import-weather-app"><span>1. Importing the &#8220;Weather forecast&#8221; application</span></a>. Under &#8220;Deployment Information&#8221;,
+copy the Deployment URL.</p>
+<p>Go back to ChatFlow. Open the <strong>KITT.AI NLU</strong> node and paste the Deployment URL.
+Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>, so your final string would look like:</p>
+<div class="highlight-python"><div class="highlight"><pre>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+</pre></div>
+</div>
+<img alt="_images/kitt1.png" class="align-center" src="_images/kitt1.png" />
+</div>
+<div class="section" id="setup-weather-forecast-application">
+<h3>3. Setup Weather forecast application<a class="headerlink" href="#setup-weather-forecast-application" title="Permalink to this headline">¶</a></h3>
+<p>Repeat all steps, described in <a class="reference internal" href="#create-simple-bot"><span>Creating a simple echo bot</span></a> to connect ChatFlow to the Facebook page.</p>
+<p>After deploying your applciation, You may ask about the weather in any city. Example requests:
+* &#8220;Hello&#8221; - the bot will answer with the greeting
+* &#8220;Is it Raining in Cambridge?&#8221; - will show you the weather for current day in Cambridge.
+* &#8220;Show the weather forecast for Cleveland&#8221; - shows you 7 days weather forecast for Cleveland.</p>
+</div>
 </div>
 </div>
 
@@ -346,8 +347,8 @@ Amazon&#8217;s Alexa platform (Amazon Echo).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="quickstart.html" class="btn btn-neutral float-right" title="ChatFlow Quick Start" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
+        <a href="kik.html" class="btn btn-neutral" title="Kik Bot Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -357,7 +358,7 @@ Amazon&#8217;s Alexa platform (Amazon Echo).</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 17, 2016.
+      Last updated on Aug 11, 2016.
     </p>
   </div>
   Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.

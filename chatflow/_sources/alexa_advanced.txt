@@ -1,0 +1,267 @@
+.. _alexa_advanced::
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+
+.. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
+
+=============================
+Advanced Alexa Skill Tutorial
+=============================
+
+.. contents:: Table of Contents
+   :depth: 4
+
+.. _intro::
+
+Introduction
+============
+
+In this tutorial we will walk through a more complex Alexa skill that
+tells the *knock knock* joke. You will learn:
+
+* Using multiple intents with slots (entities) in an Alexa sample app
+* Creating a multi-turn conversation
+* Managing and tracking dialogue states
+
+WiseGuy: tell a Knock Knock joke
+====================================
+
+`Wise Guy`_ is a sample Alexa skill that tells the *knock knock* joke:
+
+*You: "Alexa, ask Wise Guy to tell a joke"*
+
+*Echo: "Knock knock"*
+
+*You: "who's there?"*
+
+*Echo: "Beets!"*
+
+*You: "Beets who?"*
+
+*Echo: "Beats me!"*
+
+However, it shows multi-turn ability with dialogue state tracking. At any given
+point, users can ask for help and Echo would explain how to proceed.
+
+The main source files are the `Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_
+and `index.js <https://github.com/amzn/alexa-skills-kit-js/blob/master/samples/wiseGuy/src/index.js>`_ file.
+
+We'll see how to easily recreate this application with Chatflow and a more
+intuitive interface.
+
+Create the WiseGuy Chatflow app
+====================================
+
+Go to ChatFlow_ and use the sample application "Alexa WiseGuy Skill":
+
+.. image:: _static/img/alexa/chatflow-wise-guy-app.png
+   :align: center
+
+The application can almost work out of the box. All we need to do is to copy
+the "Final URL" from the **Alexa In** node after hitting "DEPLOY".
+
+Create the WiseGuy Alexa Skill
+====================================
+
+Now please follow the steps in :ref:`create_an_alexa_skill` to create a skill
+for Wise Guy. In Step :ref:`sample_utterances` you'll need to input
+`Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_.
+
+**Intent Schema**:
+
+.. code-block:: javascript
+   :linenos:
+
+   {
+     "intents": [
+       {
+         "intent": "TellMeAJokeIntent"
+       },
+       {
+         "intent": "WhosThereIntent"
+       },
+       {
+        "intent": "SetupNameWhoIntent",
+        "slots":[
+           {
+             "name": "SetupName",
+             "type": "LIST_OF_SETUP_NAMES"
+           }
+         ]
+       },
+       {
+         "intent": "AMAZON.HelpIntent"
+       },
+       {
+         "intent": "AMAZON.StopIntent"
+       },
+       {
+         "intent": "AMAZON.CancelIntent"
+       }
+     ]
+   }
+
+**LIST_OF_SETUP_NAMES**
+
+.. code-block:: javascript
+
+    to
+    beets
+    little Old Lady
+    a broken pencil
+    snow
+    boo
+    woo
+    spell
+    atch
+    owls
+    berry
+
+**Sample Utterances**:
+
+.. code-block:: java
+
+    TellMeAJokeIntent tell me a joke
+    TellMeAJokeIntent tell a joke
+    TellMeAJokeIntent say a joke
+    TellMeAJokeIntent make a joke
+    TellMeAJokeIntent give me a joke
+    TellMeAJokeIntent tell me a knock knock joke
+    TellMeAJokeIntent tell a knock knock joke
+    TellMeAJokeIntent say a knock knock joke
+    TellMeAJokeIntent make a knock knock joke
+    TellMeAJokeIntent give me a knock knock joke
+    TellMeAJokeIntent a joke
+    TellMeAJokeIntent a knock knock joke
+    TellMeAJokeIntent the joke
+    TellMeAJokeIntent the knock knock joke
+    TellMeAJokeIntent what's a joke
+    TellMeAJokeIntent what is a joke
+    TellMeAJokeIntent if it can tell me a joke
+    TellMeAJokeIntent will it tell me a joke
+    TellMeAJokeIntent can it tell me a joke
+    TellMeAJokeIntent to tell me a joke
+    TellMeAJokeIntent what's a knock knock joke
+    TellMeAJokeIntent what is a knock knock joke
+    TellMeAJokeIntent if it can tell me a knock knock joke
+    TellMeAJokeIntent will it tell me a knock knock joke
+    TellMeAJokeIntent can it tell me a knock knock joke
+    TellMeAJokeIntent to tell me a knock knock joke
+
+    WhosThereIntent who is there
+    WhosThereIntent who's there
+    WhosThereIntent who there
+    WhosThereIntent who is this
+    WhosThereIntent who's this
+
+    SetupNameWhoIntent {SetupName} who
+
+Now we are all set! Use the Service Simulator or your Echo device to test it!
+
+Multi turn and state tracking explained
+=======================================
+
+The ``global`` variable
+------------------------
+
+Now let's come back to the Chatflow app. We have a ``JOKE_LIST`` that's used
+across the dialogue. We set it in the **init JOKE_LIST** state node:
+
+.. code-block:: javascript
+
+    var JOKE_LIST = [
+        {setup: "To", speechPunchline: "Correct grammar is <break time=\"0.2s\" /> to whom.",
+        cardPunchline: "Correct grammar is 'to whom'."},
+        ...
+    ]
+    global.set("JOKE_LIST", JOKE_LIST);
+
+Then later we can use::
+
+    var JOKE_LIST = global.get("JOKE_LIST");
+
+to retrieve this variable in any function or state node. The ``global`` environment
+has a scope to current application, i.e., one application cannot access another
+application's ``global`` environment.
+
+Also, in the **init JOKE_LIST** state node, we initialized the dialogue stage::
+
+    msg.kitt.stage = null;
+
+State tracking
+------------------------
+
+Now take a look at the **Tell Me A Joke** state node, it sets up the dialogue stage:
+
+.. image:: _static/img/alexa/tell-me-a-joke.png
+   :align: center
+   :width: 400
+
+.. note:: the *request user input* click at the bottom of state node indicates
+   the router to send message out at this state node *right away* without
+   attempting to visit another enter/state node.
+
+.. code-block:: javascript
+
+    //Select a random joke and store it in the session variables.
+    var jokeID = Math.floor(Math.random() * JOKE_LIST.length);
+
+    //The stage variable tracks the phase of the dialogue.
+    //When this function completes, it will be on stage 1.
+    msg.kitt.stage = 1;
+    msg.kitt.setup = JOKE_LIST[jokeID].setup;
+    msg.kitt.speechPunchline = JOKE_LIST[jokeID].speechPunchline;
+    msg.kitt.cardPunchline = JOKE_LIST[jokeID].cardPunchline;
+
+Remember that everything in ``msg.kitt`` is maintained by the dialogue router,
+persisting over the whole dialogue session. Thus next time a new utterance within
+the *same* dialogue session comes in, previous turn's ``msg.kitt`` can still be
+accessed. ``msg.kitt`` is also assigned to ``sessionAttributes`` when *outputting*
+through **Alexa Out** and persisted by the Alexa service. So next time an Alexa
+`Request <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format>`_
+comes in, the same session attributes can be accessed via ``msg.alexa.session.attributes``
+(maintained by Alexa), or ``msg.kitt`` (maintained by Chatflow).
+
+The **Who's There** state node then advances the dialogue stage by 1 if previous
+``msg.kitt.stage == 1``:
+
+.. image:: _static/img/alexa/whos-there.png
+   :align: center
+   :width: 400
+
+.. code-block:: javascript
+
+    if (msg.kitt.stage === 1) {
+        //Retrieve the joke's setup text.
+        speechText = msg.kitt.setup;
+
+        //Advance the stage of the dialogue.
+        msg.kitt.stage = 2;
+
+        repromptText = "You can ask, " + speechText + " who?";
+    }
+
+Similarly, the **Setup Name Who** state node advances the dialogue stage by 1 if previous
+``msg.kitt.stage == 2``:
+
+.. image:: _static/img/alexa/setup-name-who.png
+   :align: center
+   :width: 400
+
+.. code-block:: javascript
+
+    if (msg.kitt.stage === 2) {
+        speechText = msg.kitt.speechPunchline;
+        cardOutput = msg.kitt.cardPunchline;
+        msg.alexa.outputSpeech = {
+            ssml: '<speak>' + speechText + '</speak>',
+            type: "SSML"
+        };
+        // the joke completes successfully, end session.
+        msg.kitt._session_ended = true;
+        return msg;
+    }
+
+It also sets ``msg.kitt._session_ended = true;`` because that's end of the
+*knock knock* joke!
+

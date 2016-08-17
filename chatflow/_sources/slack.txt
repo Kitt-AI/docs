@@ -1,0 +1,294 @@
+.. _slack:
+
+======================
+Slack Bot Tutorials
+======================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+Abstract
+========
+In this tutorial we will start with creating a simple Slack bot to echo your message,
+then we will create a voting bot with advanced slack abilities, such as:
+
+* interactive messages
+* custom slash commands
+
+A simple echo bot
+=========================
+
+First of all, let us show how to connect ChatFlow to the slack. You should create the new bot and input credentials in
+slack nodes.
+
+1. Create a new slack bot
+______________________
+
+1. Please visit `creating a new bot user <https://my.slack.com/services/new/bot>`_ page to create your bot.
+
+Name the new bot as @echo and click on "Add bot integration" button
+
+.. image:: _static/img/slack/newBot.png
+   :align: center
+
+2. Copy Bot API Token
+_____________________
+After you created your bot, you can see Bot API Token. Copy it's value to clipboard.
+
+.. image:: _static/img/slack/botToken.png
+   :align: center
+
+3. Create a new ChatFlow application
+__________________________________
+Now create a new application on `applications <https://chatflow.kitt.ai/apps>`_ page.
+
+Name it "Slack echo bot". Click on the application name to go to the editor page.
+On the panel, input "slack" into Search field, to filter slack nodes and move them to the workflow. Connect them as you
+see on image below
+
+.. image:: _static/img/slack/slackEchoSetup.png
+   :align: center
+
+4. Configure the bot
+____________________
+
+Now double click the **Slack In** node, select "Add new selectbot-controller..." and click "Edit" button.
+
+Name it "Echo bot". This name the name of the slackbot-controller node. Special node with configuration that can be
+used by other nodes.
+Paste the Bot API Token you copied before. Click "Add" button.
+
+.. image:: _static/img/slack/botTokenPaste.png
+   :align: center
+
+Double click the **Slack Out** node and select "Echo bot":
+
+.. image:: _static/img/slack/selectEchoBot.png
+   :align: center
+
+5. Deploy the application
+_________________________
+
+Click on deploy button to deploy your application.
+
+.. note:: You cannot run more applications than your limit allows you. If you ran out of quota, you should:
+
+   * save the current application
+
+   * go to `applications <https://chatflow.kitt.ai/apps>`_
+
+   * stop some other application
+
+   * start the "Slack echo bot" application
+
+After the application is deployed, your bot should be online. It will respond to you with the same message you send.
+
+.. TODO:: Xuchen's suggestion: why not show a quick video of talking to your Echo bot?
+
+Advanced: slash commands and interactive messages
+===========================
+
+In this part we will show you how to use more advanced bot features. You will learn how to create application that
+uses custom `slash commands <https://api.slack.com/slash-commands>`_ and
+`interactive messages <https://api.slack.com/docs/message-buttons>`_.
+We will create a small voting game. The idea is simple: bot will show you two cat images and all members of your
+slack channel can cast their vote.
+
+1. Creating a slack application
+_____________________________
+
+Please go to the `slack applications <https://api.slack.com/apps>`_  page and click "Create New App Page".
+Set the application name - "ChatFlow Cat Choose".
+
+.. note:: The fields "App Name", "Short Description" and "Long description" are required
+
+We will set "Redirect URI(s)" later. Click "Create App" button.
+
+.. image:: _static/img/slack/createSlackApp.png
+   :align: center
+
+Click on the "Bot users" on the left and click "Add bot to this app" button. Name your bot "chatflow_cat_choose" and
+then click "Add bot user".
+
+.. image:: _static/img/slack/addBotUser.png
+   :align: center
+
+We will later use this bot for slash command and interactive messages.
+
+.. _import_cat_choose_app:
+
+2. Importing the "Cat Choose" application
+_________________________________________
+
+Import the application to ChatFlow. You can either:
+
+* Download :download:`json <_static/json/SlackCatChoose.json>` of our application and import the project on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page, or,
+* Use the "Slack - Cat Choose" sample application when clicking "CREATE NEW APP" on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page.
+
+
+Also please download :download:`NLU json <_static/json/SlackCatChoose-nlu.json>` to import it as
+`an NLU application <https://nlu.kitt.ai>`_.
+
+3. NLU setup
+___________________________
+
+First, go to NLU_  and import the NLU json you get from :ref:`import_cat_choose_app`.
+Come back to ChatFlow and open the KITT.AI node and paste URL you got from NLU there.
+Add ``{{{payload}}}``, so your final string would look like: ::
+   http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+.. image:: _static/img/slack/nluNode.png
+   :align: center
+
+
+4. Slack app setup
+___________________________
+
+
+Now we need to configure slash command, interactive messages and redirect URL for
+your Slack app. They all need a (different) callback endpoint.
+
+We can use the **http** node for serving this callback endpoint:
+
+.. image:: _static/img/slack/httpNode.png
+   :align: center
+
+Each **http** node has a unique URL.
+
+In the "Slack - Cat Choose" app, there are three callback nodes:
+
+.. image:: _static/img/slack/callbackNodes.png
+   :align: center
+
+Each of them is an individual HTTPs server that accepts a ``POST``/``GET`` request.
+Correspondingly, they provide the callback endpoints for slash command, interactive messages and redirect URL.
+
+
+Slash command
+^^^^^^^^^^^^^^^^^^^^
+
+The Cat Choose app supports `slash commands <https://api.slack.com/slash-commands>`_.
+Let's create one.
+
+Click **Slash Commands** on the left side of the `slack applications <https://api.slack.com/apps>`_ page
+and then **Create new command**. Enter the command "/randomcat" and
+write a short description "Shows random cat".
+
+Now you have to input "Request URL", which is served by the **slash command** node.
+Return to your ChatFlow application, click on the **slash command** node and copy "Final URL" by clicking it.
+
+.. image:: _static/img/slack/copyCommandURL.png
+   :align: center
+
+Paste this URL on the "Create new command" page and click "Save".
+
+.. image:: _static/img/slack/pasteCommandURL.png
+   :align: center
+
+
+Interactive messages
+^^^^^^^^^^^^^^^^^^^^
+
+Go to **Interactive Messages** by clicking on it on the left side of the page. Click "Enable Interactive Messages".
+
+`Interactive Messages <https://api.slack.com/docs/message-buttons>`_ require a callback URL once actions happen.
+
+Return to your ChatFlow app and
+click on "buttons callback" node. Click on "Final URL" input filed to copy your URL to clipboard.
+The *buttons callback* **http** node will then serve as a webhook and catch HTTP callbacks from
+slack, when a user clicks on buttons in Slack interactive messages.
+
+.. image:: _static/img/slack/copyButtonsURL.png
+   :align: center
+
+Click the "Enable Interactive Messages" button and paste this URL on the "Interactive Messages" page.
+
+.. image:: _static/img/slack/pasteButtonsURL.png
+   :align: center
+
+.. TODO:: write more about the "Cat 1" and "Cat 2" buttons that correspond to interactive messages.
+
+
+Redirect URL
+^^^^^^^^^^^^
+
+We created a simple node chain inside "Cat Choose" application to help you authenticate with your app.
+
+Go to your application setup from the `slack applications <https://api.slack.com/apps>`_ page. Click "App Credentials"
+on the left side. Copy "Client ID". Return to ChatFlow and double click the node, called "App credential".
+Paste "Client ID" there. Do the same for "Client Secret".
+
+.. image:: _static/img/slack/appCredentials.png
+   :align: center
+
+Go to ChatFlow, double click on node, called "redirect" and click "Final URL" input field to copy it's URL to clipboard.
+
+.. image:: _static/img/slack/copyRedirectURL.png
+   :align: center
+
+Now you should paste this URL to two places, to the "App Credentials" node from previous step and to the "App Credentials"
+slack page. Click "Save changes" after pastin "Redirect URI(s)"
+
+.. image:: _static/img/slack/pasteRedirectURL.png
+   :align: center
+
+
+5. Connect your slack application with your team
+________________________________________________
+
+When application setup is ready, you should connect your team with your application to see how it works.
+
+.. note:: You have to be administrator of the team to be able to connect the application to the team
+
+
+Go to `Add the Slack button <https://api.slack.com/docs/slack-button#button-widget>`_. Check all checkboxes and select
+"ChatFlow Cat Choose" from drop-down menu. Then click "Add to Slack" button.
+
+.. image:: _static/img/slack/addToSlack.png
+   :align: center
+
+Select your team and channel, for example #random and press "Authorize". It will redirect you to the blank page, telling
+you the Bot API Token for your Slack App. Copy that token.
+
+Now double click the Slack In node, select "Add new selectbot-controller..." and click "Edit" button. Name it "Cat bot".
+Paste the Bot API Token you copied before. Click "Add" button.
+
+Double click the Slack Out node and select "Cat bot" there.
+
+.. image:: _static/img/slack/pasteCatChooseToken.png
+   :align: center
+
+Deploy your application.
+
+6. Testing the "Cat Choose" application
+_______________________________________
+
+When you successfully connected your slack application to ChatFlow application, you may test it.
+
+You may write the following text to your bot:
+
+* "Hello" - the bot will answer with the greeting
+* Mention "cats" - the bot will start the voting game, showing you two cat images, asking you to choose one of them.
+
+You may also try slash command. Write in any chat:
+::
+   /randomcat
+to see a random cat there.
+
+.. TODO:: @xuchen. Could you please make a quick video, showing how it works?

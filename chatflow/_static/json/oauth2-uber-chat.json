@@ -1,0 +1,238 @@
+[
+    {
+        "id": "a18a762a.9d11a8",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "4c496acc.4df2c4",
+        "type": "chat-server",
+        "z": "a18a762a.9d11a8",
+        "name": ""
+    },
+    {
+        "id": "62b7ece8.567004",
+        "type": "OAuth2 Configuration",
+        "z": "a18a762a.9d11a8",
+        "name": "uber",
+        "client_id": "",
+        "client_secret": "",
+        "auth_server": "https://login.uber.com",
+        "auth_endpoint": "/oauth/v2/authorize",
+        "token_exchange_endpoint": "/oauth/v2/token",
+        "credentials_store": "kitt.oauth2"
+    },
+    {
+        "id": "8b7a0622.ee17e8",
+        "type": "chat-in",
+        "z": "a18a762a.9d11a8",
+        "name": "",
+        "sessionField": "_sessionId",
+        "server": "4c496acc.4df2c4",
+        "x": 250,
+        "y": 140,
+        "wires": [
+            [
+                "76eb23bf.de9efc"
+            ]
+        ]
+    },
+    {
+        "id": "cb491521.e817b8",
+        "type": "chat-out",
+        "z": "a18a762a.9d11a8",
+        "name": "",
+        "server": "4c496acc.4df2c4",
+        "x": 650,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "a561b0f5.9b408",
+        "type": "enter",
+        "z": "a18a762a.9d11a8",
+        "name": "start",
+        "rules": [],
+        "directlink": false,
+        "initialstate": true,
+        "outputs": 1,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "f8693ef0.c9733"
+            ]
+        ]
+    },
+    {
+        "id": "5aa02702.69eb38",
+        "type": "enter",
+        "z": "a18a762a.9d11a8",
+        "name": "get profile",
+        "rules": [
+            {
+                "v": "profile",
+                "p": "payload",
+                "t": "eq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "378299fd.df8856"
+            ]
+        ]
+    },
+    {
+        "id": "d9480695.21c628",
+        "type": "enter",
+        "z": "a18a762a.9d11a8",
+        "name": "end conversation",
+        "rules": [
+            {
+                "v": "bye",
+                "p": "payload",
+                "t": "eq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 380,
+        "wires": [
+            [
+                "3f5db0a8.f27cb"
+            ]
+        ]
+    },
+    {
+        "id": "f8693ef0.c9733",
+        "type": "state",
+        "z": "a18a762a.9d11a8",
+        "name": "state",
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false,
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4c244f96.9b01a",
+        "type": "state",
+        "z": "a18a762a.9d11a8",
+        "name": "authorize app",
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false,
+        "func": "msg.kitt._responses = ['Please authorize this app: ' + msg.oauth2.url];\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 880,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "76eb23bf.de9efc",
+        "type": "router",
+        "z": "a18a762a.9d11a8",
+        "name": "",
+        "debugOutput": "console",
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "timeout": "1800",
+        "x": 450,
+        "y": 140,
+        "wires": [
+            [
+                "cb491521.e817b8"
+            ]
+        ]
+    },
+    {
+        "id": "6b9cfce.8b41c04",
+        "type": "state",
+        "z": "a18a762a.9d11a8",
+        "name": "greet",
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false,
+        "func": "msg.kitt._responses = ['Hello, ' + msg.payload.first_name + '!'];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f5db0a8.f27cb",
+        "type": "state",
+        "z": "a18a762a.9d11a8",
+        "name": "end",
+        "response": "Good bye!",
+        "finalstate": true,
+        "requestUserInput": false,
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e7e4d8b4.0ad448",
+        "type": "OAuth2 Request",
+        "z": "a18a762a.9d11a8",
+        "name": "uber profile",
+        "config": "62b7ece8.567004",
+        "method": "GET",
+        "scopes": "profile history places",
+        "url": "https://api.uber.com/v1/me",
+        "ret": "obj",
+        "x": 650,
+        "y": 260,
+        "wires": [
+            [
+                "4c244f96.9b01a"
+            ],
+            [
+                "6b9cfce.8b41c04"
+            ]
+        ]
+    },
+    {
+        "id": "378299fd.df8856",
+        "type": "function",
+        "z": "a18a762a.9d11a8",
+        "name": "clear payload",
+        "func": "msg.payload = null;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 260,
+        "wires": [
+            [
+                "e7e4d8b4.0ad448"
+            ]
+        ]
+    }
+]

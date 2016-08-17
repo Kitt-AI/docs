@@ -1,0 +1,508 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OAuth2/Uber Tutorial &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Kik Bot Tutorials" href="kik.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> ChatFlow
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#adding-an-nlu-node">Adding an NLU node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">OAuth2/Uber Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#a-simple-descripton-of-how-oauth2-user-authorized-requests-flow">A simple descripton of how OAuth2 user-authorized requests flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registering-an-application-in-uber-service">Registering an application in Uber service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-the-bot">Creating the bot</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChatFlow</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>OAuth2/Uber Tutorial</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/oauth2.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="oauth2-uber-tutorial">
+<span id="twilio"></span><h1>OAuth2/Uber Tutorial<a class="headerlink" href="#oauth2-uber-tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This tutorial shows how to use OAuth2 Request node to make HTTP(S) requests requiring OAuth2
+app authentication with user authorization. OAuth2 authorization is helpful when your bot
+needs to take actions on behalf of the user.</p>
+<p>This tutorial assumes:</p>
+<ul class="simple">
+<li>you know how to create applications,</li>
+<li>you know how to add nodes,</li>
+<li>you have an Uber account.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The OAuth2 request node is only usable in scenarios when a user has an access to a browser and can
+open links provided by an application. For example: using it in an app that communicates with
+SMS messages may not be a good idea, because some old feature phones don&#8217;t have any web browsers or
+users don&#8217;t want to or can&#8217;t use their data connection.</p>
+</div>
+<div class="section" id="a-simple-descripton-of-how-oauth2-user-authorized-requests-flow">
+<h3>A simple descripton of how OAuth2 user-authorized requests flow<a class="headerlink" href="#a-simple-descripton-of-how-oauth2-user-authorized-requests-flow" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The application asks the service to provide access credentials for user account and given scope of data/resources,
+by asking the user to open a specially crafted link in a browser. The link opens a page provided by the service.</li>
+<li>If the user accepts, then the service redirects the browser to a predefined application page,
+passing a special one-use token.</li>
+<li>The application exchanges the received one-use token for a multi-use access token (using the service, via server-to-server request).</li>
+<li>The application can use the access token to make requests that retrieve user-related resources.</li>
+</ol>
+<p>The access token can be used many times, but can expire. The expiration time can be as short as one
+hour or as long as one month (there is no rule, you have to check the service documentation).</p>
+<p>The service can provide a special refresh token that can be used to get a new access token without user interaction.
+This token can expire too (it&#8217;s service-dependent).</p>
+<p>The OAuth2 Request node manages token acqusition and refreshing automatically.</p>
+</div>
+<div class="section" id="registering-an-application-in-uber-service">
+<h3>Registering an application in Uber service<a class="headerlink" href="#registering-an-application-in-uber-service" title="Permalink to this headline">¶</a></h3>
+<p>Go to <a class="reference external" href="https://developer.uber.com/dashboard">Uber Developer Dashboard</a>. Press the &#8220;+New App&#8221; button.
+Select &#8220;Rides API&#8221;, enter your app name, description, read the terms and if you agree with them,
+fill the corresponding checkbox, press the &#8220;Create&#8221; button. That&#8217;s all (for now), we&#8217;ll be back here later.</p>
+</div>
+</div>
+<div class="section" id="creating-the-bot">
+<h2>Creating the bot<a class="headerlink" href="#creating-the-bot" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Create a new application.</li>
+<li>Add the following nodes to the flow:</li>
+</ol>
+<ul class="simple">
+<li>Chat In</li>
+<li>Chat Out</li>
+<li>router</li>
+<li>3x enter</li>
+<li>function</li>
+<li>OAuth2 Request</li>
+<li>4x state (yes, one more than enter states)</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>Connect the nodes to look like this:</li>
+</ol>
+<img alt="_images/oauth2-connected.png" class="align-center" src="_images/oauth2-connected.png" />
+<ol class="arabic simple" start="4">
+<li>Edit the first enter node, name it &#8220;start&#8221;, remove the existing (empty) condition and check the &#8220;Initial state&#8221; option.
+Skip the first state node.</li>
+</ol>
+<img alt="_images/oauth2-start.png" class="align-center" src="_images/oauth2-start.png" />
+<ol class="arabic simple" start="5">
+<li>Edit the second enter node, name it &#8220;get profile&#8221;, let it check the payload for <code class="docutils literal"><span class="pre">profile</span></code>.</li>
+</ol>
+<img alt="_images/oauth2-enter-get-profile.png" class="align-center" src="_images/oauth2-enter-get-profile.png" />
+<ol class="arabic simple" start="6">
+<li>Edit the function node, name it &#8220;clear payload&#8221; and enter the following code in the function body:</li>
+</ol>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<img alt="_images/oauth2-func-clear-payload.png" class="align-center" src="_images/oauth2-func-clear-payload.png" />
+<ol class="arabic simple" start="7">
+<li>Now comes the fun part, we&#8217;ll set up the OAuth2 Request node, so double click it to open the editor.</li>
+</ol>
+<blockquote>
+<div><ol class="lowerroman">
+<li><p class="first">Name it &#8220;uber profile&#8221;</p>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">profile</span> <span class="pre">history</span> <span class="pre">places</span></code> in the &#8220;Scopes&#8221; field.</p>
+</li>
+<li><p class="first">Set method to <code class="docutils literal"><span class="pre">GET</span></code>.</p>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">https://api.uber.com/v1/me</span></code> in the URL field.</p>
+<img alt="_images/oauth2-uber-req.png" class="align-center" src="_images/oauth2-uber-req.png" />
+<p>Upon user authorization, the URL field will immediately make a request to <code class="docutils literal"><span class="pre">https://api.uber.com/v1/me</span></code>
+and fetch your profile information.  You can optionally leave this field empty, then upon user authorization
+the OAuth2 node will just output obtained credentials specificed in the next step (by default to <code class="docutils literal"><span class="pre">msg.kitt.oauth2</span></code>).</p>
+<p>Let&#8217;s configure the Uber OAuth2 service details and credentials (don&#8217;t close this window yet).</p>
+</li>
+</ol>
+</div></blockquote>
+<ol class="arabic simple" start="8">
+<li>Click on the pencil icon in the &#8220;Configuration&#8221; line to add a new configuration:</li>
+</ol>
+<blockquote>
+<div><ol class="lowerroman">
+<li><p class="first">Name it &#8220;uber&#8221;.</p>
+</li>
+<li><p class="first">Go to the <a class="reference external" href="https://developer.uber.com/dashboard/">Uber Developer Dashboard</a>,
+open your application details, copy &#8220;Client ID&#8221; and &#8220;Client secret&#8221; to OAuth2 Configuration in ChatFlow,</p>
+<img alt="_images/oauth2-uber-creds.png" class="align-center" src="_images/oauth2-uber-creds.png" />
+<p>Don&#8217;t try to copy those values from this tutorial, data shown here is fake.</p>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">https://login.uber.com</span></code> in the &#8220;Authorization host&#8221; field.</p>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">/oauth/v2/authorize</span></code> in the &#8220;Authorization endpoint&#8221; field.</p>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">/oauth/v2/token</span></code> in the &#8220;Token exchange endpoint&#8221; field.</p>
+</li>
+<li><p class="first">Change the &#8220;Where credentials are kept&#8221; value to <code class="docutils literal"><span class="pre">kitt.oauth2</span></code></p>
+</li>
+<li><p class="first">Click on the gray &#8220;Redirect URL&#8221; field to copy its value to your clipboard.</p>
+</li>
+<li><p class="first">You can save settings in both dialog windows now.</p>
+<img alt="_images/oauth2-uber-config.png" class="align-center" src="_images/oauth2-uber-config.png" />
+</li>
+</ol>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">OAuth2 request node tries to reuse credentials it obtained in the past, so the user isn&#8217;t bothered
+with clicking on links on each request. The acquired credentials are kept in the specified property
+of a message. By using the value <code class="docutils literal"><span class="pre">kitt.oauth2</span></code>, we can keep those credentials in the &#8220;dialogue&#8221; (session) storage.
+You can use the data saved in this property to keep credentials in some more persistent storage (like a database).</p>
+</div>
+<ol class="arabic simple" start="9">
+<li>Go to your application in &#8220;Uber Developer Dashboard&#8221;, switch to &#8220;Authorizations&#8221; tab and paste the address you copied
+into the &#8220;Redirect URL&#8221; field. You also have to enter any valid http address in the &#8220;Privacy policy url&#8221; (it&#8217;s a required field).</li>
+</ol>
+<img alt="_images/oauth2-uber-redirect.png" class="align-center" src="_images/oauth2-uber-redirect.png" />
+<ol class="arabic simple" start="10">
+<li>Enable <code class="docutils literal"><span class="pre">profile</span></code>, <code class="docutils literal"><span class="pre">places</span></code> and <code class="docutils literal"><span class="pre">history</span></code> in the General Scopes section.</li>
+</ol>
+<img alt="_images/oauth2-uber-scopes.png" class="align-center" src="_images/oauth2-uber-scopes.png" />
+<ol class="arabic simple" start="12">
+<li>Don&#8217;t forget to save those settings.</li>
+<li>Edit the second state node (the one connected to the upper OAuth2 output), name it &#8220;authorize app&#8221;
+and enter the following code in the function body:</li>
+</ol>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Please authorize this app: &#39;</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">oauth2</span><span class="p">.</span><span class="nx">url</span><span class="p">];</span>
+
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<img alt="_images/oauth2-state-authorize.png" class="align-center" src="_images/oauth2-state-authorize.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The first (upper) output of this node is used to ask the user for authorization to access his/her data.
+If the OAuth2 node can use credentials (access token plus other data) that it acquired previously and those
+credentials are still valid, then this node can proceed without asking the user to accept the access again
+(and a message won&#8217;t be emmited).</p>
+<p class="last">Only when the user authorizes the access, the OAuth2 request node will proceed.</p>
+</div>
+<ol class="arabic simple" start="14">
+<li>Edit the third state node (the one connected to the lower OAuth2 output), name it &#8220;greet&#8221;
+and enter the following code in the function body:</li>
+</ol>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Hello, &#39;</span> <span class="o">+</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">first_name</span> <span class="o">+</span> <span class="s1">&#39;!&#39;</span><span class="p">];</span>
+
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<img alt="_images/oauth2-state-greet.png" class="align-center" src="_images/oauth2-state-greet.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The second output of the OAuth2 Request node is used to pass the data received from the server.
+It&#8217;s mostly compatible with the HTTP Request node output.</p>
+</div>
+<ol class="arabic simple" start="15">
+<li>Edit the third enter node, name it &#8220;end conversation&#8221;, let it check the payload for <code class="docutils literal"><span class="pre">bye</span></code>.</li>
+</ol>
+<img alt="_images/oauth2-enter-end.png" class="align-center" src="_images/oauth2-enter-end.png" />
+<ol class="arabic simple" start="16">
+<li>Edit the fourth state node, name it &#8220;end&#8221;, you can leave the function body unchanged, set the
+&#8220;Output text&#8221; to <code class="docutils literal"><span class="pre">Good</span> <span class="pre">bye!</span></code> and enable the &#8220;Dialogue ends here&#8221; option.</li>
+</ol>
+<img alt="_images/oauth2-state-end.png" class="align-center" src="_images/oauth2-state-end.png" />
+<ol class="arabic" start="17">
+<li><p class="first">The complete application flow should look like this:</p>
+<img alt="_images/oauth2-complete.png" class="align-center" src="_images/oauth2-complete.png" />
+</li>
+</ol>
+<blockquote>
+<div>If you have had any problems, you can <a class="reference external" href="_static/json/oauth2-uber-chat.json">download an example application</a>,
+all you have to do is fill in the &#8220;Client ID&#8221; and &#8220;Client Secret&#8221; fields.</div></blockquote>
+<ol class="arabic" start="18">
+<li><p class="first">Now you can test your application. Open the Chat panel and send a <code class="docutils literal"><span class="pre">profile</span></code> message.
+The application should ask you to authorize its access to your data. Click on the provided link
+and press &#8220;Accept&#8221; on the Uber page. After that, the application should greet you with your first name (read from your Uber profile).</p>
+<p>If you send a <code class="docutils literal"><span class="pre">profile</span></code> message again, then the application will make a request again, but because it has
+obtained valid credentials (access token) previously, it can do it without asking you to authorize it again.</p>
+<p>When you send a <code class="docutils literal"><span class="pre">bye</span></code> message, then the dialogue (session) will end and those credentials will be forgotten.</p>
+</li>
+</ol>
+<img alt="_images/oauth2-chat.png" class="align-center" src="_images/oauth2-chat.png" />
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="kik.html" class="btn btn-neutral" title="Kik Bot Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Aug 05, 2016.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+.wy-body-for-nav {
+    background: transparent;
+}
+
+/* Main side menu */
+.wy-nav-side {
+    font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+    background: #34314c;
+    color: #fff;
+    width: 300px;
+}
+
+.wy-side-scroll, .wy-menu-vertical {
+    width: 100%;
+    overflow-y: visible;
+}
+
+.wy-nav-content-wrap {
+    margin-left: 300px;
+    background: white;
+    padding: 0;
+}
+
+.wy-menu-vertical {
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+}
+
+/* Header */
+
+/* First level menu item */
+.wy-menu-vertical > ul > li > a,
+.wy-menu-vertical > ul > li > a:hover {
+    font-size: 1.5rem;
+    font-weight: 600;
+    border: none;
+    margin-bottom: 0.9375rem;
+    margin-top: 1.25rem;
+}
+
+.wy-menu-vertical > ul > li > a:only-child {
+    margin-bottom: 0;
+}
+
+.wy-menu-vertical ul ul {
+    margin-left: 30px;
+    color: #706d81;
+    font-weight: 600;
+}
+
+.wy-menu-vertical ul ul a {
+    font-size: 1rem;
+    line-height: 1.125rem;
+    border-left: transparent 2px solid;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+}
+
+.wy-menu-vertical ul ul ul a {
+    border-left: 2px solid rgba(72, 69, 94, 0.5);
+}
+
+.wy-menu-vertical ul a {
+    margin-left: 0.875rem;
+    padding-left: 0.875rem;
+    transition: color .2s ease-out,
+                border .2s ease-out;
+}
+
+.wy-menu-vertical ul a:hover {
+    color: #fff;
+    border-left: #5fd800 2px solid;
+}
+
+.wy-menu-vertical a {
+    display: block;
+    position: relative;
+    color: inherit;
+}
+
+/* Other */
+
+/* Hide active nav item icon*/
+.fa-plus-square-o:before, .wy-menu-vertical li span.toctree-expand:before {
+    content: none;
+}

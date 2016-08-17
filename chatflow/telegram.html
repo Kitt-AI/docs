@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Telegram Bot Tutorials &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Slack Bot Tutorials" href="slack.html"/>
+        <link rel="prev" title="Extended Example: A conversational Yelp bot" href="extended_example.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> ChatFlow
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#adding-an-nlu-node">Adding an NLU node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Telegram Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-echo-bot">A simple Echo Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-inline-bot">Setting up Inline Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#set-inline-status">Set inline status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-inline-location-awareness">Set inline location awareness</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-flow">The flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="oauth2.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="oauth2.html#a-simple-descripton-of-how-oauth2-user-authorized-requests-flow">A simple descripton of how OAuth2 user-authorized requests flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="oauth2.html#registering-an-application-in-uber-service">Registering an application in Uber service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="oauth2.html#creating-the-bot">Creating the bot</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChatFlow</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Telegram Bot Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/telegram.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="telegram-bot-tutorials">
+<span id="telegram"></span><h1>Telegram Bot Tutorials<a class="headerlink" href="#telegram-bot-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">This is how to write a TODO</p>
+</div>
+<p>In this tutorial we&#8217;ll show how to program a simple inline bot for Telegram
+using the Yelp API in <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a>. The following video shows the final bot:</p>
+<video width="640"  controls>
+  <source src="_static/img/telegram/inline_yelp_bot.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br> <br> <br><div class="section" id="a-simple-echo-bot">
+<span id="telegram-echo-bot"></span><h2>A simple Echo Bot<a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
+<p>First let&#8217;s create a new bot by talking to the <a class="reference external" href="https://telegram.me/botfather">Bot Father</a>:</p>
+<a class="reference internal image-reference" href="_images/create_bot.png"><img alt="_images/create_bot.png" class="align-center" src="_images/create_bot.png" style="width: 543.0px; height: 591.0px;" /></a>
+<p>Bot Father will give you a token to control this bot. Let&#8217;s save it and drag
+the <strong>Telegram In</strong> and <strong>Telegram Out</strong> nodes to ChatFlow canvas:</p>
+<a class="reference internal image-reference" href="_images/echo_bot.png"><img alt="_images/echo_bot.png" class="align-center" src="_images/echo_bot.png" style="width: 400px;" /></a>
+<p>Double click the <strong>Telegram</strong> nodes and input the access tokens. Now you can talk
+with the bot on the Telegram messenger. Here&#8217;s a full video for it:</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/ikBml7fvf6c?rel=0"
+    frameborder="0" allowfullscreen></iframe></div>
+<div class="section" id="setting-up-inline-bot">
+<h2>Setting up Inline Bot<a class="headerlink" href="#setting-up-inline-bot" title="Permalink to this headline">¶</a></h2>
+<p>In Telegram bots can either take direct messages, or accept inline mentions.
+<a class="reference external" href="https://telegram.org/blog/inline-bots">Inline bots</a> have quite some merits:</p>
+<ul class="simple">
+<li>users stay/focus on current chat window instead of jumping back and forth
+between apps</li>
+<li>inline bots give a more compact representation of results for fast browsing
+and selection</li>
+</ul>
+<p>In the following we&#8217;ll introduce an inline Yelp bot. But first of
+all, let&#8217;s set up the bot to be inline-ready.</p>
+<div class="section" id="set-inline-status">
+<h3>Set inline status<a class="headerlink" href="#set-inline-status" title="Permalink to this headline">¶</a></h3>
+<p>Simply send the <code class="docutils literal"><span class="pre">/setinline</span></code> command to Bot Father:</p>
+<img alt="_images/set_inline.png" class="align-center" src="_images/set_inline.png" />
+<p>Then select your bot and set inline status:</p>
+<img alt="_images/set_inline_status.png" class="align-center" src="_images/set_inline_status.png" />
+</div>
+<div class="section" id="set-inline-location-awareness">
+<h3>Set inline location awareness<a class="headerlink" href="#set-inline-location-awareness" title="Permalink to this headline">¶</a></h3>
+<p>Telegram also allows bots to request your location in GPS coordinates. We can
+enable this with the <code class="docutils literal"><span class="pre">/setinlinegeo</span></code> command to Bot Father:</p>
+<img alt="_images/set_inline_geo.png" class="align-center" src="_images/set_inline_geo.png" />
+<p>Now next time the bot is mentioned, it will request user to share GPS location.
+Even on desktop browser it can still get rough location coordinates.</p>
+</div>
+</div>
+<div class="section" id="an-inline-yelp-bot">
+<h2>An inline Yelp Bot<a class="headerlink" href="#an-inline-yelp-bot" title="Permalink to this headline">¶</a></h2>
+<p>We want to program an inline Yelp bot that supports the following two inline
+mention modes:</p>
+<ol class="arabic simple">
+<li>&#8220;<em>seafood near seattle</em>&#8221; &#8211;&gt; Bot will search Yelp <em>seafood</em> near <em>Seattle</em>.</li>
+<li>&#8220;<em>seafood</em>&#8221; &#8211;&gt; Bot will search Yelp <em>seafood</em> using phone&#8217;s GPS location.</li>
+</ol>
+<p>But it won&#8217;t accept direct messages. The following is a demo:</p>
+<video width="640"  controls>
+  <source src="_static/img/telegram/inline_yelp_bot.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br> <br> <br><div class="section" id="the-flow">
+<h3>The flow<a class="headerlink" href="#the-flow" title="Permalink to this headline">¶</a></h3>
+<p>The following is a screenshot of the flow and here is the <a class="reference download internal" href="_downloads/YelpTelegramBot.json"><code class="xref download docutils literal"><span class="pre">flow</span> <span class="pre">file</span></code></a>.
+It is also a sample project from &#8220;CREATE NEW APP&#8221; -&gt; &#8220;Use a sample project&#8221;.</p>
+<a class="reference internal image-reference" href="_images/yelp_bot_canvas.png"><img alt="_images/yelp_bot_canvas.png" class="align-center" src="_images/yelp_bot_canvas.png" style="width: 640px;" /></a>
+<p>Feel free to import it into your own project and play with it. In order to make
+it work, you&#8217;ll need:</p>
+<ol class="arabic simple">
+<li>Bot access token (already covered in <a class="reference internal" href="#telegram-echo-bot"><span>A simple Echo Bot</span></a> )</li>
+<li>Yelp app <a class="reference external" href="https://www.yelp.com/developers">credentials</a>, including <strong>Consumer Key</strong>,
+<strong>Consumer Secret</strong>, <strong>Token</strong> and <strong>Token Secret</strong>.</li>
+</ol>
+<p>In this flow we do not accept direct messages but just inline mentions. We assume
+very simple input structure, taken care of by the <code class="docutils literal"><span class="pre">Dumb</span> <span class="pre">NLU</span> <span class="pre">for</span> <span class="pre">Inline</span> <span class="pre">Query</span></code> node:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29</pre></div></td><td class="code"><div class="highlight"><pre> <span class="kd">var</span> <span class="nx">query</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">trim</span><span class="p">();</span>
+ <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">query</span><span class="p">)</span>
+     <span class="c1">// don&#39;t output empty msg</span>
+     <span class="k">return</span><span class="p">;</span>
+
+ <span class="kd">var</span> <span class="nx">splits</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot; near &quot;</span><span class="p">);</span>
+ <span class="kd">var</span> <span class="nx">split_len</span> <span class="o">=</span> <span class="nx">splits</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+
+ <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span> <span class="o">=</span> <span class="p">{};</span>
+ <span class="p">}</span>
+
+ <span class="k">if</span> <span class="p">(</span><span class="nx">split_len</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">business</span> <span class="o">=</span> <span class="nx">splits</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+     <span class="c1">// &quot;chinese food near downtown seattle&quot;</span>
+     <span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">business</span> <span class="o">=</span> <span class="nx">splits</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+     <span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">address</span> <span class="o">=</span> <span class="nx">splits</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+ <span class="p">}</span>
+
+ <span class="k">try</span> <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">telegram</span><span class="p">.</span><span class="nx">inline_query</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">latitude</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// we got GPS coordinates from mobile</span>
+         <span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">ll</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">telegram</span><span class="p">.</span><span class="nx">inline_query</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">latitude</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span>
+             <span class="nx">msg</span><span class="p">.</span><span class="nx">telegram</span><span class="p">.</span><span class="nx">inline_query</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">longitude</span><span class="p">;</span>
+     <span class="p">}</span>
+ <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="p">{}</span>
+
+ <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Once we get the <code class="docutils literal"><span class="pre">business</span></code> type and <code class="docutils literal"><span class="pre">address</span></code> or <code class="docutils literal"><span class="pre">ll</span></code> (latitude &amp; longitude),
+we can go ahead and search Yelp. The final result is sent throw the <code class="docutils literal"><span class="pre">Send</span> <span class="pre">Result</span></code>
+node:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre></div></td><td class="code"><div class="highlight"><pre> <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">businesses</span><span class="p">;</span>
+
+ <span class="k">if</span> <span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+ <span class="kd">var</span> <span class="nx">responses</span> <span class="o">=</span> <span class="p">[];</span>
+ <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">results</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">results</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+     <span class="kd">var</span> <span class="nx">categories</span> <span class="o">=</span> <span class="p">[];</span>
+     <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">j</span><span class="o">&lt;</span><span class="nx">result</span><span class="p">.</span><span class="nx">categories</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">categories</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">categories</span><span class="p">[</span><span class="nx">j</span><span class="p">][</span><span class="mi">0</span><span class="p">]);</span>
+     <span class="p">}</span>
+     <span class="nx">responses</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;venue&quot;</span><span class="p">,</span>
+         <span class="nx">id</span><span class="o">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span>
+         <span class="nx">title</span><span class="o">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="nx">categories</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">,</span>
+         <span class="nx">thumb_url</span><span class="o">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">image_url</span><span class="p">,</span>
+         <span class="nx">latitude</span><span class="o">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">coordinate</span><span class="p">.</span><span class="nx">latitude</span><span class="p">,</span>
+         <span class="nx">longitude</span><span class="o">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">coordinate</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span>
+         <span class="nx">address</span><span class="o">:</span> <span class="nx">result</span><span class="p">.</span><span class="nx">review_count</span> <span class="o">+</span> <span class="s2">&quot; reviews. Rating: &quot;</span> <span class="o">+</span> <span class="nx">result</span><span class="p">.</span><span class="nx">rating</span> <span class="o">+</span> <span class="s2">&quot;. \n&quot;</span> <span class="o">+</span>
+                 <span class="nx">result</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">display_address</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+     <span class="p">});</span>
+ <span class="p">}</span>
+     <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span> <span class="o">=</span> <span class="nx">responses</span><span class="p">;</span>
+     <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+     <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span> <span class="o">=</span> <span class="p">[{</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;article&quot;</span><span class="p">,</span>
+         <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;no-result&quot;</span><span class="p">,</span>
+         <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;No Yelp Result Found&quot;</span><span class="p">,</span>
+         <span class="nx">input_message_content</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">message_text</span><span class="o">:</span> <span class="s1">&#39;e.g., &quot;dinner near downtown Chicago&quot;&#39;</span>
+         <span class="p">},</span>
+         <span class="nx">description</span><span class="o">:</span> <span class="s1">&#39;e.g., &quot;dinner near downtown Chicago&quot;&#39;</span>
+     <span class="p">}];</span>
+
+     <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The result, encoded in <code class="docutils literal"><span class="pre">msg.payload</span></code>, is a list of venues that&#8217;ll be sent via
+the Telegram <a class="reference external" href="https://core.telegram.org/bots/api#sendvenue">SendVenue</a> method.</p>
+<p>This Yelp Bot so far is very limited in understanding human language, yet it also
+does not support direct messages. To improve it, you can take a look at the full
+tutorial of <a class="reference internal" href="extended_example.html#extended-example"><span>Extended Example: A conversational Yelp bot</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="slack.html" class="btn btn-neutral float-right" title="Slack Bot Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="extended_example.html" class="btn btn-neutral" title="Extended Example: A conversational Yelp bot" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Aug 05, 2016.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ChatFlow Quick Start &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Dialogue Nodes" href="dialogue_nodes.html"/>
+        <link rel="prev" title="Welcome to ChatFlow" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+
+        
+          <a href="index.html" class="icon icon-home"> ChatFlow
+        
+
+        
+        </a>
+
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">ChatFlow Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-chatflow">Accessing ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-conversational-router">The conversational router</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enter-nodes">Enter nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state-nodes">State nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-input-and-output">Adding input and output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dealing-with-natural-language-input">Dealing with natural language input</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#adding-an-nlu-node">Adding an NLU node</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
+<li class="toctree-l3"><a class="reference internal" href="extended_example.html#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#create-an-alexa-skill">Create an Alexa Skill</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#skill-information">1. Skill Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#sample-utterances">2. Sample Utterances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#configuration">3. Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#ssl-certificate">4. SSL Certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#test">5. Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="alexa.html#finishing-up">6. Finishing up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#incoming-message-structures">Incoming Message Structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#launch-skill">Launch Skill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#intent-request">Intent Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#card-and-reprompt">Card and Reprompt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa.html#ask-or-tell">Ask or Tell?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy Chatflow app</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#state-tracking">State tracking</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">ChatFlow</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>ChatFlow Quick Start</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/quickstart.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="chatflow-quick-start">
+<span id="quickstart"></span><h1>ChatFlow Quick Start<a class="headerlink" href="#chatflow-quick-start" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="accessing-chatflow">
+<h2>Accessing ChatFlow<a class="headerlink" href="#accessing-chatflow" title="Permalink to this headline">¶</a></h2>
+<p>ChatFlow is hosted by KITT.AI and can be accessed using a web browser, with no
+other installation necessary. Simply go to <a href="#id1"><span class="problematic" id="id2">`http://chatflow.kitt.ai`_</span></a> and
+log in using your Google, Facebook, Twitter or Github account.</p>
+</div>
+<div class="section" id="a-first-conversational-flow-from-a-template">
+<h2>A first conversational flow (from a template)<a class="headerlink" href="#a-first-conversational-flow-from-a-template" title="Permalink to this headline">¶</a></h2>
+<p>After loggin in, click the yellow &#8220;Create new app&#8221; button to start
+authoring your ChatFlow project (app). Each project or app corresponds
+to a bot.</p>
+<p>In the dialogue box that appears, look for &#8220;Hello Goodbye!&#8221; under
+&#8220;Use a sample project.&#8221; After selecting it, you should see your
+ChatFlow project library page with the &#8220;Hello Goodbye!&#8221; project.
+Feel free to use the edit option to change its name.</p>
+<p>Now let&#8217;s click on Hello Goodbye!, which opens the project. Now you should
+see the main ChatFlow editor interface. On the left side of the screen,
+there is a node palette, which includes the various types of nodes we
+can use in our project. The main area of the editor is a canvas that
+is already populated by several nodes, which comprise the content of
+our project. Clicking on the yellow &#8220;Deploy&#8221; button near the top right
+of the interface deploys our bot. Notice that the green Chat In and Chat Out
+nodes get green indicators that say &#8220;connected.&#8221;</p>
+<p>We can now select the <em>chat tab</em> on the left side of the screen,
+where we can talk directly with the bot. Try saying &#8220;hi&#8221;,
+&#8220;hello&#8221; and &#8220;goodbye&#8221; and watch the bot respond. This is a particularly
+simple bot, so it does not understand much else.</p>
+<p>To understand exactly what this bot does and how it does it, watch
+the Hello Goodbye! tutorial video: INSERT URL HERE</p>
+<p>You can follow along to create this bot from scratch, or feel free
+to play with the template.</p>
+</div>
+<div class="section" id="another-simple-flow-from-scratch">
+<h2>Another simple flow, from scratch<a class="headerlink" href="#another-simple-flow-from-scratch" title="Permalink to this headline">¶</a></h2>
+<p>As we saw in the previous example, in ChatFlow a conversation
+is modeled as a flow of messages moving
+across links (wires) between nodes in a network.
+There are different kinds of nodes and
+various parts of the messages.
+Let&#8217;s create a simple flow from scratch that does a little more
+than just say hello. Our new bot will simply ask users for a
+free lunch and keep count of how many times it had to ask before
+getting a free lunch.</p>
+<p>We start with an empty
+canvas, as shown below. Authoring the flow consists of adding nodes to
+the canvas by dragging them from the palette on the left side of the
+screen, and configuring and linking them.</p>
+<a class="reference internal image-reference" href="images/chatflow-emptycanvas.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-emptycanvas.png" style="height: 100px;" /></a>
+<div class="section" id="the-conversational-router">
+<h3>The conversational router<a class="headerlink" href="#the-conversational-router" title="Permalink to this headline">¶</a></h3>
+<p>The left side of the screen contains a palette with several different
+kinds of <em>nodes</em>. We will use some of these nodes to author our
+flow. Let&#8217;s start by dragging a <strong>router</strong> node onto the empty
+canvas. Your flow should now contain one node, as shown below. The
+router is generally responsible for directing messages within our
+flow, and producing the conversational agent&#8217;s output.</p>
+<a class="reference internal image-reference" href="images/chatflow-routernode.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-routernode.png" style="height: 100px;" /></a>
+<p>Double-click on the router node you just dragged onto the canvas to
+edit this router node. The <em>debug output</em> option simply turns on/off
+debugging messages, which can be sent to the debug
+tab on the right side of the screen.
+We can name
+our node, although we don&#8217;t have to. Just to keep things organized,
+let&#8217;s name our node <em>Lunch router</em>. Finally, leave the default values
+in the <em>Session ID from</em> and <em>User ID from</em> fields. We won&#8217;t need
+those in this first flow.</p>
+</div>
+<div class="section" id="enter-nodes">
+<h3>Enter nodes<a class="headerlink" href="#enter-nodes" title="Permalink to this headline">¶</a></h3>
+<p>Now we
+need additional nodes containing the content and flow of the
+desired conversations. In addition to the
+router node, the other two nodes in the <em>dialogue</em> section of the node
+selection palette are <strong>enter</strong> and <strong>state</strong>. The <strong>state</strong> nodes are used
+to set and update the state of the conversation, and to define what
+the agent will say. The <strong>enter</strong> nodes are used to specify <em>entrance
+conditions</em> for the state nodes. In other words, specific enter nodes
+specify when specific state nodes will be used, and state nodes define
+the behavior of the agent in those moments.</p>
+<p>Let&#8217;s add an <strong>enter</strong> node to the canvas. Enter nodes are the entry
+points into segments of the conversation, and each enter node contains
+a set of <em>entrance conditions</em> that determine whether the specific
+enter node can be chosen by the router as the next entry point in the
+conversation. Enter nodes are always chosen by the router, and always
+receive their messages from the router.
+After adding it, doubleclick on the
+enter node placed on the canvas. A box titled <em>Edit enter
+node</em> will appear. There, we can give our enter node a name. Although
+this is again not necessary, it is very useful to give our nodes
+meaningful names, which will make our flow human-readable. Let&#8217;s call
+this enter node <em>Initial state</em>, because we want this node to be used
+when the conversation begins. Below the name field, you&#8217;ll find a
+section where conditions can be added to determine whether this enter
+node will pass messages to other nodes. One condition is partially
+added by default. Let&#8217;s remove it, by clicking on the X to the right
+of the condition. Now, check the box that says <em>Initial state</em>. This
+will tell the router to use this enter node first. Your <em>Edit enter
+node</em> box should look like the one in the figure below.</p>
+<a class="reference internal image-reference" href="images/chatflow-enteredit.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-enteredit.png" style="height: 100px;" /></a>
+</div>
+<div class="section" id="state-nodes">
+<h3>State nodes<a class="headerlink" href="#state-nodes" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have an enter node, let&#8217;s add a <strong>state</strong> node to the
+canvas. Place it to the right of the enter node. Now, let&#8217;s link the
+enter node and the state node by clicking on the grey dot on the right
+of the enter node, and dragging a wire to the grey dot on the left of
+the state node. Your canvas should now look like the one in the figure
+below.</p>
+<a class="reference internal image-reference" href="images/chatflow-statenode.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-statenode.png" style="height: 100px;" /></a>
+<p>Doubleclick on the new state node. Name it <em>Initialize state</em>, because
+that&#8217;s what we want this node to do. Below the name field, you will
+find a code editor. Here, we can add JavaScript code that will be run
+against messages received by the state node. Unlike the enter node,
+which receives messages from the router, the state node receives its
+message from the wire coming into it, often from an enter node.
+The code in a state node typically involves
+setting variables that are useful throughout the course of the
+conversation. We will create a single variable called <code class="docutils literal"><span class="pre">count</span></code>, which
+will simply keep track of how many times our conversational agent has
+asked the user for lunch. User variables used in the conversation are
+passed from node to node via messages, and an incoming message is
+accessible from a node as the variable
+<code class="docutils literal"><span class="pre">msg</span></code>. Messages contain many different kinds of information, and
+each ChatFlow user variable inside <code class="docutils literal"><span class="pre">msg</span></code> must be prefixed by
+<code class="docutils literal"><span class="pre">kitt.</span></code>, so the entire name for our <code class="docutils literal"><span class="pre">count</span></code> variable inside the message will be
+<code class="docutils literal"><span class="pre">msg.kitt.count</span></code>.  The code associated with the state node should
+end with <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code>, otherwise no message will be sent by the
+state node and the conversation will not proceed. In the <em>Output text</em>
+field, we write what the system should say when this state node is
+executed. In this case, let&#8217;s have the agent say <em>&#8220;Hello! Will you
+please buy me lunch?&#8221;</em> The figure below shows what your state node
+should look like.</p>
+<a class="reference internal image-reference" href="images/chatflow-state1edit.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-state1edit.png" style="height: 100px;" /></a>
+<p>And the code inside this state node is:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Again, the first line creates a user variable <code class="docutils literal"><span class="pre">count</span></code> and sets its
+value, and the second line passes the message along, so the
+interaction proceeds. If the output of a state node is not connected
+to another node by a wire, the message sent by the state node goes to
+the router. Now, we have a router, and a single pair of enter node and
+state node. To see what this flow produces, let&#8217;s add input and output
+nodes to the flow.</p>
+</div>
+<div class="section" id="adding-input-and-output">
+<h3>Adding input and output<a class="headerlink" href="#adding-input-and-output" title="Permalink to this headline">¶</a></h3>
+<p>Drag the nodes <em>Chat In</em> and <em>Chat Out</em>, and link
+them to the input and output of the router, as shown below.</p>
+<a class="reference internal image-reference" href="images/chatflow-chatnodes.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-chatnodes.png" style="height: 100px;" /></a>
+<p>The Chat In and Chat Out nodes are very useful during the process
+of creating and debugging bots. They connect the bot&#8217;s
+input/output to the chat tab on the left side of the screen,
+as we say in the Hello Goodbye! example.</p>
+<p>Open the chat tab and try entering <em>hello</em> in the input field
+on the bottom of the screen. You should see a system message that
+results from the state node called <em>Initialize state</em>, which received a message
+from the enter node called <em>Initial state</em>. This enter node
+was selected to receive the message from the router because we checked
+the box that says <em>Initial state</em> (and because it is for now the only
+enter state in our flow, and it has no conditions that prevent it from
+being used). Of course, there is nothing special about the string
+&#8220;hello&#8221; here. Any user input (even an empty string) would have
+produced the same result, since we have only one initial state.</p>
+<a class="reference internal image-reference" href="images/chatpage-hello.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatpage-hello.png" style="height: 100px;" /></a>
+<p>Further input to this agent does nothing, since the system has nothing
+else to say. Let&#8217;s now give the agent the ability to handle <em>yes</em> and
+<em>no</em> answers from the user.</p>
+<p>First, add an enter node and a state
+node. Connect them as before (i.e. create a wire from the enter node
+to the state node). Edit the state node in the following way. Name it
+<em>&#8220;U: no&#8221;</em>. As mentioned above, naming the nodes is not required, but
+makes the flow human readable. In this case, we are following a useful
+naming scheme where enter nodes that test for user input have names
+that begin with <em>U:</em>, and continue with what we expect the user to say
+for this enter node to be active (in this case, this is the enter node
+that corresponds to user saying <em>&#8220;no&#8221;</em>). The single test in this node
+will be <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code>, which simply checks if the
+user input to the router coming from the <em>Chat In</em> node is &#8220;no&#8221;. By
+convention, the main output of nodes is placed into a message property
+called <code class="docutils literal"><span class="pre">payload</span></code>, so we can access the user input coming from <em>Chat
+In</em> in the value of <code class="docutils literal"><span class="pre">msg.payload</span></code>. Your enter node should look like
+the one in the figure below.</p>
+<a class="reference internal image-reference" href="images/chatflow-enterno.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-enterno.png" style="height: 100px;" /></a>
+<p>Next, edit the new state node so that the name is <em>ask again</em>
+(which is a simple description of what this state does, solely for
+human readability), and the code to be executed is:</p>
+<div class="code javascript highlight-python"><div class="highlight"><pre><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This simple increase a counter of how many times the agent has asked
+for lunch, and passes the message along so that execution proceeds. In
+the <em>Output text</em> field, write: <em>I must insist. Will you reconsider?</em>
+This is what the system will tell the user when the user says <em>no</em>.</p>
+<p>Now that the system understands <em>no</em>, let&#8217;s add another enter node and
+another state node to handle <em>yes</em>. After adding the enter and state
+nodes, link them as before. Name the enter node <em>U:yes</em> and add the
+entrance condition <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">yes</span></code>. Next, name the new
+enter node <em>thank user</em>, and leave the code in this node as
+simply <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code> since we don&#8217;t need the system to do anything
+else when it reaches this node. In the <em>Output text</em> field, enter
+<em>Thank you! Number of times I asked: {{count}}</em>. When the system
+reaches this node, it will thank the user and say how many times the
+system asked the user for lunch, which is the value of our user
+variable <code class="docutils literal"><span class="pre">count</span></code>. While in the code editor we must use the full name
+of the variable within the message <code class="docutils literal"><span class="pre">msg.kitt.count</span></code>, in the <em>Output
+text</em> field, we can access the value of user variables by using
+<a class="reference external" href="https://mustache.github.io/">mustache</a> notation, without the
+<code class="docutils literal"><span class="pre">msg.kitt</span></code> prefix.</p>
+<p>Finally, check the box that says <em>Dialogue ends here</em> to tell the
+system that the conversation is over once we reach this state. The
+figure below shows the entire conversational network and the details
+of the state node that handles <em>yes</em> user responses.</p>
+<a class="reference internal image-reference" href="images/chatflow-stateedit.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-stateedit.png" style="height: 100px;" /></a>
+<p>We are now ready to click <em>Deploy</em> on the top right of the screen, and
+head to the chat tab. You
+should now be able to have a simple conversation with the agent as
+shown below.</p>
+<a class="reference internal image-reference" href="images/chatpage-sample.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatpage-sample.png" style="height: 100px;" /></a>
+<p>Of course, the system only understands <em>yes</em> and <em>no</em>, because we
+included only (case-sensitive) tests for <em>yes</em> and <em>no</em> user input. If
+we say anything else (even <em>Yes</em>, which is different from <em>yes</em> to the
+system), the agent will simply not have a response for that. We can
+easily create an enter node to handle all other input strings. Add an
+enter node and a state node to the canvas, and link them. Edit the
+enter node so that its name is &#8220;U: default&#8221; and the single entrance
+condition is <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>. In the new state
+node, change the name to <em>not understanding</em>,
+leave the code as <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code> and add the following text to
+the <em>Output field</em>: <em>Sorry, I didn&#8217;t understand what you said. I only
+understand &#8220;yes&#8221; and &#8220;no&#8221;.</em> Now, your agent will always have something
+to say, whether it understands the user or not. Your network and your
+new enter node should look like the figure below.</p>
+<a class="reference internal image-reference" href="images/chatflow-notu.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatflow-notu.png" style="height: 100px;" /></a>
+<p>We can now have interactions like the following using our simple
+conversational agent.</p>
+<a class="reference internal image-reference" href="images/chatpage-sample2.png"><img alt="empty ChatFlow canvas" class="align-right" src="images/chatpage-sample2.png" style="height: 100px;" /></a>
+</div>
+<div class="section" id="dealing-with-natural-language-input">
+<h3>Dealing with natural language input<a class="headerlink" href="#dealing-with-natural-language-input" title="Permalink to this headline">¶</a></h3>
+<p>We have built a simple conversational engine that illustrates the
+basic authoring process in ChatFlow. However,
+we have not yet addressed how our agent
+should understand real <em>natural language</em> utterances as input. We use the term
+natural language here to refer to real <em>language</em> (English, Spanish,
+Chinese, etc.) used by
+people, regardless of whether it is spoken or written, or informal or
+formal.
+In our example so far, the type of language the system
+understands can be characterized as having three types of symbols:
+yes, no, and everything else. Clearly, this is not a natural language,
+and it is in fact much simpler than any natural language.</p>
+<p>To deal with input in the form of natural language utterances without
+restrictions, we use a <strong>Natural Language Understanding (NLU)</strong> node,
+which we insert between our <em>Chat In</em> node and out <em>Lunch Router</em>
+node, in the same way we saw in the Hello Goodbye! bot.
+The idea is that <code class="docutils literal"><span class="pre">msg.payload</span></code> coming from the input node
+(<em>Chat In</em>) will contain a natural language utterance. The NLU node
+will map that utterance into a finite set of intents and entities, and
+our enter nodes will contain entrance conditions based on those
+intents and entities, instead of the actual string of the input
+utterance. For example, the natura language input strings &#8220;Yes&#8221;,
+&#8220;yes&#8221;, &#8220;sure&#8221;, &#8220;of course&#8221;, &#8220;you bet!&#8221;, &#8220;it would be my honor&#8221;,
+etc. would all be mapped to the same intent category called, say,
+<code class="docutils literal"><span class="pre">positive_response</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dialogue_nodes.html" class="btn btn-neutral float-right" title="Dialogue Nodes" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to ChatFlow" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Aug 17, 2016.
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

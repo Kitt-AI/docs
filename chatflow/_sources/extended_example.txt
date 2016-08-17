@@ -1,0 +1,588 @@
+.. _extended_example:
+
+==================
+Extended Example: A conversational Yelp bot
+==================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+In this example we will show how to create a conversational bot that fulfills an end-user information need by
+accessing external resources. Specifically, we will build a natural language *conversational* interface to Yelp. In
+contrast with simpler natural language interfaces that let users say things like "show me Mexican restaurants in
+Bellevue" just as a simple replacement to the search box,
+our agent will go beyond this type of capability through the kind of multiturn interaction that can be
+authored easily with ChatFlow.
+
+This project is avaiable as a sample when creating a new app. You may
+select it and follow this document while consulting the sample, or just
+build the content from scratch while following the instructions.
+
+The following dialogue illustrates what our conversational agent will be able to do.
+
+    **User**: Hello.
+
+    **System**: Welcome! I can find restaurants for you in Yelp! What are you looking for?
+
+    **User**: I'm looking for an Italian place near Fremont.
+
+    **System**: I found 10 places that might work. The first 3 are: 1. Ristorante Il Porcino; 2. Massimo's; 3. Strizzi's. Do any of these sound okay?
+
+    **User**: The second one sounds good.
+
+    **System**: Great, Massimo's. It's got 304 reviews on Yelp, and the rating is 3.5 stars.
+
+    **User**: Where is it?
+
+    **System**: The address for Massimo's is 5200 Mowry Ave, Ste M, and the phone number is +1-510-792-2000.
+
+    **User**: How about the first one?
+
+    **System**: The address for Ristorante Il Porcino is 3339 Walnut Ave, Fremont, CA 94538, and the phone number is +1-510-791-7383.
+
+    **User**: What's the rating?
+
+    **System**: It's got 451 reviews on Yelp, and the rating is 3.5 stars.
+
+Of course, there are many ways to create a ChatFlow agent that is capable of dialogues of this type. Let's go through
+an example that implements one such way, step-by-step. The interaction will be driven by the agents goal of fulfilling
+a user's information need.
+
+
+Starting your conversational project
+==================
+
+Open ChatFlow and start from an empty canvas. As it is often the case, we'll start by adding a **router** node to our
+project. Let's name it *Yelp Router*. Next, we'll choose the input and output channel for the interaction with end
+users. In this example, we'll use **Chat In** and **Chat Out**, but it should be easy to replace those with other
+input/output app nodes (e.g. Slack bot). Add Chat In and Chat Out nodes and connect the output of Yelp Router to Chat Out. Do not connect Chat In yet; we will need an NLU
+node in our project, and it will sit between Chat In and Yelp Router.
+
+Adding an NLU node
+-------------------
+
+In any conversational project that deals with more than trivial natural language input, it is important to use a
+properly configured Natural Language Understanding (**NLU**) node, such
+as KITT.AI NLU, available as the KITT.AI node.
+
+To configure an NLU node for ChatFlow, we must first create the NLU *model*, which comes from a set of examples of
+user utterances, each mapped to an *intent*, and annotated for *entities*. For example, in our Yelp example, the intents
+in our system will include: ``request_suggestion``, which requests a restaurant suggestion from the agent (e.g.
+"I'd like a Chinese restaurant in Seattle"), ``state_choice``, which states a user choice from a list (e.g. "The first one,
+please."), ``request_more_options`` (e.g. "Give me more options."), etc. An intent like ``request_suggestion`` would be
+expected to contain at least one *entity*, but could contain more (e.g. "A Mexican place in Downtown Seattle," where "Mexican"
+is a ``businesstype`` and "Downtown Seattle" is a ``location``. The specific set of intents and entites is arbitrary,
+typically application-specific (what information a Yelp bot needs from what you say may be different from what a pizza shop
+bot needs), and defined by the
+application developer.
+
+For more information on creating effective NLU models using the intent and entity paradigm,
+see INSERT LINK TO NLU docs.
+
+A sample NLU project that can be imported straight into KITT.AI's NLU
+to create an NLU model to be used in our Yelp example
+can be downloaded here: :download:`yelp_example_nlu.json <yelp_example_nlu.json>`. You can use this NLU content or build
+your own. If you choose to build your own from scratch,
+you will find it useful 
+to inspect the sample file manually to familiarize yourself with the intents and entities used in our ChatFlow content.
+
+Once you have an NLU model ready to use, simply add an NLU node to your canvas, connect its input to Chat In, and its output
+to the router's input. Doubleclick on the NLU node and enter your app ID and subscription key, and your NLU node is ready
+to use in ChatFlow!
+
+Creating your flow
+=======================
+
+Before we start adding nodes to our flow, let's consider the overall objective and behavior of our conversation agent.
+The agent ultimately wants to provide the user with a satisfactory restaurant suggestion. To achieve this goal, the
+system must know the user's preferences. In this example, we will consider two common user preferences when looking for
+restaurants in Yelp: location, and restaurant type.
+
+We will structure our interaction by having the agent try to gather the necessary information (location and resturant type),
+while giving the user the freedom to provide it in a natural way. The general structure of our flow will be: check
+what information is missing, and ask the user for it, while being responsive to any kind of relevant user input at any
+time.
+
+Initialization
+--------------
+
+We will start by adding an **enter** node and a **state** node. Set up the enter node (by doubleclicking the node) by
+removing the default entrance condition (click on the X), and check the box that says *Initial state*, since we want
+this enter node always to be the first one chosen when the conversation starts. Finally, name the enter node anything you
+like (e.g. *Enter initial state*). Now that the enter node is ready, close
+the enter node set up, and doubleclick on the state node. Give it a name (e.g. *Initialize state*), and add the following
+code:
+
+.. code-block:: javascript
+
+    msg.kitt.location = null;
+    msg.kitt.business_type = null;
+    msg.kitt.req_pending = false;
+    msg.kitt.user_choice = null;
+
+    return msg;
+
+This simply initializes the state variables (user variables that keep track of the state of the conversation) we will
+use. The ``location`` variable keeps the location where Yelp will look for restaurants. Initially we don't know the
+location, so we set it to ``null``. The ``business_type`` variable is the kind of restaurant the agent will look for.
+The ``req_pending`` variable is ``true`` if we have all the information we need for a Yelp query, but have not yet issued
+the query. This is useful to make sure we don't issue the query before we have all of the necessary information, and to
+make sure we don't issue the same query again, once we already have the results for it. This will become more apparent
+as we go through the rest of the example. Finally, the ``user_choice`` variable keeps track of which restaurant the user
+has chosen.
+
+Finally, in the *Output text* box, write a welcome message, such as "*Welcome! I can find restaurants for you in Yelp!*"
+
+Now, connect the output of the enter node to the input of the state node. This pair of connected enter and state nodes is
+the simplest flow substructure in ChatFlow, and it is common for simple tasks, like initializing the system, or answering
+a simple question.
+
+Prompting the user and understanding the user's request
+----------------------------------------------------------------
+
+Next, let's create the parts of the conversational flow that allow the agent to collect information from the user.
+Add an enter node to be used when the system has not yet obtained a location or business type (i.e. both
+``location`` and ``business_type`` are set to ``null``. Let's call that enter node *state: no location, no type*
+(because it is a node name that describes what this enter node checks for), and add the following two entrance
+conditions: ``Property msg.kitt.location is null`` and ``Property msg.kitt.business_type is null``. Next, add a new
+state node and connect it to this enter node. Name the state node *prompt for query* (or any other short descriptive name
+that reflects roughly what the state node does), leave the code as ``return msg;``, and in the *Output text* box, write
+a prompt like *What can I help you find?* or *What are you looking for?* Note that typically this prompt will be used
+immediately after the initial state, which will already add something like "*Welcome! I can find restaurants for you in Yelp!*
+so it shouldn't be necessary to mention Yelp or restaurants in the current state node. What users will see will come
+from multiple nodes, and will be something like "*Welcome! I can find restaurants for you in Yelp! What are you looking for?*"
+
+Now that the system is ready to recognize that it needs to fill the location and business type variables, we need an enter
+node that will be triggered when the NLU module determines that the user has generated input with the intent of providing
+that information. The intent label in our NLU model that corresponds to this situation is ``request_suggestion`` (the name
+of this intent label reflects that the user is requesting a suggestion, for example, by saying *I would like an Italian
+restaurant in Downtown Seattle*.) To set up this new enter node, edit the entrance condition to be ``Property
+msg.NLU.intent == request_suggestion``, and finally name the entrance node *U: request suggestion*. Of course, you may
+name the node anything you want; our suggested name reflects that this enter node checks for user input (U:) and that
+the user input is a request for a suggestion.
+
+This enter node will be available to receive messages from the router any time the user says something that the NLU
+interprets as a ``request_suggestion`` intent. Additionally, we want this enter node to be the preferred enter node after
+the system prompts the user for a suggestion. To reflect this, connect the output of the state node *prompt for query* to
+the input of the enter node *U: request suggestion*. Notice that once the nodes are connected, there is a dashed line
+between them, not a regular wire, as with other connected nodes. Wires (solid lines) are used so that messages can go
+from one node to another. Dashed lines, which we get from state nodes to enter nodes, simply indicate ordering preferences.
+In other words, this dashed line does not mean a message will go from the state node to the enter node when the state node
+is executed. Instead, the message from the state node will still go to the router, as usual, and the message to the enter
+node will still be sent by the router, as usual. The dashed line simply indicates that the enter node will be prefered after
+that state node, so the effect will be that the enter node will follow the state node, *if possible*. This is useful,
+because we get to choose the explicit conversational flow, but the system will be robust to deviations to that flow.
+If the user expresses a different intent at that point, instead of simply answering the system prompt, the enter node's
+entrance condition will not be met, and the router will simply choose another enter node.
+
+.. note::
+
+    This is the beauty of ChatFlow's
+    conversational authoring: while the authoring process revolves around a typical flow for the desired conversation, it is
+    capable of adapting and adjusting to a wide variety of unforeseen user behaviors!
+
+Next, let's add a state node to follow that enter node. Let's call this state node *Save type and location, if available*,
+and add the following code:
+
+.. code:: javascript
+
+    if('business_type' in msg.NLU.entities) {
+        msg.kitt.business_type = msg.NLU.entities.business_type;
+    }
+    if('location' in msg.NLU.entities) {
+        msg.kitt.location = msg.NLU.entities.location;
+    }
+
+    return msg;
+
+The code in this state node does a couple of interesting things. First, it shows how to use NLU output inside state
+nodes. We had already seen entrance conditions in enter nodes involving NLU intents, but here we get to see how NLU
+output can be accessed in code in a state node. In this particular case, we are looking at the entities, but accessing
+the intent would be done similarly (``msg.kitt.intent`` is a string correspoding to the intent label). First, we check
+if there is an entity of type ``business_type`` in the most recent result from the NLU module. If there is, we
+set the user variable ``business_type`` to the string correspoding to the NLU entity ``business_type``. For example, if
+the user input to the agent is *"I am looking for a Chinese place,"* the NLU intent would be ``request_suggestion`` and
+the substring "*Chinese*" will be marked as a ``business_type`` entity, allowing us to set the ``business_type`` variable
+(accessed in state nodes as ``msg.kitt.business_type``) to the string "Chinese". We then do the same with ``location``.
+In our Chinese restaurant utterance, we did not specify a location and the NLU did not mark any part of the input as a
+``location`` entity, so the variable ``location`` would remain ``null``. Finally, we pass the message along, including
+our updated user variables. When this state node is executed, its message will go back to the router.
+
+Let's now add four new enter nodes that handle the cases where the state node above set: (1) both type and location,
+(2) only type, (3) only location, or (4) neither type nor location. The first of these four new enter nodes should have the
+following two entrance conditions: ``Property msg.kitt.business_type is not null`` and ``Property msg.kitt.location is
+not null``. Additionally, we want this enter node to be used **only** after the state node above, so let's check the box
+that says *Enter only from direct link*. The other three enter nodes will also have the *Enter only from direct link* option
+checked. The second enter node will have the conditions: ``Property msg.kitt.business_type is not null`` and
+``Property msg.kitt.location is null``. The other two enter nodes will follow this pattern, looking at both location
+and business type, and checking whether or not they are null.
+
+Connect the inputs of each of these four enter nodes to the output of the last state node we added. After the first of
+these four enter nodes, let's connect a state node with the code:
+
+.. code:: javascript
+
+    msg.kitt.req_pending = true;
+    return msg;
+
+This will indicate to the agent that we are now ready to issue a Yelp request.
+
+After the second enter node of the four new enter nodes, add a state node, leave the code as simply ``return msg;`` and
+add the following output text: *Ok, I got {{business_type}}, but I didn't get the location.* This state node will be
+executed, of course, when ``location`` is still ``null``, but ``business_type`` has been set. Add a new state node
+connected to the third of the four enter nodes, and similarly add the output text:
+*Ok, a place in {{location}}, but I didn't get the restaurant type.* In both of these last two state nodes, we used
+user variables in `mustache <https://mustache.github.io/>`_ notation in the system output. Finally, after the last
+enter node, add a state node with the output text *I didn't get the restaurant type or location*. This will cover the
+case where the NLU decided that the user expressed a request for a restaurant suggestion, but the NLU couldn't get a
+restaurant type of a location, either because they weren't there, or because of an NLU error.
+
+.. note::
+
+    Although it is crucially important to make sure the NLU performs adequately, it is also important to understand
+    that the NLU *will* make mistakes, and plan for those mistakes in the way we design our flow.
+
+Your flow should now look like the one below.
+
+[INSERT FLOW HERE]
+
+Notice that we named the last four enter nodes we added with the prefix *state:* followed by a descriptive string
+reflecting what conditions are checked. In general, it is useful to indicate in the node name whether the node checks for
+NLU conditions, state conditions (i.e. conditions based on user variables, or the state of the conversation), or both.
+State names are irrelevant for the execution of the flow, but they are important to make the flow understandable without
+the need to click inside each node. In larger flows, it is very helpful to get a general understanding of the flow just
+by looking at it.
+
+Now we have a network that allows the agent to welcome the user, prompt the user to request a restaurant suggestion,
+determine whether the agent picked up a location and restaurant type from the user's request, and give the user feedback.
+Recall that the agent prompts the user for a request because the agent does not have a location or restaurant type yet.
+After the user's request, the agent may have a location, a restaurant type, both, or neither. If for some reason
+(most likely an NLU error) the agent has neither, the same *no location, no type* conditions will be met, and the agent
+will prompt the user again. Now let's see how we add additional nodes that take care of the situations where we
+have either just type or just location.
+
+Add an enter node (call it *state: no location*) with the entrance condition ``Property msg.kitt.location is null``,
+and connect to it a new state node (call it *ask for location*) with the code ``return msg;`` and the output text
+*What's the desired location?* This will prompt the user for a location, if the agent failed to get a location, either
+because the user didn't provide it, or because the NLU failed to identify it in user input. Now that the prompt is ready,
+let's add a new state node that will serve as the entry point for when the user does express a location. Name this state
+node *entity: location* to reflect that we will be checking an *entity*. Add the single entrance condition
+``Property msg.NLU.entities.location is not null``. Connect the state node *ask for location* to this new enter node
+*entity: location*. This creates an **ordering preference** (denoted by a dashed line), which ensures that once the
+agent asks for a location, a user utterance that expresses a location will result in this enter node being chosen next
+by the router. Finally, connect the output of this enter node to the input for the state node called *save type and location,
+if available* that we had already created for the original prompt. Because of the way that node was written, it can
+just be used here too, and there is no need to create a new state node.
+
+Now add another enter node (call it *state: no business type*) with the entrance condition ``Property msg.kitt.business_type is null``,
+and connect to it a new state node (call it *ask for business type*) with the code ``return msg;`` and the output text
+*What kind of restaurant are you looking for?* Also, create a new enter node (*entity: business_type*) with the
+entrance condition ``Property msg.NLU.entities.business_type is not null``, and create an ordering constraint so that this
+enter node is chosen after the state node we just created (i.e. connect the state node to the enter node). Finally,
+connect the enter node to the state node called *save type and location, if available*. Now the system is ready to
+accept user requests, and to clarify requests when needed.
+
+Fulfilling the user's request through a Yelp query
+--------------------------------------------------
+
+Once we have the location and restaurant type, the agent is ready to get a list of restaurant suggestions by issuing a
+query to Yelp through the Yelp API, which is already conveniently packaged as a ChatFlow node. Examining the Yelp node,
+we see that it requires a *Consumer key*, a *Consumer secret*, a *Token* and a *Token secret*. You must provide these
+values to configure your Yelp node, and you can obtain these by signinig up for the `Yelp developer API <http://www.yelp.com/developers>`_.
+From the Yelp node's documentation, we see that it will build a Yelp query by using a term in ``msg.yelp_term``, a
+location in ``msg.yelp_location``, and a limit on the number of candidates in the output, in ``msg.yelp_limit``. The
+result of the Yelp query will be placed in the ``msg.payload`` coming out of the Yelp node. We can add the Yelp node to
+our canvas, and configure it using our credentials. We can leave the *Search Term*, *Location* and *Limit* fields blank,
+since we'll get these values dynamically through the messages coming into the node. Next, let's see how we will build the
+query that will go into this node.
+
+Add a new enter node (call it *state: got type and location*) with the following three entrance conditions:
+``Property msg.kitt.business_type is not null``, ``Property msg.kitt.location is not null`` and
+``Property msg.kitt.req_pending is true``. The first two entrance conditions are self-explantory (we have both location
+and business type). The third condition simply checks whether we have already issued a Yelp query for this location
+and business type. If the request is pending (``req_pending`` is true, which we set when we collected both type and
+location), we should go ahead with the request. If ``req_pending`` is false (because we set it to false after issuing
+the request to Yelp), we won't issue the query to Yelp again. Connect to this enter node a new state node
+(call it *Yelp request*) with the following code:
+
+.. code:: javascript
+
+    // prepare yelp search
+    msg.yelp_term = msg.kitt.businesstype;
+    msg.yelp_location = msg.kitt.location;
+    msg.yelp_limit = 10;
+
+    // don't request the same search again
+    msg.kitt.req_pending = false;
+
+    return msg;
+
+Finally, connect this state node to the input of the Yelp node. Now the agent is ready to issue Yelp queries through the
+Yelp API, and we need to be able to process the output of the Yelp node, which is simply what the API returns, and
+accessible as ``msg.payload``. For details on how the output is formatted,
+see the `Yelp API documentation <http://www.yelp.com/developers>`_.
+
+
+Presenting Yelp results to the user
+-----------------------------------
+
+From our query, we will get at most ten results from Yelp. Presenting all ten at once would be suboptimal in a dialogue.
+Consider, for example, how to present choices in a speech-to-speech setting (e.g. through the Amazon Echo); a few choices
+at a time is probably best. Even in a chat scenario, it would be best to limit the number of choices presented at once to
+a smaller number. Let's present three choices at a time, but give the user the option to hear further choices.
+
+Add a new state node (call it *list choices*). Here, we will need to add some code to process the Yelp API results,
+and present them in a way that makes sense in a conversation. Add the following code:
+
+.. code:: javascript
+
+    msg.kitt.yelp_results = msg.payload.businesses;
+    msg.payload = "";
+
+    var numresults = msg.kitt.yelp_results.length;
+
+    msg.responses = ['I found ' + numresults + " places that might work. "];
+
+    if(numresults > 3) {
+        numresults = 3;
+        msg.responses[0] += 'The first 3 are: ';
+    }
+
+    for(var i = 1; i <= numresults; i++) {
+        msg.responses[0] += " " + i + ". " + msg.kitt.yelp_results[i-1].name;
+        if(i < 3) {
+            msg.responses[0] += '; ';
+        }
+    }
+
+    msg.responses[0] += ". Do any of these sound okay?"
+
+    return msg;
+
+First, we are saving the results in a user variable called ``yelp_results``, so we can access these results at any time.
+Then, we are starting to format the agent's utterance to the user, but instead of using the output text field, we are
+setting the agent's utterance directly in ``msg.responses``. Using the output text field simply sets
+``msg.responses[0]`` with the content of the text field. We are setting ``msg.responses`` directly here because
+we want to use a loop to add the names of the restaurants to the agent's utterance. (We could have, instead, prepared the
+desired string, placed it in a user variable, and added that user variable to the agent's utterance through the
+Output text field by using mustache notation.)
+
+Our list of choices ends with a question to the user: *Do any of these sound okay?* From here, we expect user input, which
+may be affirmative or negative, or a request for more choices, or an explicit choice. Let's see how we handle each of
+these cases using enter nodes.
+
+First, let's add an enter node called *U: yes* with the entrance condition ``Property msg.NLU.intent == accept``. The
+*accept* intent corresponds to user utterances such as *yes*, *sure*, etc. Because we don't want this enter node
+to be chosen *any time* the user says something like *yes*, and rather only when *yes* is a response to the question
+we just posed (*Do any of these sound okay?*), let's check the box that says *Enter only from direct link*, and create
+an ordering preference link from the last state node we created to this enter node. Now, let's add a new state node
+(*request choice*), leave the code as ``return msg;``, and add *Great! Which one?* to the Output text field.
+
+Now add a new state node called *U: no* with the entrance condition ``Property msg.NLU.intent == reject``, which will
+handle user input such as *no*, *not really*, *no way*, etc. Let's check *Enter only from direct link* and create an
+ordering preference link just as with the previous enter node. Let's add a new state node that will give use user
+more options from the Yelp list of results when the user says *no*. Let's call this state node *list more choices*, and
+add the following code:
+
+.. code:: javascript
+
+    for(var i = 0; i < 3; i++) {
+        msg.kitt.yelp_results.shift();
+    }
+
+    var numresults = msg.kitt.yelp_results.length;
+
+    if(numresults == 0) {
+        msg.responses = ["Sorry, I'm all out of options, but you can try a different search request." ];
+        return msg;
+    }
+
+    msg.responses = ['Ok, I have ' + numresults + " more places. "];
+
+    if(numresults > 3) {
+        numresults = 3;
+        msg.responses[0] += 'The next 3 are: ';
+    }
+
+    for(var i = 1; i <= numresults; i++) {
+        msg.responses[0] += " " + i + ". " + msg.kitt.yelp_results[i-1].name;
+        if(i < 3) {
+            msg.responses[0] += '; ';
+        }
+    }
+
+    msg.responses[0] += ". Do any of these sound okay?"
+
+    return msg;
+
+This will remove the restaurant options we already used, check if there are still options available, and if so,
+present them to the user.
+
+Finally, let's add another enter node (*U: list more*) with the following two entrance conditions:
+``Property msg.NLU.intent == request_more_options`` and ``Property msg.kitt.yelp_results is not null``. Here, we do
+**not** check *Enter only from direct link*, since we want the user to be able to request more choices at any time,
+as long as we already have Yelp results (which we check with the second entrance condition). Link this enter node
+to the state node called *list more choices*. Now, let's create ordering preference links from *list more choices* to each
+of the enter nodes *U: yes*, *U: no*, and *U: list mode*. We now have the capability of preseting a small number of
+choices, and going down a list if necessary.
+
+Getting a choice from the user
+------------------------------
+
+Now we are ready to have the user choose a restaurant from the options presented by the agent. Let's add a new state node
+called *U: state choice* with the entrance conditions ``Property msg.NLU.intent == state_choice`` and
+``Property msg.kitt.yelp_results`` is not null. The second condition, again, just make sure we already have
+results from Yelp (otherwise choosing one wouldn't make sense). The first condition checks that the user expressed
+the intent of choosing an option (e.g. *The first one*, *the second one sounds ok*, *option 2 please*, *2 sounds good*, etc.).
+Connect to this enter node a new state node (*set and repeat choice*), which will set the user's choice in a user
+variable, and say it back to the user. Add the following code:
+
+.. code:: javascript
+
+    var choice = null;
+    switch(msg.NLU.entities.enum_choice) {
+        case "first":
+        case "1":
+        case "one":
+            choice = 1;
+            break;
+        case "two":
+        case "2":
+        case "second":
+            choice = 2;
+            break;
+        case "three":
+        case "last":
+        case "3":
+        case "third":
+            choice = 3;
+            break;
+        default:
+            choice = 0;
+    }
+
+    msg.responses = [""];
+    if(choice === 0) {
+        msg.responses[0] = "Sorry, I didn't get what your choice was. ";
+    }
+    else {
+        msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
+        msg.responses[0] = "Great, " + msg.kitt.yelp_results[choice-1].name + ". ";
+        msg.kitt.user_choice = "" + (choice - 1);
+    }
+
+    return msg;
+
+Here, we are checking an entity ``enum_choice`` coming from NLU against strings like *first*, *1*, *one*, etc., and
+setting a ``choice`` variable appropriately. Finally, if a choice is made, we set a user variable ``user_choice``,
+which we can access at any time in other nodes.
+
+Let's create another state node called *say rating*, which will give use the star rating for the current user choice,
+with the following code:
+
+.. code:: javascript
+
+    msg.responses[0] += "It's got " +
+        msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
+        " reviews on Yelp, and the rating is " +
+        msg.kitt.yelp_results[msg.kitt.user_choice].rating + " stars.";
+
+    return msg;
+
+Connect the node *set and repeat choice* to *say rating*, so that whenever the user makes a choice, the agent says
+the choice back, then tells the user the Yelp star rating.
+
+Answering user questions about the choices presented
+----------------------------------------------------
+
+Of course, we can also use the *say rating* state node
+to answer questions like *What's the star rating?* or *Is it good?* To do that, let's add a new enter node called
+*U: request rating* with three entrance conditions: ``Property msg.NLU.intent == request_rating``, which makes sure
+that the user is requesting a star rating, or asking a question that can be answered with the star rating (e.g.
+*Is this restaurant good?*); ``Property msg.kitt.user_choice is not null``, whch makes sure that we already have
+a user choice, otherwise we wouldn't know what restaurant we are talking about; and finally
+``Property msg.NLU.entities.enum_choice``, to make sure that the user is not asking a question about a new choice
+(e.g. "What is the star rating for the second restaurant?"). Now, connect this enter node to *say rating*.
+
+To handle questions that refer to a specific restaurant (like *What is the star rating for the second option?*),
+we add a new enter node called *U: rating request with choice* with the following entrance conditions:
+``Property msg.NLU.intent == request_rating``, which makes sure the user is requesting a star rating or asking a
+question that can be answered with a star rating; an ``Property msg.NLU.entities.enum_choice``, which checks
+that the output of NLU includes an entity that refers to an explicity choice from an enumerated list (i.e. the
+user utterance includes a string like *the last one*, *the second place*, *option 1*, etc.). We connect this enter node
+to a new state node called *say rating by choice*, with the following code:
+
+.. code::javascript
+
+    var choice = null;
+    var status = "open";
+
+    switch(msg.NLU.entities.enum_choice) {
+        case "first":
+        case "1":
+        case "one":
+            choice = 1;
+            break;
+        case "two":
+        case "2":
+        case "second":
+            choice = 2;
+            break;
+        case "three":
+        case "last":
+        case "3":
+        case "third":
+            choice = 3;
+            break;
+        default:
+            choice = 0;
+    }
+
+    msg.responses = [""];
+    if(choice === 0) {
+        msg.responses[0] = "Sorry, I didn't get what your choice was. ";
+    }
+    else {
+        msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
+        msg.kitt.user_choice = "" + (choice - 1);
+
+       msg.responses = [msg.kitt.yelp_results[msg.kitt.user_choice].name +
+       " has " +
+        msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
+        "reviews on Yelp, and the rating is " +
+        msg.kitt.yelp_results[msg.kitt.user_choice].rating + "stars."];
+    }
+
+    return msg;
+
+Here, we have similar code to what we used before to make a choice, but we follow that immediately with code to build
+a system utterance that tells the user the star rating.
+
+From here, we can add enter and state nodes to handle questions about address (the NLU intent would be
+``request_address``) or hours (NLU intent ``request_hours``) in the same way we handled start ratings.
+
+Finally, we can add additional enter and state nodes to handle things like *thanking* (when the user says *thanks*,
+the system should reply appropriately), and *closing* (when the user says *goodbye*, or *that will be all*, or something
+to that effect, the system should end the interaction with a state node that has the *Dialogue ends here* box checked).
+
+Final thoughts
+--------------
+
+That's it! We now have a fully functional conversational interface to Yelp. Can you make it better? (Of course you can!)
+
+This example illustrated how to access external resources and use the ability to add code inside state nodes to use that
+information within a conversation. We also saw how to structure a flow around system goals, and how to handle different
+kinds of user input.
+
+

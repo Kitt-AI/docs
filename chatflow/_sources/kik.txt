@@ -1,0 +1,126 @@
+.. _kik:
+
+======================
+Kik Bot Tutorials
+======================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+Abstract
+========
+In this tutorial we will start with creating a simple Kik bot to echo your message,
+then we will create a bot that shows you different cat images.
+
+A simple echo bot
+=================
+
+Let's first create a simple echo bot using ChatFlow.
+
+.. _create_kik_bot:
+
+1. Create a kik bot
+_________________
+
+First install the kik client on your mobile device.
+
+Then go to `dev.kik.com <https://dev.kik.com/#/home>`_ to build your bot.
+
+.. raw:: html
+   <hr>
+
+   <p style="margin-top: -30px;">
+      Using the Kik app, touch <img src="/_static/img/kik/tip.png" style="width:50px;"> and then click on
+      <img src="/_static/img/kik/scan.png" style="width:50px;">
+      to scan the code, which registers a bot for you. Then answer Botsworth's questions.
+      Tap "yes" and "Create a Bot".
+   </p>
+
+Give a unique name to the bot. After bot creation, click "Configuration" on top of
+`dev.kik.com <https://dev.kik.com/#/home>`_ page.
+
+.. image:: _static/img/kik/uniqueBot.png
+   :align: center
+
+You'll have to copy/paste "Bot Name" and "API Key" to ChatFlow in the next step.
+
+.. _create_chatflow_app:
+
+2. Create a ChatFlow application
+______________________________
+
+Go to the `applications <https://chatflow.kitt.ai/apps>`_ and create a new application. Call it "kik echo bot" and put
+**kik In** and **kik Out** nodes as shown on the image below.
+
+.. image:: _static/img/kik/echoBot.png
+   :align: center
+
+Double click the **kik In** node, select "Add new kikbot-controller..." and click "Edit" button. Copy and paste
+"kik bot name" and "API Key" and click Add. Double click the **kik Out**  node and select the same controller.
+
+.. image:: _static/img/kik/pasteCredentials.png
+   :align: center
+
+Now deploy the application and check how it works. When you write to your bot, it answers you with the same message.
+
+.. TODO:: write about the ``msg.kik`` structure and what types of messages it echoes (text, pic?, gif?)
+
+Advanced: attachments and custom keyboards
+==========================================
+
+In this part of the tutorial we will create a bot that shows you cat imapges of different color.
+
+.. _import_colored_cats_app:
+
+1. Importing the "Colored Cats" application
+_________________________________________
+
+Import the application to ChatFlow. You can either:
+
+* Download :download:`json <_static/json/KikColoredCats.json>` of our application and import the project on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page, or,
+* Use the "kik - Cat Choose" sample application when clicking "CREATE NEW APP" on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page.
+
+
+Also please download :download:`NLU json <_static/json/KikColoredCats-nlu.json>` to import it as
+`an NLU application <https://nlu.kitt.ai>`_.
+
+.. image:: _static/img/kik/coloredCats.png
+   :align: center
+
+2. NLU setup
+___________________________
+
+First, go to NLU_  and import the NLU json you get from :ref:`import_colored_cats_app`.
+Come back to ChatFlow and open the **KITT.AI NLU** node and paste URL you got from NLU there.
+Add ``{{{payload}}}``, so your final string would look like: ::
+   http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+.. image:: _static/img/kik/kitt.png
+   :align: center
+
+3. Set up "Colored Cats" application
+___________________________________
+
+Now you should register the kik bot, as described in :ref:`create_kik_bot` section. Copy and paste bot name and bot API key, as
+described in :ref:`create_chatflow_app` section.
+
+After deploying your application, you can write to your bot and tell him to show you the ct of chosen color.
+
+.. TODO:: write more about the "Cat 1" and "Cat 2" buttons that correspond to interactive messages.
+   @xuchen: May I ask to make here a video, too?

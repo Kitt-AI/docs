@@ -1,0 +1,383 @@
+.. _quickstart:
+
+==================
+ChatFlow Quick Start
+==================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+Accessing ChatFlow
+==================
+
+ChatFlow is hosted by KITT.AI and can be accessed using a web browser, with no
+other installation necessary. Simply go to `http://chatflow.kitt.ai`_ and
+log in using your Google, Facebook, Twitter or Github account.
+
+A first conversational flow (from a template)
+==================
+
+After loggin in, click the yellow "Create new app" button to start
+authoring your ChatFlow project (app). Each project or app corresponds
+to a bot.
+
+In the dialogue box that appears, look for "Hello Goodbye!" under
+"Use a sample project." After selecting it, you should see your
+ChatFlow project library page with the "Hello Goodbye!" project.
+Feel free to use the edit option to change its name.
+
+Now let's click on Hello Goodbye!, which opens the project. Now you should
+see the main ChatFlow editor interface. On the left side of the screen,
+there is a node palette, which includes the various types of nodes we
+can use in our project. The main area of the editor is a canvas that
+is already populated by several nodes, which comprise the content of
+our project. Clicking on the yellow "Deploy" button near the top right
+of the interface deploys our bot. Notice that the green Chat In and Chat Out
+nodes get green indicators that say "connected."
+
+We can now select the *chat tab* on the left side of the screen,
+where we can talk directly with the bot. Try saying "hi",
+"hello" and "goodbye" and watch the bot respond. This is a particularly
+simple bot, so it does not understand much else.
+
+To understand exactly what this bot does and how it does it, watch
+the Hello Goodbye! tutorial video: INSERT URL HERE
+
+You can follow along to create this bot from scratch, or feel free
+to play with the template.
+
+Another simple flow, from scratch
+==================================
+
+As we saw in the previous example, in ChatFlow a conversation
+is modeled as a flow of messages moving
+across links (wires) between nodes in a network.
+There are different kinds of nodes and
+various parts of the messages.
+Let's create a simple flow from scratch that does a little more
+than just say hello. Our new bot will simply ask users for a
+free lunch and keep count of how many times it had to ask before
+getting a free lunch.
+
+
+We start with an empty
+canvas, as shown below. Authoring the flow consists of adding nodes to
+the canvas by dragging them from the palette on the left side of the
+screen, and configuring and linking them.
+
+.. image:: images/chatflow-emptycanvas.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+The conversational router
+----------------------
+
+The left side of the screen contains a palette with several different
+kinds of *nodes*. We will use some of these nodes to author our
+flow. Let's start by dragging a **router** node onto the empty
+canvas. Your flow should now contain one node, as shown below. The
+router is generally responsible for directing messages within our
+flow, and producing the conversational agent's output.
+
+.. image:: images/chatflow-routernode.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+Double-click on the router node you just dragged onto the canvas to
+edit this router node. The *debug output* option simply turns on/off
+debugging messages, which can be sent to the debug
+tab on the right side of the screen.
+We can name
+our node, although we don't have to. Just to keep things organized,
+let's name our node *Lunch router*. Finally, leave the default values
+in the *Session ID from* and *User ID from* fields. We won't need
+those in this first flow.
+
+.. image:: images/chatflow-routeredit.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+ Every project in ChatFlow needs a router, and ours is now ready to use.
+
+	 
+Enter nodes
+-----------------------
+
+Now we
+need additional nodes containing the content and flow of the
+desired conversations. In addition to the
+router node, the other two nodes in the *dialogue* section of the node
+selection palette are **enter** and **state**. The **state** nodes are used
+to set and update the state of the conversation, and to define what
+the agent will say. The **enter** nodes are used to specify *entrance
+conditions* for the state nodes. In other words, specific enter nodes
+specify when specific state nodes will be used, and state nodes define
+the behavior of the agent in those moments.
+
+Let's add an **enter** node to the canvas. Enter nodes are the entry
+points into segments of the conversation, and each enter node contains
+a set of *entrance conditions* that determine whether the specific
+enter node can be chosen by the router as the next entry point in the
+conversation. Enter nodes are always chosen by the router, and always
+receive their messages from the router.
+After adding it, doubleclick on the
+enter node placed on the canvas. A box titled *Edit enter
+node* will appear. There, we can give our enter node a name. Although
+this is again not necessary, it is very useful to give our nodes
+meaningful names, which will make our flow human-readable. Let's call
+this enter node *Initial state*, because we want this node to be used
+when the conversation begins. Below the name field, you'll find a
+section where conditions can be added to determine whether this enter
+node will pass messages to other nodes. One condition is partially
+added by default. Let's remove it, by clicking on the X to the right
+of the condition. Now, check the box that says *Initial state*. This
+will tell the router to use this enter node first. Your *Edit enter
+node* box should look like the one in the figure below.
+
+.. image:: images/chatflow-enteredit.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+State nodes
+------------------
+
+Now that we have an enter node, let's add a **state** node to the
+canvas. Place it to the right of the enter node. Now, let's link the
+enter node and the state node by clicking on the grey dot on the right
+of the enter node, and dragging a wire to the grey dot on the left of
+the state node. Your canvas should now look like the one in the figure
+below.
+
+.. image:: images/chatflow-statenode.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+Doubleclick on the new state node. Name it *Initialize state*, because
+that's what we want this node to do. Below the name field, you will
+find a code editor. Here, we can add JavaScript code that will be run
+against messages received by the state node. Unlike the enter node,
+which receives messages from the router, the state node receives its
+message from the wire coming into it, often from an enter node.
+The code in a state node typically involves
+setting variables that are useful throughout the course of the
+conversation. We will create a single variable called ``count``, which
+will simply keep track of how many times our conversational agent has
+asked the user for lunch. User variables used in the conversation are
+passed from node to node via messages, and an incoming message is
+accessible from a node as the variable
+``msg``. Messages contain many different kinds of information, and
+each ChatFlow user variable inside ``msg`` must be prefixed by
+``kitt.``, so the entire name for our ``count`` variable inside the message will be
+``msg.kitt.count``.  The code associated with the state node should
+end with ``return msg;``, otherwise no message will be sent by the
+state node and the conversation will not proceed. In the *Output text*
+field, we write what the system should say when this state node is
+executed. In this case, let's have the agent say *"Hello! Will you
+please buy me lunch?"* The figure below shows what your state node
+should look like.
+
+.. image:: images/chatflow-state1edit.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+And the code inside this state node is:
+
+.. code:: javascript
+
+    msg.kitt.count = 1;
+    return msg;
+
+Again, the first line creates a user variable ``count`` and sets its
+value, and the second line passes the message along, so the
+interaction proceeds. If the output of a state node is not connected
+to another node by a wire, the message sent by the state node goes to
+the router. Now, we have a router, and a single pair of enter node and
+state node. To see what this flow produces, let's add input and output
+nodes to the flow. 
+
+Adding input and output
+---------------------------------------
+
+Drag the nodes *Chat In* and *Chat Out*, and link
+them to the input and output of the router, as shown below.
+
+
+.. image:: images/chatflow-chatnodes.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+The Chat In and Chat Out nodes are very useful during the process
+of creating and debugging bots. They connect the bot's
+input/output to the chat tab on the left side of the screen,
+as we say in the Hello Goodbye! example.
+
+Open the chat tab and try entering *hello* in the input field
+on the bottom of the screen. You should see a system message that
+results from the state node called *Initialize state*, which received a message
+from the enter node called *Initial state*. This enter node
+was selected to receive the message from the router because we checked
+the box that says *Initial state* (and because it is for now the only
+enter state in our flow, and it has no conditions that prevent it from
+being used). Of course, there is nothing special about the string
+"hello" here. Any user input (even an empty string) would have
+produced the same result, since we have only one initial state.
+
+.. image:: images/chatpage-hello.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+Further input to this agent does nothing, since the system has nothing
+else to say. Let's now give the agent the ability to handle *yes* and
+*no* answers from the user. 
+
+First, add an enter node and a state
+node. Connect them as before (i.e. create a wire from the enter node
+to the state node). Edit the state node in the following way. Name it
+*"U: no"*. As mentioned above, naming the nodes is not required, but
+makes the flow human readable. In this case, we are following a useful
+naming scheme where enter nodes that test for user input have names
+that begin with *U:*, and continue with what we expect the user to say
+for this enter node to be active (in this case, this is the enter node
+that corresponds to user saying *"no"*). The single test in this node
+will be ``Property msg.payload == no``, which simply checks if the
+user input to the router coming from the *Chat In* node is "no". By
+convention, the main output of nodes is placed into a message property
+called ``payload``, so we can access the user input coming from *Chat
+In* in the value of ``msg.payload``. Your enter node should look like
+the one in the figure below.
+
+.. image:: images/chatflow-enterno.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+Next, edit the new state node so that the name is *ask again*
+(which is a simple description of what this state does, solely for
+human readability), and the code to be executed is:
+
+.. code:: javascript
+
+    msg.kitt.count += 1;
+    return msg;
+
+This simple increase a counter of how many times the agent has asked
+for lunch, and passes the message along so that execution proceeds. In
+the *Output text* field, write: *I must insist. Will you reconsider?*
+This is what the system will tell the user when the user says *no*.
+
+Now that the system understands *no*, let's add another enter node and
+another state node to handle *yes*. After adding the enter and state
+nodes, link them as before. Name the enter node *U:yes* and add the
+entrance condition ``Property msg.payload == yes``. Next, name the new
+enter node *thank user*, and leave the code in this node as
+simply ``return msg;`` since we don't need the system to do anything
+else when it reaches this node. In the *Output text* field, enter
+*Thank you! Number of times I asked: {{count}}*. When the system
+reaches this node, it will thank the user and say how many times the
+system asked the user for lunch, which is the value of our user
+variable ``count``. While in the code editor we must use the full name
+of the variable within the message ``msg.kitt.count``, in the *Output
+text* field, we can access the value of user variables by using
+`mustache <https://mustache.github.io/>`_ notation, without the
+``msg.kitt`` prefix.
+
+Finally, check the box that says *Dialogue ends here* to tell the
+system that the conversation is over once we reach this state. The
+figure below shows the entire conversational network and the details
+of the state node that handles *yes* user responses.
+
+.. image:: images/chatflow-stateedit.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+We are now ready to click *Deploy* on the top right of the screen, and
+head to the chat tab. You
+should now be able to have a simple conversation with the agent as
+shown below.
+
+.. image:: images/chatpage-sample.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+Of course, the system only understands *yes* and *no*, because we
+included only (case-sensitive) tests for *yes* and *no* user input. If
+we say anything else (even *Yes*, which is different from *yes* to the
+system), the agent will simply not have a response for that. We can
+easily create an enter node to handle all other input strings. Add an
+enter node and a state node to the canvas, and link them. Edit the
+enter node so that its name is "U: default" and the single entrance
+condition is ``Property msg.payload is not null``. In the new state
+node, change the name to *not understanding*, 
+leave the code as ``return msg;`` and add the following text to
+the *Output field*: *Sorry, I didn't understand what you said. I only
+understand "yes" and "no".* Now, your agent will always have something
+to say, whether it understands the user or not. Your network and your
+new enter node should look like the figure below.
+
+.. image:: images/chatflow-notu.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+We can now have interactions like the following using our simple
+conversational agent.
+
+.. image:: images/chatpage-sample2.png
+   :height: 100px
+   :align: right
+   :alt: empty ChatFlow canvas
+
+
+Dealing with natural language input
+-----------------------------------
+
+We have built a simple conversational engine that illustrates the
+basic authoring process in ChatFlow. However,
+we have not yet addressed how our agent
+should understand real *natural language* utterances as input. We use the term
+natural language here to refer to real *language* (English, Spanish,
+Chinese, etc.) used by
+people, regardless of whether it is spoken or written, or informal or
+formal. 
+In our example so far, the type of language the system
+understands can be characterized as having three types of symbols:
+yes, no, and everything else. Clearly, this is not a natural language,
+and it is in fact much simpler than any natural language.
+
+To deal with input in the form of natural language utterances without
+restrictions, we use a **Natural Language Understanding (NLU)** node,
+which we insert between our *Chat In* node and out *Lunch Router*
+node, in the same way we saw in the Hello Goodbye! bot.
+The idea is that ``msg.payload`` coming from the input node
+(*Chat In*) will contain a natural language utterance. The NLU node
+will map that utterance into a finite set of intents and entities, and
+our enter nodes will contain entrance conditions based on those
+intents and entities, instead of the actual string of the input
+utterance. For example, the natura language input strings "Yes",
+"yes", "sure", "of course", "you bet!", "it would be my honor",
+etc. would all be mapped to the same intent category called, say,
+``positive_response``.
+
+
+

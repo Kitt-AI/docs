@@ -1,0 +1,748 @@
+[
+    {
+        "id": "2363c7c2.dc9c38",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "931a999c.6ce568",
+        "type": "slackbot-controller",
+        "z": "2363c7c2.dc9c38",
+        "name": "bot2",
+        "bot_token": "xoxb-60106990689-mHwymLUuXAKbQYuWrkktkAMF"
+    },
+    {
+        "id": "422f0875.df93e8",
+        "type": "slackbot-controller",
+        "z": "2363c7c2.dc9c38",
+        "name": "bot1",
+        "bot_token": "xoxb-60116918785-wQeW8lM9wsAwpUIwKljNs2MR"
+    },
+    {
+        "id": "56a2a277.59183c",
+        "type": "slackbot-controller",
+        "z": "2363c7c2.dc9c38",
+        "name": "Cat bot",
+        "bot_token": "xoxb-60126013785-wHeW8lW9isVwpUIsKljNs2MR"
+    },
+    {
+        "id": "691fdbeb.96e024",
+        "type": "KITT.AI",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://api.nlu4chatflow.kitt.ai/v1/api/39?q={{{payload}}}",
+        "x": 390,
+        "y": 80,
+        "wires": [
+            [
+                "cdcaba09.323548"
+            ]
+        ]
+    },
+    {
+        "id": "cdcaba09.323548",
+        "type": "router",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "debugOutput": "console",
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "timeout": "1800",
+        "x": 640,
+        "y": 80,
+        "wires": [
+            [
+                "a540749b.5abf88"
+            ]
+        ]
+    },
+    {
+        "id": "2d77805d.d2888",
+        "type": "enter",
+        "z": "2363c7c2.dc9c38",
+        "name": "Cats",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "Cat"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 660,
+        "wires": [
+            [
+                "9c5ed09b.63a13"
+            ]
+        ]
+    },
+    {
+        "id": "b086f77.f4f7908",
+        "type": "slack-in",
+        "z": "2363c7c2.dc9c38",
+        "slackbot": "422f0875.df93e8",
+        "name": "",
+        "x": 190,
+        "y": 80,
+        "wires": [
+            [
+                "691fdbeb.96e024"
+            ]
+        ]
+    },
+    {
+        "id": "e4249cd9.1bdb6",
+        "type": "http request",
+        "z": "2363c7c2.dc9c38",
+        "name": "Get random cat",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://random.cat/meow",
+        "x": 920,
+        "y": 720,
+        "wires": [
+            [
+                "3435a118.0345fe"
+            ]
+        ]
+    },
+    {
+        "id": "a540749b.5abf88",
+        "type": "slack-out",
+        "z": "2363c7c2.dc9c38",
+        "slackbot": "422f0875.df93e8",
+        "name": "",
+        "x": 1210,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a62c3db4.59d3c",
+        "type": "http request",
+        "z": "2363c7c2.dc9c38",
+        "name": "Get random cat",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://random.cat/meow",
+        "x": 920,
+        "y": 820,
+        "wires": [
+            [
+                "e11fcc78.5bf26"
+            ]
+        ]
+    },
+    {
+        "id": "9c5ed09b.63a13",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "If previous game ended",
+        "func": "var timer=global.get('timer');\nmsg.timer=timer;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 740,
+        "wires": [
+            [
+                "42bccab0.245d64",
+                "5c89ba26.affda4"
+            ]
+        ]
+    },
+    {
+        "id": "3435a118.0345fe",
+        "type": "change",
+        "z": "2363c7c2.dc9c38",
+        "name": "Index the first message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "index",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 720,
+        "wires": [
+            [
+                "bc50614f.146d5"
+            ]
+        ]
+    },
+    {
+        "id": "e11fcc78.5bf26",
+        "type": "change",
+        "z": "2363c7c2.dc9c38",
+        "name": "Index the second message",
+        "rules": [
+            {
+                "t": "set",
+                "p": "index",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1170,
+        "y": 820,
+        "wires": [
+            [
+                "bc50614f.146d5"
+            ]
+        ]
+    },
+    {
+        "id": "59a2ffca.f8317",
+        "type": "http in",
+        "z": "2363c7c2.dc9c38",
+        "name": "buttons callback",
+        "url": "/select",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "89722206.09794"
+            ]
+        ]
+    },
+    {
+        "id": "451d6359.d23d1c",
+        "type": "debug",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "active": true,
+        "console": "true",
+        "complete": "payload",
+        "x": 1010,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "d2c147e9.983928",
+        "type": "http response",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "x": 1010,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "aaa52b9f.cd0868",
+        "type": "http in",
+        "z": "2363c7c2.dc9c38",
+        "name": "redirect",
+        "url": "/redirect",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 400,
+        "wires": [
+            [
+                "8140db5d.7d9118"
+            ]
+        ]
+    },
+    {
+        "id": "684a17d4.5ff388",
+        "type": "http in",
+        "z": "2363c7c2.dc9c38",
+        "name": "command",
+        "url": "/randomCat",
+        "method": "post",
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 260,
+        "wires": [
+            [
+                "98019284.e38c7"
+            ]
+        ]
+    },
+    {
+        "id": "4348277d.d1efa8",
+        "type": "http request",
+        "z": "2363c7c2.dc9c38",
+        "name": "oauth request",
+        "method": "GET",
+        "ret": "obj",
+        "url": "https://slack.com/api/oauth.access?client_id={{{payload.client_id}}}&client_secret={{{payload.client_secret}}}&redirect_uri={{{payload.redirect_uri}}}&code={{{payload.code}}}",
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "24e87d6.76b2782"
+            ]
+        ]
+    },
+    {
+        "id": "74921067.25f2f",
+        "type": "http request",
+        "z": "2363c7c2.dc9c38",
+        "name": "Get random cat",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://random.cat/meow",
+        "x": 580,
+        "y": 220,
+        "wires": [
+            [
+                "7f97f1e0.3e15",
+                "c1678749.1a8498"
+            ]
+        ]
+    },
+    {
+        "id": "7f97f1e0.3e15",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "answer with random cat",
+        "func": "msg.slack={};\nmsg.slack.channel=global.get(\"random\").channel_id\nmsg.slack.user=global.get(\"random\").user_id\nmsg.slack.attachments=[\n    {\n        text:\"Random Cat\",\n        image_url: msg.payload.file\n    }\n]\nmsg.payload=\"Your cat\"\nnode.log(msg.slack)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 830,
+        "y": 160,
+        "wires": [
+            [
+                "a540749b.5abf88"
+            ]
+        ]
+    },
+    {
+        "id": "a46befd3.a430f",
+        "type": "comment",
+        "z": "2363c7c2.dc9c38",
+        "name": "Callback endpoints",
+        "info": "/randomCat - for /random command\n/select - for button endpoint\n/redirect - for \"Add to Slack\"",
+        "x": 210,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2ece6d44.2670e2",
+        "type": "comment",
+        "z": "2363c7c2.dc9c38",
+        "name": "Dialogue",
+        "info": "",
+        "x": 190,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "8140db5d.7d9118",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "App credentials",
+        "func": "var params=msg.payload;\nmsg.payload={\n    redirect_uri:\"https://chatflow-test.kitt.ai/apps/app-id-857d1a38.7a82e8/api/redirect?token=at12lbz42aZcvrm0oI5nNen1b0DIBLfVIABu2mbt28Pi8r3dPhCJBkQWgV68pvvwMScX6xyIFdy68APbKdGhqdaNJtdKB6K7JsbJTlDJWhDrZ8W76HTfj7EMcBZYAPudHFsP6y51ZyHzAcxPpoGZswaVonAiHPTdFK1dDzpA77\",\n    client_secret:\"4172f223d5ffca7046a8da73a4c2aa85\",\n    client_id:\"58883014035.58884538931\",\n    code:params.code\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 400,
+        "wires": [
+            [
+                "4348277d.d1efa8"
+            ]
+        ]
+    },
+    {
+        "id": "89722206.09794",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "Tell who press the button",
+        "func": "var body=JSON.parse(msg.req.body.payload)\n\nvar voters=global.get(\"voters\");\nif(!voters[body.user.name])\n{\n    voters[body.user.name]=1;\n    global.set(\"voters\",voters);\n    \n    msg.payload=\"@\"+body.user.name+\" selected \"+body.actions[0].name;\n    \n    var selection=global.get('selection') || {};\n    var teams=global.get('teams') || {};\n    \n    if(!selection[body.actions[0].name])\n        selection[body.actions[0].name]=0;\n        \n    if(!teams[body.actions[0].name])\n        teams[body.actions[0].name]={};\n        \n    teams[body.actions[0].name][body.user.name]=1\n        \n    selection[body.actions[0].name]++;\n    \n    global.set('selection',selection)\n}\nelse\n{\n    msg.payload=\"@\"+body.user.name+\" tried to vote second time. No cheaters allowed }=)\";\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [
+                "d2c147e9.983928",
+                "75c51015.46393"
+            ]
+        ]
+    },
+    {
+        "id": "3bdd584.258fea8",
+        "type": "delay",
+        "z": "2363c7c2.dc9c38",
+        "name": "Wait until the game ends",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "minutes",
+        "rate": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 950,
+        "y": 920,
+        "wires": [
+            [
+                "772d526e.7a6b2c"
+            ]
+        ]
+    },
+    {
+        "id": "772d526e.7a6b2c",
+        "type": "state",
+        "z": "2363c7c2.dc9c38",
+        "name": "Define the winners",
+        "response": "",
+        "finalstate": false,
+        "func": "var winner;\nvar winnerCount=-1;\nvar selection=global.get('selection')\nvar teams=global.get('teams')\nfor(var cat in selection){\n    if(selection[cat]>winnerCount)\n    {\n        winnerCount=selection[cat];\n        winner=cat;\n    }\n}\nmsg.payload=\"And the winner is \"+winner+\"\\n\";\nvar players=[];\nfor(player in teams[winner]){\n    players.push(\"@\"+player);\n}\n\nmsg.payload+=\"Thanks \"+players.join(', ')+\" for playing\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1190,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f3a905e4.7958e8",
+        "type": "inject",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 170,
+        "y": 840,
+        "wires": [
+            [
+                "7f1978bf.3e8308"
+            ]
+        ]
+    },
+    {
+        "id": "7f1978bf.3e8308",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "func": "var timer=global.get('timer');\nif(timer)\n{\n    timer--;\n    global.set('timer',timer)\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "42bccab0.245d64",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "else - start the game",
+        "func": "if(!msg.timer){\n    msg.kitt=msg.kitt || {}\n    global.set('cats',[])\n    global.set('timer',60)\n    global.set('selection',{})\n    global.set('teams',{})\n    global.set('voters',{})\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 680,
+        "y": 820,
+        "wires": [
+            [
+                "e4249cd9.1bdb6",
+                "a62c3db4.59d3c",
+                "3bdd584.258fea8"
+            ]
+        ]
+    },
+    {
+        "id": "5c89ba26.affda4",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "then",
+        "func": "if(msg.timer)\n    return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 660,
+        "wires": [
+            [
+                "7f105eff.e3a37"
+            ]
+        ]
+    },
+    {
+        "id": "7f105eff.e3a37",
+        "type": "state",
+        "z": "2363c7c2.dc9c38",
+        "name": "Wait when previous game end",
+        "response": "",
+        "finalstate": false,
+        "func": "msg.payload=\"You did not finish the old game! \"+msg.timer+\" seconds left\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 660,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f6147092.cb8f2",
+        "type": "state",
+        "z": "2363c7c2.dc9c38",
+        "name": "Choose cat with buttons",
+        "response": "",
+        "finalstate": false,
+        "func": "global.set('slack',msg.slack)\nmsg.payload=\"The cat game\"\nmsg.slack.attachments=[\n    {\n        \"text\":\"Choose your cat\",\n        \"callback_id\":\"cat_selection\",\n        \"actions\": [\n            {\n                \"name\": \"Cat 1\",\n                \"text\": \"Cat 1\",\n                \"type\": \"button\",\n                \"value\": \"cat1\"\n            },\n            {\n                \"name\": \"Cat 2\",\n                \"text\": \"Cat 2\",\n                \"type\": \"button\",\n                \"value\": \"cat2\"\n            }\n        ]\n    }\n];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1910,
+        "y": 820,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "63a88c77.8d8a54",
+        "type": "state",
+        "z": "2363c7c2.dc9c38",
+        "name": "Show two cats",
+        "response": "",
+        "finalstate": false,
+        "func": "var cats=global.get('cats');\n\nmsg.payload=\"Choose your cat\"\nmsg.slack.attachments=[\n    {\n        text:\"Cat 1\",\n        image_url:cats[0]\n    },\n    {\n        text:\"Cat 2\",\n        image_url:cats[1]\n    }\n];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1700,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc50614f.146d5",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "Wait and join two messages",
+        "func": "var cats=global.get('cats');\ncats.push(msg.payload.file);\nglobal.set('cats',cats)\n\nif(cats.length==2){\n    return msg;\n}\n\nreturn null;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1440,
+        "y": 820,
+        "wires": [
+            [
+                "63a88c77.8d8a54",
+                "a17842b6.957b"
+            ]
+        ]
+    },
+    {
+        "id": "a17842b6.957b",
+        "type": "delay",
+        "z": "2363c7c2.dc9c38",
+        "name": "Wait 3 sec",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1690,
+        "y": 820,
+        "wires": [
+            [
+                "f6147092.cb8f2"
+            ]
+        ]
+    },
+    {
+        "id": "75c51015.46393",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "Ask again",
+        "func": "var timer=global.get('timer');\nmsg.slack = global.get('slack',msg.slack)\nif(timer){\n    msg.payload=\"Someone else? \"+timer+\" seconds left until the end of the game\"\n    msg.slack.attachments=[\n        {\n            \"text\": \"Choose your cat\",\n            \"callback_id\":\"cat_selection\",\n            \"actions\": [\n                {\n                    \"name\": \"Cat 1\",\n                    \"text\": \"Cat 1\",\n                    \"type\": \"button\",\n                    \"value\": \"cat1\"\n                },\n                {\n                    \"name\": \"Cat 2\",\n                    \"text\": \"Cat 2\",\n                    \"type\": \"button\",\n                    \"value\": \"cat2\"\n                }\n            ]\n        }\n    ];\n    \n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1010,
+        "y": 260,
+        "wires": [
+            [
+                "a540749b.5abf88"
+            ]
+        ]
+    },
+    {
+        "id": "7f1aa64e.2fcba8",
+        "type": "inject",
+        "z": "2363c7c2.dc9c38",
+        "name": "Reset timer",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "x": 140,
+        "y": 1020,
+        "wires": [
+            [
+                "f4e73787.1097c8"
+            ]
+        ]
+    },
+    {
+        "id": "f4e73787.1097c8",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "func": "global.set('timer',0);",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "c5b7d9bf.3a4828",
+        "type": "enter",
+        "z": "2363c7c2.dc9c38",
+        "name": "Hello",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "Hello"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 190,
+        "y": 600,
+        "wires": [
+            [
+                "121be261.ede41e"
+            ]
+        ]
+    },
+    {
+        "id": "373f2848.c8c0d8",
+        "type": "enter",
+        "z": "2363c7c2.dc9c38",
+        "name": "Initial state",
+        "rules": [
+            {
+                "t": "eq",
+                "p": "payload",
+                "v": ""
+            }
+        ],
+        "directlink": false,
+        "initialstate": true,
+        "outputs": 1,
+        "x": 190,
+        "y": 520,
+        "wires": [
+            [
+                "121be261.ede41e"
+            ]
+        ]
+    },
+    {
+        "id": "121be261.ede41e",
+        "type": "state",
+        "z": "2363c7c2.dc9c38",
+        "name": "Say: Hello",
+        "response": "Hello",
+        "finalstate": false,
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be randomly\n// selected and concatenated to msg.reply,\n// which is the final output message back to user.\n\n// msg.kitt._responses = [???];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 560,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "24e87d6.76b2782",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "respond bot token",
+        "func": "msg.payload=\"Your bot access token: \"+msg.payload.bot.bot_access_token;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 790,
+        "y": 400,
+        "wires": [
+            [
+                "d2c147e9.983928",
+                "451d6359.d23d1c"
+            ]
+        ]
+    },
+    {
+        "id": "c1678749.1a8498",
+        "type": "change",
+        "z": "2363c7c2.dc9c38",
+        "name": "Respond OK",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "OK",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 790,
+        "y": 260,
+        "wires": [
+            [
+                "d2c147e9.983928"
+            ]
+        ]
+    },
+    {
+        "id": "98019284.e38c7",
+        "type": "function",
+        "z": "2363c7c2.dc9c38",
+        "name": "",
+        "func": "global.set(\"random\",msg.payload)\nnode.log(msg.payload)\nmsg.command=msg.payload\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 390,
+        "y": 260,
+        "wires": [
+            [
+                "74921067.25f2f"
+            ]
+        ]
+    }
+]
