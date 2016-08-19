@@ -1,8 +1,10 @@
-.. _alexa_advanced::
+.. _alexa_advanced:
 
 .. _ChatFlow: https://chatflow.kitt.ai/
 
 .. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
+
+.. _alexa_advanced_title:
 
 =============================
 Advanced Alexa Skill Tutorial
@@ -11,7 +13,7 @@ Advanced Alexa Skill Tutorial
 .. contents:: Table of Contents
    :depth: 4
 
-.. _intro::
+.. _intro:
 
 Introduction
 ============
@@ -46,10 +48,10 @@ point, users can ask for help and Echo would explain how to proceed.
 The main source files are the `Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_
 and `index.js <https://github.com/amzn/alexa-skills-kit-js/blob/master/samples/wiseGuy/src/index.js>`_ file.
 
-We'll see how to easily recreate this application with Chatflow and a more
+We'll see how to easily recreate this application with ChatFlow and a more
 intuitive interface.
 
-Create the WiseGuy Chatflow app
+Create the WiseGuy ChatFlow app
 ====================================
 
 Go to ChatFlow_ and use the sample application "Alexa WiseGuy Skill":
@@ -164,7 +166,7 @@ Multi turn and state tracking explained
 The ``global`` variable
 ------------------------
 
-Now let's come back to the Chatflow app. We have a ``JOKE_LIST`` that's used
+Now let's come back to the ChatFlow app. We have a ``JOKE_LIST`` that's used
 across the dialogue. We set it in the **init JOKE_LIST** state node:
 
 .. code-block:: javascript
@@ -220,7 +222,7 @@ accessed. ``msg.kitt`` is also assigned to ``sessionAttributes`` when *outputtin
 through **Alexa Out** and persisted by the Alexa service. So next time an Alexa
 `Request <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format>`_
 comes in, the same session attributes can be accessed via ``msg.alexa.session.attributes``
-(maintained by Alexa), or ``msg.kitt`` (maintained by Chatflow).
+(maintained by Alexa), or ``msg.kitt`` (maintained by ChatFlow).
 
 The **Who's There** state node then advances the dialogue stage by 1 if previous
 ``msg.kitt.stage == 1``:

@@ -1,4 +1,4 @@
-.. _alexa::
+.. _alexa:
 
 .. _ChatFlow: https://chatflow.kitt.ai/
 
@@ -305,4 +305,4 @@ However, we do not recommend this way because Alexa's speech output might not be
 perfect. Instead we suggest:
 
 2. Use Alexa's own NLU with its language model smoothed out with in-domain
-utterances. We have created a more advanced tutorial next.
+utterances. We have created a more advanced tutorial :ref:`next <alexa_advanced_title>`.

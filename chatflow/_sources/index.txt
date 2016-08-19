@@ -23,6 +23,7 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   self
    quickstart
    dialogue_nodes
    extended_example
@@ -32,3 +33,4 @@ Contents
    kik
    alexa
    alexa_advanced
+   alexa_nlu

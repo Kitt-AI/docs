@@ -1,0 +1,311 @@
+{
+    "kitt_nlu_version": "1.0",
+    "name": "Wise Guy Skill",
+    "intents": [
+        {
+            "name": "SetupNameWhoIntent",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "TellMeAJokeIntent",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "WhosThereIntent",
+            "is_builtin": false,
+            "is_enabled": true
+        }
+    ],
+    "entities": [
+        {
+            "name": "SetupName",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "to\nbeets\nlittle Old Lady\na broken pencil\nsnow\nboo\nwoo\nspell\natch\nowls\nberry",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#008c9e"
+        }
+    ],
+    "utterances": [
+        {
+            "sentence": "who is there",
+            "intent": "WhosThereIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "who's there",
+            "intent": "WhosThereIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "who there",
+            "intent": "WhosThereIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "who is this",
+            "intent": "WhosThereIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "who's this",
+            "intent": "WhosThereIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "tell me a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "tell a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "say a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "give me a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "tell me a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "tell a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "say a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "make a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "give me a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "the joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "the knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "what's a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "what is a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "if it can tell a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "will it tell me a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "call it tell me a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "to tell me a joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "what's a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "what is knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "if it can tell me knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "will it tell me a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "can it tell me a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "to tell me a knock knock joke",
+            "intent": "TellMeAJokeIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "to who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "to",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "beets who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "beets",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "snow who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "snow",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "boo who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "boo",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "woo who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "woo",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "spell who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "spell",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "atch who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": []
+        },
+        {
+            "sentence": "owls who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "owls",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "berry who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "berry",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "little old lady who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "little old lady",
+                    "start": 0,
+                    "end": 3,
+                    "entity": "SetupName"
+                }
+            ]
+        },
+        {
+            "sentence": "a broken pencil who",
+            "intent": "SetupNameWhoIntent",
+            "annotations": [
+                {
+                    "text": "a broken pencil",
+                    "start": 0,
+                    "end": 3,
+                    "entity": "SetupName"
+                }
+            ]
+        }
+    ]
+}

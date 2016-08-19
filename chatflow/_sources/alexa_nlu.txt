@@ -1,0 +1,161 @@
+.. _alexa_nlu::
+
+.. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+
+.. _NLU: https://nlu.kitt.ai/
+
+=======================================
+Advanced Alexa Skill Tutorial with NLU
+=======================================
+
+.. contents:: Table of Contents
+   :depth: 4
+
+
+Introduction
+============
+
+In the :ref:`previous <alexa_advanced_title>` tutorial we implemented the `Wise Guy`_
+skill with ChatFlow. Everything was smooth except one thing: creating the
+`Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_
+can still be a painful experience once your skill gets complicated.
+
+In this tutorial we will show how to use ChatFlow's companion AI engine `NLU`_
+to easily generate the Intent Schema and Sample Utterances needed for Speech Assets.
+
+Create an NLU Project
+=====================
+
+The following video shows how to quickly create an NLU project for Wise Guy.
+It's 6 minutes long and we hope you enjoy Kevin MacLeod's Firebrand as background
+music.
+
+.. raw:: html
+
+   <iframe width="420" height="315" src="https://www.youtube.com/embed/Wi4vXT92UWo"
+       frameborder="0" allowfullscreen></iframe>
+
+You can quickly reproduce this project by importing this :download:`JSON file <_static/json/Wise_Guy_Skill_NLU.json>`
+in NLU_.
+
+Exporting to Alexa Format
+=========================
+
+Now click "Export" -> "Alexa Skills", three speech assets will appear.
+They all follow the format of ASK `Custom Interaction Model <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference>`_.
+
+**Intent Schema**
+
+The Intent Schema will contain only user-defined intent and slot. If you need
+any Amazon default intent, please manually add them.
+
+
+.. code-block:: javascript
+
+    {
+        "intents": [
+            {
+                "intent": "SetupNameWhoIntent",
+                "slots": [
+                    {
+                        "name": "SetupName",
+                        "type": "LIST_OF_SetupName"
+                    }
+                ]
+            },
+            {
+                "intent": "TellMeAJokeIntent"
+            },
+            {
+                "intent": "WhosThereIntent"
+            }
+        ]
+    }
+
+**Custom Slots**
+
+Custom Slots are list of phrases for slots (entities). NLU also supports list of
+regular expressions to match entities but the Alexa console does not support it.
+
+.. code-block:: java
+
+    LIST_OF_SetupName:
+    to
+    beets
+    little Old Lady
+    a broken pencil
+    snow
+    boo
+    woo
+    spell
+    atch
+    owls
+    berry
+
+**Sample Utterances**
+
+Sample utterances are all utterances in the project, with intents and slots (entities)
+marked within utterances. It follows the old verbose style, and you can
+`migrate <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/migrating-to-the-improved-built-in-and-custom-slot-types>`_
+to new improved interfaces.
+
+.. code-block:: java
+
+    WhosThereIntent who is there
+    WhosThereIntent whos there
+    WhosThereIntent who there
+    WhosThereIntent who is this
+    WhosThereIntent whos this
+    TellMeAJokeIntent tell me a joke
+    TellMeAJokeIntent tell a joke
+    TellMeAJokeIntent say a joke
+    TellMeAJokeIntent give me a joke
+    TellMeAJokeIntent tell me a knock knock joke
+    TellMeAJokeIntent tell a knock knock joke
+    TellMeAJokeIntent say a knock knock joke
+    TellMeAJokeIntent make a knock knock joke
+    TellMeAJokeIntent give me a knock knock joke
+    TellMeAJokeIntent a joke
+    TellMeAJokeIntent a knock knock joke
+    TellMeAJokeIntent the joke
+    TellMeAJokeIntent the knock knock joke
+    TellMeAJokeIntent whats a joke
+    TellMeAJokeIntent what is a joke
+    TellMeAJokeIntent if it can tell a joke
+    TellMeAJokeIntent will it tell me a joke
+    TellMeAJokeIntent call it tell me a joke
+    TellMeAJokeIntent to tell me a joke
+    TellMeAJokeIntent whats a knock knock joke
+    TellMeAJokeIntent what is knock knock joke
+    TellMeAJokeIntent if it can tell me knock knock joke
+    TellMeAJokeIntent will it tell me a knock knock joke
+    TellMeAJokeIntent can it tell me a knock knock joke
+    TellMeAJokeIntent to tell me a knock knock joke
+    SetupNameWhoIntent {to|SetupName} who
+    SetupNameWhoIntent {beets|SetupName} who
+    SetupNameWhoIntent {snow|SetupName} who
+    SetupNameWhoIntent {boo|SetupName} who
+    SetupNameWhoIntent {woo|SetupName} who
+    SetupNameWhoIntent {spell|SetupName} who
+    SetupNameWhoIntent atch who
+    SetupNameWhoIntent {owls|SetupName} who
+    SetupNameWhoIntent {berry|SetupName} who
+    SetupNameWhoIntent {little old lady|SetupName} who
+    SetupNameWhoIntent {a broken pencil|SetupName} who
+
+Finally, copy these exports and fill them in the Interaction Model following
+Step :ref:`sample_utterances` in the basic Alexa tutorial:
+
+
+.. image:: _static/img/alexa/wise-guy-interaction-model.png
+   :align: center
+
+Now we have shown you how to quickly build an NLU project and incorporate it
+to an Alexa Skill. KITT.AI NLU_ provides an interactive interface for you to
+quickly bootstrap an NLU engine with minimal data. You can immediately observe
+system's performance, mark and correct inaccurate predictions, and improve the
+NLU engine on the fly. It's a great assistant to building an Alexa skill.
+
+Now go build your own awesome Alexa skills.
