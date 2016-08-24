@@ -25,7 +25,7 @@ Snowboy, a Customizable Hotword Detection Engine
 
 :Contact: snowboy@kitt.ai
 :Github: https://github.com/kitt-ai/snowboy
-:Version: 1.0.3 (2016-06-04)
+:Version: 1.0.4 (2016-07-13)
 
 
 Introduction
@@ -82,11 +82,11 @@ Downloads
 
 We provide pre-packaged Snowboy binaries and their Python wrappers for:
 
-* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.0.2.tar.bz2>`_
-  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.0.2.tar.bz2>`_
-* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.0.2.tar.bz2>`_
+* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.0.4.tar.bz2>`_
+  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.0.4.tar.bz2>`_
+* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.0.4.tar.bz2>`_
 * Raspberry Pi with Raspbian 8.0, all versions
-  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.0.2.tar.bz2>`_)
+  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.0.4.tar.bz2>`_)
 
 Or you can check out `GitHub <https://github.com/kitt-ai/snowboy>`_ to compile
 a version yourself.
@@ -624,8 +624,9 @@ sample values.
 * **My pmdl model works well for me, but does not work well for others**
 
 Models with suffix pmdl are personal models, and they are supposed to only work
-well for the person who provides the audio samples. If you are look for a model
-that works well for everyone, please use the universal model (with suffix umdl).
+well for the person who provides the audio samples. If you are looking for a
+model that works well for everyone, please use the universal model (with suffix
+umdl).
 
 * **My trained model works well on laptops but not on Pi's**
 
@@ -692,10 +693,4 @@ who is also a contributor to the open-source speech recognition software
 toolkit `CNTK <http://www.cntk.ai/>`_.
 
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 

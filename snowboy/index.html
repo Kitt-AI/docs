@@ -49,17 +49,27 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="#" class="icon icon-home"> Snowboy
-        
+          
+            <a href="#" class="icon icon-home"> Snowboy
+          
 
-        
-        </a>
+          
+          </a>
 
-        
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -68,15 +78,15 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <!-- Local TOC -->
-              <div class="local-toc"><ul>
+            
+            
+                <!-- Local TOC -->
+                <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Snowboy, a Customizable Hotword Detection Engine</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#downloads">Downloads</a></li>
@@ -102,15 +112,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#faq">FAQ</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 </li>
 </ul>
 </div>
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -125,7 +134,13 @@
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="#">Docs</a> &raquo;</li>
       
@@ -140,7 +155,8 @@
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="snowboy-a-customizable-hotword-detection-engine">
 <h1>Snowboy, a Customizable Hotword Detection Engine<a class="headerlink" href="#snowboy-a-customizable-hotword-detection-engine" title="Permalink to this headline">¶</a></h1>
@@ -152,7 +168,7 @@
 </tr>
 <tr class="field-even field"><th class="field-name">Github:</th><td class="field-body"><a class="reference external" href="https://github.com/kitt-ai/snowboy">https://github.com/kitt-ai/snowboy</a></td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">1.0.3 (2016-06-04)</td>
+<tr class="field-odd field"><th class="field-name">Version:</th><td class="field-body">1.0.4 (2016-07-13)</td>
 </tr>
 </tbody>
 </table>
@@ -216,11 +232,11 @@ send a pull request.</p>
 <h2>Downloads<a class="headerlink" href="#downloads" title="Permalink to this headline">¶</a></h2>
 <p>We provide pre-packaged Snowboy binaries and their Python wrappers for:</p>
 <ul class="simple">
-<li>64 bit Ubuntu <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.0.2.tar.bz2">12.04</a>
-/ <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.0.2.tar.bz2">14.04</a></li>
-<li><a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.0.2.tar.bz2">MacOS X</a></li>
+<li>64 bit Ubuntu <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.0.4.tar.bz2">12.04</a>
+/ <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.0.4.tar.bz2">14.04</a></li>
+<li><a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.0.4.tar.bz2">MacOS X</a></li>
 <li>Raspberry Pi with Raspbian 8.0, all versions
-(<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.0.2.tar.bz2">1/2/3/Zero</a>)</li>
+(<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.0.4.tar.bz2">1/2/3/Zero</a>)</li>
 </ul>
 <p>Or you can check out <a class="reference external" href="https://github.com/kitt-ai/snowboy">GitHub</a> to compile
 a version yourself.</p>
@@ -239,16 +255,16 @@ a version yourself.</p>
 audio in/out. We also use <cite>sox</cite> as a quick utility to check whether your
 microphone setup is correctly.</p>
 <p>On Linux systems:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo apt-get install python-pyaudio python3-pyaudio sox
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">pyaudio</span> <span class="n">python3</span><span class="o">-</span><span class="n">pyaudio</span> <span class="n">sox</span>
 </pre></div>
 </div>
 <p>On Mac:</p>
-<div class="highlight-python"><div class="highlight"><pre>brew install portaudio sox
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">portaudio</span> <span class="n">sox</span>
 </pre></div>
 </div>
 <p>(If you don&#8217;t have Homebrew, you can install it <a class="reference external" href="http://brew.sh/">here</a>)</p>
 <p>Finally install PortAudio&#8217;s Python bindings:</p>
-<div class="highlight-python"><div class="highlight"><pre>pip install pyaudio
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyaudio</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -263,7 +279,7 @@ microphone setup is correctly.</p>
 <cite>sudo chown $USER -R /usr/local</cite></p>
 </div>
 <p>To check whether you can record via your microphone, open a terminal and run:</p>
-<div class="highlight-python"><div class="highlight"><pre>rec temp.wav
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rec</span> <span class="n">temp</span><span class="o">.</span><span class="n">wav</span>
 </pre></div>
 </div>
 <p>If you see an error on Raspberry Pi&#8217;s, please refer to the <a class="reference internal" href="#running-on-pi">Running_on_Pi</a> section.</p>
@@ -271,7 +287,7 @@ microphone setup is correctly.</p>
 <div class="section" id="decoder-structures">
 <h3>Decoder Structures<a class="headerlink" href="#decoder-structures" title="Permalink to this headline">¶</a></h3>
 <p>The decoder tarball contains the following files:</p>
-<div class="highlight-python"><div class="highlight"><pre>├── README.md
+<div class="highlight-default"><div class="highlight"><pre><span></span>├── README.md
 ├── _snowboydetect.so
 ├── demo.py
 ├── demo2.py
@@ -301,7 +317,7 @@ use the universal model <code class="docutils literal"><span class="pre">resourc
 with speaker output because the demo plays a <em>Ding</em> sound when your hotword is
 triggered.)</p>
 <p>The <code class="docutils literal"><span class="pre">__main__</span></code> code of <code class="docutils literal"><span class="pre">snowboydecoder.py</span></code> contains a simple demo:</p>
-<div class="highlight-python"><div class="highlight"><pre>python demo.py snowboy.pmdl
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">demo</span><span class="o">.</span><span class="n">py</span> <span class="n">snowboy</span><span class="o">.</span><span class="n">pmdl</span>
 </pre></div>
 </div>
 <p>Here <code class="docutils literal"><span class="pre">snowboy.pmdl</span></code> is your trained model downloaded from <a class="reference external" href="https://snowboy.kitt.ai">https://snowboy.kitt.ai</a>. The
@@ -309,23 +325,23 @@ triggered.)</p>
 a <em>universal</em> model.</p>
 <p>Then speak to your microphone and see whether snowboy detects your magic phrase.</p>
 <p>The demo is fairly straight-forward:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">snowboydecoder</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snowboydecoder</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">signal</span>
 
-<span class="n">interrupted</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">interrupted</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">interrupted</span>
-    <span class="n">interrupted</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">interrupted</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="k">def</span> <span class="nf">interrupt_callback</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">interrupted</span>
     <span class="k">return</span> <span class="n">interrupted</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: need to specify model name&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usage: python demo.py your.model&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: need to specify model name&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: python demo.py your.model&quot;</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -333,7 +349,7 @@ a <em>universal</em> model.</p>
 <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
 
 <span class="n">detector</span> <span class="o">=</span> <span class="n">snowboydecoder</span><span class="o">.</span><span class="n">HotwordDetector</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sensitivity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Listening... Press Ctrl+C to exit&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Listening... Press Ctrl+C to exit&#39;</span><span class="p">)</span>
 
 <span class="n">detector</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">detected_callback</span><span class="o">=</span><span class="n">snowboydecoder</span><span class="o">.</span><span class="n">ding_callback</span><span class="p">,</span>
                <span class="n">interrupt_check</span><span class="o">=</span><span class="n">interrupt_callback</span><span class="p">,</span>
@@ -381,7 +397,7 @@ drivers for the Eye.</p>
 </div>
 <p>Please first follow <a class="reference internal" href="#access-microphone">Access_Microphone</a> to install <cite>portaudio</cite>. Then test
 whether your microphone can be accessed with <cite>rec</cite>:</p>
-<div class="highlight-python"><div class="highlight"><pre>rec t.wav
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">rec</span> <span class="n">t</span><span class="o">.</span><span class="n">wav</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -391,7 +407,7 @@ for some of them you have to <strong>reboot</strong> the Pi after plugging in th
 </div>
 <p>If you see errors, let&#8217;s first check whether your alsa/pulseaudio is configured
 properly. First list the <em>playback</em> device:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ aplay -l
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ aplay -l
  **** List of PLAYBACK Hardware Devices ****
  card 0: ALSA [bcm2835 ALSA], device 0: bcm2835 ALSA [bcm2835 ALSA]
    Subdevices: 8/8
@@ -410,7 +426,7 @@ properly. First list the <em>playback</em> device:</p>
 </div>
 <p>Here the playback device is card 0, device 0, or <cite>hw:0,0</cite> (<cite>hw:0,1</cite> is HDMI audio out).</p>
 <p>Then list your recording device:</p>
-<div class="highlight-python"><div class="highlight"><pre>$ arecord -l
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ arecord -l
 **** List of CAPTURE Hardware Devices ****
 card 1: Camera [Vimicro USB2.0 UVC Camera], device 0: USB Audio [USB Audio]
   Subdevices: 1/1
@@ -419,7 +435,7 @@ card 1: Camera [Vimicro USB2.0 UVC Camera], device 0: USB Audio [USB Audio]
 </div>
 <p>Here the recording device is card 1, device 0, or <cite>hw1:0</cite>.</p>
 <p>Finally change your <cite>~/.asoundrc</cite> file to:</p>
-<div class="highlight-python"><div class="highlight"><pre>pcm.!default {
+<div class="highlight-default"><div class="highlight"><pre><span></span>pcm.!default {
   type asym
    playback.pcm {
      type plug
@@ -434,11 +450,11 @@ card 1: Camera [Vimicro USB2.0 UVC Camera], device 0: USB Audio [USB Audio]
 </div>
 <p>And try <cite>rec temp.wav</cite> again. Your microphone in should be set up properly now.</p>
 <p>Now please go back to try <a class="reference internal" href="#running-a-demo">Running_a_Demo</a>. If that is successful, let&#8217;s try to
-<a class="reference internal" href="#blink-an-led-light"><span>Blink an LED light</span></a> and <a class="reference internal" href="#toggle-an-ac-powerd-lamp"><span>Toggle an AC-powered Lamp</span></a> with your Pi.</p>
+<a class="reference internal" href="#blink-an-led-light"><span class="std std-ref">Blink an LED light</span></a> and <a class="reference internal" href="#toggle-an-ac-powerd-lamp"><span class="std std-ref">Toggle an AC-powered Lamp</span></a> with your Pi.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>If you see the following error:</p>
-<div class="highlight-python"><div class="highlight"><pre>ImportError: /usr/lib/arm-linux-gnueabihf/libstdc++.so.6:
+<div class="highlight-default"><div class="highlight"><pre><span></span>ImportError: /usr/lib/arm-linux-gnueabihf/libstdc++.so.6:
 version `GLIBCXX_3.4.20&#39; not found (required by rpi-arm-raspbian-8.0-1.0.1/_snowboy.so)
 </pre></div>
 </div>
@@ -470,7 +486,7 @@ is usually connected to ground (GND). The following is a sample wiring:</p>
 <div class="section" id="control-an-led-with-python">
 <h4>Control an LED with Python<a class="headerlink" href="#control-an-led-with-python" title="Permalink to this headline">¶</a></h4>
 <p>We use the <cite>RPi.GPIO</cite> Python module to control and LED:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="kn">as</span> <span class="nn">GPIO</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="k">as</span> <span class="nn">GPIO</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">class</span> <span class="nc">Light</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -505,15 +521,15 @@ is usually connected to ground (GND). The following is a sample wiring:</p>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_off</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">light</span> <span class="o">=</span> <span class="n">Light</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">light</span><span class="o">.</span><span class="n">blink</span><span class="p">()</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Save the file as <cite>light.py</cite>, then run:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo python light.py
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python</span> <span class="n">light</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
 <p>Then the LED light will blink roughly every second.</p>
@@ -521,24 +537,24 @@ is usually connected to ground (GND). The following is a sample wiring:</p>
 <div class="section" id="blink-an-led-with-snowboy">
 <h4>Blink an LED with Snowboy<a class="headerlink" href="#blink-an-led-with-snowboy" title="Permalink to this headline">¶</a></h4>
 <p>Now let&#8217;s replace Snowboy&#8217;s callback function with LED&#8217;s <cite>blink()</cite> function:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">snowboydecoder</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snowboydecoder</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">signal</span>
-<span class="kn">from</span> <span class="nn">light</span> <span class="kn">import</span> <span class="n">Light</span>
+<span class="kn">from</span> <span class="nn">light</span> <span class="k">import</span> <span class="n">Light</span>
 
-<span class="n">interrupted</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">interrupted</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">interrupted</span>
-    <span class="n">interrupted</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">interrupted</span> <span class="o">=</span> <span class="kc">True</span>
 
 <span class="k">def</span> <span class="nf">interrupt_callback</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">interrupted</span>
     <span class="k">return</span> <span class="n">interrupted</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: need to specify model name&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usage: python demo.py your.model&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: need to specify model name&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: python demo.py your.model&quot;</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">model</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -546,7 +562,7 @@ is usually connected to ground (GND). The following is a sample wiring:</p>
 <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
 
 <span class="n">detector</span> <span class="o">=</span> <span class="n">snowboydecoder</span><span class="o">.</span><span class="n">HotwordDetector</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">sensitivity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Listening... Press Ctrl+C to exit&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Listening... Press Ctrl+C to exit&#39;</span><span class="p">)</span>
 
 <span class="n">led</span> <span class="o">=</span> <span class="n">Light</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
 <span class="n">detector</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">detected_callback</span><span class="o">=</span><span class="n">led</span><span class="o">.</span><span class="n">blink</span><span class="p">,</span>
@@ -557,14 +573,14 @@ is usually connected to ground (GND). The following is a sample wiring:</p>
 </pre></div>
 </div>
 <p>The only place changed is:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">led</span> <span class="o">=</span> <span class="n">Light</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">led</span> <span class="o">=</span> <span class="n">Light</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
 <span class="n">detector</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">detected_callback</span><span class="o">=</span><span class="n">led</span><span class="o">.</span><span class="n">blink</span><span class="p">,</span>
                <span class="n">interrupt_check</span><span class="o">=</span><span class="n">interrupt_callback</span><span class="p">,</span>
                <span class="n">sleep_time</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>which will blink the LED connected to GPIO pin 17 when your hotword is detected:</p>
-<div class="highlight-python"><div class="highlight"><pre>sudo python demo.py your.pmdl
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">python</span> <span class="n">demo</span><span class="o">.</span><span class="n">py</span> <span class="n">your</span><span class="o">.</span><span class="n">pmdl</span>
 </pre></div>
 </div>
 </div>
@@ -616,16 +632,16 @@ the IoT relay:</p>
 <p>So far we have worked with only one model that can dictate a <em>binary</em> state.
 Isn&#8217;t it nice to listen to multiple models at the same time? <cite>demo2.py</cite> shows
 how to do it:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">snowboydecoder</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snowboydecoder</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">signal</span>
 
-<span class="n">interrupted</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">interrupted</span> <span class="o">=</span> <span class="kc">False</span>
 
 
 <span class="k">def</span> <span class="nf">signal_handler</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">frame</span><span class="p">):</span>
     <span class="k">global</span> <span class="n">interrupted</span>
-    <span class="n">interrupted</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">interrupted</span> <span class="o">=</span> <span class="kc">True</span>
 
 
 <span class="k">def</span> <span class="nf">interrupt_callback</span><span class="p">():</span>
@@ -633,23 +649,23 @@ how to do it:</p>
     <span class="k">return</span> <span class="n">interrupted</span>
 
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Error: need to specify 2 model names&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;Usage: python demo.py 1st.model 2nd.model&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: need to specify 2 model names&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Usage: python demo.py 1st.model 2nd.model&quot;</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">models</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 
-<span class="c"># capture SIGINT signal, e.g., Ctrl+C</span>
+<span class="c1"># capture SIGINT signal, e.g., Ctrl+C</span>
 <span class="n">signal</span><span class="o">.</span><span class="n">signal</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">SIGINT</span><span class="p">,</span> <span class="n">signal_handler</span><span class="p">)</span>
 
 <span class="n">sensitivity</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">models</span><span class="p">)</span>
 <span class="n">detector</span> <span class="o">=</span> <span class="n">snowboydecoder</span><span class="o">.</span><span class="n">HotwordDetector</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">sensitivity</span><span class="o">=</span><span class="n">sensitivity</span><span class="p">)</span>
 <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span><span class="k">lambda</span><span class="p">:</span> <span class="n">snowboydecoder</span><span class="o">.</span><span class="n">play_audio_file</span><span class="p">(</span><span class="n">snowboydecoder</span><span class="o">.</span><span class="n">DETECT_DING</span><span class="p">),</span>
              <span class="k">lambda</span><span class="p">:</span> <span class="n">snowboydecoder</span><span class="o">.</span><span class="n">play_audio_file</span><span class="p">(</span><span class="n">snowboydecoder</span><span class="o">.</span><span class="n">DETECT_DONG</span><span class="p">)]</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&#39;Listening... Press Ctrl+C to exit&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Listening... Press Ctrl+C to exit&#39;</span><span class="p">)</span>
 
-<span class="c"># main loop</span>
-<span class="c"># make sure you have the same numbers of callbacks and models</span>
+<span class="c1"># main loop</span>
+<span class="c1"># make sure you have the same numbers of callbacks and models</span>
 <span class="n">detector</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">detected_callback</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
                <span class="n">interrupt_check</span><span class="o">=</span><span class="n">interrupt_callback</span><span class="p">,</span>
                <span class="n">sleep_time</span><span class="o">=</span><span class="mf">0.03</span><span class="p">)</span>
@@ -736,8 +752,9 @@ sample values.</p>
 <li><strong>My pmdl model works well for me, but does not work well for others</strong></li>
 </ul>
 <p>Models with suffix pmdl are personal models, and they are supposed to only work
-well for the person who provides the audio samples. If you are look for a model
-that works well for everyone, please use the universal model (with suffix umdl).</p>
+well for the person who provides the audio samples. If you are looking for a
+model that works well for everyone, please use the universal model (with suffix
+umdl).</p>
 <ul class="simple">
 <li><strong>My trained model works well on laptops but not on Pi&#8217;s</strong></li>
 </ul>
@@ -759,7 +776,7 @@ Raspberry Pi usually have low volume, thus increasing the audio gain may help.</
 </ul>
 <p>When you construct a <code class="docutils literal"><span class="pre">HotwordDetector</span></code> from <code class="docutils literal"><span class="pre">snowboydecoder</span></code>, there is an
 <code class="docutils literal"><span class="pre">audio_gain</span></code> parameter:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">HotwordDetector</span><span class="p">(</span><span class="n">decoder_model</span><span class="p">,</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HotwordDetector</span><span class="p">(</span><span class="n">decoder_model</span><span class="p">,</span>
                 <span class="n">resource</span><span class="o">=</span><span class="n">RESOURCE_FILE</span><span class="p">,</span>
                 <span class="n">sensitivity</span><span class="o">=</span><span class="p">[],</span>
                 <span class="n">audio_gain</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -814,17 +831,10 @@ who is also a contributor to the open-source speech recognition software
 <a class="reference external" href="http://kaldi-asr.org/">Kaldi</a> and general purpose neural network
 toolkit <a class="reference external" href="http://www.cntk.ai/">CNTK</a>.</p>
 </div>
-<div class="section" id="indices-and-tables">
-<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
-</ul>
-</div>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
@@ -834,10 +844,11 @@ toolkit <a class="reference external" href="http://www.cntk.ai/">CNTK</a>.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Jun 27, 2016.
+      Last updated on Aug 23, 2016.
+
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
