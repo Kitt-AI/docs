@@ -4,11 +4,12 @@
    contain the root `toctree` directive.
 
 .. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
 
 Welcome to ChatFlow
 ====================================
 
-ChatFlow is a platform that provides a simple way to
+ChatFlow_ is a platform that provides a simple way to
 create conversational agents, or smart bots, using a visual interface.
 ChatFlow bots understand natural language, keep track of
 context in conversations, connect to a number of APIs
@@ -17,8 +18,20 @@ with users through various text and speech platforms, such
 as Facebook Messenger, Slack, Kik, Telegram, SMS, and
 Amazon's Alexa platform (Amazon Echo).
 
+ChatFlow can be used in conjunction with NLU_, our intuitive and interactive
+natural language understanding engine. Here's a 20 minute walk-through:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/rHcQu4SNvew"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
 Contents
 ==================
+
+This documentation is still under construction. We are still working on the first 
+four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tutorials are finished!
 
 .. toctree::
    :maxdepth: 2

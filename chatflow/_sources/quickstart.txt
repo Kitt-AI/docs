@@ -18,6 +18,8 @@ ChatFlow Quick Start
 .. role:: bg-warning
 .. role:: bg-danger
 
+.. _ChatFlow: https://chatflow.kitt.ai/
+
 .. contents:: Table of Contents
    :depth: 4
 
@@ -26,7 +28,7 @@ Accessing ChatFlow
 ==================
 
 ChatFlow is hosted by KITT.AI and can be accessed by using a web browser. No
-other installation is necessary. Simply go to `http://chatflow.kitt.ai`_ and
+other installation is necessary. Simply go to ChatFlow_ and
 log in with Google, Facebook, Twitter or Github.
 
 A first conversational flow
