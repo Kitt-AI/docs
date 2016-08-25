@@ -20,12 +20,13 @@ Telegram Bot Tutorials
 
 .. _ChatFlow: https://chatflow.kitt.ai/
 
+.. contents:: Table of Contents
+   :depth: 4
 
 
-.. TODO:: This is how to write a TODO
-
-In this tutorial we'll show how to program a simple inline bot for Telegram
-using the Yelp API in ChatFlow_. The following video shows the final bot:
+In this ChatFlow_ tutorial, we start by creating a simple echo for Telegram.
+We also program a simple inline bot for Telegram using the Yelp API. The
+following video shows the bot in action:
 
 .. raw:: html
 
@@ -35,76 +36,337 @@ using the Yelp API in ChatFlow_. The following video shows the final bot:
    </video>
    <br> <br> <br>
 
+In addition, we explain the input and output for the Telegram In and Telegram
+out nodes.
+
+By the end of this tutorial, you will be able to:
+  * Connect a ChatFlow app to Telegram.
+  * Understand the input and output of the Telegram In and Telegram nodes
+  * Configure inline and inline geolocation requests.
+
 .. _telegram_echo_bot:
 
-A simple Echo Bot
+A Simple Echo Bot
 =================
 
-First let's create a new bot by talking to the `Bot Father <https://telegram.me/botfather>`_:
+Before we build a Telegram Yelp Bot, let's create a simple Echo bot to
+demonstrate how the Telegram connection works.
+
+1. Create a New Bot and Token in Telegram
+_________________________________________
+
+1. Sent the ``/newbot`` command to create a new bot by talking to the
+   `Bot Father <https://telegram.me/botfather>`_
 
 .. image:: _static/img/telegram/create_bot.png
    :align: center
    :scale: 50%
 
 
-Bot Father will give you a token to control this bot. Let's save it and drag
-the **Telegram In** and **Telegram Out** nodes to ChatFlow canvas:
+2. Provide Bot Father with your bots name and username.
+
+3. Bot Father will then give you a **HTTP API** token to control your new bot.
+   Copy it to your clipboard.
+
+2. Create a New ChatFlow Application with Telegram Nodes
+________________________________________________________
+
+1. Click on "Create new project" and create a new project from scratch.
+
+.. image:: _static/img/telegram/telegram-new-app.png
+   :align: center
+
+2. Enter a name and press "Create".
+
+.. image:: _static/img/telegram/create_echobot.png
+   :align: center
+
+3. Your new app should appear in your apps list.  Click on the app's name to
+   enter the Chatflow editor.
+
+.. image:: _static/img/telegram/echobot_applist.png
+   :align: center
+
+4. To make your app nice and tidy, you can enable grid in the Settings/view menu.
+          .. image:: _static/img/twilio/twilio-snap-grid.png
+                     :align: center
+
+5. Drag the **Telegram In** and **Telegram Out** nodes from the Node Library to
+   your bot's ChatFlow canvas and then connect them with a wire:
 
 .. image:: _static/img/telegram/echo_bot.png
    :align: center
    :width: 400
 
-Double click the **Telegram** nodes and input the access tokens. Now you can talk
-with the bot on the Telegram messenger. Here's a full video for it:
+.. note:: If the **Telegram In** and **Telegram Out** nodes are not in your Node
+    Library, click on Settings in the right hand corner. A drop down will
+    open. Click on Node Installer:
+
+    .. image:: _static/img/telegram/settings_install_node.png
+       :align: center
+
+    In the Node Installer, search for **Telegram**. Click on the blue arrow to
+    the right of **Telegram** to add the nodes into your palette:
+
+    .. image:: _static/img/telegram/install_nodes_pop_up.png
+       :align: center
+
+3. Configure The Bot
+____________________
+
+1. Double click the Telegram In Node, select "Add new selectbot-controller...",
+   and click the "Edit" button.
+
+.. image:: _static/img/telegram/telegram-config-popup.png
+   :align: center
+
+2. Enter your "Telegram Bot Token" name under the "Name" field (ex. Echo Bot).
+   Name your "Telegram Bot Token" to save it. This will allow that configuration
+   to be used by other nodes.
+
+3. Paste the Token you copied from BotFather into the Token field. Click the
+   "Add" button.
+
+.. image:: _static/img/telegram/telegram-controller_config.png
+   :align: center
+
+3. Double click on the Telegram Out Node and select the "Echo Bot" Token. Click
+   okay.
+
+.. image:: _static/img/telegram/telegram-controller_dropdown.png
+   :align: center
+
+4. Deploy the Application
+_________________________
+
+1. Click on deploy button in the upper right hand corner to deploy your
+   application.
+
+.. image:: _static/img/telegram/telegram-deploy.png
+   :align: center
+
+After the application is deployed, your bot should be online. It will echo the
+message you sent to it.
+
+.. _telegram_echo_bot_tutorial:
+
+Here's a full video demonstrating the entire process:
 
 .. raw:: html
 
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/ikBml7fvf6c?rel=0"
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/NZA9n0f3_wc"
        frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
 
+.. _set_up_inline:
 
 Setting up Inline Bot
 =====================
 
-In Telegram bots can either take direct messages, or accept inline mentions.
-`Inline bots <https://telegram.org/blog/inline-bots>`_ have quite some merits:
+In Telegram, bots can either take direct messages (as demonstrated above) or be
+called using inline mentions. `Inline bots <https://telegram.org/blog/inline-bots>`_
+have the following perks:
 
-* users stay/focus on current chat window instead of jumping back and forth
-  between apps
-* inline bots give a more compact representation of results for fast browsing
-  and selection
+* Users can stay on current chat window instead of jumping back and forth between apps
+* Inline bots give a more compact representation of results for fast browsing and selection
 
-In the following we'll introduce an inline Yelp bot. But first of
-all, let's set up the bot to be inline-ready.
+Set Inline Status
+_________________
 
-Set inline status
------------------
-
-Simply send the ``/setinline`` command to Bot Father:
+1. Send the ``/setinline`` command to Bot Father. Then select your bot to
+   activate inline status:
 
 .. image:: _static/img/telegram/set_inline.png
    :align: center
 
-Then select your bot and set inline status:
+2. Enter a place holder message. This message will appear every time someone
+   types your bot's name in the chat window and can exemplify the type message
+   your bot can understand:
 
 .. image:: _static/img/telegram/set_inline_status.png
    :align: center
 
 
-Set inline location awareness
------------------------------
+Set Inline Location Awareness
+_____________________________
 
-Telegram also allows bots to request your location in GPS coordinates. We can
-enable this with the ``/setinlinegeo`` command to Bot Father:
+Telegram also allows bots to request your location in GPS coordinates.
+
+1. Send the ``/setinlinegeo`` command to Bot Father.
+2. Select your bot to activate location request.
+3. To confirm, send ``ENABLED`` to Bot Father:
 
 .. image:: _static/img/telegram/set_inline_geo.png
    :align: center
 
-Now next time the bot is mentioned, it will request user to share GPS location.
-Even on desktop browser it can still get rough location coordinates.
+Now next time the bot is mentioned, it will request the user to share their GPS
+location.
 
-An inline Yelp Bot
-=====================
+.. note:: Desktop browser can still provide rough location coordinates!
+
+Telegram In and Telegram Out Nodes
+==================================
+
+This section of the tutorial explains the output of the **Telegram In** node and
+the required formats for the **Telegram Out** node input.
+
+.. _telegram_in_node:
+
+Telegram In
+___________
+
+The Telegram In node receives input from telegram and outputs the following msg:
+
+.. code-block:: javascript
+   :linenos:
+
+   {payload: payload,
+    telegram: {
+                message: message,
+                user: message.from,
+                chat: message.chat,
+                type: message.type,
+                // optional fields:
+                location: message.location,
+                venue: message.location,
+                image: message.photo,
+                contact: message.contact
+              },
+    kitt: {
+            _session_id: message.from.id,
+            _user_id: message.from.username,
+            _timeout: 120
+          }
+    }
+
+
+Payload contains information regarding text, location, venue, image, or contact.
+We will go into more detail about these nodes in the Telegram Out node section.
+Location, venue, image, and contact are optional fields and will be populated if
+the original message from telegram contained these fields.
+
+msg.kitt field will be used by the Router node for session management and timeout.
+
+.. _telegram_out_node:
+
+Telegram Out
+____________
+
+This node receives message by wires and sends to telegram bot. It expects
+message with the following properties:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {payload: payload,
+          telegram: {user: user,
+                     chat: chat,
+                     type: type
+                     }
+         }
+
+
+To have your bot send a **text message** in Telegram, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {payload: "Hello there",
+          telegram: {
+                      user: {id: "user-id"},
+                      type: "text"
+                      }
+          }
+
+
+.. note:: You can also set telegram.type to either "text" or "null"
+
+To have your bot send a **location** in Telegram, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {payload: {
+                    latitude: 1.1111,
+                    longitude: 1.1111
+                    },
+          telegram: {
+                    user: {id: "user-id"},
+                    type: "location"
+                    }
+          }
+
+
+To have your bot send a **venue** in Telegram, format your msg in the following
+manner:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {payload: {
+                    title: "venue title",
+                    address: "venue address",
+                    id: "unique id",
+                    latitude: 1.1111,
+                    longitude: 1.1111
+                    },
+          telegram: {
+                    user: {id: "user-id"},
+                    type: "location"
+                    }
+          }
+
+
+To have your bot send an **image**in Telegram, format your msg in the following
+manner:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          payload: "http://server.com/image.png",
+          telegram: {
+                    user: {id: "user-id"},
+                    type: "image"
+                    }
+          }
+
+
+To have your bot send a **sticker** in Telegram, formate your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          payload: "http://server.com/sticker.png",
+          telegram: {
+                    user: {id: "user-id"},
+                    type: "sticker"
+                    }
+          }
+
+
+To have your bot respond to an **inline inquery**, formate your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          payload: InlineQueryResults,
+          telegram: {
+                      user: {id: "user-id"},
+                              type: "inline_query"
+                    }
+          }
+
+.. _yelp_inline_bot:
+
+An Yelp Inline Bot
+==================
 
 We want to program an inline Yelp bot that supports the following two inline
 mention modes:
@@ -112,7 +374,9 @@ mention modes:
 1. "*seafood near seattle*" --> Bot will search Yelp *seafood* near *Seattle*.
 2. "*seafood*" --> Bot will search Yelp *seafood* using phone's GPS location.
 
-But it won't accept direct messages. The following is a demo:
+This bot will not accept direct messages.
+
+The following is a demo of the end result:
 
 .. raw:: html
 
@@ -122,26 +386,54 @@ But it won't accept direct messages. The following is a demo:
    </video>
    <br> <br> <br>
 
-The flow
---------
+The Setup
+_________
 
-The following is a screenshot of the flow and here is the :download:`flow file <_static/json/YelpTelegramBot.json>`.
-It is also a sample project from "CREATE NEW APP" -> "Use a sample project".
+1. Import the "Telegram - Yelp Inline Bot" Application into Chatflow
+--------------------------------------------------------------------
+
+Import the application to ChatFlow by either:
+
+* Download the :download:`JSON <_static/json/YelpTelegramBot.json>` file for our
+  application and import the project on the `applications <https://chatflow.kitt.ai/apps>`_
+  page, or,
+* Use the "Telegram - Yelp Inline Bot" sample application under "Use a Sample Project"
+  when clicking "CREATE NEW APP" on the `applications <https://chatflow.kitt.ai/apps>`_
+  page.
+
+The following is a screenshot of the flow.
 
 .. image:: _static/img/telegram/yelp_bot_canvas.png
    :align: center
    :width: 640
 
+Feel free to import this bot into your own project and play with it.
 
-Feel free to import it into your own project and play with it. In order to make
-it work, you'll need:
+.. _yelp_inline_bot_walkthrough:
+
+In addition, here's a full video walking through the entire creation process:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/jkZWr41cFdo"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+2. Acquire the Bot Token and Yelp API Credentials
+-------------------------------------------------
+
+In order for the bot to work, you'll need:
 
 1. Bot access token (already covered in :ref:`telegram_echo_bot` )
-2. Yelp app `credentials <https://www.yelp.com/developers>`_, including **Consumer Key**,
-   **Consumer Secret**, **Token** and **Token Secret**.
+2. Yelp app `credentials <https://www.yelp.com/developers>`_, including
+   **Consumer Key**, **Consumer Secret**, **Token** and **Token Secret**.
 
-In this flow we do not accept direct messages but just inline mentions. We assume
-very simple input structure, taken care of by the ``Dumb NLU for Inline Query`` node:
+The Flow
+________
+
+In this flow, the bot only accepts inline mentions and does not accept direct
+messages. We assumed the input will have a certain structure and can be captured
+by the ``Simple NLU for Inline Query`` node:
 
 .. code-block:: javascript
    :linenos:
@@ -176,10 +468,9 @@ very simple input structure, taken care of by the ``Dumb NLU for Inline Query`` 
 
     return msg;
 
-
 Once we get the ``business`` type and ``address`` or ``ll`` (latitude & longitude),
-we can go ahead and search Yelp. The final result is sent throw the ``Send Result``
-node:
+we can go ahead and search Yelp. The final result is sent through the
+``Send Result`` node:
 
 .. code-block:: javascript
    :linenos:
@@ -222,9 +513,9 @@ node:
     }
 
 
-The result, encoded in ``msg.payload``, is a list of venues that'll be sent via
-the Telegram `SendVenue <https://core.telegram.org/bots/api#sendvenue>`_ method.
+The result, encoded in ``msg.payload``, is a list of venues that will be sent
+via the Telegram `SendVenue <https://core.telegram.org/bots/api#sendvenue>`_ method.
 
-This Yelp Bot so far is very limited in understanding human language, yet it also
-does not support direct messages. To improve it, you can take a look at the full
-tutorial of :ref:`extended_example`.
+This Yelp Bot has a simplistic understanding of human language. In addition, it
+does not support direct messages. To learn how to expand its capacities, take a
+look at the full tutorial of :ref:`extended_example`.

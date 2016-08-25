@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -28,6 +30,10 @@
   
 
   
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
 
   
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
@@ -41,21 +47,30 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="index.html" class="icon icon-home"> ChatFlow
-        
+          
+            
+              <a href="http://chatflow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
 
-        
-        </a>
+          
+            
+            <img src="_static/chatflow-logo.png" class="logo" />
+          
+          </a>
 
-        
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -64,48 +79,18 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul class="current">
+            
+            
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Extended Example: A conversational Yelp bot</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extended Example: A conversational Yelp bot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#starting-your-conversational-project">Starting your conversational project</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#adding-an-nlu-node">Adding an NLU node</a></li>
 </ul>
@@ -122,155 +107,97 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#create-an-alexa-skill">Create an Alexa Skill</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#skill-information">1. Skill Information</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#sample-utterances">2. Sample Utterances</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#configuration">3. Configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#ssl-certificate">4. SSL Certificate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#test">5. Test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#finishing-up">6. Finishing up</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#incoming-message-structures">Incoming Message Structures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#launch-skill">Launch Skill</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#intent-request">Intent Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#card-and-reprompt">Card and Reprompt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#ask-or-tell">Ask or Tell?</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy ChatFlow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#state-tracking">State tracking</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#create-an-nlu-project">Create an NLU Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#exporting-to-alexa-format">Exporting to Alexa Format</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">ChatFlow</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Extended Example: A conversational Yelp bot</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Extended Example: A conversational Yelp bot</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/extended_example.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="extended-example-a-conversational-yelp-bot">
-<span id="extended-example"></span><h1>Extended Example: A conversational Yelp bot<a class="headerlink" href="#extended-example-a-conversational-yelp-bot" title="Permalink to this headline">¶</a></h1>
+<span id="extended-example"></span><h1><a class="toc-backref" href="#id1">Extended Example: A conversational Yelp bot</a><a class="headerlink" href="#extended-example-a-conversational-yelp-bot" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#extended-example-a-conversational-yelp-bot" id="id1">Extended Example: A conversational Yelp bot</a><ul>
+<li><a class="reference internal" href="#starting-your-conversational-project" id="id2">Starting your conversational project</a><ul>
+<li><a class="reference internal" href="#adding-an-nlu-node" id="id3">Adding an NLU node</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#creating-your-flow" id="id4">Creating your flow</a><ul>
+<li><a class="reference internal" href="#initialization" id="id5">Initialization</a></li>
+<li><a class="reference internal" href="#prompting-the-user-and-understanding-the-user-s-request" id="id6">Prompting the user and understanding the user&#8217;s request</a></li>
+<li><a class="reference internal" href="#fulfilling-the-user-s-request-through-a-yelp-query" id="id7">Fulfilling the user&#8217;s request through a Yelp query</a></li>
+<li><a class="reference internal" href="#presenting-yelp-results-to-the-user" id="id8">Presenting Yelp results to the user</a></li>
+<li><a class="reference internal" href="#getting-a-choice-from-the-user" id="id9">Getting a choice from the user</a></li>
+<li><a class="reference internal" href="#answering-user-questions-about-the-choices-presented" id="id10">Answering user questions about the choices presented</a></li>
+<li><a class="reference internal" href="#final-thoughts" id="id11">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <p>In this example we will show how to create a conversational bot that fulfills an end-user information need by
 accessing external resources. Specifically, we will build a natural language <em>conversational</em> interface to Yelp. In
 contrast with simpler natural language interfaces that let users say things like &#8220;show me Mexican restaurants in
@@ -299,14 +226,14 @@ build the content from scratch while following the instructions.</p>
 an example that implements one such way, step-by-step. The interaction will be driven by the agents goal of fulfilling
 a user&#8217;s information need.</p>
 <div class="section" id="starting-your-conversational-project">
-<h2>Starting your conversational project<a class="headerlink" href="#starting-your-conversational-project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Starting your conversational project</a><a class="headerlink" href="#starting-your-conversational-project" title="Permalink to this headline">¶</a></h2>
 <p>Open ChatFlow and start from an empty canvas. As it is often the case, we&#8217;ll start by adding a <strong>router</strong> node to our
 project. Let&#8217;s name it <em>Yelp Router</em>. Next, we&#8217;ll choose the input and output channel for the interaction with end
 users. In this example, we&#8217;ll use <strong>Chat In</strong> and <strong>Chat Out</strong>, but it should be easy to replace those with other
 input/output app nodes (e.g. Slack bot). Add Chat In and Chat Out nodes and connect the output of Yelp Router to Chat Out. Do not connect Chat In yet; we will need an NLU
 node in our project, and it will sit between Chat In and Yelp Router.</p>
 <div class="section" id="adding-an-nlu-node">
-<h3>Adding an NLU node<a class="headerlink" href="#adding-an-nlu-node" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Adding an NLU node</a><a class="headerlink" href="#adding-an-nlu-node" title="Permalink to this headline">¶</a></h3>
 <p>In any conversational project that deals with more than trivial natural language input, it is important to use a
 properly configured Natural Language Understanding (<strong>NLU</strong>) node, such
 as KITT.AI NLU, available as the KITT.AI node.</p>
@@ -334,7 +261,7 @@ to use in ChatFlow!</p>
 </div>
 </div>
 <div class="section" id="creating-your-flow">
-<h2>Creating your flow<a class="headerlink" href="#creating-your-flow" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Creating your flow</a><a class="headerlink" href="#creating-your-flow" title="Permalink to this headline">¶</a></h2>
 <p>Before we start adding nodes to our flow, let&#8217;s consider the overall objective and behavior of our conversation agent.
 The agent ultimately wants to provide the user with a satisfactory restaurant suggestion. To achieve this goal, the
 system must know the user&#8217;s preferences. In this example, we will consider two common user preferences when looking for
@@ -344,14 +271,14 @@ while giving the user the freedom to provide it in a natural way. The general st
 what information is missing, and ask the user for it, while being responsive to any kind of relevant user input at any
 time.</p>
 <div class="section" id="initialization">
-<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
 <p>We will start by adding an <strong>enter</strong> node and a <strong>state</strong> node. Set up the enter node (by doubleclicking the node) by
 removing the default entrance condition (click on the X), and check the box that says <em>Initial state</em>, since we want
 this enter node always to be the first one chosen when the conversation starts. Finally, name the enter node anything you
 like (e.g. <em>Enter initial state</em>). Now that the enter node is ready, close
 the enter node set up, and doubleclick on the state node. Give it a name (e.g. <em>Initialize state</em>), and add the following
 code:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">business_type</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">req_pending</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -373,7 +300,7 @@ the simplest flow substructure in ChatFlow, and it is common for simple tasks, l
 a simple question.</p>
 </div>
 <div class="section" id="prompting-the-user-and-understanding-the-user-s-request">
-<h3>Prompting the user and understanding the user&#8217;s request<a class="headerlink" href="#prompting-the-user-and-understanding-the-user-s-request" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Prompting the user and understanding the user&#8217;s request</a><a class="headerlink" href="#prompting-the-user-and-understanding-the-user-s-request" title="Permalink to this headline">¶</a></h3>
 <p>Next, let&#8217;s create the parts of the conversational flow that allow the agent to collect information from the user.
 Add an enter node to be used when the system has not yet obtained a location or business type (i.e. both
 <code class="docutils literal"><span class="pre">location</span></code> and <code class="docutils literal"><span class="pre">business_type</span></code> are set to <code class="docutils literal"><span class="pre">null</span></code>. Let&#8217;s call that enter node <em>state: no location, no type</em>
@@ -414,14 +341,14 @@ capable of adapting and adjusting to a wide variety of unforeseen user behaviors
 </div>
 <p>Next, let&#8217;s add a state node to follow that enter node. Let&#8217;s call this state node <em>Save type and location, if available</em>,
 and add the following code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre>if(&#39;business_type&#39; in msg.NLU.entities) {
-    msg.kitt.business_type = msg.NLU.entities.business_type;
-}
-if(&#39;location&#39; in msg.NLU.entities) {
-    msg.kitt.location = msg.NLU.entities.location;
-}
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="s1">&#39;business_type&#39;</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">business_type</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">business_type</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">if</span><span class="p">(</span><span class="s1">&#39;location&#39;</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">location</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">location</span><span class="p">;</span>
+<span class="p">}</span>
 
-return msg;
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The code in this state node does a couple of interesting things. First, it shows how to use NLU output inside state
@@ -446,7 +373,7 @@ checked. The second enter node will have the conditions: <code class="docutils l
 and business type, and checking whether or not they are null.</p>
 <p>Connect the inputs of each of these four enter nodes to the output of the last state node we added. After the first of
 these four enter nodes, let&#8217;s connect a state node with the code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">req_pending</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">req_pending</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
 <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -501,7 +428,7 @@ connect the enter node to the state node called <em>save type and location, if a
 accept user requests, and to clarify requests when needed.</p>
 </div>
 <div class="section" id="fulfilling-the-user-s-request-through-a-yelp-query">
-<h3>Fulfilling the user&#8217;s request through a Yelp query<a class="headerlink" href="#fulfilling-the-user-s-request-through-a-yelp-query" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Fulfilling the user&#8217;s request through a Yelp query</a><a class="headerlink" href="#fulfilling-the-user-s-request-through-a-yelp-query" title="Permalink to this headline">¶</a></h3>
 <p>Once we have the location and restaurant type, the agent is ready to get a list of restaurant suggestions by issuing a
 query to Yelp through the Yelp API, which is already conveniently packaged as a ChatFlow node. Examining the Yelp node,
 we see that it requires a <em>Consumer key</em>, a <em>Consumer secret</em>, a <em>Token</em> and a <em>Token secret</em>. You must provide these
@@ -520,15 +447,15 @@ and business type. If the request is pending (<code class="docutils literal"><sp
 location), we should go ahead with the request. If <code class="docutils literal"><span class="pre">req_pending</span></code> is false (because we set it to false after issuing
 the request to Yelp), we won&#8217;t issue the query to Yelp again. Connect to this enter node a new state node
 (call it <em>Yelp request</em>) with the following code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre>// prepare yelp search
-msg.yelp_term = msg.kitt.businesstype;
-msg.yelp_location = msg.kitt.location;
-msg.yelp_limit = 10;
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">prepare</span> <span class="n">yelp</span> <span class="n">search</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">yelp_term</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">businesstype</span><span class="p">;</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">yelp_location</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">location</span><span class="p">;</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">yelp_limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 
-// don&#39;t request the same search again
-msg.kitt.req_pending = false;
+<span class="o">//</span> <span class="n">don</span><span class="s1">&#39;t request the same search again</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">req_pending</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
 
-return msg;
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Finally, connect this state node to the input of the Yelp node. Now the agent is ready to issue Yelp queries through the
@@ -537,35 +464,35 @@ accessible as <code class="docutils literal"><span class="pre">msg.payload</span
 see the <a class="reference external" href="http://www.yelp.com/developers">Yelp API documentation</a>.</p>
 </div>
 <div class="section" id="presenting-yelp-results-to-the-user">
-<h3>Presenting Yelp results to the user<a class="headerlink" href="#presenting-yelp-results-to-the-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Presenting Yelp results to the user</a><a class="headerlink" href="#presenting-yelp-results-to-the-user" title="Permalink to this headline">¶</a></h3>
 <p>From our query, we will get at most ten results from Yelp. Presenting all ten at once would be suboptimal in a dialogue.
 Consider, for example, how to present choices in a speech-to-speech setting (e.g. through the Amazon Echo); a few choices
 at a time is probably best. Even in a chat scenario, it would be best to limit the number of choices presented at once to
 a smaller number. Let&#8217;s present three choices at a time, but give the user the option to hear further choices.</p>
 <p>Add a new state node (call it <em>list choices</em>). Here, we will need to add some code to process the Yelp API results,
 and present them in a way that makes sense in a conversation. Add the following code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre>msg.kitt.yelp_results = msg.payload.businesses;
-msg.payload = &quot;&quot;;
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">businesses</span><span class="p">;</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
 
-var numresults = msg.kitt.yelp_results.length;
+<span class="n">var</span> <span class="n">numresults</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">length</span><span class="p">;</span>
 
-msg.responses = [&#39;I found &#39; + numresults + &quot; places that might work. &quot;];
+<span class="n">msg</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;I found &#39;</span> <span class="o">+</span> <span class="n">numresults</span> <span class="o">+</span> <span class="s2">&quot; places that might work. &quot;</span><span class="p">];</span>
 
-if(numresults &gt; 3) {
-    numresults = 3;
-    msg.responses[0] += &#39;The first 3 are: &#39;;
-}
+<span class="k">if</span><span class="p">(</span><span class="n">numresults</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">numresults</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;The first 3 are: &#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
-for(var i = 1; i &lt;= numresults; i++) {
-    msg.responses[0] += &quot; &quot; + i + &quot;. &quot; + msg.kitt.yelp_results[i-1].name;
-    if(i &lt; 3) {
-        msg.responses[0] += &#39;; &#39;;
-    }
-}
+<span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numresults</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-msg.responses[0] += &quot;. Do any of these sound okay?&quot;
+<span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;. Do any of these sound okay?&quot;</span>
 
-return msg;
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>First, we are saving the results in a user variable called <code class="docutils literal"><span class="pre">yelp_results</span></code>, so we can access these results at any time.
@@ -589,34 +516,34 @@ handle user input such as <em>no</em>, <em>not really</em>, <em>no way</em>, etc
 ordering preference link just as with the previous enter node. Let&#8217;s add a new state node that will give use user
 more options from the Yelp list of results when the user says <em>no</em>. Let&#8217;s call this state node <em>list more choices</em>, and
 add the following code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre>for(var i = 0; i &lt; 3; i++) {
-    msg.kitt.yelp_results.shift();
-}
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">shift</span><span class="p">();</span>
+<span class="p">}</span>
 
-var numresults = msg.kitt.yelp_results.length;
+<span class="n">var</span> <span class="n">numresults</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">length</span><span class="p">;</span>
 
-if(numresults == 0) {
-    msg.responses = [&quot;Sorry, I&#39;m all out of options, but you can try a different search request.&quot; ];
-    return msg;
-}
+<span class="k">if</span><span class="p">(</span><span class="n">numresults</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Sorry, I&#39;m all out of options, but you can try a different search request.&quot;</span> <span class="p">];</span>
+    <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+<span class="p">}</span>
 
-msg.responses = [&#39;Ok, I have &#39; + numresults + &quot; more places. &quot;];
+<span class="n">msg</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ok, I have &#39;</span> <span class="o">+</span> <span class="n">numresults</span> <span class="o">+</span> <span class="s2">&quot; more places. &quot;</span><span class="p">];</span>
 
-if(numresults &gt; 3) {
-    numresults = 3;
-    msg.responses[0] += &#39;The next 3 are: &#39;;
-}
+<span class="k">if</span><span class="p">(</span><span class="n">numresults</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">numresults</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;The next 3 are: &#39;</span><span class="p">;</span>
+<span class="p">}</span>
 
-for(var i = 1; i &lt;= numresults; i++) {
-    msg.responses[0] += &quot; &quot; + i + &quot;. &quot; + msg.kitt.yelp_results[i-1].name;
-    if(i &lt; 3) {
-        msg.responses[0] += &#39;; &#39;;
-    }
-}
+<span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numresults</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-msg.responses[0] += &quot;. Do any of these sound okay?&quot;
+<span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;. Do any of these sound okay?&quot;</span>
 
-return msg;
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This will remove the restaurant options we already used, check if there are still options available, and if so,
@@ -630,7 +557,7 @@ of the enter nodes <em>U: yes</em>, <em>U: no</em>, and <em>U: list mode</em>. W
 choices, and going down a list if necessary.</p>
 </div>
 <div class="section" id="getting-a-choice-from-the-user">
-<h3>Getting a choice from the user<a class="headerlink" href="#getting-a-choice-from-the-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Getting a choice from the user</a><a class="headerlink" href="#getting-a-choice-from-the-user" title="Permalink to this headline">¶</a></h3>
 <p>Now we are ready to have the user choose a restaurant from the options presented by the agent. Let&#8217;s add a new state node
 called <em>U: state choice</em> with the entrance conditions <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">state_choice</span></code> and
 <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span></code> is not null. The second condition, again, just make sure we already have
@@ -638,39 +565,39 @@ results from Yelp (otherwise choosing one wouldn&#8217;t make sense). The first 
 the intent of choosing an option (e.g. <em>The first one</em>, <em>the second one sounds ok</em>, <em>option 2 please</em>, <em>2 sounds good</em>, etc.).
 Connect to this enter node a new state node (<em>set and repeat choice</em>), which will set the user&#8217;s choice in a user
 variable, and say it back to the user. Add the following code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre>var choice = null;
-switch(msg.NLU.entities.enum_choice) {
-    case &quot;first&quot;:
-    case &quot;1&quot;:
-    case &quot;one&quot;:
-        choice = 1;
-        break;
-    case &quot;two&quot;:
-    case &quot;2&quot;:
-    case &quot;second&quot;:
-        choice = 2;
-        break;
-    case &quot;three&quot;:
-    case &quot;last&quot;:
-    case &quot;3&quot;:
-    case &quot;third&quot;:
-        choice = 3;
-        break;
-    default:
-        choice = 0;
-}
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">choice</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<span class="n">switch</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">enum_choice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">case</span> <span class="s2">&quot;first&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;one&quot;</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="n">case</span> <span class="s2">&quot;two&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;second&quot;</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="n">case</span> <span class="s2">&quot;three&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;last&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;third&quot;</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="n">default</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 
-msg.responses = [&quot;&quot;];
-if(choice === 0) {
-    msg.responses[0] = &quot;Sorry, I didn&#39;t get what your choice was. &quot;;
-}
-else {
-    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
-    msg.responses[0] = &quot;Great, &quot; + msg.kitt.yelp_results[choice-1].name + &quot;. &quot;;
-    msg.kitt.user_choice = &quot;&quot; + (choice - 1);
-}
+<span class="n">msg</span><span class="o">.</span><span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">choice</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sorry, I didn&#39;t get what your choice was. &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">choice_name</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Great, &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">choice</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
 
-return msg;
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here, we are checking an entity <code class="docutils literal"><span class="pre">enum_choice</span></code> coming from NLU against strings like <em>first</em>, <em>1</em>, <em>one</em>, etc., and
@@ -678,19 +605,19 @@ setting a <code class="docutils literal"><span class="pre">choice</span></code> 
 which we can access at any time in other nodes.</p>
 <p>Let&#8217;s create another state node called <em>say rating</em>, which will give use the star rating for the current user choice,
 with the following code:</p>
-<div class="code javascript highlight-python"><div class="highlight"><pre>msg.responses[0] += &quot;It&#39;s got &quot; +
-    msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
-    &quot; reviews on Yelp, and the rating is &quot; +
-    msg.kitt.yelp_results[msg.kitt.user_choice].rating + &quot; stars.&quot;;
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;It&#39;s got &quot;</span> <span class="o">+</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span><span class="p">]</span><span class="o">.</span><span class="n">review_count</span> <span class="o">+</span>
+    <span class="s2">&quot; reviews on Yelp, and the rating is &quot;</span> <span class="o">+</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span><span class="p">]</span><span class="o">.</span><span class="n">rating</span> <span class="o">+</span> <span class="s2">&quot; stars.&quot;</span><span class="p">;</span>
 
-return msg;
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Connect the node <em>set and repeat choice</em> to <em>say rating</em>, so that whenever the user makes a choice, the agent says
 the choice back, then tells the user the Yelp star rating.</p>
 </div>
 <div class="section" id="answering-user-questions-about-the-choices-presented">
-<h3>Answering user questions about the choices presented<a class="headerlink" href="#answering-user-questions-about-the-choices-presented" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Answering user questions about the choices presented</a><a class="headerlink" href="#answering-user-questions-about-the-choices-presented" title="Permalink to this headline">¶</a></h3>
 <p>Of course, we can also use the <em>say rating</em> state node
 to answer questions like <em>What&#8217;s the star rating?</em> or <em>Is it good?</em> To do that, let&#8217;s add a new enter node called
 <em>U: request rating</em> with three entrance conditions: <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code>, which makes sure
@@ -715,7 +642,7 @@ the system should reply appropriately), and <em>closing</em> (when the user says
 to that effect, the system should end the interaction with a state node that has the <em>Dialogue ends here</em> box checked).</p>
 </div>
 <div class="section" id="final-thoughts">
-<h3>Final thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">Final thoughts</a><a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h3>
 <p>That&#8217;s it! We now have a fully functional conversational interface to Yelp. Can you make it better? (Of course you can!)</p>
 <p>This example illustrated how to access external resources and use the ability to add code inside state nodes to use that
 information within a conversation. We also saw how to structure a flow around system goals, and how to handle different
@@ -725,6 +652,7 @@ kinds of user input.</p>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
@@ -741,12 +669,23 @@ kinds of user input.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>
+    <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 18, 2016.
+      Last updated on Aug 25, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
 
@@ -773,7 +712,7 @@ kinds of user input.</p>
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
 
   
 

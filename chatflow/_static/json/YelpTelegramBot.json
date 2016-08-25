@@ -212,7 +212,7 @@
     {
         "id": "deab686c.a76e98",
         "type": "function",
-        "name": "Dumb NLU for Inline Query",
+        "name": "Simple NLU for Inline Query",
         "z": "5a61781.170eb88",
         "in": [],
         "out": [],

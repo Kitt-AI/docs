@@ -18,35 +18,59 @@ Twilio Bot Tutorials
 .. role:: bg-warning
 .. role:: bg-danger
 
-Introduction
-------------
+.. _ChatFlow: https://chatflow.kitt.ai/
 
-Twilio In and Twilio Out nodes allow your apps to receive and send SMS messages (usually in that order).
+.. contents:: Table of Contents
+   :depth: 4
 
-Preparing Twilio account
+
+In this Chatflow_ tutorial, we'll show you how to program a text reversing bot
+for Twilio.
+The following video shows the bot in action:
+
+.. raw:: html
+
+   <video height="640" style="display:block; margin: 0 auto;" controls>
+     <source src="_static/img/twilio/ReverseBot.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+In addition, we explain the input and output for the Twilio In and Twilio out
+nodes.
+
+By the end of this tutorial, you will be able to:
+     * Connect a ChatFlow app to Twilio.
+     * Understand the input and output of the Twilio In and Twilio nodes
+     * Debug a chatflow bot
+
+.. _preparing_twilio:
+
+1. Preparing Twilio account
 ========================
 
-You can skip this section if you already have a Twilio account and/or know how to set it up.
+.. note:: You can skip this section if you already have a Twilio account and/or
+    know how to set it up.
 
-1. If you don't have a Twilio account, you can `sign up for one <https://www.twilio.com/try-twilio>`_. Trial accounts are free, you don't have to provide any payment details.
+1. `Sign up <https://www.twilio.com/try-twilio>`_ for a Twilio account. Trial
+   accounts are free. You do not have to provide any payment details.
 
-.. note::
-   It's a good idea to provide a real phone number when registering a new account (and confirm that number), as only confirmed
-   phone numbers can be used to send/receive SMS messages to/from Twilio services in trial accounts.
+.. note:: Make sure you search for phone numbers in/close to your area and with
+    SMS capabilities enabled.
 
 2. After finishing the registration, you will have to `"buy" <https://www.twilio.com/console/phone-numbers/search>`_ a phone number.
-   The first phone number in trial accounts (at time of writing) is/was free.
+   The first phone number in trial accounts (at time of writing) is free.
 
-.. note::
-    Make sure you search for phone numbers in/close to your area and with SMS capabilities enabled.
+.. _twilio_reverse_bot:
 
-3. Don't close the browser window/tab with the Twilio console, as you will need it later.
+2. A Simple Backwards-echo Bot
+==============================
 
+1. Create a New Chatflow App with Twilio Nodes
+______________________________________________
 
-A simple Backwards-echo Bot
----------------------------
-
-1. Start by opening the ChatFlow application list and add a new application. Press the "Create new App" button.
+1. Start by opening the ChatFlow application list and add a new application.
+   Press the "Create new App" button.
 
 .. image:: _static/img/twilio/twilio-new-app.png
    :align: center
@@ -61,65 +85,94 @@ A simple Backwards-echo Bot
 .. image:: _static/img/twilio/twilio-edit-app.png
     :align: center
 
-4. To make your app nice and tidy, you can enable grid in the Settings/view menu.
+4. To make your app nice and tidy, enable grid in the settings/view menu.
+          .. image:: _static/img/twilio/twilio-snap-grid.png
+                     :align: center
 
-.. image:: _static/img/twilio/twilio-snap-grid.png
-    :align: center
-
-5. Find Twilio In and Twilio Out nodes in the palette (left side), add them to the flow.
+5. Find **Twilio In** and **Twilio Out** nodes in the Node Library (left side)
+   and add them to the flow.
 
 .. image:: _static/img/twilio/twilio-palette.png
     :align: center
 
-6. Find the "function" node in the palette and add it to the flow too.
-7. Connect the "Twilio In" node output to the function node input and the function node output
-   to the "Twilio Out" input, so your flow looks like this:
+.. note:: If the **Twilio In** and **Twilio Out** nodes are not in your Node
+    Library, click on Settings in the right hand corner. A drop down will open.
+    Click on Node Installer:
+
+    .. image:: _static/img/twilio/settings_install_node.png
+       :align: center
+
+    In the Node Installer, search for **Twilio**. Click on the blue arrow to
+    the right of **Twilio** to add the nodes into your Node Library:
+
+    .. image:: _static/img/twilio/install_nodes_pop_up.png
+       :align: center
+
+
+6. Find the **function** node in the Node Library and add it to the flow too.
+
+7. Connect the **Twilio In** node output to the function node input and the
+   function node output to the "Twilio Out" input, so your flow looks like this:
 
 .. image:: _static/img/twilio/twilio-added-connected.png
    :align: center
 
-8. Double click on the "Twilio in" node, and click on the displayed "Twilio receiving url" to copy it to your clipboard (highlighted in yellow).
+2. Configure Twilio Nodes
+_________________________
+
+1. Double click on the "Twilio in" node, and click on the displayed "Twilio
+   receiving url" to copy it to your clipboard (highlighted in yellow).
 
 .. image:: _static/img/twilio/twilio-receiving-url.png
    :align: center
 
-9. Switch to the Twilio console and display your Phone numbers list, .
+2. In the Twilio console, go to your Phone numbers list by clicking on "Phone
+   Numbers" on the right hand side.
 
 .. image:: _static/img/twilio/twilio-cp-phone-numbers.png
    :align: center
 
-10. Find the phone number you bought and click on it to edit it's settings.
+3. Edit the settings for the phone number you just bought.
 
 .. image:: _static/img/twilio/twilio-cp-phone-list.png
    :align: center
 
-11. Paste the address you copied in from the "Twilio in node" in the field labeled "A message comes in" and click the "Save" button.
+4. Paste the address you copied from the "Twilio in node" in the "A message comes
+   in" field. Click the "Save" button.
 
 .. image:: _static/img/twilio/twilio-cp-add-webhook.png
    :align: center
 
-12. Go to the Twilio console dashboard (the main screen) to display your Account SID and Auth Token.
-    You have to click the padlock icon to make Auth Token visible
-    (the SID and token displayed in this tutorial are fake, so don't try to use them ;) ).
+5. Go to the Twilio console dashboard (the main screen) to display your Account
+   SID and Auth Token.
+
+.. note:: You have to click the padlock icon to make Auth Token visible (the SID
+    and token displayed in this tutorial are fake, so don't try to use them ;) ).
 
 .. image:: _static/img/twilio/twilio-cp-credentials.png
    :align: center
 
-13. Switch to the ChatFlow editor and double click on the "Twilio Out" node.
-    Copy Account SID and Auth Token from Twilio dashboard to this form.
-14. Enable "Respond mode" and click "OK".
+6. In ChatFlow, double click on the "Twilio Out" node. Copy Account SID and Auth
+   Token from Twilio dashboard to this form.
+
+7. Enable "Respond mode" and click "OK".
 
 .. image:: _static/img/twilio/twilio-out-credentials.png
    :align: center
 
-"Respond mode" is a quick way to enable your app to respond to incoming SMS messages
-(received by a Twilio In node) without having to write any extra code.
-When it's enabled and you don't redefine ``msg.twilio.from``/``to`` values,
-then those values are used in reverse, so when you use a Twilio Out node, the recipient phone number will be
-read from ``msg.twilio.in`` (and sender phone number will be read from ``msg.twilio.from`` accordingly).
-This feature also allows you to use one "Twilio Out" node with multiple "Twilio In" nodes.
+.. note:: "Respond mode" is a quick way to enable your app to respond to incoming
+    SMS messages (received by a Twilio In node) without having to write any
+    extra code. When it's enabled and you don't redefine ``msg.twilio.from``/``to``
+    values, then those values are used in reverse, so when you use a Twilio Out
+    node, the recipient phone number will be read from ``msg.twilio.in`` (and
+    sender phone number will be read from ``msg.twilio.from`` accordingly). This
+    feature also allows you to use one "Twilio Out" node with multiple
+    "Twilio In" nodes.
 
-15. Double click on the function node you added and fill it like in the example below (enter node name and function body):
+3. Configuring the Function Node
+________________________________
+
+1. Double click on the function node. Fill it like in the example below:
 
 .. code-block:: javascript
 
@@ -130,30 +183,38 @@ This feature also allows you to use one "Twilio Out" node with multiple "Twilio 
 .. image:: _static/img/twilio/twilio-fn-reverse.png
    :align: center
 
+4. Deploy the Application
+_________________________
 
-15. Hit the "Deploy" button. Now your app is running and you can test it.
+1. Hit the "Deploy" button. Now your app is running and you can test it.
 
 .. image:: _static/img/twilio/twilio-deploy.png
    :align: center
 
-16. Send a text message (SMS) to the phone number you bought. Your app should respond in seconds with a message containing the text you sent, but reversed.
+Send a text message (SMS) to the phone number you bought. Your app should
+respond in seconds with a message containing the text you sent, but reversed.
 
-Extra steps
-===========
-Here we'll add some debugging functionality to your application.
+.. _debugging_twilio:
 
-16. Find and add a debug node to the flow, connect it's input to the "Twilio in" output.
+3. Extra steps
+==============
+5. Add Debugging Functionality
+______________________________
+
+1. Add a debug node to the flow. Connect it's input to the "Twilio in" output.
 
 .. image:: _static/img/twilio/twilio-debug-added.png
    :align: center
 
-17. Double click the debug node you added and set it up to log "twilio" property of "msg".
+2. Double click the debug node you added and set it up to log "twilio" property
+   of "msg".
 
 .. image:: _static/img/twilio/twilio-debug-edit.png
    :align: center
 
-18. Activate the debug panel and send another text message. Message details should be shown in the debug panel.
-    You can read about those details in `Twilio documentation <https://www.twilio.com/docs/api/twiml/sms/twilio_request>`_.
+3. Activate the debug panel and send another text message. Message details should
+   be shown in the debug panel. You can read about those details in
+   `Twilio documentation <https://www.twilio.com/docs/api/twiml/sms/twilio_request>`_.
 
 .. image:: _static/img/twilio/twilio-debug-sms.png
    :align: center
@@ -161,8 +222,54 @@ Here we'll add some debugging functionality to your application.
 You can download the whole aplication `here <_static/json/twilio-echo-bot.json>`_.
 You only have to setup Twilio In/Out nodes manually.
 
-A more advanced Twilio bot with session/router support
-------------------------------------------------------
+In addition, here's a full tutorial video of the entire process:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
+       frameborder="0" allowfullscreen></iframe>
+    </br>
+
+
+Twilio In and Twilio Out Nodes
+================================
+
+.. _twilio_in_node:
+
+Twilio In
+__________
+
+The following fields are set in the output message:
+    * twilio.from (string) Sender phone number in E.164 format.
+    * twilio.to (string) Recipient phone number in E.164 format.
+    * twilio.body (string) Message body.
+    * payload (string) Message body (duplicated).
+
+The twilio property may contain other sub-properties, `see Twilio documentation <https://www.twilio.com/docs/api/twiml/sms/twilio_request>`_
+for details (property names are always "camelCased" in this node output).
+
+.. _twilio_out_node:
+
+Twilio Out
+___________
+
+The following fields are taken as inputs by Twilio Out:
+
+    * msg.twilio.from or the field set in the configuration (string) Sender of
+      the message, may be overriden by configuration (which is recommended).
+      This number should be in E.164 format or an Alphanumeric Sender ID, see
+      Twilio documentation.
+    * msg.twilio.to (string) Recipient of the message (must be in E.164 format)
+    * msg.payload or the field set in the configuration (string) Message to be
+      sent.
+
+..note:: Notice: longer messages (especially containing "high" unicode characters)
+    may be sent in multiple parts, part arrival order is not guaranteed by Twilio.
+
+.. _advanced_twilio_bot:
+
+An Advanced Twilio Bot with Session/Router Support
+======================================================
 
 1. Create a new app and add the following nodes:
 
@@ -179,20 +286,23 @@ A more advanced Twilio bot with session/router support
    :align: center
 
 3. Set up Twilio In/Out nodes (the previous tutorial shows how to do it).
-4. Edit the first "enter" node, name it "start", set it as the initial state and remove the condition:
+
+4. Edit the first "enter" node, name it "start", set it as the initial state and
+   remove the condition:
 
 .. image:: _static/img/twilio/twilio2-initial.png
    :align: center
 
 You can leave the first state node unchanged.
 
-5. Edit the second "enter" node, name it "add counter", and set it up to accept ``add`` in the payload property.
+5. Edit the second "enter" node, name it "add counter", and set it up to accept
+   ``add`` in the payload property.
 
 .. image:: _static/img/twilio/twilio2-add-counter.png
    :align: center
 
-6. Edit the function node connected to the "add counter" node, name it "increase counter"
-   and add the following code to the function body
+6. Edit the function node connected to the "add counter" node, name it "increase
+   counter" and add the following code to the function body
 
 .. code-block:: javascript
 
@@ -201,8 +311,9 @@ You can leave the first state node unchanged.
 .. image:: _static/img/twilio/twilio2-inc-counter.png
    :align: center
 
-7. Edit the second state node (the one connected to the function node you just edited),
-name it "print counter" and replace the commented out code with the following code:
+7. Edit the second state node (the one connected to the function node you just
+   edited), name it "print counter" and replace the commented out code with the
+   following code:
 
 .. code-block:: javascript
 
@@ -211,27 +322,39 @@ name it "print counter" and replace the commented out code with the following co
 .. image:: _static/img/twilio/twilio2-print-counter.png
    :align: center
 
-8. Edit the third enter node, name it "end", and set it up to accept ``bye`` in the payload property.
+8. Edit the third enter node, name it "end", and set it up to accept ``bye`` in
+   the payload property.
 
 .. image:: _static/img/twilio/twilio2-state-end.png
    :align: center
 
-9. Edit the third state node, name it "bye", set "Output text" to ``Bye bye.``, leave the code as is.
-   Make sure you check the "Dialogue ends here" option.
+9. Edit the third state node, name it "bye", set "Output text" to ``Bye bye.``,
+   leave the code as is. Make sure you check the "Dialogue ends here" option.
 
 .. image:: _static/img/twilio/twilio2-state-bye.png
    :align: center
 
-10. The "Twilio In" node sets up session variables automatically, so you don't have to edit the router node.
-    However, as messages from Twilio have no direct support for "sessions", so you may want to tune the "idle" session length manually.
+.. note:: The "Twilio In" node sets up session variables automatically, so you
+    don't have to edit the router node. However, as messages from Twilio have no
+    direct support for "sessions", so you may want to tune the "idle" session
+    length manually.
 
-11. Now you can deploy the application. The finshed flow should look like this:
+Now you can deploy the application. The finshed flow should look like this:
 
 .. image:: _static/img/twilio/twilio2-finished.png
    :align: center
 
-Now by sending "add" message to your Twilio phone number you increase the counter (each user has own counter).
-By sending "bye" message, you end the conversation (and reset/kill the counter).
+Now by sending "add" message to your Twilio phone number you increase the counter
+(each user has own counter). By sending "bye" message, you end the conversation
+(and reset/kill the counter).
 
-You can download the whole aplication `here <_static/json/twilio-router-bot.json>`_.
-You only have to setup Twilio In/Out nodes manually.
+.. note:: You can download the whole sample aplication
+    `here <_static/json/twilio-router-bot.json>`_. You will only have to setup
+    Twilio In/Out nodes manually.
+
+In addition, here's a full tutorial video of the entire process:
+
+.. raw:: html
+
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/qMnErJlZNLw" frameborder="0" allowfullscreen></iframe>
+    </br>

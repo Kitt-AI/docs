@@ -18,6 +18,10 @@ Extended Example: A conversational Yelp bot
 .. role:: bg-warning
 .. role:: bg-danger
 
+.. contents:: Table of Contents
+   :depth: 4
+
+
 In this example we will show how to create a conversational bot that fulfills an end-user information need by
 accessing external resources. Specifically, we will build a natural language *conversational* interface to Yelp. In
 contrast with simpler natural language interfaces that let users say things like "show me Mexican restaurants in

@@ -18,24 +18,28 @@ Dialogue Nodes
 .. role:: bg-warning
 .. role:: bg-danger
 
+.. contents:: Table of Contents
+   :depth: 4
+
+
 Nodes in ChatFlow
 ==================
 
-.. ChatFlow is built on top of `Node-RED <http://nodered.org>`_, and it inherits from it much of the basic message flow paradigm.
-   
-ChatFlow conversational content is represented as nodes in a network, and
-the links, or wires, between these nodes. Nodes have inputs, where they receive
-messages, and outputs, where they send messages. Execution of the
-network, or running the conversation, happens through the flow of
-messages among the nodes in the network.
+.. ChatFlow is built on top of `Node-RED <http://nodered.org>`_ inheriting much of Node-RED's basic message flow paradigm.
+
+ChatFlow conversational content are represented as nodes in a network
+and the links, or wires, between these nodes. The nodes have inputs
+(where they receive messages) and outputs (where they send messages).
+Execution of the network (running the conversation) happens through
+the flow of messages among the nodes in the network.
 
 Basic Flow, Input and Output
 -----------------------
 
-In a ChatFlow conversation, messages typically originate in an input
+In a ChatFlow conversation, messages typically originate from an input
 node from the **bots** section of the node palette. For example,
-*Alexa In*, *Cortana In*, and *Slack Bot In* nodes are available to 
-create and send messages based on user input coming from 
+*Alexa In*, *Cortana In*, and *Slack Bot In* nodes are available to
+create and send messages based on user input coming from
 Amazon Echo, Microsoft Cortana or Slack. These input nodes do not
 receive messages from other nodes, so you will notice they do not
 accept incoming wires.
@@ -43,7 +47,7 @@ accept incoming wires.
 Once an input node receives user input (e.g. from Slack, from the chat
 tab within ChatFlow, from an Amazon Echo device, etc.), it sends out a message
 through its output. The message created by an input node will contain
-a ``payload`` property that holds a string corresponding to the 
+a ``payload`` property that holds a string corresponding to the
 user natural language input. Through a wire originating at the input node,
 this message typically goes to a **Natural Language Understanding (NLU)**
 node, which maps the natural language input into symbols that drive
@@ -53,12 +57,12 @@ sent through a wire to the **router** node.
 
 The router node then directs the message through a network of **enter** nodes
 and **state** nodes, which are not connected to the router by wires.
-This process, described in the more detail under the router section of 
-the documentation, generates a system utterance, which the router 
+This process, described in the more detail under the router section of
+the documentation, generates a system utterance, which the router
 places in its outgoing message as a string in the ``payload`` property. The router then sends
 the message out through a wire, which is typically connected to an
 output node matching the input node used, i.e., text is sent to Slack, or
-an Amazon Echo, etc. 
+an Amazon Echo, etc.
 
 The basic node types used in most ChatFlow conversations are:
 
@@ -77,7 +81,7 @@ output
 enter
   An enter node acts as an entry point to a specific part of the conversation.
   Each entry node contains a set of *entrance conditions*, which must all
-  be satisfied in order for the conversation to proceed according to the 
+  be satisfied in order for the conversation to proceed according to the
   content linked from the entry node. Entry nodes receive messages exclusively
   from the router, which chooses what entry nodes to send messages to.
   Once an entry node receives a message, it sends the message out through
@@ -85,7 +89,7 @@ enter
 
 state
   State nodes define what the agent does, says, and how the conversational
-  context is updated. Context is kept as user variables that can be accessed 
+  context is updated. Context is kept as user variables that can be accessed
   in messages. System output, or agent utterances, are also set in state nodes.
   State nodes can contain arbitrary JavaScript code to manipulate the context
   and messages in general.
@@ -117,12 +121,12 @@ choose one based on the following criteria:
 Once a router receives a message, it selects an enter node. If none are
 eligible, the router sends out a message via output wire. If an enter node
 receives a message from the router, it will pass that message through its own
-output wire. If the message reaches a **state** node with *no output wires*, 
+output wire. If the message reaches a **state** node with *no output wires*,
 the state node sends its message back to the router. In other words, **enter**
 nodes and **state** nodes are the entry and exit points that the router has
-to and from the author-defined conversational content. This conversational 
+to and from the author-defined conversational content. This conversational
 content consists of enter nodes, state nodes, and any other nodes
-available. For example, it may include a Yelp node, which is a wrapper to the 
+available. For example, it may include a Yelp node, which is a wrapper to the
 Yelp developer API, as in the example provided later in this documentation.
 
 .. admonition:: NLU results are only available to the first enter node chosen by the router in each conversational turn
@@ -144,12 +148,12 @@ Yelp developer API, as in the example provided later in this documentation.
 Enter Nodes
 ===================
 
-Enter nodes are the router's entry point into conversational content, which is typically a collection of networks, each bookended by an enter node (the entry point) and a state node (the exit point for the network). In between the enter node and the state node, there may be other state nodes and other Node-RED nodes, such as function nodes. All of the inter-node communication that happens between the enter node, which receives messages from the router, and the last state node, which sends messages back to the router, happen through wires, following Node-RED's usual message flow. 
+Enter nodes are the router's entry point into conversational content, which is typically a collection of networks, each bookended by an enter node (the entry point) and a state node (the exit point for the network). In between the enter node and the state node, there may be other state nodes and other Node-RED nodes, such as function nodes. All of the inter-node communication that happens between the enter node, which receives messages from the router, and the last state node, which sends messages back to the router, happen through wires, following Node-RED's usual message flow.
 
 Ordering preferences
 ------------------------
 
-Note, however, that the output of a state node can be wired to the input of an enter node, but once that connection is made, the resulting connection is not a wire in the Node-RED sense, and is shown on the screen as a dashed line, unlike wires that are shown as solid lines. This dashed line does not represent a wire over which messages can be sent, and rather an *ordering preference*, which says that the enter node should be preferred by the router immediately after the router receives a message from the state node. In other words, a sequence of state node and enter node (in that order), connected by a dashed line, does not mean that the state node has an outgoing wire, and it does not mean that the enter node has an incoming wire. That state node will still send its message to the router, and the enter node will still get its message from the router. The dashed line simply means that once that state node is executed and sends its message to the router, the router will choose the enter node, provided that the enter node's entrance conditions are satisfied. 
+Note, however, that the output of a state node can be wired to the input of an enter node, but once that connection is made, the resulting connection is not a wire in the Node-RED sense, and is shown on the screen as a dashed line, unlike wires that are shown as solid lines. This dashed line does not represent a wire over which messages can be sent, and rather an *ordering preference*, which says that the enter node should be preferred by the router immediately after the router receives a message from the state node. In other words, a sequence of state node and enter node (in that order), connected by a dashed line, does not mean that the state node has an outgoing wire, and it does not mean that the enter node has an incoming wire. That state node will still send its message to the router, and the enter node will still get its message from the router. The dashed line simply means that once that state node is executed and sends its message to the router, the router will choose the enter node, provided that the enter node's entrance conditions are satisfied.
 
 An example of a dashed line representing an ordering preference for an enter node following a state node is shown in the image below.
 

@@ -2,7 +2,7 @@ $(document).ready(function(){
     var page = window.parent;
     var menu = document.getElementsByClassName('wy-menu-vertical')[0];
 
-    var iframeTop = page.document.body.getElementsByTagName("iframe")[0].offsetTop;
+    var iframeTop = page.document.body.getElementsByClassName("wy-nav-content-wrap")[0].offsetTop;
     var elements = document.body.getElementsByTagName("a");
     var sectionElements = $('.section');
 
@@ -32,7 +32,6 @@ $(document).ready(function(){
             menu.style.marginTop = "0px";
             return;
         }
-        menu.style.marginTop = page.pageYOffset - iframeTop + "px";
         var cur = sectionElements.map(function(){
             if ($(this).offset().top < page.pageYOffset)
                return this;
@@ -48,7 +47,6 @@ $(document).ready(function(){
                 continue;
             }
             var href = elements[i].getAttribute('href');
-            console.log(href);
             if(href.search(onlyHash) == -1){
                 elements[i].setAttribute('target', '_self');
             }else{
@@ -59,7 +57,7 @@ $(document).ready(function(){
                 elements[i].onclick = function(event) {
                     try{
                         var target = document.getElementById(this.getAttribute('data-anchor'));
-                        window.parent.parent.scrollTo(0, target.offsetTop + iframeTop - 70);
+                        window.parent.parent.scrollTo(0, target.offsetTop + iframeTop + 1);
                         $("[data-toggle='wy-nav-shift']").toggleClass("shift");
                         $("[data-toggle='rst-versions']").toggleClass("shift");
                     }catch(err){}

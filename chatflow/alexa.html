@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -28,6 +30,10 @@
   
 
   
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
 
   
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
@@ -41,21 +47,30 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="index.html" class="icon icon-home"> ChatFlow
-        
+          
+            
+              <a href="http://chatflow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
 
-        
-        </a>
+          
+            
+            <img src="_static/chatflow-logo.png" class="logo" />
+          
+          </a>
 
-        
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -64,131 +79,24 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul class="current">
+            
+            
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#adding-an-nlu-node">Adding an NLU node</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#initialization">Initialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#final-thoughts">Final thoughts</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#a-simple-echo-bot">A simple echo bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-kik-bot">1. Create a kik bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="kik.html#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#nlu-setup">2. NLU setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="kik.html#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Alexa Skill Tutorials</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Alexa Skill Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
@@ -214,60 +122,66 @@
 <li class="toctree-l2"><a class="reference internal" href="#more-advanced-tutorials">More Advanced Tutorials</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy ChatFlow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#state-tracking">State tracking</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#create-an-nlu-project">Create an NLU Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#exporting-to-alexa-format">Exporting to Alexa Format</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">ChatFlow</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Alexa Skill Tutorials</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Alexa Skill Tutorials</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/alexa.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="alexa-skill-tutorials">
 <h1><a class="toc-backref" href="#id4">Alexa Skill Tutorials</a><a class="headerlink" href="#alexa-skill-tutorials" title="Permalink to this headline">¶</a></h1>
@@ -321,7 +235,7 @@ You will learn:</p>
 <strong>Alexa In</strong> node and replies it with the <strong>Alexa Out</strong> node. We deploy this app
 first to register a webhook callback address through the <strong>Alexa In</strong> node:</p>
 <img alt="_images/alexa-in-node.png" class="align-center" src="_images/alexa-in-node.png" />
-<p>The &#8220;Final URL&#8221; will be used later in Step <a class="reference internal" href="#alexa-config"><span>3. Configuration</span></a>.</p>
+<p>The &#8220;Final URL&#8221; will be used later in Step <a class="reference internal" href="#alexa-config"><span class="std std-ref">3. Configuration</span></a>.</p>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">re-take this pic to change <code class="docutils literal"><span class="pre">chatflow-test</span></code> to <code class="docutils literal"><span class="pre">chatflow</span></code>
@@ -357,7 +271,7 @@ and click &#8220;ALEXA&#8221; to get started with the <strong>Alexa Skills Kit</
 10
 11
 12
-13</pre></div></td><td class="code"><div class="highlight"><pre><span class="p">{</span>
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span>
        <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;SuperIntent&quot;</span><span class="p">,</span>
@@ -379,7 +293,7 @@ recognition, while everything will be tagged as a single <code class="docutils l
 <div class="section" id="sample-utterances">
 <span id="id2"></span><h4><a class="toc-backref" href="#id10">2. Sample Utterances</a><a class="headerlink" href="#sample-utterances" title="Permalink to this headline">¶</a></h4>
 <p>The <strong>Sample Utterances</strong> are simply two lines:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 <span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span> <span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -442,8 +356,8 @@ when you explicitly asks Alexa to exit from session, such as by saying &#8220;<e
 <li><code class="docutils literal"><span class="pre">msg.kitt._access_token</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.user.accessToken</span></code> if it appears.
 It&#8217;s the remote access token if user has enabled <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system">account linking</a>.</li>
 </ul>
-<p>We will discuss <code class="docutils literal"><span class="pre">msg.NLU</span></code> in <a class="reference internal" href="#intent-request"><span>Intent Request</span></a> and outgoing message
-structures in <a class="reference internal" href="#card-reprompt"><span>Card and Reprompt</span></a>.</p>
+<p>We will discuss <code class="docutils literal"><span class="pre">msg.NLU</span></code> in <a class="reference internal" href="#intent-request"><span class="std std-ref">Intent Request</span></a> and outgoing message
+structures in <a class="reference internal" href="#card-reprompt"><span class="std std-ref">Card and Reprompt</span></a>.</p>
 </div>
 <div class="section" id="launch-skill">
 <h3><a class="toc-backref" href="#id17">Launch Skill</a><a class="headerlink" href="#launch-skill" title="Permalink to this headline">¶</a></h3>
@@ -459,13 +373,13 @@ structures in <a class="reference internal" href="#card-reprompt"><span>Card and
 <p><em>Echo: &#8220;I heard repeat what I said.&#8221;</em></p>
 <p><em>In companion Alexa app: a card shows up.</em></p>
 <p>When user says <em>&#8220;ask Copy Cat to repeat what I said&#8221;</em>, the utterance
-<em>repeat what I said</em> is actually matched against <a class="reference internal" href="#sample-utterances"><span>2. Sample Utterances</span></a>:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
+<em>repeat what I said</em> is actually matched against <a class="reference internal" href="#sample-utterances"><span class="std std-ref">2. Sample Utterances</span></a>:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 <span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span> <span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Then <code class="docutils literal"><span class="pre">msg.alexa.request</span></code> will have the following <code class="docutils literal"><span class="pre">intent</span></code> property:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="p">{</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;SuperIntent&quot;</span><span class="p">,</span>
     <span class="s2">&quot;slots&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;Text&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -519,11 +433,12 @@ the sentence at all. There are two ways to go from here:</p>
 <p>However, we do not recommend this way because Alexa&#8217;s speech output might not be
 perfect. Instead we suggest:</p>
 <p>2. Use Alexa&#8217;s own NLU with its language model smoothed out with in-domain
-utterances. We have created a more advanced tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span>next</span></a>.</p>
+utterances. We have created a more advanced tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span class="std std-ref">next</span></a>.</p>
 </div>
 </div>
 
 
+           </div>
           </div>
           <footer>
   
@@ -540,12 +455,23 @@ utterances. We have created a more advanced tutorial <a class="reference interna
   <hr/>
 
   <div role="contentinfo">
-    <p>
+    <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 18, 2016.
+      Last updated on Aug 25, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
 
@@ -572,7 +498,7 @@ utterances. We have created a more advanced tutorial <a class="reference interna
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
 
   
 

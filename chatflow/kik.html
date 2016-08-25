@@ -13,6 +13,8 @@
 
   
   
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
 
   
 
@@ -28,6 +30,10 @@
   
 
   
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
 
   
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
@@ -41,21 +47,30 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-      <div class="wy-side-nav-search">
-        
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-        
-          <a href="index.html" class="icon icon-home"> ChatFlow
-        
+          
+            
+              <a href="http://chatflow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
 
-        
-        </a>
+          
+            
+            <img src="_static/chatflow-logo.png" class="logo" />
+          
+          </a>
 
-        
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -64,280 +79,395 @@
   </form>
 </div>
 
-        
-      </div>
+          
+        </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
-          
-              <ul class="current">
+            
+            
+                <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow-from-a-template">A first conversational flow (from a template)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#the-conversational-router">The conversational router</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#enter-nodes">Enter nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#state-nodes">State nodes</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#adding-input-and-output">Adding input and output</a></li>
-<li class="toctree-l3"><a class="reference internal" href="quickstart.html#dealing-with-natural-language-input">Dealing with natural language input</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#ordering-preferences">Ordering preferences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#direct-link">Direct link</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="dialogue_nodes.html#final-state">Final state</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="extended_example.html#starting-your-conversational-project">Starting your conversational project</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#adding-an-nlu-node">Adding an NLU node</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="extended_example.html#creating-your-flow">Creating your flow</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#initialization">Initialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#prompting-the-user-and-understanding-the-user-s-request">Prompting the user and understanding the user&#8217;s request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#fulfilling-the-user-s-request-through-a-yelp-query">Fulfilling the user&#8217;s request through a Yelp query</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#presenting-yelp-results-to-the-user">Presenting Yelp results to the user</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#getting-a-choice-from-the-user">Getting a choice from the user</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#answering-user-questions-about-the-choices-presented">Answering user questions about the choices presented</a></li>
-<li class="toctree-l3"><a class="reference internal" href="extended_example.html#final-thoughts">Final thoughts</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#a-simple-echo-bot">A simple Echo Bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#setting-up-inline-bot">Setting up Inline Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-status">Set inline status</a></li>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#set-inline-location-awareness">Set inline location awareness</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="telegram.html#an-inline-yelp-bot">An inline Yelp Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="telegram.html#the-flow">The flow</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#abstract">Abstract</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#a-simple-echo-bot">A simple echo bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-slack-bot">1. Create a new slack bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#copy-bot-api-token">2. Copy Bot API Token</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#create-a-new-chatflow-application">3. Create a new ChatFlow application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#configure-the-bot">4. Configure the bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#deploy-the-application">5. Deploy the application</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="slack.html#advanced-slash-commands-and-interactive-messages">Advanced: slash commands and interactive messages</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#creating-a-slack-application">1. Creating a slack application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#importing-the-cat-choose-application">2. Importing the &#8220;Cat Choose&#8221; application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#nlu-setup">3. NLU setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#slack-app-setup">4. Slack app setup</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#slash-command">Slash command</a></li>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#id6">Interactive messages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="slack.html#redirect-url">Redirect URL</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#connect-your-slack-application-with-your-team">5. Connect your slack application with your team</a></li>
-<li class="toctree-l3"><a class="reference internal" href="slack.html#testing-the-cat-choose-application">6. Testing the &#8220;Cat Choose&#8221; application</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#introduction">Introduction</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="twilio.html#preparing-twilio-account">Preparing Twilio account</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-simple-backwards-echo-bot">A simple Backwards-echo Bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="twilio.html#extra-steps">Extra steps</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="twilio.html#a-more-advanced-twilio-bot-with-session-router-support">A more advanced Twilio bot with session/router support</a></li>
-</ul>
-</li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Kik Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Kik Bot Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#a-simple-echo-bot">A simple echo bot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-a-kik-bot">1. Create a kik bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-kik-bot">1. Create a Kik Bot</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#on-the-browser">On the Browser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#on-the-mobile-app">On the Mobile App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">On the Browser</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-chatflow-application">2. Create a ChatFlow application</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#kik-in-and-kik-out-nodes">kik In and kik Out Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#kik-in">kik In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kik-out">kik Out</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-attachments-and-custom-keyboards">Advanced: attachments and custom keyboards</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#nlu-setup">2. NLU setup</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sending-attachments">Sending attachments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-custom-keyboard">Creating a custom keyboard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#attachments-and-custom-keyboard-demo">Attachments and Custom Keyboard Demo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nlu-setup">2. NLU setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#create-an-alexa-skill">Create an Alexa Skill</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#skill-information">1. Skill Information</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#sample-utterances">2. Sample Utterances</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#configuration">3. Configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#ssl-certificate">4. SSL Certificate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#test">5. Test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="alexa.html#finishing-up">6. Finishing up</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#incoming-message-structures">Incoming Message Structures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#launch-skill">Launch Skill</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#intent-request">Intent Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#card-and-reprompt">Card and Reprompt</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa.html#ask-or-tell">Ask or Tell?</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy ChatFlow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
-<li class="toctree-l3"><a class="reference internal" href="alexa_advanced.html#state-tracking">State tracking</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#introduction">Introduction</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
+            
           
-        
+        </div>
       </div>
-      &nbsp;
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">ChatFlow</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
       </nav>
 
 
       
       <div class="wy-nav-content">
         <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Kik Bot Tutorials</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Kik Bot Tutorials</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
+            
             <a href="_sources/kik.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
   <hr/>
 </div>
-          <div role="main" class="document">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="kik-bot-tutorials">
-<span id="kik"></span><h1>Kik Bot Tutorials<a class="headerlink" href="#kik-bot-tutorials" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="abstract">
-<h2>Abstract<a class="headerlink" href="#abstract" title="Permalink to this headline">¶</a></h2>
-<p>In this tutorial we will start with creating a simple Kik bot to echo your message,
-then we will create a bot that shows you different cat images.</p>
+<span id="kik"></span><h1><a class="toc-backref" href="#id6">Kik Bot Tutorials</a><a class="headerlink" href="#kik-bot-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#kik-bot-tutorials" id="id6">Kik Bot Tutorials</a><ul>
+<li><a class="reference internal" href="#a-simple-echo-bot" id="id7">A simple echo bot</a><ul>
+<li><a class="reference internal" href="#create-a-kik-bot" id="id8">1. Create a Kik Bot</a><ul>
+<li><a class="reference internal" href="#on-the-browser" id="id9">On the Browser</a></li>
+<li><a class="reference internal" href="#on-the-mobile-app" id="id10">On the Mobile App</a></li>
+<li><a class="reference internal" href="#id1" id="id11">On the Browser</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-a-chatflow-application" id="id12">2. Create a ChatFlow application</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#kik-in-and-kik-out-nodes" id="id13">kik In and kik Out Nodes</a><ul>
+<li><a class="reference internal" href="#kik-in" id="id14">kik In</a></li>
+<li><a class="reference internal" href="#kik-out" id="id15">kik Out</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#advanced-attachments-and-custom-keyboards" id="id16">Advanced: attachments and custom keyboards</a><ul>
+<li><a class="reference internal" href="#sending-attachments" id="id17">Sending attachments</a></li>
+<li><a class="reference internal" href="#creating-a-custom-keyboard" id="id18">Creating a custom keyboard</a></li>
+<li><a class="reference internal" href="#attachments-and-custom-keyboard-demo" id="id19">Attachments and Custom Keyboard Demo</a><ul>
+<li><a class="reference internal" href="#importing-the-colored-cats-application" id="id20">1. Importing the &#8220;Colored Cats&#8221; application</a></li>
+<li><a class="reference internal" href="#nlu-setup" id="id21">2. NLU setup</a></li>
+<li><a class="reference internal" href="#set-up-colored-cats-application" id="id22">3. Set up &#8220;Colored Cats&#8221; application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
+<p>In this tutorial, we start with creating a simple echo bot for kik. We also
+create a bot that shows you different cat images. In addition, we explain the
+input and output of the kik In and kik Out nodes.</p>
+<dl class="docutils">
+<dt>By the end of this tutorial, you will be able to:</dt>
+<dd><ul class="first last simple">
+<li>connect a chatflow application to kik</li>
+<li>understand the input and outputs of the kik In and kik Out nodes</li>
+</ul>
+</dd>
+</dl>
 <div class="section" id="a-simple-echo-bot">
-<h2>A simple echo bot<a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">A simple echo bot</a><a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
 <p>Let&#8217;s first create a simple echo bot using ChatFlow.</p>
 <div class="section" id="create-a-kik-bot">
-<span id="create-kik-bot"></span><h3>1. Create a kik bot<a class="headerlink" href="#create-a-kik-bot" title="Permalink to this headline">¶</a></h3>
-<p>First install the kik client on your mobile device.</p>
-<p>Then go to <a class="reference external" href="https://dev.kik.com/#/home">dev.kik.com</a> to build your bot.</p>
-<p style="margin-top: -30px;">
-   Using the Kik app, touch <img src="/_static/img/kik/tip.png" style="width:50px;"> and then click on
-   <img src="/_static/img/kik/scan.png" style="width:50px;">
-   to scan the code, which registers a bot for you. Then answer Botsworth's questions.
-   Tap "yes" and "Create a Bot".
-</p><p>Give a unique name to the bot. After bot creation, click &#8220;Configuration&#8221; on top of
-<a class="reference external" href="https://dev.kik.com/#/home">dev.kik.com</a> page.</p>
+<span id="create-kik-bot"></span><h3><a class="toc-backref" href="#id8">1. Create a Kik Bot</a><a class="headerlink" href="#create-a-kik-bot" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="on-the-browser">
+<h4><a class="toc-backref" href="#id9">On the Browser</a><a class="headerlink" href="#on-the-browser" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>Install Kik onto your mobile device.</li>
+<li>Go to <a class="reference external" href="https://dev.kik.com/#/home">dev.kik.com</a> to build your bot.</li>
+</ol>
+</div>
+<div class="section" id="on-the-mobile-app">
+<h4><a class="toc-backref" href="#id10">On the Mobile App</a><a class="headerlink" href="#on-the-mobile-app" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="3">
+<li>Using the Kik app, touch the following image in the upper right corner:</li>
+</ol>
+<img alt="_images/tip.png" class="align-center" src="_images/tip.png" />
+<ol class="arabic simple" start="4">
+<li>Click on the following image to scan the code on the web browser, which
+registers a bot for you:</li>
+</ol>
+<img alt="_images/scan.png" class="align-center" src="_images/scan.png" />
+<ol class="arabic simple" start="5">
+<li>A chat with Botsworth will open.</li>
+</ol>
+<a class="reference internal image-reference" href="_images/botsworthchat.png"><img alt="_images/botsworthchat.png" class="align-center" src="_images/botsworthchat.png" style="width: 319.5px; height: 303.5px;" /></a>
+<ol class="arabic simple" start="6">
+<li>Give your bot a unique name. Answer Botsworth&#8217;s questions. Tap &#8220;Yes&#8221; and
+&#8220;Create a Bot&#8221;.</li>
+</ol>
+<a class="reference internal image-reference" href="_images/botsworthchat2.png"><img alt="_images/botsworthchat2.png" class="align-center" src="_images/botsworthchat2.png" style="width: 320.0px; height: 392.0px;" /></a>
+</div>
+<div class="section" id="id1">
+<h4><a class="toc-backref" href="#id11">On the Browser</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="7">
+<li>After bot creation, click &#8220;Configuration&#8221; on top of <a class="reference external" href="https://dev.kik.com/#/home">dev.kik.com</a> page.</li>
+</ol>
+<img alt="_images/dev-kik-config.png" class="align-center" src="_images/dev-kik-config.png" />
+<ol class="arabic simple" start="8">
+<li>Copy the &#8220;Bot Name&#8221; and &#8220;API Key&#8221; to your clipboard.</li>
+</ol>
 <img alt="_images/uniqueBot.png" class="align-center" src="_images/uniqueBot.png" />
-<p>You&#8217;ll have to copy/paste &#8220;Bot Name&#8221; and &#8220;API Key&#8221; to ChatFlow in the next step.</p>
+</div>
 </div>
 <div class="section" id="create-a-chatflow-application">
-<span id="create-chatflow-app"></span><h3>2. Create a ChatFlow application<a class="headerlink" href="#create-a-chatflow-application" title="Permalink to this headline">¶</a></h3>
-<p>Go to the <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> and create a new application. Call it &#8220;kik echo bot&#8221; and put
-<strong>kik In</strong> and <strong>kik Out</strong> nodes as shown on the image below.</p>
+<span id="create-chatflow-app"></span><h3><a class="toc-backref" href="#id12">2. Create a ChatFlow application</a><a class="headerlink" href="#create-a-chatflow-application" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to the <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> and create a new
+application.</li>
+</ol>
+<img alt="_images/kik-new-app.png" class="align-center" src="_images/kik-new-app.png" />
+<ol class="arabic simple" start="2">
+<li>Drag the <strong>kik In</strong> and <strong>kik Out</strong> nodes onto the canvas. Connect them together
+like the image below:</li>
+</ol>
 <img alt="_images/echoBot.png" class="align-center" src="_images/echoBot.png" />
-<p>Double click the <strong>kik In</strong> node, select &#8220;Add new kikbot-controller...&#8221; and click &#8220;Edit&#8221; button. Copy and paste
-&#8220;kik bot name&#8221; and &#8220;API Key&#8221; and click Add. Double click the <strong>kik Out</strong>  node and select the same controller.</p>
+<ol class="arabic simple" start="3">
+<li>Double click the <strong>kik In</strong> node, select &#8220;Add new kikbot-controller...&#8221;
+and click &#8220;Edit&#8221; button.</li>
+<li>Copy and paste &#8220;kik bot name&#8221; and &#8220;API Key&#8221; and click Add.</li>
+</ol>
 <img alt="_images/pasteCredentials.png" class="align-center" src="_images/pasteCredentials.png" />
-<p>Now deploy the application and check how it works. When you write to your bot, it answers you with the same message.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">write about the <code class="docutils literal"><span class="pre">msg.kik</span></code> structure and what types of messages it echoes (text, pic?, gif?)</p>
+<ol class="arabic simple" start="5">
+<li>Double click the <strong>kik Out</strong>  node and select the same controller.</li>
+</ol>
+<img alt="_images/kik-ouputnode.png" class="align-center" src="_images/kik-ouputnode.png" />
+<ol class="arabic simple" start="6">
+<li>Deploy the application.</li>
+</ol>
+<img alt="_images/kik-deploy.png" class="align-center" src="_images/kik-deploy.png" />
+<p>When you write to your bot, it answers you with the same message.</p>
+<p>In addition, here is a tutorial outlining the entire process.</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/XrQSL7zFjsE"
+    frameborder="0" allowfullscreen></iframe>
+
+ <br><br><br></div>
 </div>
+<div class="section" id="kik-in-and-kik-out-nodes">
+<h2><a class="toc-backref" href="#id13">kik In and kik Out Nodes</a><a class="headerlink" href="#kik-in-and-kik-out-nodes" title="Permalink to this headline">¶</a></h2>
+<p>In this section, we will explain the input and output of the <strong>kik In</strong> and
+<strong>kik Out</strong> nodes.</p>
+<div class="section" id="kik-in">
+<span id="kik-in-node"></span><h3><a class="toc-backref" href="#id14">kik In</a><a class="headerlink" href="#kik-in" title="Permalink to this headline">¶</a></h3>
+<p>The kik In node receives messages from kik. It has the following output:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="nx">kik</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Message&quot;</span><span class="p">,</span>
+             <span class="nx">user</span><span class="o">:</span> <span class="s2">&quot;User Name&quot;</span><span class="p">,</span>
+             <span class="nx">chatId</span><span class="o">:</span> <span class="s2">&quot;User chatId&quot;</span><span class="p">,</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;message type&quot;</span>
+             <span class="p">}</span>
+       <span class="nx">payload</span><span class="o">:</span> <span class="nx">payload</span>
+       <span class="nx">kitt</span><span class="o">:</span> <span class="p">{</span>
+              <span class="nx">_session_id</span><span class="o">:</span> <span class="nx">message</span><span class="p">.</span><span class="nx">chatId</span><span class="p">,</span>
+              <span class="nx">_user_id</span><span class="o">:</span> <span class="nx">message</span><span class="p">.</span><span class="nx">from</span><span class="p">,</span>
+              <span class="nx">_timeout</span><span class="o">:</span> <span class="mi">120</span>
+             <span class="p">}</span>
+       <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>kik.message is the original message received from the kik server. <code class="docutils literal"><span class="pre">payload</span></code> contains
+the message body (i.e. text, image, URL). <code class="docutils literal"><span class="pre">user</span></code> is the sender&#8217;s kik User name.
+<code class="docutils literal"><span class="pre">chatId</span></code> is the id of the chat where the message is received. <code class="docutils literal"><span class="pre">type</span></code> refers to the
+type of message received. Check out <a class="reference external" href="https://dev.kik.com/#/docs/messaging#message-formats">kik message formats</a>
+for more details.</p>
+</div>
+<div class="section" id="kik-out">
+<span id="kik-out-node"></span><h3><a class="toc-backref" href="#id15">kik Out</a><a class="headerlink" href="#kik-out" title="Permalink to this headline">¶</a></h3>
+<p>The kik Out node sends messages back to kik. It accepts input in the following
+format:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="nx">kik</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">user</span><span class="o">:</span> <span class="nx">username</span><span class="p">,</span>
+             <span class="nx">chatId</span><span class="o">:</span> <span class="nx">chatId</span><span class="p">,</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="nx">type</span><span class="p">,</span>
+             <span class="nx">suggestions</span><span class="o">:</span> <span class="nx">suggestions</span>
+       <span class="p">}</span>
+       <span class="nx">payload</span><span class="o">:</span> <span class="nx">payload</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p><code class="docutils literal"><span class="pre">payload</span></code> contains the message body (i.e. text, image, URL). <code class="docutils literal"><span class="pre">user</span></code> refers to
+the kik username. <code class="docutils literal"><span class="pre">chatId</span></code> refers to the chatId of the chat where the message
+will be sent.</p>
+<p><code class="docutils literal"><span class="pre">type</span></code> and <code class="docutils literal"><span class="pre">suggestions</span></code> are both optional. <code class="docutils literal"><span class="pre">type</span></code> refers to the message
+type. <code class="docutils literal"><span class="pre">suggestions</span></code> refers to an array of suggested answers to the bot. It
+sets the custom keyboard in kik app. See <a class="reference external" href="https://dev.kik.com/#/docs/messaging#keyboards">kik keyboards</a>
+for more details.</p>
 </div>
 </div>
 <div class="section" id="advanced-attachments-and-custom-keyboards">
-<h2>Advanced: attachments and custom keyboards<a class="headerlink" href="#advanced-attachments-and-custom-keyboards" title="Permalink to this headline">¶</a></h2>
-<p>In this part of the tutorial we will create a bot that shows you cat imapges of different color.</p>
+<h2><a class="toc-backref" href="#id16">Advanced: attachments and custom keyboards</a><a class="headerlink" href="#advanced-attachments-and-custom-keyboards" title="Permalink to this headline">¶</a></h2>
+<p>In this part of the tutorial, we will create a bot that shows you cat images of
+different color.</p>
+<div class="section" id="sending-attachments">
+<span id="id3"></span><h3><a class="toc-backref" href="#id17">Sending attachments</a><a class="headerlink" href="#sending-attachments" title="Permalink to this headline">¶</a></h3>
+<p>..TO.DO:: Provide information about attachments.</p>
+</div>
+<div class="section" id="creating-a-custom-keyboard">
+<span id="custom-keyboard"></span><h3><a class="toc-backref" href="#id18">Creating a custom keyboard</a><a class="headerlink" href="#creating-a-custom-keyboard" title="Permalink to this headline">¶</a></h3>
+<p>The portion of the tutorial will explain how to create a custom keyboard for
+your kik Bot.</p>
+<ol class="arabic simple">
+<li>Drag a function node onto the canvas and connect it to the kik Out Node.</li>
+</ol>
+<img alt="_images/CustomKeyBoard.png" class="align-center" src="_images/CustomKeyBoard.png" />
+<ol class="arabic simple" start="2">
+<li>Double click the function and edit the body of the function to set
+<code class="docutils literal"><span class="pre">msg.kik.suggestions</span></code> as an array of options. You can use the following
+template:</li>
+</ol>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kik</span><span class="p">.</span><span class="nx">suggestions</span><span class="o">=</span><span class="p">[</span>
+                     <span class="s1">&#39;Option 1&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;Option 2&#39;</span>
+                     <span class="p">];</span>
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</td></tr></table></div>
+<p>Final result should look something like this:</p>
+<a class="reference internal image-reference" href="_images/keyboardsample.png"><img alt="_images/keyboardsample.png" class="align-center" src="_images/keyboardsample.png" style="width: 320.0px; height: 530.0px;" /></a>
+</div>
+<div class="section" id="attachments-and-custom-keyboard-demo">
+<span id="import-colored-cats-app"></span><h3><a class="toc-backref" href="#id19">Attachments and Custom Keyboard Demo</a><a class="headerlink" href="#attachments-and-custom-keyboard-demo" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="importing-the-colored-cats-application">
-<span id="import-colored-cats-app"></span><h3>1. Importing the &#8220;Colored Cats&#8221; application<a class="headerlink" href="#importing-the-colored-cats-application" title="Permalink to this headline">¶</a></h3>
-<p>Import the application to ChatFlow. You can either:</p>
+<h4><a class="toc-backref" href="#id20">1. Importing the &#8220;Colored Cats&#8221; application</a><a class="headerlink" href="#importing-the-colored-cats-application" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>Import the application to ChatFlow. You can either:</li>
+</ol>
 <ul class="simple">
-<li>Download <a class="reference download internal" href="_downloads/KikColoredCats.json"><code class="xref download docutils literal"><span class="pre">json</span></code></a> of our application and import the project on the
+<li>Download <a class="reference download internal" href="_downloads/KikColoredCats.json" download=""><code class="xref download docutils literal"><span class="pre">json</span></code></a> of our application and import the project on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page, or,</li>
 <li>Use the &#8220;kik - Cat Choose&#8221; sample application when clicking &#8220;CREATE NEW APP&#8221; on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
 </ul>
-<p>Also please download <a class="reference download internal" href="_downloads/KikColoredCats-nlu.json"><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> to import it as
-<a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</p>
 <img alt="_images/coloredCats.png" class="align-center" src="_images/coloredCats.png" />
 </div>
 <div class="section" id="nlu-setup">
-<h3>2. NLU setup<a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h3>
-<p>First, go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json you get from <a class="reference internal" href="#import-colored-cats-app"><span>1. Importing the &#8220;Colored Cats&#8221; application</span></a>.
-Come back to ChatFlow and open the <strong>KITT.AI NLU</strong> node and paste URL you got from NLU there.
-Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>, so your final string would look like:</p>
-<div class="highlight-python"><div class="highlight"><pre>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+<h4><a class="toc-backref" href="#id21">2. NLU setup</a><a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>Download <a class="reference download internal" href="_downloads/KikColoredCats-nlu.json" download=""><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> to
+import it as <a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</li>
+<li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json.</li>
+</ol>
+<img alt="_images/import_JSON.png" class="align-center" src="_images/import_JSON.png" />
+<ol class="arabic simple" start="3">
+<li>Copy the deploymnet URL in the &#8220;Deployment Information&#8221; section. Don&#8217;t forget
+to deploy your NLU app!</li>
+</ol>
+<img alt="_images/Deployment_URL.png" class="align-center" src="_images/Deployment_URL.png" />
+<ol class="arabic simple" start="4">
+<li>In ChatFlow, open the <strong>KITT.AI NLU</strong> node and paste the Deployment URL.</li>
+</ol>
+<img alt="_images/kitt.png" class="align-center" src="_images/kitt.png" />
+<p>5. Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>, so your final string would look like:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 </pre></div>
 </div>
-<img alt="_images/kitt.png" class="align-center" src="_images/kitt.png" />
+<img alt="_images/nluNode1.png" class="align-center" src="_images/nluNode1.png" />
 </div>
 <div class="section" id="set-up-colored-cats-application">
-<h3>3. Set up &#8220;Colored Cats&#8221; application<a class="headerlink" href="#set-up-colored-cats-application" title="Permalink to this headline">¶</a></h3>
-<p>Now you should register the kik bot, as described in <a class="reference internal" href="#create-kik-bot"><span>1. Create a kik bot</span></a> section. Copy and paste bot name and bot API key, as
-described in <a class="reference internal" href="#create-chatflow-app"><span>2. Create a ChatFlow application</span></a> section.</p>
-<p>After deploying your application, you can write to your bot and tell him to show you the ct of chosen color.</p>
-<div class="admonition-todo admonition" id="index-1">
+<h4><a class="toc-backref" href="#id22">3. Set up &#8220;Colored Cats&#8221; application</a><a class="headerlink" href="#set-up-colored-cats-application" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>Register the kik bot, as described in <a class="reference internal" href="#create-kik-bot"><span class="std std-ref">1. Create a Kik Bot</span></a> section.</li>
+<li>Copy and paste bot name and bot API key, as described in <a class="reference internal" href="#create-chatflow-app"><span class="std std-ref">2. Create a ChatFlow application</span></a> section.</li>
+<li>Deploy the application!</li>
+</ol>
+<p>After deploying your application, you can write to your bot and tell him to show
+you a specific color cat.</p>
+<div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">write more about the &#8220;Cat 1&#8221; and &#8220;Cat 2&#8221; buttons that correspond to interactive messages.
 &#64;xuchen: May I ask to make here a video, too?</p>
@@ -345,8 +475,10 @@ described in <a class="reference internal" href="#create-chatflow-app"><span>2. 
 </div>
 </div>
 </div>
+</div>
 
 
+           </div>
           </div>
           <footer>
   
@@ -363,12 +495,23 @@ described in <a class="reference internal" href="#create-chatflow-app"><span>2. 
   <hr/>
 
   <div role="contentinfo">
-    <p>
+    <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 17, 2016.
+      Last updated on Aug 25, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 
 </footer>
 
@@ -395,7 +538,7 @@ described in <a class="reference internal" href="#create-chatflow-app"><span>2. 
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
 
   
 

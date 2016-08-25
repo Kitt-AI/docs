@@ -1,7 +1,4 @@
-{
-    "name": "Facebook - Weather forecast",
-    "description": "Shows how to send/receive with facebook messages, use templates and buttons",
-    "data": [
+      [
         {
             "id": "ab0a1dd8.2ccd2",
             "type": "tab",
@@ -399,4 +396,3 @@
             "method": "GET"
         }
     ]
-}

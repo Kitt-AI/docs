@@ -1,7 +1,4 @@
-{
-  "name": "kik - Colored Cats",
-  "description": "Shows you different cat photos, communicating through the kik nodes",
-  "data": [
+[
     {
         "id": "9fc32404.603cd8",
         "type": "tab",
@@ -353,4 +350,3 @@
         ]
     }
 ]
-}
