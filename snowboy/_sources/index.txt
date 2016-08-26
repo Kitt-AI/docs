@@ -24,6 +24,7 @@ Snowboy, a Customizable Hotword Detection Engine
 ################################################
 
 :Contact: snowboy@kitt.ai
+:Website: https://snowboy.kitt.ai
 :Github: https://github.com/kitt-ai/snowboy
 :Version: 1.0.4 (2016-07-13)
 
