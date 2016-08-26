@@ -1,0 +1,66 @@
+[
+    {
+        "id": "8dbf64d.db98498",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "f9b6790f.a49b68",
+        "type": "Twilio In",
+        "z": "8dbf64d.db98498",
+        "name": "",
+        "urlSuffix": "",
+        "x": 270,
+        "y": 520,
+        "wires": [
+            [
+                "9fa0b7f2.e70218",
+                "559de669.234408"
+            ]
+        ]
+    },
+    {
+        "id": "10233e34.16dfa2",
+        "type": "Twilio Out",
+        "z": "8dbf64d.db98498",
+        "name": "",
+        "from": "",
+        "toField": "",
+        "bodyField": "",
+        "respondMode": true,
+        "x": 690,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "9fa0b7f2.e70218",
+        "type": "function",
+        "z": "8dbf64d.db98498",
+        "name": "reverse body",
+        "func": "msg.payload = msg.payload.split('').reverse().join('');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 520,
+        "wires": [
+            [
+                "10233e34.16dfa2"
+            ]
+        ]
+    },
+    {
+        "id": "559de669.234408",
+        "type": "debug",
+        "z": "8dbf64d.db98498",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "twilio",
+        "x": 470,
+        "y": 440,
+        "wires": []
+    }
+]

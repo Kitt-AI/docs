@@ -1,0 +1,398 @@
+      [
+        {
+            "id": "ab0a1dd8.2ccd2",
+            "type": "tab",
+            "label": "Flow 1",
+            "in": [],
+            "out": [],
+            "wires": []
+        },
+        {
+            "id": "c50bb22f.e15f2",
+            "type": "facebook-in",
+            "name": "",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 250,
+            "y": 140,
+            "wires": [
+                [
+                    "86a78be9.647f48"
+                ]
+            ],
+            "facebook": "e1bd2dd4.56f3a"
+        },
+        {
+            "id": "c2e964b8.468868",
+            "type": "facebook-out",
+            "name": "",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 900,
+            "y": 140,
+            "wires": [],
+            "facebook": "e1bd2dd4.56f3a"
+        },
+        {
+            "id": "86a78be9.647f48",
+            "type": "KITT.AI",
+            "name": "",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 480,
+            "y": 80,
+            "wires": [
+                [
+                    "6cf22ea3.82f94"
+                ]
+            ],
+            "method": "GET",
+            "ret": "obj",
+            "url": "http://api.nlu4chatflow.kitt.ai/v1/api/51?q={{{payload}}}"
+        },
+        {
+            "id": "6cf22ea3.82f94",
+            "type": "router",
+            "name": "",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 670,
+            "y": 80,
+            "wires": [
+                [
+                    "c2e964b8.468868"
+                ]
+            ],
+            "timeout": "1800",
+            "userprop": "kitt._user_id",
+            "sessionprop": "kitt._session_id",
+            "debugOutput": "console"
+        },
+        {
+            "id": "8bdb613d.05822",
+            "type": "enter",
+            "name": "hello",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 170,
+            "y": 300,
+            "wires": [
+                [
+                    "ec044578.008468"
+                ]
+            ],
+            "outputs": 1,
+            "initialstate": false,
+            "directlink": false,
+            "rules": [
+                {
+                    "t": "eq",
+                    "p": "NLU.intent",
+                    "v": "hello"
+                }
+            ]
+        },
+        {
+            "id": "ec044578.008468",
+            "type": "state",
+            "name": "state",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 390,
+            "y": 300,
+            "wires": [
+                []
+            ],
+            "func": "global.set(\"place\",null);\nmsg.payload='Hello!\\n I can tell you current weather and forecast in different cities of the world'\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0,
+            "requestUserInput": false,
+            "finalstate": false,
+            "response": ""
+        },
+        {
+            "id": "fb7e3396.0bc72",
+            "type": "enter",
+            "name": "initial",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 170,
+            "y": 240,
+            "wires": [
+                [
+                    "ec044578.008468"
+                ]
+            ],
+            "outputs": 1,
+            "initialstate": true,
+            "directlink": false,
+            "rules": [
+                {
+                    "t": "eq",
+                    "p": "NLU.intent",
+                    "v": "hello"
+                }
+            ]
+        },
+        {
+            "id": "a5235b2e.4dc538",
+            "type": "enter",
+            "name": "bye",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 170,
+            "y": 400,
+            "wires": [
+                [
+                    "dbc81561.522be8"
+                ]
+            ],
+            "outputs": 1,
+            "initialstate": false,
+            "directlink": false,
+            "rules": [
+                {
+                    "t": "eq",
+                    "p": "NLU.intent",
+                    "v": "bye"
+                }
+            ]
+        },
+        {
+            "id": "dbc81561.522be8",
+            "type": "state",
+            "name": "state",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 390,
+            "y": 400,
+            "wires": [
+                []
+            ],
+            "func": "msg.payload=\"See you later, alligator!\"\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0,
+            "requestUserInput": false,
+            "finalstate": true,
+            "response": ""
+        },
+        {
+            "id": "ab8fa78.067e558",
+            "type": "enter",
+            "name": "weather",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 170,
+            "y": 500,
+            "wires": [
+                [
+                    "fd1d7a38.a36168"
+                ]
+            ],
+            "outputs": 1,
+            "rules": [
+                {
+                    "t": "eq",
+                    "p": "NLU.intent",
+                    "v": "weather"
+                }
+            ],
+            "directlink": false,
+            "initialstate": false
+        },
+        {
+            "id": "fd1d7a38.a36168",
+            "type": "function",
+            "name": "Set place",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 380,
+            "y": 500,
+            "wires": [
+                [
+                    "c2074029.aa4fa",
+                    "fd2b9457.683f68"
+                ]
+            ],
+            "func": "if(msg.NLU && msg.NLU.entities && \nmsg.NLU.entities[\"place\"])\n{\n    global.set(\"place\",msg.NLU.entities[\"place\"])\n}\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0
+        },
+        {
+            "id": "c2074029.aa4fa",
+            "type": "function",
+            "name": "No place?",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 570,
+            "y": 460,
+            "wires": [
+                [
+                    "e676cef1.71d9f"
+                ]
+            ],
+            "func": "if(global.get(\"place\"))\n    return null\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0
+        },
+        {
+            "id": "e676cef1.71d9f",
+            "type": "state",
+            "name": "Ask place",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 780,
+            "y": 460,
+            "wires": [
+                []
+            ],
+            "func": "msg.payload=\"Plase name your city\"\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0,
+            "response": "",
+            "finalstate": false,
+            "requestUserInput": false
+        },
+        {
+            "id": "fd2b9457.683f68",
+            "type": "function",
+            "name": "there is a place",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 580,
+            "y": 540,
+            "wires": [
+                [
+                    "abd8761e.864418",
+                    "bac871af.b5f8f"
+                ]
+            ],
+            "func": "if(global.get(\"place\")){\n    //set the HTTP parameters\n    msg.api_key=\"367ffb8441b3bc572bec61e86b252aa4\";\n    msg.city=global.get(\"place\");\n    \n    return msg;\n}\n    \nreturn null;",
+            "outputs": 1,
+            "noerr": 0
+        },
+        {
+            "id": "8d3c356a.8519f8",
+            "type": "http request",
+            "name": "",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 710,
+            "y": 660,
+            "wires": [
+                [
+                    "b3f9eeb8.552e1"
+                ]
+            ],
+            "url": "http://api.openweathermap.org/data/2.5/weather?appid={{{api_key}}}&q={{{city}}}&units=metric",
+            "ret": "obj",
+            "method": "GET"
+        },
+        {
+            "id": "b3f9eeb8.552e1",
+            "type": "state",
+            "name": "state",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 950,
+            "y": 660,
+            "wires": [
+                []
+            ],
+            "func": "var data=msg.payload\n\nvar state=data.weather[0].main;\nvar icon='http://openweathermap.org/img/w/'+data.weather[0].icon+'.png';\nvar temperatrure=data.main.temp;\nvar pressure=data.main.pressure;\nvar humidity=data.main.humidity;\nvar windSpeed=data.wind.speed;\nvar windDegree=data.wind.deg;\n\nvar getWindDirectionByDegree = function (degree) {\n    var directions = ['NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW',\n        'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'];\n\n    for (var i = 0; i < directions.length; i++) {\n        degree -= 22.5;\n        if (degree < 0)\n            return directions[i];\n    }\n\n    return directions[i];\n}\n\nvar windDirection=getWindDirectionByDegree(windDegree);\n\nvar buttons=[\n{\n    \"type\":\"postback\",\n    \"title\":\"Forecast\",\n    \"payload\":\"forecast\"\n},\n{\n    \"type\":\"web_url\",\n    \"title\":\"Bot created at ChatFlow\",\n    \"url\":\"https://chatflow.kitt.ai\"\n}]\n\nmsg.facebook.attachment={\n  \"type\":\"template\",\n  \"payload\":{\n    \"template_type\":\"generic\",\n    \"elements\":[\n      {\n        \"title\":\"Today's weather at \"+msg.city+\":\",\n        \"image_url\":icon,\n        \"subtitle\":state,\n        \"buttons\":buttons\n      },\n      {\n          \"title\":\"Temperature:\",\n          \"subtitle\":temperatrure+\" °C\",\n          \"buttons\":buttons\n      },\n      {\n          \"title\":\"Wind:\",\n          \"subtitle\":windSpeed+\" m/s \"+windDirection,\n          \"buttons\":buttons\n      },\n      {\n          \"title\":\"pressure:\",\n          \"subtitle\":pressure+\" hpa\",\n          \"buttons\":buttons\n      },\n      {\n          \"title\":\"Humidity:\",\n          \"subtitle\":humidity+\" %\",\n          \"buttons\":buttons\n      }\n    ]\n  }\n}\n\nmsg.payload=null;\n\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0,
+            "requestUserInput": false,
+            "finalstate": false,
+            "response": ""
+        },
+        {
+            "id": "abd8761e.864418",
+            "type": "function",
+            "name": "Today?",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 430,
+            "y": 660,
+            "wires": [
+                [
+                    "8d3c356a.8519f8"
+                ]
+            ],
+            "func": "if(!msg.NLU.entities[\"time\"] || msg.NLU.entities[\"time\"]==\"today\" || msg.NLU.entities[\"time\"]==\"now\")\n    return msg;",
+            "outputs": 1,
+            "noerr": 0
+        },
+        {
+            "id": "bac871af.b5f8f",
+            "type": "function",
+            "name": "Forecast?",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 430,
+            "y": 740,
+            "wires": [
+                [
+                    "71af7ed0.46e29"
+                ]
+            ],
+            "func": "if(msg.NLU.entities[\"time\"] && (msg.NLU.entities[\"time\"]!=\"today\" && msg.NLU.entities[\"time\"]!=\"now\"))\n    return msg;",
+            "outputs": 1,
+            "noerr": 0
+        },
+        {
+            "id": "726f58.581980a8",
+            "type": "state",
+            "name": "state",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 950,
+            "y": 740,
+            "wires": [
+                []
+            ],
+            "func": "var data=msg.payload\n\nvar states=[];\nvar icons=[];\nvar temps=[];\n\nmsg.payload.list.forEach(function(item){\n    states.push(item.weather[0].main);\n    icons.push('http://openweathermap.org/img/w/'+item.weather[0].icon+'.png');\n    temps.push(item.temp.min+\" - \"+item.temp.max+\" °C\");\n})\n\nvar daysOfWeek=[\"Sunday\",\"Monday\",\"Tuesday\",\"Wednsday\",\"Thursday\",\"Friday\",\"Saturday\"]\ndays=[];\nvar day=(new Date()).getDay();\nfor(var i=0;i<states.length;i++){\n    days.push(daysOfWeek[day]);\n    \n    day++;\n    if(day>=7)\n        day=0;\n}\n\nvar buttons=[\n{\n    \"type\":\"postback\",\n    \"title\":\"Today\",\n    \"payload\":\"today\"\n},\n{\n    \"type\":\"web_url\",\n    \"title\":\"Bot created at ChatFlow\",\n    \"url\":\"https://chatflow.kitt.ai\"\n}]\n\nvar elements=[];\n\nfor(var i=0;i<states.length;i++){\n    elements.push({\n        \"title\":days[i],\n        \"image_url\":icons[i],\n        \"subtitle\":(states[i]+\" \"+temps[i]),\n        \"buttons\":buttons\n    });\n}\n\nmsg.facebook.attachment={\n  \"type\":\"template\",\n  \"payload\":{\n    \"template_type\":\"generic\",\n    \"elements\":elements\n  }\n}\n\nmsg.payload=null;\n\nreturn msg;",
+            "outputs": 1,
+            "noerr": 0,
+            "requestUserInput": false,
+            "finalstate": false,
+            "response": ""
+        },
+        {
+            "id": "71af7ed0.46e29",
+            "type": "http request",
+            "name": "",
+            "z": "ab0a1dd8.2ccd2",
+            "in": [],
+            "out": [],
+            "x": 710,
+            "y": 740,
+            "wires": [
+                [
+                    "726f58.581980a8"
+                ]
+            ],
+            "url": "api.openweathermap.org/data/2.5/forecast/daily?appid={{{api_key}}}&q={{{city}}}&units=metric",
+            "ret": "obj",
+            "method": "GET"
+        }
+    ]

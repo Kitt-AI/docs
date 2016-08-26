@@ -1,0 +1,452 @@
+[
+    {
+        "id": "38e00c17.a3f604",
+        "type": "telegram-in",
+        "name": "",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 162,
+        "y": 76,
+        "wires": [
+            [
+                "a23a9d6a.b5e5b",
+                "84ebebd9.c98838"
+            ]
+        ],
+        "breakpoints": [],
+        "controller": "f787e79a.963968"
+    },
+    {
+        "id": "5a61781.170eb88",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": [],
+        "breakpoints": [],
+        "state": "running"
+    },
+    {
+        "id": "a23a9d6a.b5e5b",
+        "type": "switch",
+        "name": "1: inline 2: direct",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 367.90625,
+        "y": 95,
+        "wires": [
+            [
+                "deab686c.a76e98"
+            ],
+            [
+                "938dcbc7.98a288"
+            ]
+        ],
+        "outputs": 2,
+        "breakpoints": [],
+        "property": "telegram.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "vt": "str",
+                "v": "inline_query",
+                "t": "eq"
+            },
+            {
+                "vt": "str",
+                "v": "inline_query",
+                "t": "neq"
+            }
+        ],
+        "checkall": "true"
+    },
+    {
+        "id": "938dcbc7.98a288",
+        "type": "router",
+        "name": "",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 737.90625,
+        "y": 103,
+        "wires": [
+            [
+                "2efaa45d.5945cc"
+            ]
+        ],
+        "breakpoints": [],
+        "debugOutput": "console",
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "timeout": "0"
+    },
+    {
+        "id": "30e05225.fc0f6e",
+        "type": "Yelp",
+        "name": "",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 667,
+        "y": 288,
+        "wires": [
+            [
+                "a6f34b12.cda368"
+            ]
+        ],
+        "breakpoints": [],
+        "consumerKey": "",
+        "consumerSecret": "",
+        "token": "",
+        "tokenSecret": "",
+        "term": ""
+    },
+    {
+        "id": "72a48d45.6c5e14",
+        "type": "enter",
+        "name": "",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 165.90625,
+        "y": 184,
+        "wires": [
+            [
+                "16e7fa45.168666"
+            ]
+        ],
+        "outputs": 1,
+        "breakpoints": [],
+        "rules": [],
+        "directlink": false,
+        "initialstate": true
+    },
+    {
+        "id": "16e7fa45.168666",
+        "type": "state",
+        "name": "state",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 346.90625,
+        "y": 184,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\nmsg.kitt.address = null;\nmsg.kitt.ll = null;\nmsg.kitt.business = null;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be randomly\n// selected and concatenated to msg.reply,\n// which is the final output message back to user.\n\n// msg.kitt._responses = [???];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": [],
+        "response": "",
+        "finalstate": false
+    },
+    {
+        "id": "a4f7adf2.9656a",
+        "type": "enter",
+        "name": "got business & GPS",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 201,
+        "y": 261,
+        "wires": [
+            [
+                "2032b711.c01848"
+            ]
+        ],
+        "outputs": 1,
+        "breakpoints": [],
+        "rules": [
+            {
+                "p": "NLU.business",
+                "t": "nnull"
+            },
+            {
+                "p": "NLU.ll",
+                "t": "nnull"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "2032b711.c01848",
+        "type": "function",
+        "name": "prepare request",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 450.90625,
+        "y": 267,
+        "wires": [
+            [
+                "30e05225.fc0f6e"
+            ]
+        ],
+        "func": "// prepare yelp search\nmsg.kitt.business = msg.NLU.business;\n\nmsg.kitt.ll = msg.NLU.ll;\n\nmsg.yelp = {term: msg.kitt.business, \n    ll: msg.kitt.ll};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": []
+    },
+    {
+        "id": "a6f34b12.cda368",
+        "type": "state",
+        "name": "state",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 875.90625,
+        "y": 286,
+        "wires": [
+            []
+        ],
+        "func": "var results = msg.payload.businesses;\n\nif (results.length > 0) { \nvar responses = [];\nfor (var i=0; i<results.length; i++) {\n    var result = results[i];\n    var categories = [];\n    for (var j=0; j<result.categories.length; j++) {\n        categories.push(result.categories[j][0]);\n    }\n    responses.push({\n        type: \"venue\",\n        id: result.id,\n        title: result.name + \" (\" + categories.join(\", \") + \")\",\n        thumb_url: result.image_url,\n        latitude: result.location.coordinate.latitude,\n        longitude: result.location.coordinate.longitude,\n        address: result.review_count + \" reviews. Rating: \" + result.rating + \". \\n\" +\n                result.location.display_address.join(\" \")\n    });\n}\n    msg.payload = responses;\n    return msg;\n} else {\n    msg.payload = [{\n        type: \"article\",\n        id: \"no-result\",\n        title: \"No Yelp Result Found\",\n        input_message_content: {\n            message_text: 'e.g., \"dinner near downtown Chicago\"'\n        },\n        description: 'e.g., \"dinner near downtown Chicago\"'\n    }];\n\n    return msg;\n}\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": [],
+        "response": "",
+        "finalstate": true
+    },
+    {
+        "id": "deab686c.a76e98",
+        "type": "function",
+        "name": "Simple NLU for Inline Query",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 559,
+        "y": 42,
+        "wires": [
+            [
+                "938dcbc7.98a288"
+            ]
+        ],
+        "func": "var query = msg.payload.trim();\nif (!query)\n    // don't output empty msg\n    return;\n\nvar splits = query.split(\" near \");\nvar split_len = splits.length;\n\nif (!msg.NLU) {\n    msg.NLU = {};\n}\n\nif (split_len == 1) {\n    msg.NLU.business = splits[0];\n} else {\n    // \"chinese food near downtown seattle\"\n    msg.NLU.business = splits[0];\n    msg.NLU.address = splits[1];\n}\n\ntry {\n    if (msg.telegram.inline_query.location.latitude) {\n        // we got GPS coordinates from mobile\n        msg.NLU.ll = msg.telegram.inline_query.location.latitude+\",\"+\n            msg.telegram.inline_query.location.longitude;\n    }\n} catch (err) {}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": []
+    },
+    {
+        "id": "2efaa45d.5945cc",
+        "type": "telegram-out",
+        "name": "",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 934,
+        "y": 103,
+        "wires": [],
+        "breakpoints": [],
+        "controller": "f787e79a.963968"
+    },
+    {
+        "id": "f787e79a.963968",
+        "type": "telegram-controller",
+        "name": "YelpKittBot",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "wires": [],
+        "breakpoints": [],
+        "bot_token": ""
+    },
+    {
+        "id": "c0c9124e.e3052",
+        "type": "enter",
+        "name": "got business & address",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 197,
+        "y": 343,
+        "wires": [
+            [
+                "fc83c69b.5fa7d8"
+            ]
+        ],
+        "outputs": 1,
+        "breakpoints": [],
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "p": "NLU.business",
+                "t": "nnull"
+            },
+            {
+                "p": "NLU.address",
+                "t": "nnull"
+            }
+        ]
+    },
+    {
+        "id": "fc83c69b.5fa7d8",
+        "type": "function",
+        "name": "prepare request",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 445.90625,
+        "y": 337,
+        "wires": [
+            [
+                "30e05225.fc0f6e"
+            ]
+        ],
+        "func": "// prepare yelp search\nmsg.kitt.business = msg.NLU.business;\n\nmsg.kitt.address = msg.NLU.address;\n\nmsg.yelp = {term: msg.kitt.business, \n    location: msg.kitt.address};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": []
+    },
+    {
+        "id": "c4417ec6.98588",
+        "type": "enter",
+        "name": "got business & address & GPS",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 199,
+        "y": 407,
+        "wires": [
+            [
+                "fc83c69b.5fa7d8"
+            ]
+        ],
+        "outputs": 1,
+        "breakpoints": [],
+        "rules": [
+            {
+                "t": "nnull",
+                "p": "NLU.business"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.address"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.ll"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "c5f2e44b.c893b8",
+        "type": "state",
+        "name": "ask for address",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 766,
+        "y": 416,
+        "wires": [
+            []
+        ],
+        "func": "msg.NLU.business = null;\nmsg.payload = [{\n    type: \"article\",\n    id: \"no-address\",\n    title: \"No Address Detected\",\n    input_message_content: {\n        message_text: 'e.g., \"dinner near downtown Chicago\"'\n    },\n    description: 'e.g., \"dinner near downtown Chicago\"'\n}];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": [],
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "51c5141c.568d3c",
+        "type": "enter",
+        "name": "context: no address",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 543,
+        "y": 415,
+        "wires": [
+            [
+                "c5f2e44b.c893b8"
+            ]
+        ],
+        "outputs": 1,
+        "breakpoints": [],
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "null",
+                "p": "kitt.address"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.business"
+            },
+            {
+                "t": "null",
+                "p": "NLU.address"
+            },
+            {
+                "t": "null",
+                "p": "NLU.ll"
+            }
+        ]
+    },
+    {
+        "id": "a4784c63.bd2d2",
+        "type": "enter",
+        "name": "Direct Message",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 556.90625,
+        "y": 185,
+        "wires": [
+            [
+                "6973eec4.541a2"
+            ]
+        ],
+        "outputs": 1,
+        "breakpoints": [],
+        "rules": [
+            {
+                "v": "text",
+                "p": "telegram.type",
+                "t": "eq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "6973eec4.541a2",
+        "type": "state",
+        "name": "Not Supported",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "x": 783,
+        "y": 185,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be randomly\n// selected and concatenated to msg.reply,\n// which is the final output message back to user.\n\n// msg.kitt._responses = [???];\nnode.log(\"here\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "breakpoints": [],
+        "response": "Sorry, direct messages are not supported. Use the @ inline mode.",
+        "finalstate": true
+    },
+    {
+        "id": "84ebebd9.c98838",
+        "type": "debug",
+        "name": "",
+        "z": "5a61781.170eb88",
+        "in": [],
+        "out": [],
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 332,
+        "y": 40,
+        "wires": [],
+        "breakpoints": []
+    }
+]
