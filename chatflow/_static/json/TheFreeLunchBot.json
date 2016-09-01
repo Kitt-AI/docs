@@ -1,0 +1,263 @@
+[
+    {
+        "id": "f0db284d.3ba7c8",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "668fb76b.278408",
+        "type": "chat-server",
+        "name": "",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "9c04825a.8ce82",
+        "type": "chat-in",
+        "name": "",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "cc2eaff.531105"
+            ]
+        ],
+        "sessionField": "_sessionId",
+        "server": "668fb76b.278408"
+    },
+    {
+        "id": "da3cec1b.ad034",
+        "type": "chat-out",
+        "name": "",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 790,
+        "y": 280,
+        "wires": [],
+        "server": "668fb76b.278408"
+    },
+    {
+        "id": "e361fb1f.f38a58",
+        "type": "router",
+        "name": "",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "da3cec1b.ad034"
+            ]
+        ],
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "timeout": "1800"
+    },
+    {
+        "id": "170c0c63.ff8194",
+        "type": "enter",
+        "name": "Initial State",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 380,
+        "wires": [
+            [
+                "c41cbd1c.745b9"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [],
+        "directlink": false,
+        "initialstate": true
+    },
+    {
+        "id": "c41cbd1c.745b9",
+        "type": "state",
+        "name": "Initialize state",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 500,
+        "y": 380,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt.count = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Hello! Will you please buy me lunch?",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "a886ac2a.88863",
+        "type": "enter",
+        "name": "U: no",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "84f9c538.7e6e08"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "v": "negative_response",
+                "p": "NLU.intent",
+                "t": "eq"
+            }
+        ]
+    },
+    {
+        "id": "84f9c538.7e6e08",
+        "type": "state",
+        "name": "Ask again",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 490,
+        "y": 460,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt.count += 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "I must insist. Will you reconsider?"
+    },
+    {
+        "id": "8de088a1.befc58",
+        "type": "enter",
+        "name": "U: yes",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "92878512.b075d8"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "v": "positive_response",
+                "p": "NLU.intent",
+                "t": "eq"
+            }
+        ]
+    },
+    {
+        "id": "92878512.b075d8",
+        "type": "state",
+        "name": "thank user",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 490,
+        "y": 540,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": true,
+        "response": "Thank you! Number of times I asked: {{kitt.count}}"
+    },
+    {
+        "id": "6d7e416e.35679",
+        "type": "enter",
+        "name": "U: default",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 620,
+        "wires": [
+            [
+                "fa3dba3c.0c46e8"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "p": "payload",
+                "t": "nnull"
+            },
+            {
+                "v": "no",
+                "p": "payload",
+                "t": "neq"
+            },
+            {
+                "v": "yes",
+                "p": "payload",
+                "t": "neq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "fa3dba3c.0c46e8",
+        "type": "state",
+        "name": "not understanding",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 510,
+        "y": 620,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Sorry, I didn't understand what you said. I only understand \"yes\" and \"no\".*",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "cc2eaff.531105",
+        "type": "KITT.AI",
+        "name": "",
+        "z": "f0db284d.3ba7c8",
+        "in": [],
+        "out": [],
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "e361fb1f.f38a58"
+            ]
+        ],
+        "url": "https://api-nlu-test.kitt.ai/v1/api/baacc81b-1866-40ad-aad4-f2da51698e64?token=ayNtxrRiNMMnoGk6TUDFbA6RWR7K0dui&q={{{payload}}}N:",
+        "ret": "obj",
+        "method": "GET"
+    }
+]

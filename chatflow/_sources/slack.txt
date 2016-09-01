@@ -145,7 +145,16 @@ message you sent to it.
 
    * Enable your Slack bot application by clicking on the "Edit" button and the clicking on "Enable"
 
-.. TODO:: Xuchen's suggestion: why not show a quick video of talking to your Echo bot?
+Slack Echo Bot Tutorial Video
+_____________________________
+
+Here is a video tutorial walking you through the entire process of setting up an
+echobot.
+
+.. raw:: html
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/XnbXGnlfetE" frameborder="0" allowfullscreen></iframe>
+  <br><br><br>
+
 
 Slack In and Slack Out Nodes
 =============================

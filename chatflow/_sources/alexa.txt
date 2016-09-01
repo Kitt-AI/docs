@@ -21,58 +21,63 @@ You will learn:
 * Message structures of the **Alexa In** and **Alexa Out** nodes
 * How to display help card on the Alexa companion app on your smart phone
 
-Create an Alexa Copy Cat Chatflow app
-==========================================
+.. _copy_cat_skill:
 
-Go to ChatFlow_ and use the sample application "Alexa Copy Cat Skill":
+Create a Copy Cat Echo skill
+==============================
+
+1. Create an Alexa Copy Cat Chatflow app
+----------------------------------------
+
+1. Go to ChatFlow_ and create a new application using the sample application
+   "Alexa Copy Cat Skill":
 
 .. image:: _static/img/alexa/chatflow-copy-cat-app.png
    :align: center
 
 This app listens on incoming message sent from your Echo device through the
-**Alexa In** node and replies it with the **Alexa Out** node. We deploy this app
-first to register a webhook callback address through the **Alexa In** node:
+**Alexa In** node and replies it with the **Alexa Out** node.
+
+2. Deploy this app to register a webhook callback address through the
+   **Alexa In** node:
 
 .. image:: _static/img/alexa/alexa-in-node.png
    :align: center
 
-The "Final URL" will be used later in Step :ref:`alexa_config`.
+3. Copy the "Final URL" onto your clipboard. It will be used later in Step
+   :ref:`alexa_config`.
 
 .. TODO:: re-take this pic to change ``chatflow-test`` to ``chatflow``
    after production server is deployed.
 
 Now let's go to the Amazon developer console and register an Alexa skill there.
 
-.. _copy_cat_skill:
+.. _create_an_alexa_skill:
 
-Create a Copy Cat Echo skill
-==============================
-
+2. Create an Alexa Skill
+------------------------
 We want to create a skill that repeats what user says. For those who have worked
 with an Alexa skill, you already know by default Alexa only gives you the intent
 type and slots, but not the whole utterances. So the trick here is to use the
 ``AMAZON.LITERAL`` slot type to make the whole utterance a slot.
 
-.. _create_an_alexa_skill:
-
-Create an Alexa Skill
----------------------
-
-First log in to Amazon `developer console <https://developer.amazon.com>`_
-and click "ALEXA" to get started with the **Alexa Skills Kit**:
+1. Log in to Amazon `developer console <https://developer.amazon.com>`_
+   and click "ALEXA" to get started with the **Alexa Skills Kit**:
 
 .. image:: _static/img/alexa/alexa-get-started.png
    :align: center
 
-1. Skill Information
-********************
+.. _skill_information:
 
-On **Skill Information**, pick a skill name and invocation name:
+Skill Information
+*****************
+
+2. In **Skill Information**, pick a skill name and invocation name:
 
 .. image:: _static/img/alexa/skill-info.png
    :align: center
 
-On **Interaction Model**, input the following **Intent Schema**:
+3. In **Interaction Model**, input the following **Intent Schema**:
 
 .. code-block:: javascript
    :linenos:
@@ -97,10 +102,10 @@ recognition, while everything will be tagged as a single ``SuperIntent``.
 
 .. _sample_utterances:
 
-2. Sample Utterances
-********************
+Sample Utterances
+*****************
 
-The **Sample Utterances** are simply two lines:
+4. In **Sample Utterances**, enter these two lines:
 
 .. code-block:: javascript
 
@@ -114,53 +119,75 @@ We use ``z`` and ``z z`` here to enable both *single-word* and *multi-word* reco
 
 .. _alexa_config:
 
-3. Configuration
-*****************
+Configuration
+*************
 
-Enter the "Final URL" from **Alexa In** node:
+5. Paste the "Final URL" from **Alexa In** node:
 
 .. image:: _static/img/alexa/skill-config.png
    :align: center
 
-4. SSL Certificate
-*******************
+SSL Certificate
+***************
 
-KITT.AI uses a wildcard SSL certificate so select the second option:
+6. Select the wildcard SSL certificate option (the second option):
 
 .. image:: _static/img/alexa/skill-ssl.png
    :align: center
 
-5. Test
-*******************
+.. note:: KITT.AI uses a wildcard SSL certificat.
 
-Amazon provides a Voice & Service simulator before a skill is actually deployed.
-It is a great tool to help check and understand skill input and output.
-Here we simply input "hello there" to inspect the output from your Chatflow app:
+Test
+****
+
+.. note:: Amazon provides a Voice & Service simulator before a skill is actually deployed.
+          It is a great tool to help check and understand skill input and output.
+
+7. Test your application before deployment. Simply input "hello there" to
+   inspect the output from your Chatflow app
 
 .. image:: _static/img/alexa/skill-test.png
    :align: center
 
-6. Finishing up
-*******************
+Finishing up
+************
 
-Now please fill in the forms from **Publishing Information** and **Privacy & Compliance***.
-*Do not* click "Submit for Certification".
+8. Fill in the forms from **Publishing Information** and **Privacy & Compliance***.
 
-Open up your Alexa companion app from cellphone, under "Your skills", you should
-find your Copy Cat skill (only available to you):
+.. warning:: *Do not* click "Submit for Certification".
+
+9. Open up your Alexa companion app from cellphone. Under "Your skills", you should
+   see your Copy Cat skill.
+
+.. note:: Unpublished skills are only available to you!
 
 .. image:: _static/img/alexa/skill-on-app.png
    :align: center
    :width: 320
 
+.. _echo_bot_video_walkthrough:
 
-Test your skill with an Echo
-==============================
+Echo Bot Tutorial Video
+-----------------------
 
-Now let's use a real Echo device to test the Copy Cat app.
+.. raw:: html
 
-Incoming Message Structures
----------------------------
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/gJchjcdQPnU"
+       frameborder="0" allowfullscreen></iframe>
+   <br> <br> <br>
+
+.. _alexa_nodes:
+
+Alexa In and Out Nodes
+======================
+
+This section of the tutorial provides insight into message structures of the
+**Alexa In** and **Alexa Out** nodes
+
+.. _alexa_in:
+
+Alexa In
+--------
 
 The **Alexa In** node wraps an external request in ``msg.alexa``, which follows
 the Alexa `Request Format <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format>`_.
@@ -168,16 +195,16 @@ the Alexa `Request Format <https://developer.amazon.com/public/solutions/alexa/a
 There are three types of requests:
 
 1. `LaunchRequest <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#launchrequest>`_:
-   when you say "*Alexa, open <skill invocation name>*". At this time, Alexa should
-   play a welcome message or provide usage instructions. ``msg.kitt._skill_launched``
-   is set to ``true``.
+  when you say "*Alexa, open <skill invocation name>*". At this time, Alexa should
+  play a welcome message or provide usage instructions. ``msg.kitt._skill_launched``
+  is set to ``true``.
 2. `IntentRequest <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#intentrequest>`_:
-   when you engage with a skill in a session. The very first message in this session
-   has ``msg.alexa.session.new = true``. The rest has it ``false``. ``msg.kitt._session_started``
-   reflects this.
+  when you engage with a skill in a session. The very first message in this session
+  has ``msg.alexa.session.new = true``. The rest has it ``false``. ``msg.kitt._session_started``
+  reflects this.
 3. `SessionEndedRequest <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#sessionendedrequest>`_:
-   when you explicitly asks Alexa to exit from session, such as by saying "*exit*".
-   ``msg.kitt._session_ended`` is set to ``true``.
+  when you explicitly asks Alexa to exit from session, such as by saying "*exit*".
+  ``msg.kitt._session_ended`` is set to ``true``.
 
 Additionally, ``msg.kitt`` also automatically sets:
 
@@ -185,14 +212,39 @@ Additionally, ``msg.kitt`` also automatically sets:
 * ``msg.kitt._user_id`` from ``msg.alexa.session.user.userId``, used by the Router.
 * ``msg.kitt._timeout`` (by default 30 seconds), used by the Router.
 * ``msg.kitt._access_token`` from ``msg.alexa.session.user.accessToken`` if it appears.
-  It's the remote access token if user has enabled `account linking <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system>`_.
+ It's the remote access token if user has enabled `account linking <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system>`_.
 
 We will discuss ``msg.NLU`` in :ref:`intent_request` and outgoing message
 structures in :ref:`card_reprompt`.
 
+.. _alexa_out:
 
-Launch Skill
--------------
+Alexa Out
+---------
+The **Alexa Out** node sends a response back to the Alexa skill that called
+**Alexa In** node or **Alexa NLU** node.
+
+The response format follows `Amazon's specification <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#Response Format>`_.
+
+The `response <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-format>`_
+has the following properties:
+
+* ``version`` (string): the same as version in Alexa In request, otherwise 1.0
+* ``sessionAttributes`` (object): set from ``msg.kitt`` to persist across sessions.
+* ``response.outputSpeech`` *optional* (object): {type: "PlainText", text: msg.payload}. However, if available, ``msg.alexa.outputSpeech`` is assigned to ``response.outputSpeech`` -- this is helpful if users want to have SSML output.
+* ``response.card`` *optional* (object): set from ``msg.alexa.card`` if availalbe to hold a Card Object. More information can be found `here <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object>`_.
+* ``response.reprompt`` *optional* (object): set from ``msg.alexa.reprompt`` if availalbe to hold a Reprompt Object. More information can be found `here <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object>`_.
+* ``shouldEndSession`` (boolean): true if session is ended, then your skill will close and not expect further user input.
+
+.. _test_yout_skill:
+
+Test your skill with an Echo
+==============================
+
+Now let's use a real Echo device to test the Copy Cat app.
+
+1. Launch Skill
+---------------
 
 *You: "Alexa, open Copy Cat."*
 
@@ -206,8 +258,8 @@ When a user explicitly launches a skill, ``msg.kitt_skill_launched`` is set to
 
 .. _intent_request:
 
-Intent Request
----------------
+2. Intent Request
+-----------------
 
 *You: "Alexa, ask Copy Cat to repeat what I said."*
 
@@ -216,93 +268,97 @@ Intent Request
 *In companion Alexa app: a card shows up.*
 
 When user says *"ask Copy Cat to repeat what I said"*, the utterance
-*repeat what I said* is actually matched against :ref:`sample_utterances`:
+*repeat what I said* is matched against :ref:`sample_utterances`:
 
 .. code-block:: javascript
 
-   SuperIntent {z|Text}
-   SuperIntent {z z|Text}
+  SuperIntent {z|Text}
+  SuperIntent {z z|Text}
 
 Then ``msg.alexa.request`` will have the following ``intent`` property:
 
 .. code-block:: javascript
 
-    "intent": {
-        "name": "SuperIntent",
-        "slots": {
-            "Text": {
-                "name": "Text",
-                "value": "repeat what I said"
-            }
-        }
-    }
+   "intent": {
+       "name": "SuperIntent",
+       "slots": {
+           "Text": {
+               "name": "Text",
+               "value": "repeat what I said"
+           }
+       }
+   }
 
-Here we captured the whole utterance. By default the **Alexa In** node sets
+Here we capture the whole utterance. By default the **Alexa In** node sets
 this utterance from ``msg.alexa.request.intent.slots.Text.value`` to ``msg.payload``:
 
 .. image:: _static/img/alexa/alexa-in-node.png
-   :align: center
+  :align: center
 
-Of course you can specify your own if you used a different Intent Schema.
+.. note:: You can specify your own if you use a different Intent Schema.
 
-Then when new utterances come, the **On Intent** enter node handles them to
-echo back the utterances:
+Then when new utterances come, the **On Intent** enter node handles them
+ultimately echoing back the utterances:
 
 .. image:: _static/img/alexa/on-intent.png
-   :align: center
-
-When your Echo replies, not only does it say:
-
-*Echo: "I heard repeat what I said."*
-
-but also the companion app shows a card. If you do not respond, Alexa will
-reprompt you:
-
-*"You gotta say it S-L-O-W-L-Y slowly."*
-
-This is achieved by setting ``msg.alexa.card`` and ``msg.alexa.reprompt``.
-
-.. _card_reprompt:
-
-Card and Reprompt
------------------
+  :align: center
 
 The **Repeat User** state node defines how the outgoing messages look like:
 
 .. image:: _static/img/alexa/repeat-user.png
    :align: center
 
-Here ``msg.alexa.card`` follows the format of
-`Card Object <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object>`_
-and ``msg.alexa.reprompt`` follows `Reprompt Object <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object>`_.
-
 The final output from **Alexa Out** would follow the `Alexa Response Format <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-format>`_.
+
+.. _card_reprompt:
+
+Companion App Card
+------------------
+
+Continuing on from the pervious step, your Echo will reply with:
+
+*Echo: "I heard repeat what I said."*
+
+In addition, the companion app will show a card.
+
+This is achieved by setting ``msg.alexa.card``. ``msg.alexa.card`` follows the
+format of `Card Object <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object>`_
+
+Reprompt
+--------
+
+If you do not respond, Alexa will reprompt you with:
+
+*"You gotta say it S-L-O-W-L-Y slowly."*
+
+This is achieved by setting ``msg.alexa.reprompt``. ``msg.alexa.reprompt``
+follows the format of `Reprompt Object <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object>`_.
 
 Ask or Tell?
 -----------------
 
-If you want the current session to end, then in the state node, just specify:
+If you want the current session to end, then specify in a state node:
 
 ``msg.kitt._session_ended = true;``
 
 Alexa would end current session without expecting another user input.
 
-Otherwise, Alexa would be waiting for user input, and if to no avail, reprompt user.
+Otherwise, Alexa would be waiting for user input, and reprompt user if no user
+input is given.
 
 More Advanced Tutorials
-==============================
+=======================
 
-So far we have created an "Echo" (we called it Copy Cat) Echo skill by forcing
-Alexa output the utterance *verbatim*. However, we did not deal with *understanding*
-the sentence at all. There are two ways to go from here:
+So far we have created an "Echo" skill called Copy Cat by forcing Alexa output
+the utterance *verbatim*. However, we did not deal with *understanding* the
+sentence at all. There are two ways to go from here:
 
-1. Simply plug in a KITT.AI NLU node to handle NLU ourselves:
+The first opition is to simply plug in a KITT.AI NLU node to handle NLU ourselves:
 
 .. image:: _static/img/alexa/alexa-kitt-nlu.png
    :align: center
 
 However, we do not recommend this way because Alexa's speech output might not be
-perfect. Instead we suggest:
-
-2. Use Alexa's own NLU with its language model smoothed out with in-domain
-utterances. We have created a more advanced tutorial :ref:`next <alexa_advanced_title>`.
+perfect. Instead we suggest that you use Alexa's own NLU with its language model
+smoothed out with in-domain utterances. We have created a more advanced
+tutorial :ref:`next <alexa_advanced_title>` to demonstrate how this is done.

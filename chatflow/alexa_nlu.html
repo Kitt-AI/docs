@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Advanced Alexa Skill Tutorial with NLU &mdash; ChatFlow 0.1 documentation</title>
+  <title>Advanced Alexa Skill NLU Tutorial &mdash; ChatFlow 0.1 documentation</title>
   
 
   
@@ -89,6 +89,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
@@ -98,10 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Alexa Skill Tutorial with NLU</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Alexa Skill NLU Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-an-nlu-project">Create an NLU Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exporting-to-alexa-format">Exporting to Alexa Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
@@ -146,10 +148,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Advanced Alexa Skill Tutorial with NLU</li>
+      <li>Advanced Alexa Skill NLU Tutorial</li>
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
         
             
             <a href="_sources/alexa_nlu.txt" rel="nofollow"> View page source</a>
@@ -163,26 +168,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="advanced-alexa-skill-tutorial-with-nlu">
-<h1><a class="toc-backref" href="#id1">Advanced Alexa Skill Tutorial with NLU</a><a class="headerlink" href="#advanced-alexa-skill-tutorial-with-nlu" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="advanced-alexa-skill-nlu-tutorial">
+<h1><a class="toc-backref" href="#id1">Advanced Alexa Skill NLU Tutorial</a><a class="headerlink" href="#advanced-alexa-skill-nlu-tutorial" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#advanced-alexa-skill-tutorial-with-nlu" id="id1">Advanced Alexa Skill Tutorial with NLU</a><ul>
+<li><a class="reference internal" href="#advanced-alexa-skill-nlu-tutorial" id="id1">Advanced Alexa Skill NLU Tutorial</a><ul>
 <li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
 <li><a class="reference internal" href="#create-an-nlu-project" id="id3">Create an NLU Project</a></li>
 <li><a class="reference internal" href="#exporting-to-alexa-format" id="id4">Exporting to Alexa Format</a></li>
+<li><a class="reference internal" href="#summary" id="id5">Summary</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
-<p>In the <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span class="std std-ref">previous</span></a> tutorial we implemented the <a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy">Wise Guy</a>
-skill with ChatFlow. Everything was smooth except one thing: creating the
-<a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets">Speech Assets</a>
-can still be a painful experience once your skill gets complicated.</p>
-<p>In this tutorial we will show how to use ChatFlow&#8217;s companion AI engine <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>
+<p>In the <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span class="std std-ref">previous</span></a> tutorial, we implemented the <a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy">Wise Guy</a>
+skill with ChatFlow. Everything was smooth except one thing - creating the
+<a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets">Speech Assets</a>.</p>
+<p>This still be a painful process, but luckily we have a solution - <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>.</p>
+<p>In this tutorial, we will teach you how to use ChatFlow&#8217;s companion AI engine <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>
 to easily generate the Intent Schema and Sample Utterances needed for Speech Assets.</p>
 </div>
 <div class="section" id="create-an-nlu-project">
@@ -191,13 +197,24 @@ to easily generate the Intent Schema and Sample Utterances needed for Speech Ass
 It&#8217;s 6 minutes long and we hope you enjoy Kevin MacLeod&#8217;s Firebrand as background
 music.</p>
 <iframe width="420" height="315" src="https://www.youtube.com/embed/Wi4vXT92UWo"
-    frameborder="0" allowfullscreen></iframe><p>You can quickly reproduce this project by importing this <a class="reference download internal" href="_downloads/Wise_Guy_Skill_NLU.json" download=""><code class="xref download docutils literal"><span class="pre">JSON</span> <span class="pre">file</span></code></a>
+    frameborder="0" allowfullscreen></iframe><p>You can also quickly reproduce this project by importing this <a class="reference download internal" href="_downloads/Wise_Guy_Skill_NLU.json" download=""><code class="xref download docutils literal"><span class="pre">JSON</span> <span class="pre">file</span></code></a>
 in <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>.</p>
 </div>
 <div class="section" id="exporting-to-alexa-format">
 <h2><a class="toc-backref" href="#id4">Exporting to Alexa Format</a><a class="headerlink" href="#exporting-to-alexa-format" title="Permalink to this headline">¶</a></h2>
-<p>Now click &#8220;Export&#8221; -&gt; &#8220;Alexa Skills&#8221;, three speech assets will appear.
-They all follow the format of ASK <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference">Custom Interaction Model</a>.</p>
+<ol class="arabic simple">
+<li>Click &#8220;Export&#8221; then &#8220;Alexa Skills&#8221;, a pop up with the three speech assets will appear.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The three fields follow the format of ASK <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference">Custom Interaction Model</a>.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li>Copy all three sections into their respective sections in the Alexa Skill Kit
+developer.</li>
+</ol>
+<p>Below is an example of what you should expect as the output of the Export/Alexa
+feature.</p>
 <p><strong>Intent Schema</strong></p>
 <p>The Intent Schema will contain only user-defined intent and slot. If you need
 any Amazon default intent, please manually add them.</p>
@@ -224,7 +241,7 @@ any Amazon default intent, please manually add them.</p>
 </div>
 <p><strong>Custom Slots</strong></p>
 <p>Custom Slots are list of phrases for slots (entities). NLU also supports list of
-regular expressions to match entities but the Alexa console does not support it.</p>
+regular expressions to match entities. The Alexa console does not support it.</p>
 <div class="highlight-java"><div class="highlight"><pre><span></span><span class="nl">LIST_OF_SetupName:</span>
 <span class="n">to</span>
 <span class="n">beets</span>
@@ -288,14 +305,18 @@ to new improved interfaces.</p>
 </pre></div>
 </div>
 <p>Finally, copy these exports and fill them in the Interaction Model following
-Step <a class="reference internal" href="alexa.html#sample-utterances"><span class="std std-ref">2. Sample Utterances</span></a> in the basic Alexa tutorial:</p>
+Step <a class="reference internal" href="alexa.html#sample-utterances"><span class="std std-ref">Sample Utterances</span></a> in the basic Alexa tutorial:</p>
 <img alt="_images/wise-guy-interaction-model.png" class="align-center" src="_images/wise-guy-interaction-model.png" />
-<p>Now we have shown you how to quickly build an NLU project and incorporate it
-to an Alexa Skill. KITT.AI <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> provides an interactive interface for you to
-quickly bootstrap an NLU engine with minimal data. You can immediately observe
-system&#8217;s performance, mark and correct inaccurate predictions, and improve the
-NLU engine on the fly. It&#8217;s a great assistant to building an Alexa skill.</p>
-<p>Now go build your own awesome Alexa skills.</p>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id5">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we have shown you how to quickly build an NLU project and
+incorporate it into an Alexa Skill. KITT.AI <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> provides an interactive interface
+for you to quickly bootstrap an NLU engine with minimal data. You can immediately
+observe system&#8217;s performance, mark and correct inaccurate predictions, and
+improve the NLU engine on the fly. It&#8217;s a great assistant to building an Alexa
+skill.</p>
+<p>Happy Alexa skills building!!!</p>
 </div>
 </div>
 
@@ -319,7 +340,7 @@ NLU engine on the fly. It&#8217;s a great assistant to building an Alexa skill.<
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 

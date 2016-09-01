@@ -89,6 +89,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
@@ -98,24 +99,30 @@
 <li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Alexa Skill Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#create-an-alexa-skill">Create an Alexa Skill</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#skill-information">1. Skill Information</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#sample-utterances">2. Sample Utterances</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configuration">3. Configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ssl-certificate">4. SSL Certificate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#test">5. Test</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#finishing-up">6. Finishing up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-alexa-copy-cat-chatflow-app">1. Create an Alexa Copy Cat Chatflow app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-alexa-skill">2. Create an Alexa Skill</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#skill-information">Skill Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-utterances">Sample Utterances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssl-certificate">SSL Certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finishing-up">Finishing up</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#echo-bot-tutorial-video">Echo Bot Tutorial Video</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#alexa-in-and-out-nodes">Alexa In and Out Nodes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#alexa-in">Alexa In</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alexa-out">Alexa Out</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#test-your-skill-with-an-echo">Test your skill with an Echo</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#incoming-message-structures">Incoming Message Structures</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#launch-skill">Launch Skill</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#intent-request">Intent Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#card-and-reprompt">Card and Reprompt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launch-skill">1. Launch Skill</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#intent-request">2. Intent Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#companion-app-card">Companion App Card</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reprompt">Reprompt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ask-or-tell">Ask or Tell?</a></li>
 </ul>
 </li>
@@ -123,7 +130,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -171,6 +178,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/alexa.txt" rel="nofollow"> View page source</a>
           
@@ -184,40 +194,46 @@
            <div itemprop="articleBody">
             
   <div class="section" id="alexa-skill-tutorials">
-<h1><a class="toc-backref" href="#id4">Alexa Skill Tutorials</a><a class="headerlink" href="#alexa-skill-tutorials" title="Permalink to this headline">¶</a></h1>
+<h1><a class="toc-backref" href="#id8">Alexa Skill Tutorials</a><a class="headerlink" href="#alexa-skill-tutorials" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#alexa-skill-tutorials" id="id4">Alexa Skill Tutorials</a><ul>
-<li><a class="reference internal" href="#introduction" id="id5">Introduction</a></li>
-<li><a class="reference internal" href="#create-an-alexa-copy-cat-chatflow-app" id="id6">Create an Alexa Copy Cat Chatflow app</a></li>
-<li><a class="reference internal" href="#create-a-copy-cat-echo-skill" id="id7">Create a Copy Cat Echo skill</a><ul>
-<li><a class="reference internal" href="#create-an-alexa-skill" id="id8">Create an Alexa Skill</a><ul>
-<li><a class="reference internal" href="#skill-information" id="id9">1. Skill Information</a></li>
-<li><a class="reference internal" href="#sample-utterances" id="id10">2. Sample Utterances</a></li>
-<li><a class="reference internal" href="#configuration" id="id11">3. Configuration</a></li>
-<li><a class="reference internal" href="#ssl-certificate" id="id12">4. SSL Certificate</a></li>
-<li><a class="reference internal" href="#test" id="id13">5. Test</a></li>
-<li><a class="reference internal" href="#finishing-up" id="id14">6. Finishing up</a></li>
+<li><a class="reference internal" href="#alexa-skill-tutorials" id="id8">Alexa Skill Tutorials</a><ul>
+<li><a class="reference internal" href="#introduction" id="id9">Introduction</a></li>
+<li><a class="reference internal" href="#create-a-copy-cat-echo-skill" id="id10">Create a Copy Cat Echo skill</a><ul>
+<li><a class="reference internal" href="#create-an-alexa-copy-cat-chatflow-app" id="id11">1. Create an Alexa Copy Cat Chatflow app</a></li>
+<li><a class="reference internal" href="#create-an-alexa-skill" id="id12">2. Create an Alexa Skill</a><ul>
+<li><a class="reference internal" href="#skill-information" id="id13">Skill Information</a></li>
+<li><a class="reference internal" href="#sample-utterances" id="id14">Sample Utterances</a></li>
+<li><a class="reference internal" href="#configuration" id="id15">Configuration</a></li>
+<li><a class="reference internal" href="#ssl-certificate" id="id16">SSL Certificate</a></li>
+<li><a class="reference internal" href="#test" id="id17">Test</a></li>
+<li><a class="reference internal" href="#finishing-up" id="id18">Finishing up</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#echo-bot-tutorial-video" id="id19">Echo Bot Tutorial Video</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#test-your-skill-with-an-echo" id="id15">Test your skill with an Echo</a><ul>
-<li><a class="reference internal" href="#incoming-message-structures" id="id16">Incoming Message Structures</a></li>
-<li><a class="reference internal" href="#launch-skill" id="id17">Launch Skill</a></li>
-<li><a class="reference internal" href="#intent-request" id="id18">Intent Request</a></li>
-<li><a class="reference internal" href="#card-and-reprompt" id="id19">Card and Reprompt</a></li>
-<li><a class="reference internal" href="#ask-or-tell" id="id20">Ask or Tell?</a></li>
+<li><a class="reference internal" href="#alexa-in-and-out-nodes" id="id20">Alexa In and Out Nodes</a><ul>
+<li><a class="reference internal" href="#alexa-in" id="id21">Alexa In</a></li>
+<li><a class="reference internal" href="#alexa-out" id="id22">Alexa Out</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#more-advanced-tutorials" id="id21">More Advanced Tutorials</a></li>
+<li><a class="reference internal" href="#test-your-skill-with-an-echo" id="id23">Test your skill with an Echo</a><ul>
+<li><a class="reference internal" href="#launch-skill" id="id24">1. Launch Skill</a></li>
+<li><a class="reference internal" href="#intent-request" id="id25">2. Intent Request</a></li>
+<li><a class="reference internal" href="#companion-app-card" id="id26">Companion App Card</a></li>
+<li><a class="reference internal" href="#reprompt" id="id27">Reprompt</a></li>
+<li><a class="reference internal" href="#ask-or-tell" id="id28">Ask or Tell?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#more-advanced-tutorials" id="id29">More Advanced Tutorials</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id5">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial we will walk through a simple Alexa skill that repeats user input.
 You will learn:</p>
 <ul class="simple">
@@ -227,15 +243,26 @@ You will learn:</p>
 <li>How to display help card on the Alexa companion app on your smart phone</li>
 </ul>
 </div>
+<div class="section" id="create-a-copy-cat-echo-skill">
+<span id="copy-cat-skill"></span><h2><a class="toc-backref" href="#id10">Create a Copy Cat Echo skill</a><a class="headerlink" href="#create-a-copy-cat-echo-skill" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-an-alexa-copy-cat-chatflow-app">
-<h2><a class="toc-backref" href="#id6">Create an Alexa Copy Cat Chatflow app</a><a class="headerlink" href="#create-an-alexa-copy-cat-chatflow-app" title="Permalink to this headline">¶</a></h2>
-<p>Go to <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> and use the sample application &#8220;Alexa Copy Cat Skill&#8221;:</p>
+<h3><a class="toc-backref" href="#id11">1. Create an Alexa Copy Cat Chatflow app</a><a class="headerlink" href="#create-an-alexa-copy-cat-chatflow-app" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> and create a new application using the sample application
+&#8220;Alexa Copy Cat Skill&#8221;:</li>
+</ol>
 <img alt="_images/chatflow-copy-cat-app.png" class="align-center" src="_images/chatflow-copy-cat-app.png" />
 <p>This app listens on incoming message sent from your Echo device through the
-<strong>Alexa In</strong> node and replies it with the <strong>Alexa Out</strong> node. We deploy this app
-first to register a webhook callback address through the <strong>Alexa In</strong> node:</p>
+<strong>Alexa In</strong> node and replies it with the <strong>Alexa Out</strong> node.</p>
+<ol class="arabic simple" start="2">
+<li>Deploy this app to register a webhook callback address through the
+<strong>Alexa In</strong> node:</li>
+</ol>
 <img alt="_images/alexa-in-node.png" class="align-center" src="_images/alexa-in-node.png" />
-<p>The &#8220;Final URL&#8221; will be used later in Step <a class="reference internal" href="#alexa-config"><span class="std std-ref">3. Configuration</span></a>.</p>
+<ol class="arabic simple" start="3">
+<li>Copy the &#8220;Final URL&#8221; onto your clipboard. It will be used later in Step
+<a class="reference internal" href="#alexa-config"><span class="std std-ref">Configuration</span></a>.</li>
+</ol>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">re-take this pic to change <code class="docutils literal"><span class="pre">chatflow-test</span></code> to <code class="docutils literal"><span class="pre">chatflow</span></code>
@@ -243,22 +270,26 @@ after production server is deployed.</p>
 </div>
 <p>Now let&#8217;s go to the Amazon developer console and register an Alexa skill there.</p>
 </div>
-<div class="section" id="create-a-copy-cat-echo-skill">
-<span id="copy-cat-skill"></span><h2><a class="toc-backref" href="#id7">Create a Copy Cat Echo skill</a><a class="headerlink" href="#create-a-copy-cat-echo-skill" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-an-alexa-skill">
+<span id="id1"></span><h3><a class="toc-backref" href="#id12">2. Create an Alexa Skill</a><a class="headerlink" href="#create-an-alexa-skill" title="Permalink to this headline">¶</a></h3>
 <p>We want to create a skill that repeats what user says. For those who have worked
 with an Alexa skill, you already know by default Alexa only gives you the intent
 type and slots, but not the whole utterances. So the trick here is to use the
 <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span></code> slot type to make the whole utterance a slot.</p>
-<div class="section" id="create-an-alexa-skill">
-<span id="id1"></span><h3><a class="toc-backref" href="#id8">Create an Alexa Skill</a><a class="headerlink" href="#create-an-alexa-skill" title="Permalink to this headline">¶</a></h3>
-<p>First log in to Amazon <a class="reference external" href="https://developer.amazon.com">developer console</a>
-and click &#8220;ALEXA&#8221; to get started with the <strong>Alexa Skills Kit</strong>:</p>
+<ol class="arabic simple">
+<li>Log in to Amazon <a class="reference external" href="https://developer.amazon.com">developer console</a>
+and click &#8220;ALEXA&#8221; to get started with the <strong>Alexa Skills Kit</strong>:</li>
+</ol>
 <img alt="_images/alexa-get-started.png" class="align-center" src="_images/alexa-get-started.png" />
 <div class="section" id="skill-information">
-<h4><a class="toc-backref" href="#id9">1. Skill Information</a><a class="headerlink" href="#skill-information" title="Permalink to this headline">¶</a></h4>
-<p>On <strong>Skill Information</strong>, pick a skill name and invocation name:</p>
+<span id="id2"></span><h4><a class="toc-backref" href="#id13">Skill Information</a><a class="headerlink" href="#skill-information" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="2">
+<li>In <strong>Skill Information</strong>, pick a skill name and invocation name:</li>
+</ol>
 <img alt="_images/skill-info.png" class="align-center" src="_images/skill-info.png" />
-<p>On <strong>Interaction Model</strong>, input the following <strong>Intent Schema</strong>:</p>
+<ol class="arabic simple" start="3">
+<li>In <strong>Interaction Model</strong>, input the following <strong>Intent Schema</strong>:</li>
+</ol>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -291,8 +322,10 @@ we use the <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span
 recognition, while everything will be tagged as a single <code class="docutils literal"><span class="pre">SuperIntent</span></code>.</p>
 </div>
 <div class="section" id="sample-utterances">
-<span id="id2"></span><h4><a class="toc-backref" href="#id10">2. Sample Utterances</a><a class="headerlink" href="#sample-utterances" title="Permalink to this headline">¶</a></h4>
-<p>The <strong>Sample Utterances</strong> are simply two lines:</p>
+<span id="id3"></span><h4><a class="toc-backref" href="#id14">Sample Utterances</a><a class="headerlink" href="#sample-utterances" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="4">
+<li>In <strong>Sample Utterances</strong>, enter these two lines:</li>
+</ol>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 <span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span> <span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 </pre></div>
@@ -301,66 +334,125 @@ recognition, while everything will be tagged as a single <code class="docutils l
 <img alt="_images/interaction-model.png" class="align-center" src="_images/interaction-model.png" />
 </div>
 <div class="section" id="configuration">
-<span id="alexa-config"></span><h4><a class="toc-backref" href="#id11">3. Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
-<p>Enter the &#8220;Final URL&#8221; from <strong>Alexa In</strong> node:</p>
+<span id="alexa-config"></span><h4><a class="toc-backref" href="#id15">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="5">
+<li>Paste the &#8220;Final URL&#8221; from <strong>Alexa In</strong> node:</li>
+</ol>
 <img alt="_images/skill-config.png" class="align-center" src="_images/skill-config.png" />
 </div>
 <div class="section" id="ssl-certificate">
-<h4><a class="toc-backref" href="#id12">4. SSL Certificate</a><a class="headerlink" href="#ssl-certificate" title="Permalink to this headline">¶</a></h4>
-<p>KITT.AI uses a wildcard SSL certificate so select the second option:</p>
+<h4><a class="toc-backref" href="#id16">SSL Certificate</a><a class="headerlink" href="#ssl-certificate" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="6">
+<li>Select the wildcard SSL certificate option (the second option):</li>
+</ol>
 <img alt="_images/skill-ssl.png" class="align-center" src="_images/skill-ssl.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">KITT.AI uses a wildcard SSL certificat.</p>
+</div>
 </div>
 <div class="section" id="test">
-<h4><a class="toc-backref" href="#id13">5. Test</a><a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h4>
-<p>Amazon provides a Voice &amp; Service simulator before a skill is actually deployed.
-It is a great tool to help check and understand skill input and output.
-Here we simply input &#8220;hello there&#8221; to inspect the output from your Chatflow app:</p>
+<h4><a class="toc-backref" href="#id17">Test</a><a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h4>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Amazon provides a Voice &amp; Service simulator before a skill is actually deployed.
+It is a great tool to help check and understand skill input and output.</p>
+</div>
+<ol class="arabic simple" start="7">
+<li>Test your application before deployment. Simply input &#8220;hello there&#8221; to
+inspect the output from your Chatflow app</li>
+</ol>
 <img alt="_images/skill-test.png" class="align-center" src="_images/skill-test.png" />
 </div>
 <div class="section" id="finishing-up">
-<h4><a class="toc-backref" href="#id14">6. Finishing up</a><a class="headerlink" href="#finishing-up" title="Permalink to this headline">¶</a></h4>
-<p>Now please fill in the forms from <strong>Publishing Information</strong> and <strong>Privacy &amp; Compliance*</strong>.
-<em>Do not</em> click &#8220;Submit for Certification&#8221;.</p>
-<p>Open up your Alexa companion app from cellphone, under &#8220;Your skills&#8221;, you should
-find your Copy Cat skill (only available to you):</p>
+<h4><a class="toc-backref" href="#id18">Finishing up</a><a class="headerlink" href="#finishing-up" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="8">
+<li>Fill in the forms from <strong>Publishing Information</strong> and <strong>Privacy &amp; Compliance*</strong>.</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><em>Do not</em> click &#8220;Submit for Certification&#8221;.</p>
+</div>
+<ol class="arabic simple" start="9">
+<li>Open up your Alexa companion app from cellphone. Under &#8220;Your skills&#8221;, you should
+see your Copy Cat skill.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unpublished skills are only available to you!</p>
+</div>
 <a class="reference internal image-reference" href="_images/skill-on-app.png"><img alt="_images/skill-on-app.png" class="align-center" src="_images/skill-on-app.png" style="width: 320px;" /></a>
 </div>
 </div>
+<div class="section" id="echo-bot-tutorial-video">
+<span id="echo-bot-video-walkthrough"></span><h3><a class="toc-backref" href="#id19">Echo Bot Tutorial Video</a><a class="headerlink" href="#echo-bot-tutorial-video" title="Permalink to this headline">¶</a></h3>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/gJchjcdQPnU"
+    frameborder="0" allowfullscreen></iframe>
+<br> <br> <br></div>
 </div>
-<div class="section" id="test-your-skill-with-an-echo">
-<h2><a class="toc-backref" href="#id15">Test your skill with an Echo</a><a class="headerlink" href="#test-your-skill-with-an-echo" title="Permalink to this headline">¶</a></h2>
-<p>Now let&#8217;s use a real Echo device to test the Copy Cat app.</p>
-<div class="section" id="incoming-message-structures">
-<h3><a class="toc-backref" href="#id16">Incoming Message Structures</a><a class="headerlink" href="#incoming-message-structures" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="alexa-in-and-out-nodes">
+<span id="alexa-nodes"></span><h2><a class="toc-backref" href="#id20">Alexa In and Out Nodes</a><a class="headerlink" href="#alexa-in-and-out-nodes" title="Permalink to this headline">¶</a></h2>
+<p>This section of the tutorial provides insight into message structures of the
+<strong>Alexa In</strong> and <strong>Alexa Out</strong> nodes</p>
+<div class="section" id="alexa-in">
+<span id="id4"></span><h3><a class="toc-backref" href="#id21">Alexa In</a><a class="headerlink" href="#alexa-in" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>Alexa In</strong> node wraps an external request in <code class="docutils literal"><span class="pre">msg.alexa</span></code>, which follows
 the Alexa <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format">Request Format</a>.</p>
 <p>There are three types of requests:</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#launchrequest">LaunchRequest</a>:
-when you say &#8220;<em>Alexa, open &lt;skill invocation name&gt;</em>&#8221;. At this time, Alexa should
-play a welcome message or provide usage instructions. <code class="docutils literal"><span class="pre">msg.kitt._skill_launched</span></code>
-is set to <code class="docutils literal"><span class="pre">true</span></code>.</li>
-<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#intentrequest">IntentRequest</a>:
-when you engage with a skill in a session. The very first message in this session
-has <code class="docutils literal"><span class="pre">msg.alexa.session.new</span> <span class="pre">=</span> <span class="pre">true</span></code>. The rest has it <code class="docutils literal"><span class="pre">false</span></code>. <code class="docutils literal"><span class="pre">msg.kitt._session_started</span></code>
-reflects this.</li>
-<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#sessionendedrequest">SessionEndedRequest</a>:
-when you explicitly asks Alexa to exit from session, such as by saying &#8220;<em>exit</em>&#8221;.
-<code class="docutils literal"><span class="pre">msg.kitt._session_ended</span></code> is set to <code class="docutils literal"><span class="pre">true</span></code>.</li>
+<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#launchrequest">LaunchRequest</a>:</li>
 </ol>
+<blockquote>
+<div>when you say &#8220;<em>Alexa, open &lt;skill invocation name&gt;</em>&#8221;. At this time, Alexa should
+play a welcome message or provide usage instructions. <code class="docutils literal"><span class="pre">msg.kitt._skill_launched</span></code>
+is set to <code class="docutils literal"><span class="pre">true</span></code>.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#intentrequest">IntentRequest</a>:</li>
+</ol>
+<blockquote>
+<div>when you engage with a skill in a session. The very first message in this session
+has <code class="docutils literal"><span class="pre">msg.alexa.session.new</span> <span class="pre">=</span> <span class="pre">true</span></code>. The rest has it <code class="docutils literal"><span class="pre">false</span></code>. <code class="docutils literal"><span class="pre">msg.kitt._session_started</span></code>
+reflects this.</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#sessionendedrequest">SessionEndedRequest</a>:</li>
+</ol>
+<blockquote>
+<div>when you explicitly asks Alexa to exit from session, such as by saying &#8220;<em>exit</em>&#8221;.
+<code class="docutils literal"><span class="pre">msg.kitt._session_ended</span></code> is set to <code class="docutils literal"><span class="pre">true</span></code>.</div></blockquote>
 <p>Additionally, <code class="docutils literal"><span class="pre">msg.kitt</span></code> also automatically sets:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">msg.kitt._session_id</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.sessionId</span></code>, used by the Router.</li>
 <li><code class="docutils literal"><span class="pre">msg.kitt._user_id</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.user.userId</span></code>, used by the Router.</li>
 <li><code class="docutils literal"><span class="pre">msg.kitt._timeout</span></code> (by default 30 seconds), used by the Router.</li>
-<li><code class="docutils literal"><span class="pre">msg.kitt._access_token</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.user.accessToken</span></code> if it appears.
-It&#8217;s the remote access token if user has enabled <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system">account linking</a>.</li>
+<li><code class="docutils literal"><span class="pre">msg.kitt._access_token</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.user.accessToken</span></code> if it appears.</li>
 </ul>
-<p>We will discuss <code class="docutils literal"><span class="pre">msg.NLU</span></code> in <a class="reference internal" href="#intent-request"><span class="std std-ref">Intent Request</span></a> and outgoing message
-structures in <a class="reference internal" href="#card-reprompt"><span class="std std-ref">Card and Reprompt</span></a>.</p>
+<blockquote>
+<div>It&#8217;s the remote access token if user has enabled <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system">account linking</a>.</div></blockquote>
+<p>We will discuss <code class="docutils literal"><span class="pre">msg.NLU</span></code> in <a class="reference internal" href="#intent-request"><span class="std std-ref">2. Intent Request</span></a> and outgoing message
+structures in <a class="reference internal" href="#card-reprompt"><span class="std std-ref">Companion App Card</span></a>.</p>
 </div>
+<div class="section" id="alexa-out">
+<span id="id5"></span><h3><a class="toc-backref" href="#id22">Alexa Out</a><a class="headerlink" href="#alexa-out" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Alexa Out</strong> node sends a response back to the Alexa skill that called
+<strong>Alexa In</strong> node or <strong>Alexa NLU</strong> node.</p>
+<p>The response format follows <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#ResponseFormat">Amazon&#8217;s specification</a>.</p>
+<p>The <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-format">response</a>
+has the following properties:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">version</span></code> (string): the same as version in Alexa In request, otherwise 1.0</li>
+<li><code class="docutils literal"><span class="pre">sessionAttributes</span></code> (object): set from <code class="docutils literal"><span class="pre">msg.kitt</span></code> to persist across sessions.</li>
+<li><code class="docutils literal"><span class="pre">response.outputSpeech</span></code> <em>optional</em> (object): {type: &#8220;PlainText&#8221;, text: msg.payload}. However, if available, <code class="docutils literal"><span class="pre">msg.alexa.outputSpeech</span></code> is assigned to <code class="docutils literal"><span class="pre">response.outputSpeech</span></code> &#8211; this is helpful if users want to have SSML output.</li>
+<li><code class="docutils literal"><span class="pre">response.card</span></code> <em>optional</em> (object): set from <code class="docutils literal"><span class="pre">msg.alexa.card</span></code> if availalbe to hold a Card Object. More information can be found <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object">here</a>.</li>
+<li><code class="docutils literal"><span class="pre">response.reprompt</span></code> <em>optional</em> (object): set from <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code> if availalbe to hold a Reprompt Object. More information can be found <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object">here</a>.</li>
+<li><code class="docutils literal"><span class="pre">shouldEndSession</span></code> (boolean): true if session is ended, then your skill will close and not expect further user input.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="test-your-skill-with-an-echo">
+<span id="test-yout-skill"></span><h2><a class="toc-backref" href="#id23">Test your skill with an Echo</a><a class="headerlink" href="#test-your-skill-with-an-echo" title="Permalink to this headline">¶</a></h2>
+<p>Now let&#8217;s use a real Echo device to test the Copy Cat app.</p>
 <div class="section" id="launch-skill">
-<h3><a class="toc-backref" href="#id17">Launch Skill</a><a class="headerlink" href="#launch-skill" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">1. Launch Skill</a><a class="headerlink" href="#launch-skill" title="Permalink to this headline">¶</a></h3>
 <p><em>You: &#8220;Alexa, open Copy Cat.&#8221;</em></p>
 <p><em>Echo: &#8220;Welcome. This is an Alexa Echo skill.&#8221;</em></p>
 <p>When a user explicitly launches a skill, <code class="docutils literal"><span class="pre">msg.kitt_skill_launched</span></code> is set to
@@ -368,12 +460,12 @@ structures in <a class="reference internal" href="#card-reprompt"><span class="s
 <img alt="_images/launch-skill.png" class="align-center" src="_images/launch-skill.png" />
 </div>
 <div class="section" id="intent-request">
-<span id="id3"></span><h3><a class="toc-backref" href="#id18">Intent Request</a><a class="headerlink" href="#intent-request" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id25">2. Intent Request</a><a class="headerlink" href="#intent-request" title="Permalink to this headline">¶</a></h3>
 <p><em>You: &#8220;Alexa, ask Copy Cat to repeat what I said.&#8221;</em></p>
 <p><em>Echo: &#8220;I heard repeat what I said.&#8221;</em></p>
 <p><em>In companion Alexa app: a card shows up.</em></p>
 <p>When user says <em>&#8220;ask Copy Cat to repeat what I said&#8221;</em>, the utterance
-<em>repeat what I said</em> is actually matched against <a class="reference internal" href="#sample-utterances"><span class="std std-ref">2. Sample Utterances</span></a>:</p>
+<em>repeat what I said</em> is matched against <a class="reference internal" href="#sample-utterances"><span class="std std-ref">Sample Utterances</span></a>:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 <span class="nx">SuperIntent</span> <span class="p">{</span><span class="nx">z</span> <span class="nx">z</span><span class="o">|</span><span class="nx">Text</span><span class="p">}</span>
 </pre></div>
@@ -390,50 +482,55 @@ structures in <a class="reference internal" href="#card-reprompt"><span class="s
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Here we captured the whole utterance. By default the <strong>Alexa In</strong> node sets
+<p>Here we capture the whole utterance. By default the <strong>Alexa In</strong> node sets
 this utterance from <code class="docutils literal"><span class="pre">msg.alexa.request.intent.slots.Text.value</span></code> to <code class="docutils literal"><span class="pre">msg.payload</span></code>:</p>
 <img alt="_images/alexa-in-node.png" class="align-center" src="_images/alexa-in-node.png" />
-<p>Of course you can specify your own if you used a different Intent Schema.</p>
-<p>Then when new utterances come, the <strong>On Intent</strong> enter node handles them to
-echo back the utterances:</p>
-<img alt="_images/on-intent.png" class="align-center" src="_images/on-intent.png" />
-<p>When your Echo replies, not only does it say:</p>
-<p><em>Echo: &#8220;I heard repeat what I said.&#8221;</em></p>
-<p>but also the companion app shows a card. If you do not respond, Alexa will
-reprompt you:</p>
-<p><em>&#8220;You gotta say it S-L-O-W-L-Y slowly.&#8221;</em></p>
-<p>This is achieved by setting <code class="docutils literal"><span class="pre">msg.alexa.card</span></code> and <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can specify your own if you use a different Intent Schema.</p>
 </div>
-<div class="section" id="card-and-reprompt">
-<span id="card-reprompt"></span><h3><a class="toc-backref" href="#id19">Card and Reprompt</a><a class="headerlink" href="#card-and-reprompt" title="Permalink to this headline">¶</a></h3>
+<p>Then when new utterances come, the <strong>On Intent</strong> enter node handles them
+ultimately echoing back the utterances:</p>
+<img alt="_images/on-intent.png" class="align-center" src="_images/on-intent.png" />
 <p>The <strong>Repeat User</strong> state node defines how the outgoing messages look like:</p>
 <img alt="_images/repeat-user.png" class="align-center" src="_images/repeat-user.png" />
-<p>Here <code class="docutils literal"><span class="pre">msg.alexa.card</span></code> follows the format of
-<a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object">Card Object</a>
-and <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code> follows <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object">Reprompt Object</a>.</p>
 <p>The final output from <strong>Alexa Out</strong> would follow the <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#response-format">Alexa Response Format</a>.</p>
 </div>
+<div class="section" id="companion-app-card">
+<span id="card-reprompt"></span><h3><a class="toc-backref" href="#id26">Companion App Card</a><a class="headerlink" href="#companion-app-card" title="Permalink to this headline">¶</a></h3>
+<p>Continuing on from the pervious step, your Echo will reply with:</p>
+<p><em>Echo: &#8220;I heard repeat what I said.&#8221;</em></p>
+<p>In addition, the companion app will show a card.</p>
+<p>This is achieved by setting <code class="docutils literal"><span class="pre">msg.alexa.card</span></code>. <code class="docutils literal"><span class="pre">msg.alexa.card</span></code> follows the
+format of <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object">Card Object</a></p>
+</div>
+<div class="section" id="reprompt">
+<h3><a class="toc-backref" href="#id27">Reprompt</a><a class="headerlink" href="#reprompt" title="Permalink to this headline">¶</a></h3>
+<p>If you do not respond, Alexa will reprompt you with:</p>
+<p><em>&#8220;You gotta say it S-L-O-W-L-Y slowly.&#8221;</em></p>
+<p>This is achieved by setting <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code>. <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code>
+follows the format of <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object">Reprompt Object</a>.</p>
+</div>
 <div class="section" id="ask-or-tell">
-<h3><a class="toc-backref" href="#id20">Ask or Tell?</a><a class="headerlink" href="#ask-or-tell" title="Permalink to this headline">¶</a></h3>
-<p>If you want the current session to end, then in the state node, just specify:</p>
+<h3><a class="toc-backref" href="#id28">Ask or Tell?</a><a class="headerlink" href="#ask-or-tell" title="Permalink to this headline">¶</a></h3>
+<p>If you want the current session to end, then specify in a state node:</p>
 <p><code class="docutils literal"><span class="pre">msg.kitt._session_ended</span> <span class="pre">=</span> <span class="pre">true;</span></code></p>
 <p>Alexa would end current session without expecting another user input.</p>
-<p>Otherwise, Alexa would be waiting for user input, and if to no avail, reprompt user.</p>
+<p>Otherwise, Alexa would be waiting for user input, and reprompt user if no user
+input is given.</p>
 </div>
 </div>
 <div class="section" id="more-advanced-tutorials">
-<h2><a class="toc-backref" href="#id21">More Advanced Tutorials</a><a class="headerlink" href="#more-advanced-tutorials" title="Permalink to this headline">¶</a></h2>
-<p>So far we have created an &#8220;Echo&#8221; (we called it Copy Cat) Echo skill by forcing
-Alexa output the utterance <em>verbatim</em>. However, we did not deal with <em>understanding</em>
-the sentence at all. There are two ways to go from here:</p>
-<ol class="arabic simple">
-<li>Simply plug in a KITT.AI NLU node to handle NLU ourselves:</li>
-</ol>
+<h2><a class="toc-backref" href="#id29">More Advanced Tutorials</a><a class="headerlink" href="#more-advanced-tutorials" title="Permalink to this headline">¶</a></h2>
+<p>So far we have created an &#8220;Echo&#8221; skill called Copy Cat by forcing Alexa output
+the utterance <em>verbatim</em>. However, we did not deal with <em>understanding</em> the
+sentence at all. There are two ways to go from here:</p>
+<p>The first opition is to simply plug in a KITT.AI NLU node to handle NLU ourselves:</p>
 <img alt="_images/alexa-kitt-nlu.png" class="align-center" src="_images/alexa-kitt-nlu.png" />
 <p>However, we do not recommend this way because Alexa&#8217;s speech output might not be
-perfect. Instead we suggest:</p>
-<p>2. Use Alexa&#8217;s own NLU with its language model smoothed out with in-domain
-utterances. We have created a more advanced tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span class="std std-ref">next</span></a>.</p>
+perfect. Instead we suggest that you use Alexa&#8217;s own NLU with its language model
+smoothed out with in-domain utterances. We have created a more advanced
+tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span class="std std-ref">next</span></a> to demonstrate how this is done.</p>
 </div>
 </div>
 
@@ -457,7 +554,7 @@ utterances. We have created a more advanced tutorial <a class="reference interna
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 

@@ -165,13 +165,14 @@ __________________________________
 After the application is deployed, your bot should be online. It should echo back
 your message!
 
-In addition, here is a tutorial outlining the entire process.
+Facebook Echo Bot Tutorial
+__________________________
 
 .. raw:: html
 
    <iframe width="640" height="360" src="https://www.youtube.com/embed/cjh4q5gAwno"
        frameborder="0" allowfullscreen></iframe>
-       
+
     <br><br><br>
 
 Facebook In and Out Nodes

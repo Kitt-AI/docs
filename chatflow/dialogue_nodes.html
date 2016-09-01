@@ -38,7 +38,7 @@
   
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
         <link rel="next" title="Extended Example: A conversational Yelp bot" href="extended_example.html"/>
-        <link rel="prev" title="ChatFlow Quick Start" href="quickstart.html"/> 
+        <link rel="prev" title="ChatFlow Build A Bot Tutorial" href="build_a_bot.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -89,6 +89,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dialogue Nodes</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#nodes-in-chatflow">Nodes in ChatFlow</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#basic-flow-input-and-output">Basic Flow, Input and Output</a></li>
@@ -96,15 +97,18 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#router">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#enter-nodes">Enter Nodes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ordering-preferences">Ordering preferences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#direct-link">Direct link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ordering-preferences">Ordering Preferences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enter-only-from-direct-link">Enter only from Direct link</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#state-nodes">State Nodes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#final-state">Final state</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">NLU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configure-nlu-node">Configure NLU Node</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#api-nodes">API Nodes</a></li>
 </ul>
 </li>
@@ -116,7 +120,7 @@
 <li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -164,6 +168,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/dialogue_nodes.txt" rel="nofollow"> View page source</a>
           
@@ -177,49 +184,53 @@
            <div itemprop="articleBody">
             
   <div class="section" id="dialogue-nodes">
-<span id="id1"></span><h1><a class="toc-backref" href="#id2">Dialogue Nodes</a><a class="headerlink" href="#dialogue-nodes" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><a class="toc-backref" href="#id3">Dialogue Nodes</a><a class="headerlink" href="#dialogue-nodes" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#dialogue-nodes" id="id2">Dialogue Nodes</a><ul>
-<li><a class="reference internal" href="#nodes-in-chatflow" id="id3">Nodes in ChatFlow</a><ul>
-<li><a class="reference internal" href="#basic-flow-input-and-output" id="id4">Basic Flow, Input and Output</a></li>
+<li><a class="reference internal" href="#dialogue-nodes" id="id3">Dialogue Nodes</a><ul>
+<li><a class="reference internal" href="#nodes-in-chatflow" id="id4">Nodes in ChatFlow</a><ul>
+<li><a class="reference internal" href="#basic-flow-input-and-output" id="id5">Basic Flow, Input and Output</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#router" id="id5">Router</a></li>
-<li><a class="reference internal" href="#enter-nodes" id="id6">Enter Nodes</a><ul>
-<li><a class="reference internal" href="#ordering-preferences" id="id7">Ordering preferences</a></li>
-<li><a class="reference internal" href="#direct-link" id="id8">Direct link</a></li>
+<li><a class="reference internal" href="#router" id="id6">Router</a></li>
+<li><a class="reference internal" href="#enter-nodes" id="id7">Enter Nodes</a><ul>
+<li><a class="reference internal" href="#ordering-preferences" id="id8">Ordering Preferences</a></li>
+<li><a class="reference internal" href="#enter-only-from-direct-link" id="id9">Enter only from Direct link</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#state-nodes" id="id9">State Nodes</a><ul>
-<li><a class="reference internal" href="#final-state" id="id10">Final state</a></li>
+<li><a class="reference internal" href="#state-nodes" id="id10">State Nodes</a><ul>
+<li><a class="reference internal" href="#final-state" id="id11">Final state</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#nlu" id="id11">NLU</a></li>
-<li><a class="reference internal" href="#api-nodes" id="id12">API Nodes</a></li>
+<li><a class="reference internal" href="#id2" id="id12">NLU</a><ul>
+<li><a class="reference internal" href="#configure-nlu-node" id="id13">Configure NLU Node</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api-nodes" id="id14">API Nodes</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="nodes-in-chatflow">
-<h2><a class="toc-backref" href="#id3">Nodes in ChatFlow</a><a class="headerlink" href="#nodes-in-chatflow" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Nodes in ChatFlow</a><a class="headerlink" href="#nodes-in-chatflow" title="Permalink to this headline">¶</a></h2>
 <p>ChatFlow conversational content are represented as nodes in a network
-and the links, or wires, between these nodes. The nodes have inputs
+and the connection between these nodes. The nodes have inputs
 (where they receive messages) and outputs (where they send messages).
 Execution of the network (running the conversation) happens through
 the flow of messages among the nodes in the network.</p>
 <div class="section" id="basic-flow-input-and-output">
-<h3><a class="toc-backref" href="#id4">Basic Flow, Input and Output</a><a class="headerlink" href="#basic-flow-input-and-output" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Basic Flow, Input and Output</a><a class="headerlink" href="#basic-flow-input-and-output" title="Permalink to this headline">¶</a></h3>
 <p>In a ChatFlow conversation, messages typically originate from an input
 node from the <strong>bots</strong> section of the node palette. For example,
-<em>Alexa In</em>, <em>Cortana In</em>, and <em>Slack Bot In</em> nodes are available to
+<em>Alexa In</em>, <em>Cortana In</em>, and <em>Twilio Bot In</em> nodes are available to
 create and send messages based on user input coming from
-Amazon Echo, Microsoft Cortana or Slack. These input nodes do not
+Amazon Echo, Microsoft Cortana or SMS. These input nodes do not
 receive messages from other nodes, so you will notice they do not
 accept incoming wires.</p>
-<p>Once an input node receives user input (e.g. from Slack, from the chat
-tab within ChatFlow, from an Amazon Echo device, etc.), it sends out a message
+<img alt="_images/In-Nodes.png" class="align-center" src="_images/In-Nodes.png" />
+<p>Once an input node receives user input from a Twilio number, the chat
+tab within ChatFlow, or an Amazon Echo device, it sends out a message
 through its output. The message created by an input node will contain
 a <code class="docutils literal"><span class="pre">payload</span></code> property that holds a string corresponding to the
 user natural language input. Through a wire originating at the input node,
@@ -228,41 +239,43 @@ node, which maps the natural language input into symbols that drive
 the ChatFlow interaction. The NLU results are added to the message as
 a property called <code class="docutils literal"><span class="pre">NLU</span></code>, and in a typically flow the message is then
 sent through a wire to the <strong>router</strong> node.</p>
+<img alt="_images/NLU-router.png" class="align-center" src="_images/NLU-router.png" />
 <p>The router node then directs the message through a network of <strong>enter</strong> nodes
 and <strong>state</strong> nodes, which are not connected to the router by wires.
-This process, described in the more detail under the router section of
+This process, described in the more detail under the <a class="reference internal" href="#router">router</a> section of
 the documentation, generates a system utterance, which the router
-places in its outgoing message as a string in the <code class="docutils literal"><span class="pre">payload</span></code> property. The router then sends
-the message out through a wire, which is typically connected to an
-output node matching the input node used, i.e., text is sent to Slack, or
-an Amazon Echo, etc.</p>
+places in its outgoing message as a string in the <code class="docutils literal"><span class="pre">payload</span></code> property. The
+router then sends the message out through a wire, which is typically connected
+to an output node matching the input node used (Slack In to Slack Out, Amazon In
+to Amazon Out).</p>
+<img alt="_images/enter-state.png" class="align-center" src="_images/enter-state.png" />
 <p>The basic node types used in most ChatFlow conversations are:</p>
 <dl class="docutils">
-<dt>input</dt>
+<dt><strong>input</strong></dt>
 <dd>An input node generates a message based on external user input,
 which is usually a natural language utterance. The string corresponding
 to the user input is accessible in the message sent by the input node
 as <code class="docutils literal"><span class="pre">msg.payload</span></code>.</dd>
-<dt>output</dt>
+<dt><strong>output</strong></dt>
 <dd>An output node receives a message containing a system utterance
 as a string in <code class="docutils literal"><span class="pre">msg.payload</span></code>. This utterance is what the system
 wants to say to the user, and the output node sends this string out to
 the appropriate output channel.</dd>
-<dt>enter</dt>
+<dt><strong>enter</strong></dt>
 <dd>An enter node acts as an entry point to a specific part of the conversation.
 Each entry node contains a set of <em>entrance conditions</em>, which must all
 be satisfied in order for the conversation to proceed according to the
-content linked from the entry node. Entry nodes receive messages exclusively
+content connected from the entry node. Entry nodes receive messages exclusively
 from the router, which chooses what entry nodes to send messages to.
 Once an entry node receives a message, it sends the message out through
 its output wire.</dd>
-<dt>state</dt>
+<dt><strong>state</strong></dt>
 <dd>State nodes define what the agent does, says, and how the conversational
 context is updated. Context is kept as user variables that can be accessed
 in messages. System output, or agent utterances, are also set in state nodes.
 State nodes can contain arbitrary JavaScript code to manipulate the context
 and messages in general.</dd>
-<dt>NLU</dt>
+<dt><strong>NLU</strong></dt>
 <dd>Having a Natural Language Understanding (NLU) node is crucial to allow a
 conversational agent deal with the unbounded variety of natural language input.
 NLU nodes essentially map natural language input utterances into a set
@@ -271,21 +284,30 @@ of symbols that can be manipulated by the rest of the conversational flow.</dd>
 </div>
 </div>
 <div class="section" id="router">
-<h2><a class="toc-backref" href="#id5">Router</a><a class="headerlink" href="#router" title="Permalink to this headline">¶</a></h2>
-<p>The router node is of central importance in ChatFlow, since it is responsible
-for choosing what system actions to perform in each conversational turn.
-The choices presented to the router are the enter nodes available. The router
+<h2><a class="toc-backref" href="#id6">Router</a><a class="headerlink" href="#router" title="Permalink to this headline">¶</a></h2>
+<p>The router node is of central importance in ChatFlow; it is responsible
+for choosing what system of actions to perform during each conversational turn.
+The choices presented to the router are the enter nodes in the flow. The router
 will only consider enter nodes with entrance conditions that are satisfied at
 that point in the conversation. Of these viable enter nodes, the router will
 choose one based on the following criteria:</p>
 <ol class="arabic simple">
-<li>An enter node marked as an initial state will be chosen when the router receives its first message in the current conversation. More than one node may be marked as an initial state, and these will be ranked according the rest of the criteria.</li>
-<li>Enter nodes that satisfy an explicit ordering preference will be chosen if possible. See the section on enter nodes below for more on specific ordering constraints for enter nodes.</li>
-<li>Enter nodes with entrance conditions based on <code class="docutils literal"><span class="pre">msg.NLU</span></code> have priority over enter nodes, to ensure that the system is responsive to user input.</li>
-<li>Enter nodes with precise conditions (i.e. checking for equality) are preferred over nodes with other conditions (e.g. greater than, is not null, regex matching). When multiple entrance conditions are present, nodes with a greater number of precise conditions (equality) are preferred.</li>
+<li>An enter node marked as an initial state will be chosen when the router
+receives its first message in the current conversation. More than one node
+may be marked as an initial state, and these will be ranked according the
+rest of the criteria.</li>
+<li>Enter nodes that satisfy an explicit ordering preference will be chosen if
+possible. See the section on enter nodes below for more on specific ordering
+constraints for enter nodes.</li>
+<li>Enter nodes with entrance conditions based on <code class="docutils literal"><span class="pre">msg.NLU</span></code> have priority over
+enter nodes, to ensure that the system is responsive to user input.</li>
+<li>Enter nodes with precise conditions such as checking for equality are
+preferred over nodes with other conditions such as greater than, is not null,
+and regex matching. When multiple entrance conditions are present, nodes with
+a greater number of precise conditions (equality) are preferred.</li>
 </ol>
 <p>Once a router receives a message, it selects an enter node. If none are
-eligible, the router sends out a message via output wire. If an enter node
+eligible, the router sends out a message via an output wire. If an enter node
 receives a message from the router, it will pass that message through its own
 output wire. If the message reaches a <strong>state</strong> node with <em>no output wires</em>,
 the state node sends its message back to the router. In other words, <strong>enter</strong>
@@ -294,71 +316,147 @@ to and from the author-defined conversational content. This conversational
 content consists of enter nodes, state nodes, and any other nodes
 available. For example, it may include a Yelp node, which is a wrapper to the
 Yelp developer API, as in the example provided later in this documentation.</p>
-<div class="admonition-nlu-results-are-only-available-to-the-first-enter-node-chosen-by-the-router-in-each-conversational-turn admonition">
-<p class="first admonition-title">NLU results are only available to the first enter node chosen by the router in each conversational turn</p>
-<p class="last">In each conversational turn, the system may use several enter nodes to build a system response.
+<p>In each conversational turn, the system may use several enter nodes to build a system response.
 Once the router receives user input and the corresponding labeling from an NLU node, the router
 will prefer to choose an enter containing one or more entrance conditions involving <code class="docutils literal"><span class="pre">msg.NLU</span></code>,
-with the goal of being responsive to user input. Only the first enter node chosen by the router has
-access to the NLU results in <code class="docutils literal"><span class="pre">msg.NLU</span></code>,  whether or not it contained a <code class="docutils literal"><span class="pre">msg.NLU</span></code> entrance condition.
-The enter node will pass its message with the <code class="docutils literal"><span class="pre">NLU</span></code> property to subsequent nodes connected to it
-by wires, but once the message is sent back to the router by a state node, the <code class="docutils literal"><span class="pre">NLU</span></code> property will
-be deleted. This ensures that the router will not keep responding to the same NLU event multiple
-times. Of course, the intent and entities in the NLU results can be saved explicitly in user
-variables (e.g.  <code class="docutils literal"><span class="pre">msg.kitt.destination</span> <span class="pre">=</span> <span class="pre">msg.NLU.entities.destination</span></code>, or
-<code class="docutils literal"><span class="pre">msg.kitt.current_intent</span> <span class="pre">=</span> <span class="pre">msg.NLU.intent</span></code>, see the NLU section below for details about the
-structure of the <code class="docutils literal"><span class="pre">NLU</span></code> property in <code class="docutils literal"><span class="pre">msg</span></code>) while the <code class="docutils literal"><span class="pre">NLU</span></code> property is still in the message.</p>
-</div>
+with the goal of being responsive to user input.</p>
+<p>The router also remembers enter nodes it has evaluated in this dialogue turn. So an enter node is
+visited only once during each turn. This prevents the router from going to infinite loops.</p>
 </div>
 <div class="section" id="enter-nodes">
-<h2><a class="toc-backref" href="#id6">Enter Nodes</a><a class="headerlink" href="#enter-nodes" title="Permalink to this headline">¶</a></h2>
-<p>Enter nodes are the router&#8217;s entry point into conversational content, which is typically a collection of networks, each bookended by an enter node (the entry point) and a state node (the exit point for the network). In between the enter node and the state node, there may be other state nodes and other Node-RED nodes, such as function nodes. All of the inter-node communication that happens between the enter node, which receives messages from the router, and the last state node, which sends messages back to the router, happen through wires, following Node-RED&#8217;s usual message flow.</p>
+<h2><a class="toc-backref" href="#id7">Enter Nodes</a><a class="headerlink" href="#enter-nodes" title="Permalink to this headline">¶</a></h2>
+<p>Enter nodes are the router&#8217;s entry point into conversational content, which is
+typically a collection of networks, each bookended by an enter node (the entry
+point) and a state node (the exit point for the network). In between the enter
+node and the state node, there may be other state nodes and other Node-RED nodes,
+such as function nodes. All of the inter-node communication that happens between
+the enter node, which receives messages from the router, and the last state node,
+which sends messages back to the router, happen through wires, following
+Node-RED&#8217;s usual message flow.</p>
 <div class="section" id="ordering-preferences">
-<h3><a class="toc-backref" href="#id7">Ordering preferences</a><a class="headerlink" href="#ordering-preferences" title="Permalink to this headline">¶</a></h3>
-<p>Note, however, that the output of a state node can be wired to the input of an enter node, but once that connection is made, the resulting connection is not a wire in the Node-RED sense, and is shown on the screen as a dashed line, unlike wires that are shown as solid lines. This dashed line does not represent a wire over which messages can be sent, and rather an <em>ordering preference</em>, which says that the enter node should be preferred by the router immediately after the router receives a message from the state node. In other words, a sequence of state node and enter node (in that order), connected by a dashed line, does not mean that the state node has an outgoing wire, and it does not mean that the enter node has an incoming wire. That state node will still send its message to the router, and the enter node will still get its message from the router. The dashed line simply means that once that state node is executed and sends its message to the router, the router will choose the enter node, provided that the enter node&#8217;s entrance conditions are satisfied.</p>
-<p>An example of a dashed line representing an ordering preference for an enter node following a state node is shown in the image below.</p>
-<a class="reference internal image-reference" href="images/enternode-orderingpref.png"><img alt="Ordering preference for an enter node following a state node" class="align-right" src="images/enternode-orderingpref.png" style="height: 100px;" /></a>
-<p>In this example, the router will choose one of the enter nodes <em>U: accept</em> or <em>U: reject</em> immediately after receiving a message from state node <em>confirm choice</em>. For example, if the entrance conditions of the enter node <em>U: accept</em> are met, it will be chosen by the router, even if another node with identical entrance conditions exist, and even if another node with more precise entrance conditions that are satisfied exists.</p>
+<h3><a class="toc-backref" href="#id8">Ordering Preferences</a><a class="headerlink" href="#ordering-preferences" title="Permalink to this headline">¶</a></h3>
+<p>Note that the output of a state node can be wired to the input of an
+enter node. Once that connection is made, the resulting connection is not a
+wire in the Node-RED sense and is shown on the screen as a dashed line unlike
+wires that are shown as solid lines. This dashed line does not represent a wire
+over which messages can be sent but rather an <em>ordering preference</em> stating
+that the enter node should be preferred by the router immediately after the
+router receives a message from the state node. In other words, a sequence of
+state node and enter node (in that order) connected by a dashed line is not
+an outgoing wire. The connect is a <em>direct link</em>. The state node will still send
+its message to the router which in turn will send its message to the enter node.
+The dashed line simply means that, once that state node is executed and sends its
+message to the router, the router will choose the enter node provided that the
+enter node&#8217;s entrance conditions are satisfied.</p>
+<p>An example of a dashed line representing an ordering preference for an enter
+node following a state node is shown in the image below.</p>
+<img alt="_images/order-preference.png" class="align-center" src="_images/order-preference.png" />
+<p>In this example, after receiving a message from state node <em>confirm choice</em>,
+the router will choose between the enter nodes <em>U: accept</em> or
+<em>U: reject</em>. For example, if the entrance conditions of
+<em>U: accept</em> are met, it will be chosen by the router even if another node with
+identical entrance conditions exist or more precise entrance conditions.</p>
 </div>
-<div class="section" id="direct-link">
-<h3><a class="toc-backref" href="#id8">Direct link</a><a class="headerlink" href="#direct-link" title="Permalink to this headline">¶</a></h3>
-<p>Each enter node includes a checkbox that says <em>Enter only from direct link</em>. The <em>direct link</em> in this case is the ordering preference described above. If that box is checked for an enter node, that enter node will only be chosen by the router immediately following the state node where the dashed line (ordering preference) originates. It will never be used otherwise. This is useful for state nodes that only make sense in a specific context.</p>
+<div class="section" id="enter-only-from-direct-link">
+<h3><a class="toc-backref" href="#id9">Enter only from Direct link</a><a class="headerlink" href="#enter-only-from-direct-link" title="Permalink to this headline">¶</a></h3>
+<p>Each enter node includes a checkbox that says <em>Enter only from direct link</em>. If
+that box is checked, the enter node will only be chosen by the
+router <strong>immediately after</strong> the <em>directly link</em> state node is executed
+(<em>Confirm Choice</em> state node in above picture). This is
+useful for state nodes that only make sense in a specific context.</p>
 </div>
 </div>
 <div class="section" id="state-nodes">
-<h2><a class="toc-backref" href="#id9">State Nodes</a><a class="headerlink" href="#state-nodes" title="Permalink to this headline">¶</a></h2>
-<p>State nodes update the conversational context and define the actions of the agent, including what it says to the user. Each state node includes a code editor where arbitrary JavaScript code can be added. This code will run any time the state node receives a message. The entire message object can be accessed within the state node through the object <code class="docutils literal"><span class="pre">msg</span></code>.
-.. in a similar way to how <a href="#id13"><span class="problematic" id="id14">`function nodes in Node-RED&lt;http://nodered.org/docs/writing-functions.html&gt;`_</span></a> work.
-In addition,
-.. to functionality similar to Node-RED function nodes
-state nodes also include a field where a system utterance can be added. Whenever the state node receives a message, its utterance is added to what the system will say to the user in the current conversational turn.</p>
+<h2><a class="toc-backref" href="#id10">State Nodes</a><a class="headerlink" href="#state-nodes" title="Permalink to this headline">¶</a></h2>
+<p>State nodes update the conversational context and define the actions of the agent
+including what it says to the user. Each state node includes a code editor where
+arbitrary JavaScript code can be added. This code will run any time the state
+node receives a message. The entire message object can be accessed within the
+state node through the object <code class="docutils literal"><span class="pre">msg</span></code>.
+In addition, state nodes include a field where a system utterance can be added. Whenever
+the state node receives a message, its utterance is added to the system&#8217;s output
+to the user in the current conversational turn.</p>
 <p>The two most basic uses of state nodes are:</p>
 <ol class="arabic simple">
-<li>Adding system utterances to the conversational turn, or, in other words, defining what the system will say.</li>
-<li>Updating user variables, which may comprise a substantial portion of the conversational state. In our quickstart example, the variable <code class="docutils literal"><span class="pre">count</span></code> was an user variable defined and updated in state nodes.</li>
+<li>Adding system utterances to define what the system will say.</li>
+<li>Updating user variables.</li>
 </ol>
-<p>User variables exist in a property of the message called <code class="docutils literal"><span class="pre">kitt</span></code>. Unlike other properties of the message <code class="docutils literal"><span class="pre">msg</span></code>, all of the user variables in <code class="docutils literal"><span class="pre">kitt</span></code> persist throughout the entire interaction. This is a key difference between user variables and other properties of <code class="docutils literal"><span class="pre">msg</span></code>.  Whenever an enter node receives a message, all of the user variables are available in <code class="docutils literal"><span class="pre">msg.kitt</span></code>, and these variables can be used in entrance conditions.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For instance, in our <a class="reference internal" href="build_a_bot.html#build-a-bot"><span class="std std-ref">ChatFlow Build A Bot Tutorial</span></a>, the variable <code class="docutils literal"><span class="pre">msg.kitt.count</span></code> was an user
+variable defined and updated in state nodes.</p>
+</div>
+<p>User variables exist in a property of the message called <code class="docutils literal"><span class="pre">kitt</span></code>. Unlike other
+properties of the message <code class="docutils literal"><span class="pre">msg</span></code>, all of the user variables in <code class="docutils literal"><span class="pre">kitt</span></code> persist
+throughout the entire interaction. This is a key difference between user
+variables and other properties of <code class="docutils literal"><span class="pre">msg</span></code>.  Whenever an enter node receives a
+message, all of the user variables are available in <code class="docutils literal"><span class="pre">msg.kitt</span></code>, and these
+variables can be used in entrance conditions.</p>
 <div class="section" id="final-state">
-<h3><a class="toc-backref" href="#id10">Final state</a><a class="headerlink" href="#final-state" title="Permalink to this headline">¶</a></h3>
-<p>State nodes include a checkbox that says <em>Dialogue ends here</em>. If that box is checked in a specific state node, whenever that state node is executed (i.e. whenever it receives a message and its code runs), the conversation ends, and the state of the router is reset, including deletion of all user variables.</p>
+<h3><a class="toc-backref" href="#id11">Final state</a><a class="headerlink" href="#final-state" title="Permalink to this headline">¶</a></h3>
+<p>State nodes include a checkbox that says <em>Dialogue ends here</em>. If that box is
+checked in a specific state node, whenever that state node is executed, the
+conversation ends. The state of the router is reset and all user variables are
+deleted.</p>
 </div>
 </div>
-<div class="section" id="nlu">
-<h2><a class="toc-backref" href="#id11">NLU</a><a class="headerlink" href="#nlu" title="Permalink to this headline">¶</a></h2>
-<p>Natural Language Understanding nodes are designed to map user utterances in natural language into a finite vocabulary of symbols. Two sets of symbols comprise the output of the NLU: <em>intents</em> and <em>entities</em>. Intents are utterance categories that capture the main communicative intent of the input utterance. For example, the intent <em>agreeing</em> captures the communicative intent of many utterances, such as &#8220;I agree&#8221;, &#8220;yes&#8221;, &#8220;of course&#8221;, &#8220;yes, I agree&#8221;, &#8220;I think so too&#8221;, etc. (Of course, each of these utterances may have other intents based on context.) The intent vocabulary (or utterance categories) used by the NLU is defined by the content author, and consists of an arbitrary number of arbitrary strings. These intents can be thought of as buckets in which each incoming input utterance will be placed by the NLU node.</p>
-<p>In addition to one <em>intent</em>, each utterance may contain zero or more <em>entities</em>, which are sequences of words in the input utterance that correspond to a category defined by the content author. These categories, like intents, are of arbitrary number and labels. Common examples include <em>locations</em>, <em>names of organizations</em>, <em>prices</em>, etc. Consider, for example, the following utterance: &#8220;Please make me a reservation for six people at Matsuhisa at 7 pm.&#8221; The intent here may be <em>make_restaurant_reservation</em>, and the entities may be <em>party_size</em> (corresponding to the word &#8220;six&#8221;), <em>restaurant_name</em> (corresponding to the word &#8220;Matsuhisa&#8221;) and <em>time</em> (corresponding to &#8220;7 pm&#8221;). Note that these assignments are made in the context of the current utterance. The word &#8220;six&#8221; could be a time in a different utterance (&#8220;I need a reservation at six&#8221;), and it is the job of the NLU to assign the right entities and intents in each utterance.</p>
-<p>The internal mechanisms of NLU nodes may vary, but each NLU node must accept input in the form of <code class="docutils literal"><span class="pre">msg.payload</span></code>, and produce output that is placed in its outgoing message in <code class="docutils literal"><span class="pre">msg.NLU</span></code>. The NLU output should contain a property called <code class="docutils literal"><span class="pre">intent</span></code>, which contains a string value corresponding to the input&#8217;s intent, and a property called <code class="docutils literal"><span class="pre">entities</span></code>, which is an object with <code class="docutils literal"><span class="pre">{entity:value}</span></code> pairs, e.g., <code class="docutils literal"><span class="pre">{&quot;restaurant_name&quot;:</span> <span class="pre">&quot;Matsuhisa&quot;,</span> <span class="pre">&quot;party_size&quot;:</span> <span class="pre">&quot;six&quot;,</span> <span class="pre">&quot;time&quot;:</span> <span class="pre">&quot;7</span> <span class="pre">pm&quot;}</span></code>. In cases where multiple occurrences of the same entity type exist in an utterance, the entity value will be a list, e.g. <code class="docutils literal"><span class="pre">{&quot;participant_name&quot;:</span> <span class="pre">[&quot;Sue&quot;,</span> <span class="pre">&quot;Bob&quot;,</span> <span class="pre">&quot;Mary&quot;],</span> <span class="pre">&quot;meeting_location&quot;:</span> <span class="pre">&quot;room</span> <span class="pre">245&quot;}</span></code>.</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id12">NLU</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Natural Language Understanding nodes are designed to map user utterances to a
+finite vocabulary of symbols. Two sets of symbols comprise the output of the NLU:
+<em>intents</em> and <em>entities</em>. Intents are utterance categories that capture the main
+communicative intent of the input utterance. For example, the intent <em>agreeing</em>
+captures the communicative intent of many  utterances, such as &#8220;I agree&#8221;, &#8220;yes&#8221;,
+&#8220;of course&#8221;, &#8220;yes, I agree&#8221;, and &#8220;I think so too&#8221;. The intent vocabulary or
+sample utterance used by the NLU is defined by the content author and consists
+of an arbitrary number of arbitrary strings. These intents can be thought of as
+buckets in which each incoming input utterance will be placed by the NLU node.</p>
+<p>In addition to one <em>intent</em>, each utterance may contain zero or more <em>entities</em>,
+which are sequences of words in the input utterance that correspond to a
+category defined by the content author. These categories, like intents, are of
+arbitrary number and labels. Common examples include <em>locations</em>,
+<em>names of organizations</em>, and <em>prices</em>. Consider, the following utterance:
+&#8220;Please make me a reservation for six people at Matsuhisa at 7 pm.&#8221; The intent
+here may be <em>make_restaurant_reservation</em>, and the entities may be <em>party_size</em>
+(corresponding to the word &#8220;six&#8221;), <em>restaurant_name</em> (corresponding to the word
+&#8220;Matsuhisa&#8221;) and <em>time</em> (corresponding to &#8220;7 pm&#8221;). Note that these assignments
+are made in the context of the current utterance. The word &#8220;six&#8221; could be a time
+in a different utterance (&#8220;I need a reservation at six&#8221;). It is the job of the
+NLU to assign the right entities and intents in each utterance.</p>
+<p>The internal mechanisms of NLU nodes may vary, but each NLU node must accept
+input in the form of <code class="docutils literal"><span class="pre">msg.payload</span></code> and produce output that is placed in its
+outgoing message in <code class="docutils literal"><span class="pre">msg.NLU</span></code>. The NLU output should contain a property
+called <code class="docutils literal"><span class="pre">intent</span></code>, which contains a string value corresponding to the input&#8217;s
+intent and a property called <code class="docutils literal"><span class="pre">entities</span></code> which is an object with <code class="docutils literal"><span class="pre">{entity:value}</span></code>
+pairs.(<code class="docutils literal"><span class="pre">{&quot;restaurant_name&quot;:</span> <span class="pre">&quot;Matsuhisa&quot;,</span> <span class="pre">&quot;party_size&quot;:</span> <span class="pre">&quot;six&quot;,</span> <span class="pre">&quot;time&quot;:</span> <span class="pre">&quot;7</span> <span class="pre">pm&quot;}</span></code>).
+In cases where multiple occurrences of the same entity type exist in an
+utterance, the entity value will be a list
+(<code class="docutils literal"><span class="pre">{&quot;participant_name&quot;:</span> <span class="pre">[&quot;Sue&quot;,</span> <span class="pre">&quot;Bob&quot;,</span> <span class="pre">&quot;Mary&quot;],</span> <span class="pre">&quot;meeting_location&quot;:</span> <span class="pre">&quot;room</span> <span class="pre">245&quot;}</span></code>).</p>
+<div class="section" id="configure-nlu-node">
+<h3><a class="toc-backref" href="#id13">Configure NLU Node</a><a class="headerlink" href="#configure-nlu-node" title="Permalink to this headline">¶</a></h3>
+<p>To configure the NLU node, one can create an app on ChatFlow&#8217;s companion platform <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>.
+Once the app is created, the intents and entities added, and the app deployed,
+copy the deployment URL in the Deployment Information sections of the App. Paste
+the URL into the NLU node and add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code> at the end:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+</pre></div>
+</div>
+<p>When configured
+in this way, the NLU node will run a query with <code class="docutils literal"><span class="pre">{{{payload}}}</span></code> to the NLU app.
+It will then receive the object <code class="docutils literal"><span class="pre">msg.NLU</span></code> containing all the corresponding
+<code class="docutils literal"><span class="pre">intent</span></code> and <code class="docutils literal"><span class="pre">entities</span></code>.</p>
+</div>
 </div>
 <div class="section" id="api-nodes">
-<h2><a class="toc-backref" href="#id12">API Nodes</a><a class="headerlink" href="#api-nodes" title="Permalink to this headline">¶</a></h2>
-<p>It is often useful for ChatFlow agents to be able to interact with the external
-world. This can be accomplished easily in ChatFlow through the use of nodes
-that wrap existing developer APIs for services such as Uber, Yelp, OpenTable,
-Fandango, Amazon, etc. The options are almost limitless. ChatFlow includes
+<h2><a class="toc-backref" href="#id14">API Nodes</a><a class="headerlink" href="#api-nodes" title="Permalink to this headline">¶</a></h2>
+<p>It is often useful for ChatFlow agents to interact with the external world. This
+can be accomplished easily in ChatFlow through the use of nodes that wrap
+existing developer APIs for services such as Uber, Yelp, Movies,
+Google, and Amazon. The options are almost limitless. ChatFlow includes
 a few such nodes pre-built, with more to be added based in part by community
-demand. Additionally, abitrary http requrests can be performed using the
-<strong>http request</strong> node, so the opportunities to connect with the external
-world are endless.</p>
+demand.</p>
+<p>Additionally, the <strong>http request</strong> node can perform arbitrary http requests, so
+the opportunities to connect with the external world are endless!</p>
 </div>
 </div>
 
@@ -372,7 +470,7 @@ world are endless.</p>
         <a href="extended_example.html" class="btn btn-neutral float-right" title="Extended Example: A conversational Yelp bot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="quickstart.html" class="btn btn-neutral" title="ChatFlow Quick Start" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="build_a_bot.html" class="btn btn-neutral" title="ChatFlow Build A Bot Tutorial" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -382,7 +480,7 @@ world are endless.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 

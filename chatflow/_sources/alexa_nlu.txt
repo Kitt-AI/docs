@@ -6,9 +6,9 @@
 
 .. _NLU: https://nlu.kitt.ai/
 
-=======================================
-Advanced Alexa Skill Tutorial with NLU
-=======================================
+=================================
+Advanced Alexa Skill NLU Tutorial
+=================================
 
 .. contents:: Table of Contents
    :depth: 4
@@ -17,12 +17,13 @@ Advanced Alexa Skill Tutorial with NLU
 Introduction
 ============
 
-In the :ref:`previous <alexa_advanced_title>` tutorial we implemented the `Wise Guy`_
-skill with ChatFlow. Everything was smooth except one thing: creating the
-`Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_
-can still be a painful experience once your skill gets complicated.
+In the :ref:`previous <alexa_advanced_title>` tutorial, we implemented the `Wise Guy`_
+skill with ChatFlow. Everything was smooth except one thing - creating the
+`Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_.
 
-In this tutorial we will show how to use ChatFlow's companion AI engine `NLU`_
+This still be a painful process, but luckily we have a solution - `NLU`_.
+
+In this tutorial, we will teach you how to use ChatFlow's companion AI engine `NLU`_
 to easily generate the Intent Schema and Sample Utterances needed for Speech Assets.
 
 Create an NLU Project
@@ -37,14 +38,21 @@ music.
    <iframe width="420" height="315" src="https://www.youtube.com/embed/Wi4vXT92UWo"
        frameborder="0" allowfullscreen></iframe>
 
-You can quickly reproduce this project by importing this :download:`JSON file <_static/json/Wise_Guy_Skill_NLU.json>`
+You can also quickly reproduce this project by importing this :download:`JSON file <_static/json/Wise_Guy_Skill_NLU.json>`
 in NLU_.
 
 Exporting to Alexa Format
 =========================
 
-Now click "Export" -> "Alexa Skills", three speech assets will appear.
-They all follow the format of ASK `Custom Interaction Model <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference>`_.
+1. Click "Export" then "Alexa Skills", a pop up with the three speech assets will appear.
+
+.. note:: The three fields follow the format of ASK `Custom Interaction Model <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference>`_.
+
+2. Copy all three sections into their respective sections in the Alexa Skill Kit
+   developer.
+
+Below is an example of what you should expect as the output of the Export/Alexa
+feature.
 
 **Intent Schema**
 
@@ -77,7 +85,7 @@ any Amazon default intent, please manually add them.
 **Custom Slots**
 
 Custom Slots are list of phrases for slots (entities). NLU also supports list of
-regular expressions to match entities but the Alexa console does not support it.
+regular expressions to match entities. The Alexa console does not support it.
 
 .. code-block:: java
 
@@ -152,10 +160,14 @@ Step :ref:`sample_utterances` in the basic Alexa tutorial:
 .. image:: _static/img/alexa/wise-guy-interaction-model.png
    :align: center
 
-Now we have shown you how to quickly build an NLU project and incorporate it
-to an Alexa Skill. KITT.AI NLU_ provides an interactive interface for you to
-quickly bootstrap an NLU engine with minimal data. You can immediately observe
-system's performance, mark and correct inaccurate predictions, and improve the
-NLU engine on the fly. It's a great assistant to building an Alexa skill.
+Summary
+=======
 
-Now go build your own awesome Alexa skills.
+In this tutorial, we have shown you how to quickly build an NLU project and
+incorporate it into an Alexa Skill. KITT.AI NLU_ provides an interactive interface
+for you to quickly bootstrap an NLU engine with minimal data. You can immediately
+observe system's performance, mark and correct inaccurate predictions, and
+improve the NLU engine on the fly. It's a great assistant to building an Alexa
+skill.
+
+Happy Alexa skills building!!!

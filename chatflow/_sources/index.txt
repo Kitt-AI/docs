@@ -30,14 +30,15 @@ natural language understanding engine. Here's a 20 minute walk-through:
 Contents
 ==================
 
-This documentation is still under construction. We are still working on the first 
-four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tutorials are finished!
+This documentation is still under construction. We are still working on the 
+Extended Example: A conversational Yelp bot, but most others all finished!
 
 .. toctree::
    :maxdepth: 2
 
    self
    quickstart
+   build_a_bot
    dialogue_nodes
    extended_example
    telegram

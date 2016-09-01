@@ -19,16 +19,17 @@ Introduction
 ============
 
 In this tutorial we will walk through a more complex Alexa skill that
-tells the *knock knock* joke. You will learn:
+tells the *knock knock* joke.
 
-* Using multiple intents with slots (entities) in an Alexa sample app
-* Creating a multi-turn conversation
-* Managing and tracking dialogue states
+By the end of this tutorial, you will be able to:
+    * Using multiple intents with slots (entities) in an Alexa sample app
+    * Creating a multi-turn conversation
+    * Managing and tracking dialogue states
 
 WiseGuy: tell a Knock Knock joke
-====================================
+================================
 
-`Wise Guy`_ is a sample Alexa skill that tells the *knock knock* joke:
+`Wise Guy`_ is a sample Alexa skill that tells a *knock knock* joke:
 
 *You: "Alexa, ask Wise Guy to tell a joke"*
 
@@ -42,17 +43,19 @@ WiseGuy: tell a Knock Knock joke
 
 *Echo: "Beats me!"*
 
-However, it shows multi-turn ability with dialogue state tracking. At any given
-point, users can ask for help and Echo would explain how to proceed.
+This skill highlights Alexa's multi-turn ability using dialogue state tracking.
+At any given point, the user can ask for help and Alexa will explain how to proceed.
 
 The main source files are the `Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_
 and `index.js <https://github.com/amzn/alexa-skills-kit-js/blob/master/samples/wiseGuy/src/index.js>`_ file.
 
-We'll see how to easily recreate this application with ChatFlow and a more
+We'll see how to easily recreate this application with ChatFlow with a more
 intuitive interface.
 
-Create the WiseGuy ChatFlow app
-====================================
+.. _create_wiseguy_chatflow_app:
+
+1. Create the WiseGuy ChatFlow app
+---------------------------------
 
 Go to ChatFlow_ and use the sample application "Alexa WiseGuy Skill":
 
@@ -62,12 +65,25 @@ Go to ChatFlow_ and use the sample application "Alexa WiseGuy Skill":
 The application can almost work out of the box. All we need to do is to copy
 the "Final URL" from the **Alexa In** node after hitting "DEPLOY".
 
-Create the WiseGuy Alexa Skill
-====================================
+WiseGuy Video Tutorial
+______________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/GTaW4ze1OgM"
+       frameborder="0" allowfullscreen></iframe>
+   <br> <br> <br>
+
+.. _create_wiseguy_alexa_skill:
+
+2. Create the WiseGuy Alexa Skill
+---------------------------------
 
 Now please follow the steps in :ref:`create_an_alexa_skill` to create a skill
-for Wise Guy. In Step :ref:`sample_utterances` you'll need to input
-`Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_.
+for Wise Guy.
+
+1. In Step :ref:`sample_utterances`, input
+   `Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_.
 
 **Intent Schema**:
 
@@ -160,14 +176,17 @@ for Wise Guy. In Step :ref:`sample_utterances` you'll need to input
 
 Now we are all set! Use the Service Simulator or your Echo device to test it!
 
+.. _multiturn_and_state_tracking_explained:
+
 Multi turn and state tracking explained
 =======================================
 
 The ``global`` variable
 ------------------------
 
-Now let's come back to the ChatFlow app. We have a ``JOKE_LIST`` that's used
-across the dialogue. We set it in the **init JOKE_LIST** state node:
+Take a look at the **init JOKE_LIST** state node. In it, we have created a
+global variable that can be used across the dialogue. It is called ``JOKE_LIST``
+and was set in with the following code:
 
 .. code-block:: javascript
 
@@ -178,22 +197,21 @@ across the dialogue. We set it in the **init JOKE_LIST** state node:
     ]
     global.set("JOKE_LIST", JOKE_LIST);
 
-Then later we can use::
+Then it can be retrieved later in any function or state node by using::
 
     var JOKE_LIST = global.get("JOKE_LIST");
 
-to retrieve this variable in any function or state node. The ``global`` environment
-has a scope to current application, i.e., one application cannot access another
-application's ``global`` environment.
+The ``global`` environment is limited to the current application. One
+application cannot access another application's ``global`` environment.
 
-Also, in the **init JOKE_LIST** state node, we initialized the dialogue stage::
+In addition, in the **init JOKE_LIST** state node, we initialized the dialogue stage::
 
     msg.kitt.stage = null;
 
 State tracking
-------------------------
+--------------
 
-Now take a look at the **Tell Me A Joke** state node, it sets up the dialogue stage:
+Take a look at the **Tell Me A Joke** state node, it sets up the dialogue stage:
 
 .. image:: _static/img/alexa/tell-me-a-joke.png
    :align: center
@@ -216,9 +234,9 @@ Now take a look at the **Tell Me A Joke** state node, it sets up the dialogue st
     msg.kitt.cardPunchline = JOKE_LIST[jokeID].cardPunchline;
 
 Remember that everything in ``msg.kitt`` is maintained by the dialogue router,
-persisting over the whole dialogue session. Thus next time a new utterance within
+persisting over the whole dialogue session. Thus, whenever a new utterance within
 the *same* dialogue session comes in, previous turn's ``msg.kitt`` can still be
-accessed. ``msg.kitt`` is also assigned to ``sessionAttributes`` when *outputting*
+accessed. ``msg.kitt`` is also assigned to ``sessionAttributes`` *outputted*
 through **Alexa Out** and persisted by the Alexa service. So next time an Alexa
 `Request <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format>`_
 comes in, the same session attributes can be accessed via ``msg.alexa.session.attributes``
@@ -264,6 +282,5 @@ Similarly, the **Setup Name Who** state node advances the dialogue stage by 1 if
         return msg;
     }
 
-It also sets ``msg.kitt._session_ended = true;`` because that's end of the
-*knock knock* joke!
-
+In addition, it sets ``msg.kitt._session_ended = true;`` because that's end of
+the *knock knock* joke!

@@ -127,7 +127,8 @@ ________________________________
 
 When you write to your bot, it answers you with the same message.
 
-In addition, here is a tutorial outlining the entire process.
+kik Echo Bot Video Tutorial
+___________________________
 
 .. raw:: html
 
@@ -256,7 +257,7 @@ Final result should look something like this:
 Attachments and Custom Keyboard Demo
 ____________________________________
 
-1. Importing the "Colored Cats" application
+1. Importing the "Colored Cats" Application
 ...........................................
 
 1. Import the application to ChatFlow. You can either:
@@ -269,8 +270,19 @@ ____________________________________
 .. image:: _static/img/kik/coloredCats.png
    :align: center
 
+In addition, here is a walkthrough video explaining the process of making the
+Colored Cats Application:
 
-2. NLU setup
+.. _colored_cats_tutorial:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
+       frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
+2. NLU Setup
 ............
 
 1. Download :download:`NLU json <_static/json/KikColoredCats-nlu.json>` to
@@ -310,6 +322,17 @@ ____________________________________
 
 After deploying your application, you can write to your bot and tell him to show
 you a specific color cat.
+
+kik Color Cat Bot Video Walkthrough
+...................................
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
+       frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
 
 .. TODO:: write more about the "Cat 1" and "Cat 2" buttons that correspond to interactive messages.
    @xuchen: May I ask to make here a video, too?

@@ -89,6 +89,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
@@ -101,6 +102,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#configure-twilio-nodes">2. Configure Twilio Nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-the-function-node">3. Configuring the Function Node</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deploy-the-application">4. Deploy the Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reverse-bot-echo-tutorial">Reverse Bot Echo Tutorial</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#extra-steps">3. Extra steps</a><ul>
@@ -112,13 +114,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#twilio-out">Twilio Out</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#an-advanced-twilio-bot-with-session-router-support">An Advanced Twilio Bot with Session/Router Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#an-advanced-twilio-bot-with-session-router-support">An Advanced Twilio Bot with Session/Router Support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-bot-video-tutorial">Add Bot Video Tutorial</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -166,6 +171,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/twilio.txt" rel="nofollow"> View page source</a>
           
@@ -190,18 +198,22 @@
 <li><a class="reference internal" href="#configure-twilio-nodes" id="id6">2. Configure Twilio Nodes</a></li>
 <li><a class="reference internal" href="#configuring-the-function-node" id="id7">3. Configuring the Function Node</a></li>
 <li><a class="reference internal" href="#deploy-the-application" id="id8">4. Deploy the Application</a></li>
+<li><a class="reference internal" href="#reverse-bot-echo-tutorial" id="id9">Reverse Bot Echo Tutorial</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#extra-steps" id="id9">3. Extra steps</a><ul>
-<li><a class="reference internal" href="#add-debugging-functionality" id="id10">5. Add Debugging Functionality</a></li>
+<li><a class="reference internal" href="#extra-steps" id="id10">3. Extra steps</a><ul>
+<li><a class="reference internal" href="#add-debugging-functionality" id="id11">5. Add Debugging Functionality</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#twilio-in-and-twilio-out-nodes" id="id11">Twilio In and Twilio Out Nodes</a><ul>
-<li><a class="reference internal" href="#twilio-in" id="id12">Twilio In</a></li>
-<li><a class="reference internal" href="#twilio-out" id="id13">Twilio Out</a></li>
+<li><a class="reference internal" href="#twilio-in-and-twilio-out-nodes" id="id12">Twilio In and Twilio Out Nodes</a><ul>
+<li><a class="reference internal" href="#twilio-in" id="id13">Twilio In</a></li>
+<li><a class="reference internal" href="#twilio-out" id="id14">Twilio Out</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#an-advanced-twilio-bot-with-session-router-support" id="id14">An Advanced Twilio Bot with Session/Router Support</a></li>
+<li><a class="reference internal" href="#an-advanced-twilio-bot-with-session-router-support" id="id15">An Advanced Twilio Bot with Session/Router Support</a><ul>
+<li><a class="reference internal" href="#add-bot-video-tutorial" id="id16">Add Bot Video Tutorial</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -361,11 +373,16 @@ feature also allows you to use one &#8220;Twilio Out&#8221; node with multiple
 <p>Send a text message (SMS) to the phone number you bought. Your app should
 respond in seconds with a message containing the text you sent, but reversed.</p>
 </div>
+<div class="section" id="reverse-bot-echo-tutorial">
+<h3><a class="toc-backref" href="#id9">Reverse Bot Echo Tutorial</a><a class="headerlink" href="#reverse-bot-echo-tutorial" title="Permalink to this headline">¶</a></h3>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
+    frameborder="0" allowfullscreen></iframe>
+ <br><br><br></div>
 </div>
 <div class="section" id="extra-steps">
-<span id="debugging-twilio"></span><h2><a class="toc-backref" href="#id9">3. Extra steps</a><a class="headerlink" href="#extra-steps" title="Permalink to this headline">¶</a></h2>
+<span id="debugging-twilio"></span><h2><a class="toc-backref" href="#id10">3. Extra steps</a><a class="headerlink" href="#extra-steps" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="add-debugging-functionality">
-<h3><a class="toc-backref" href="#id10">5. Add Debugging Functionality</a><a class="headerlink" href="#add-debugging-functionality" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">5. Add Debugging Functionality</a><a class="headerlink" href="#add-debugging-functionality" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Add a debug node to the flow. Connect it&#8217;s input to the &#8220;Twilio in&#8221; output.</li>
 </ol>
@@ -383,15 +400,12 @@ be shown in the debug panel. You can read about those details in
 <img alt="_images/twilio-debug-sms.png" class="align-center" src="_images/twilio-debug-sms.png" />
 <p>You can download the whole aplication <a class="reference external" href="_static/json/twilio-echo-bot.json">here</a>.
 You only have to setup Twilio In/Out nodes manually.</p>
-<p>In addition, here&#8217;s a full tutorial video of the entire process:</p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
-    frameborder="0" allowfullscreen></iframe>
- </br></div>
+</div>
 </div>
 <div class="section" id="twilio-in-and-twilio-out-nodes">
-<h2><a class="toc-backref" href="#id11">Twilio In and Twilio Out Nodes</a><a class="headerlink" href="#twilio-in-and-twilio-out-nodes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Twilio In and Twilio Out Nodes</a><a class="headerlink" href="#twilio-in-and-twilio-out-nodes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="twilio-in">
-<span id="twilio-in-node"></span><h3><a class="toc-backref" href="#id12">Twilio In</a><a class="headerlink" href="#twilio-in" title="Permalink to this headline">¶</a></h3>
+<span id="twilio-in-node"></span><h3><a class="toc-backref" href="#id13">Twilio In</a><a class="headerlink" href="#twilio-in" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>The following fields are set in the output message:</dt>
 <dd><ul class="first last simple">
@@ -406,7 +420,7 @@ You only have to setup Twilio In/Out nodes manually.</p>
 for details (property names are always &#8220;camelCased&#8221; in this node output).</p>
 </div>
 <div class="section" id="twilio-out">
-<span id="twilio-out-node"></span><h3><a class="toc-backref" href="#id13">Twilio Out</a><a class="headerlink" href="#twilio-out" title="Permalink to this headline">¶</a></h3>
+<span id="twilio-out-node"></span><h3><a class="toc-backref" href="#id14">Twilio Out</a><a class="headerlink" href="#twilio-out" title="Permalink to this headline">¶</a></h3>
 <p>The following fields are taken as inputs by Twilio Out:</p>
 <blockquote>
 <div><ul class="simple">
@@ -426,7 +440,7 @@ sent.</li>
 </div>
 </div>
 <div class="section" id="an-advanced-twilio-bot-with-session-router-support">
-<span id="advanced-twilio-bot"></span><h2><a class="toc-backref" href="#id14">An Advanced Twilio Bot with Session/Router Support</a><a class="headerlink" href="#an-advanced-twilio-bot-with-session-router-support" title="Permalink to this headline">¶</a></h2>
+<span id="advanced-twilio-bot"></span><h2><a class="toc-backref" href="#id15">An Advanced Twilio Bot with Session/Router Support</a><a class="headerlink" href="#an-advanced-twilio-bot-with-session-router-support" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Create a new app and add the following nodes:</li>
 </ol>
@@ -499,9 +513,11 @@ length manually.</p>
 <a class="reference external" href="_static/json/twilio-router-bot.json">here</a>. You will only have to setup
 Twilio In/Out nodes manually.</p>
 </div>
-<p>In addition, here&#8217;s a full tutorial video of the entire process:</p>
+<div class="section" id="add-bot-video-tutorial">
+<h3><a class="toc-backref" href="#id16">Add Bot Video Tutorial</a><a class="headerlink" href="#add-bot-video-tutorial" title="Permalink to this headline">¶</a></h3>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/qMnErJlZNLw" frameborder="0" allowfullscreen></iframe>
-</br></div>
+<br><br><br></div>
+</div>
 </div>
 
 
@@ -524,7 +540,7 @@ Twilio In/Out nodes manually.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 

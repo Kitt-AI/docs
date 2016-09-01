@@ -194,6 +194,16 @@ _________________________
 Send a text message (SMS) to the phone number you bought. Your app should
 respond in seconds with a message containing the text you sent, but reversed.
 
+Reverse Bot Echo Tutorial
+_________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+
 .. _debugging_twilio:
 
 3. Extra steps
@@ -221,15 +231,6 @@ ______________________________
 
 You can download the whole aplication `here <_static/json/twilio-echo-bot.json>`_.
 You only have to setup Twilio In/Out nodes manually.
-
-In addition, here's a full tutorial video of the entire process:
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
-       frameborder="0" allowfullscreen></iframe>
-    </br>
-
 
 Twilio In and Twilio Out Nodes
 ================================
@@ -352,9 +353,10 @@ Now by sending "add" message to your Twilio phone number you increase the counte
     `here <_static/json/twilio-router-bot.json>`_. You will only have to setup
     Twilio In/Out nodes manually.
 
-In addition, here's a full tutorial video of the entire process:
+Add Bot Video Tutorial
+______________________
 
 .. raw:: html
 
     <iframe width="640" height="360" src="https://www.youtube.com/embed/qMnErJlZNLw" frameborder="0" allowfullscreen></iframe>
-    </br>
+    <br><br><br>

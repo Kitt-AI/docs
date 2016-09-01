@@ -150,7 +150,8 @@ message you sent to it.
 
 .. _telegram_echo_bot_tutorial:
 
-Here's a full video demonstrating the entire process:
+Telegram Echo Bot Tutorial
+__________________________
 
 .. raw:: html
 
@@ -409,16 +410,6 @@ The following is a screenshot of the flow.
 
 Feel free to import this bot into your own project and play with it.
 
-.. _yelp_inline_bot_walkthrough:
-
-In addition, here's a full video walking through the entire creation process:
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/jkZWr41cFdo"
-       frameborder="0" allowfullscreen></iframe>
-    <br><br><br>
-
 2. Acquire the Bot Token and Yelp API Credentials
 -------------------------------------------------
 
@@ -427,6 +418,17 @@ In order for the bot to work, you'll need:
 1. Bot access token (already covered in :ref:`telegram_echo_bot` )
 2. Yelp app `credentials <https://www.yelp.com/developers>`_, including
    **Consumer Key**, **Consumer Secret**, **Token** and **Token Secret**.
+
+.. _yelp_inline_bot_walkthrough:
+
+Yelp Inline Bot Walkthrough
+---------------------------
+
+.. raw:: html
+
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/jkZWr41cFdo"
+        frameborder="0" allowfullscreen></iframe>
+     <br><br><br>
 
 The Flow
 ________

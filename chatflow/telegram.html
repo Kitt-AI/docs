@@ -89,6 +89,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Telegram Bot Tutorials</a><ul>
@@ -97,6 +98,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#create-a-new-chatflow-application-with-telegram-nodes">2. Create a New ChatFlow Application with Telegram Nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configure-the-bot">3. Configure The Bot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#deploy-the-application">4. Deploy the Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#telegram-echo-bot-tutorial">Telegram Echo Bot Tutorial</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-inline-bot">Setting up Inline Bot</a><ul>
@@ -113,6 +115,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#the-setup">The Setup</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#import-the-telegram-yelp-inline-bot-application-into-chatflow">1. Import the &#8220;Telegram - Yelp Inline Bot&#8221; Application into Chatflow</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#acquire-the-bot-token-and-yelp-api-credentials">2. Acquire the Bot Token and Yelp API Credentials</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#yelp-inline-bot-walkthrough">Yelp Inline Bot Walkthrough</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#the-flow">The Flow</a></li>
@@ -126,7 +129,7 @@
 <li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -174,6 +177,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/telegram.txt" rel="nofollow"> View page source</a>
           
@@ -187,35 +193,37 @@
            <div itemprop="articleBody">
             
   <div class="section" id="telegram-bot-tutorials">
-<span id="telegram"></span><h1><a class="toc-backref" href="#id4">Telegram Bot Tutorials</a><a class="headerlink" href="#telegram-bot-tutorials" title="Permalink to this headline">¶</a></h1>
+<span id="telegram"></span><h1><a class="toc-backref" href="#id6">Telegram Bot Tutorials</a><a class="headerlink" href="#telegram-bot-tutorials" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#telegram-bot-tutorials" id="id4">Telegram Bot Tutorials</a><ul>
-<li><a class="reference internal" href="#a-simple-echo-bot" id="id5">A Simple Echo Bot</a><ul>
-<li><a class="reference internal" href="#create-a-new-bot-and-token-in-telegram" id="id6">1. Create a New Bot and Token in Telegram</a></li>
-<li><a class="reference internal" href="#create-a-new-chatflow-application-with-telegram-nodes" id="id7">2. Create a New ChatFlow Application with Telegram Nodes</a></li>
-<li><a class="reference internal" href="#configure-the-bot" id="id8">3. Configure The Bot</a></li>
-<li><a class="reference internal" href="#deploy-the-application" id="id9">4. Deploy the Application</a></li>
+<li><a class="reference internal" href="#telegram-bot-tutorials" id="id6">Telegram Bot Tutorials</a><ul>
+<li><a class="reference internal" href="#a-simple-echo-bot" id="id7">A Simple Echo Bot</a><ul>
+<li><a class="reference internal" href="#create-a-new-bot-and-token-in-telegram" id="id8">1. Create a New Bot and Token in Telegram</a></li>
+<li><a class="reference internal" href="#create-a-new-chatflow-application-with-telegram-nodes" id="id9">2. Create a New ChatFlow Application with Telegram Nodes</a></li>
+<li><a class="reference internal" href="#configure-the-bot" id="id10">3. Configure The Bot</a></li>
+<li><a class="reference internal" href="#deploy-the-application" id="id11">4. Deploy the Application</a></li>
+<li><a class="reference internal" href="#telegram-echo-bot-tutorial" id="id12">Telegram Echo Bot Tutorial</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#setting-up-inline-bot" id="id10">Setting up Inline Bot</a><ul>
-<li><a class="reference internal" href="#set-inline-status" id="id11">Set Inline Status</a></li>
-<li><a class="reference internal" href="#set-inline-location-awareness" id="id12">Set Inline Location Awareness</a></li>
+<li><a class="reference internal" href="#setting-up-inline-bot" id="id13">Setting up Inline Bot</a><ul>
+<li><a class="reference internal" href="#set-inline-status" id="id14">Set Inline Status</a></li>
+<li><a class="reference internal" href="#set-inline-location-awareness" id="id15">Set Inline Location Awareness</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#telegram-in-and-telegram-out-nodes" id="id13">Telegram In and Telegram Out Nodes</a><ul>
-<li><a class="reference internal" href="#telegram-in" id="id14">Telegram In</a></li>
-<li><a class="reference internal" href="#telegram-out" id="id15">Telegram Out</a></li>
+<li><a class="reference internal" href="#telegram-in-and-telegram-out-nodes" id="id16">Telegram In and Telegram Out Nodes</a><ul>
+<li><a class="reference internal" href="#telegram-in" id="id17">Telegram In</a></li>
+<li><a class="reference internal" href="#telegram-out" id="id18">Telegram Out</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#an-yelp-inline-bot" id="id16">An Yelp Inline Bot</a><ul>
-<li><a class="reference internal" href="#the-setup" id="id17">The Setup</a><ul>
-<li><a class="reference internal" href="#import-the-telegram-yelp-inline-bot-application-into-chatflow" id="id18">1. Import the &#8220;Telegram - Yelp Inline Bot&#8221; Application into Chatflow</a></li>
-<li><a class="reference internal" href="#acquire-the-bot-token-and-yelp-api-credentials" id="id19">2. Acquire the Bot Token and Yelp API Credentials</a></li>
+<li><a class="reference internal" href="#an-yelp-inline-bot" id="id19">An Yelp Inline Bot</a><ul>
+<li><a class="reference internal" href="#the-setup" id="id20">The Setup</a><ul>
+<li><a class="reference internal" href="#import-the-telegram-yelp-inline-bot-application-into-chatflow" id="id21">1. Import the &#8220;Telegram - Yelp Inline Bot&#8221; Application into Chatflow</a></li>
+<li><a class="reference internal" href="#acquire-the-bot-token-and-yelp-api-credentials" id="id22">2. Acquire the Bot Token and Yelp API Credentials</a></li>
+<li><a class="reference internal" href="#yelp-inline-bot-walkthrough" id="id23">Yelp Inline Bot Walkthrough</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-flow" id="id20">The Flow</a></li>
+<li><a class="reference internal" href="#the-flow" id="id24">The Flow</a></li>
 </ul>
 </li>
 </ul>
@@ -241,11 +249,11 @@ out nodes.</p>
 </dd>
 </dl>
 <div class="section" id="a-simple-echo-bot">
-<span id="telegram-echo-bot"></span><h2><a class="toc-backref" href="#id5">A Simple Echo Bot</a><a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
+<span id="telegram-echo-bot"></span><h2><a class="toc-backref" href="#id7">A Simple Echo Bot</a><a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
 <p>Before we build a Telegram Yelp Bot, let&#8217;s create a simple Echo bot to
 demonstrate how the Telegram connection works.</p>
 <div class="section" id="create-a-new-bot-and-token-in-telegram">
-<h3><a class="toc-backref" href="#id6">1. Create a New Bot and Token in Telegram</a><a class="headerlink" href="#create-a-new-bot-and-token-in-telegram" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">1. Create a New Bot and Token in Telegram</a><a class="headerlink" href="#create-a-new-bot-and-token-in-telegram" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Sent the <code class="docutils literal"><span class="pre">/newbot</span></code> command to create a new bot by talking to the
 <a class="reference external" href="https://telegram.me/botfather">Bot Father</a></li>
@@ -258,7 +266,7 @@ Copy it to your clipboard.</li>
 </ol>
 </div>
 <div class="section" id="create-a-new-chatflow-application-with-telegram-nodes">
-<h3><a class="toc-backref" href="#id7">2. Create a New ChatFlow Application with Telegram Nodes</a><a class="headerlink" href="#create-a-new-chatflow-application-with-telegram-nodes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">2. Create a New ChatFlow Application with Telegram Nodes</a><a class="headerlink" href="#create-a-new-chatflow-application-with-telegram-nodes" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Click on &#8220;Create new project&#8221; and create a new project from scratch.</li>
 </ol>
@@ -296,7 +304,7 @@ the right of <strong>Telegram</strong> to add the nodes into your palette:</p>
 </div>
 </div>
 <div class="section" id="configure-the-bot">
-<h3><a class="toc-backref" href="#id8">3. Configure The Bot</a><a class="headerlink" href="#configure-the-bot" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">3. Configure The Bot</a><a class="headerlink" href="#configure-the-bot" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Double click the Telegram In Node, select &#8220;Add new selectbot-controller...&#8221;,
 and click the &#8220;Edit&#8221; button.</li>
@@ -317,7 +325,7 @@ okay.</li>
 <img alt="_images/telegram-controller_dropdown.png" class="align-center" src="_images/telegram-controller_dropdown.png" />
 </div>
 <div class="section" id="deploy-the-application">
-<h3><a class="toc-backref" href="#id9">4. Deploy the Application</a><a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">4. Deploy the Application</a><a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Click on deploy button in the upper right hand corner to deploy your
 application.</li>
@@ -325,13 +333,15 @@ application.</li>
 <img alt="_images/telegram-deploy.png" class="align-center" src="_images/telegram-deploy.png" />
 <p>After the application is deployed, your bot should be online. It will echo the
 message you sent to it.</p>
-<p id="telegram-echo-bot-tutorial">Here&#8217;s a full video demonstrating the entire process:</p>
+</div>
+<div class="section" id="telegram-echo-bot-tutorial">
+<span id="id1"></span><h3><a class="toc-backref" href="#id12">Telegram Echo Bot Tutorial</a><a class="headerlink" href="#telegram-echo-bot-tutorial" title="Permalink to this headline">¶</a></h3>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/NZA9n0f3_wc"
     frameborder="0" allowfullscreen></iframe>
  <br><br><br></div>
 </div>
 <div class="section" id="setting-up-inline-bot">
-<span id="set-up-inline"></span><h2><a class="toc-backref" href="#id10">Setting up Inline Bot</a><a class="headerlink" href="#setting-up-inline-bot" title="Permalink to this headline">¶</a></h2>
+<span id="set-up-inline"></span><h2><a class="toc-backref" href="#id13">Setting up Inline Bot</a><a class="headerlink" href="#setting-up-inline-bot" title="Permalink to this headline">¶</a></h2>
 <p>In Telegram, bots can either take direct messages (as demonstrated above) or be
 called using inline mentions. <a class="reference external" href="https://telegram.org/blog/inline-bots">Inline bots</a>
 have the following perks:</p>
@@ -340,7 +350,7 @@ have the following perks:</p>
 <li>Inline bots give a more compact representation of results for fast browsing and selection</li>
 </ul>
 <div class="section" id="set-inline-status">
-<h3><a class="toc-backref" href="#id11">Set Inline Status</a><a class="headerlink" href="#set-inline-status" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id14">Set Inline Status</a><a class="headerlink" href="#set-inline-status" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Send the <code class="docutils literal"><span class="pre">/setinline</span></code> command to Bot Father. Then select your bot to
 activate inline status:</li>
@@ -354,7 +364,7 @@ your bot can understand:</li>
 <img alt="_images/set_inline_status.png" class="align-center" src="_images/set_inline_status.png" />
 </div>
 <div class="section" id="set-inline-location-awareness">
-<h3><a class="toc-backref" href="#id12">Set Inline Location Awareness</a><a class="headerlink" href="#set-inline-location-awareness" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Set Inline Location Awareness</a><a class="headerlink" href="#set-inline-location-awareness" title="Permalink to this headline">¶</a></h3>
 <p>Telegram also allows bots to request your location in GPS coordinates.</p>
 <ol class="arabic simple">
 <li>Send the <code class="docutils literal"><span class="pre">/setinlinegeo</span></code> command to Bot Father.</li>
@@ -371,11 +381,11 @@ location.</p>
 </div>
 </div>
 <div class="section" id="telegram-in-and-telegram-out-nodes">
-<h2><a class="toc-backref" href="#id13">Telegram In and Telegram Out Nodes</a><a class="headerlink" href="#telegram-in-and-telegram-out-nodes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Telegram In and Telegram Out Nodes</a><a class="headerlink" href="#telegram-in-and-telegram-out-nodes" title="Permalink to this headline">¶</a></h2>
 <p>This section of the tutorial explains the output of the <strong>Telegram In</strong> node and
 the required formats for the <strong>Telegram Out</strong> node input.</p>
 <div class="section" id="telegram-in">
-<span id="telegram-in-node"></span><h3><a class="toc-backref" href="#id14">Telegram In</a><a class="headerlink" href="#telegram-in" title="Permalink to this headline">¶</a></h3>
+<span id="telegram-in-node"></span><h3><a class="toc-backref" href="#id17">Telegram In</a><a class="headerlink" href="#telegram-in" title="Permalink to this headline">¶</a></h3>
 <p>The Telegram In node receives input from telegram and outputs the following msg:</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -421,7 +431,7 @@ the original message from telegram contained these fields.</p>
 <p>msg.kitt field will be used by the Router node for session management and timeout.</p>
 </div>
 <div class="section" id="telegram-out">
-<span id="telegram-out-node"></span><h3><a class="toc-backref" href="#id15">Telegram Out</a><a class="headerlink" href="#telegram-out" title="Permalink to this headline">¶</a></h3>
+<span id="telegram-out-node"></span><h3><a class="toc-backref" href="#id18">Telegram Out</a><a class="headerlink" href="#telegram-out" title="Permalink to this headline">¶</a></h3>
 <p>This node receives message by wires and sends to telegram bot. It expects
 message with the following properties:</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -504,7 +514,7 @@ manner:</p>
        <span class="p">}</span>
 </pre></div>
 </td></tr></table></div>
-<p>To have your bot send an <a href="#id1"><span class="problematic" id="id2">**</span></a>image**in Telegram, format your msg in the following
+<p>To have your bot send an <a href="#id2"><span class="problematic" id="id3">**</span></a>image**in Telegram, format your msg in the following
 manner:</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
@@ -558,7 +568,7 @@ following manner:</p>
 </div>
 </div>
 <div class="section" id="an-yelp-inline-bot">
-<span id="yelp-inline-bot"></span><h2><a class="toc-backref" href="#id16">An Yelp Inline Bot</a><a class="headerlink" href="#an-yelp-inline-bot" title="Permalink to this headline">¶</a></h2>
+<span id="yelp-inline-bot"></span><h2><a class="toc-backref" href="#id19">An Yelp Inline Bot</a><a class="headerlink" href="#an-yelp-inline-bot" title="Permalink to this headline">¶</a></h2>
 <p>We want to program an inline Yelp bot that supports the following two inline
 mention modes:</p>
 <ol class="arabic simple">
@@ -572,9 +582,9 @@ mention modes:</p>
   Your browser does not support the video tag.
 </video>
 <br> <br> <br><div class="section" id="the-setup">
-<h3><a class="toc-backref" href="#id17">The Setup</a><a class="headerlink" href="#the-setup" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">The Setup</a><a class="headerlink" href="#the-setup" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="import-the-telegram-yelp-inline-bot-application-into-chatflow">
-<h4><a class="toc-backref" href="#id18">1. Import the &#8220;Telegram - Yelp Inline Bot&#8221; Application into Chatflow</a><a class="headerlink" href="#import-the-telegram-yelp-inline-bot-application-into-chatflow" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id21">1. Import the &#8220;Telegram - Yelp Inline Bot&#8221; Application into Chatflow</a><a class="headerlink" href="#import-the-telegram-yelp-inline-bot-application-into-chatflow" title="Permalink to this headline">¶</a></h4>
 <p>Import the application to ChatFlow by either:</p>
 <ul class="simple">
 <li>Download the <a class="reference download internal" href="_downloads/YelpTelegramBot.json" download=""><code class="xref download docutils literal"><span class="pre">JSON</span></code></a> file for our
@@ -587,12 +597,9 @@ page.</li>
 <p>The following is a screenshot of the flow.</p>
 <a class="reference internal image-reference" href="_images/yelp_bot_canvas.png"><img alt="_images/yelp_bot_canvas.png" class="align-center" src="_images/yelp_bot_canvas.png" style="width: 640px;" /></a>
 <p>Feel free to import this bot into your own project and play with it.</p>
-<p id="yelp-inline-bot-walkthrough">In addition, here&#8217;s a full video walking through the entire creation process:</p>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/jkZWr41cFdo"
-    frameborder="0" allowfullscreen></iframe>
- <br><br><br></div>
+</div>
 <div class="section" id="acquire-the-bot-token-and-yelp-api-credentials">
-<h4><a class="toc-backref" href="#id19">2. Acquire the Bot Token and Yelp API Credentials</a><a class="headerlink" href="#acquire-the-bot-token-and-yelp-api-credentials" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id22">2. Acquire the Bot Token and Yelp API Credentials</a><a class="headerlink" href="#acquire-the-bot-token-and-yelp-api-credentials" title="Permalink to this headline">¶</a></h4>
 <p>In order for the bot to work, you&#8217;ll need:</p>
 <ol class="arabic simple">
 <li>Bot access token (already covered in <a class="reference internal" href="#telegram-echo-bot"><span class="std std-ref">A Simple Echo Bot</span></a> )</li>
@@ -600,9 +607,14 @@ page.</li>
 <strong>Consumer Key</strong>, <strong>Consumer Secret</strong>, <strong>Token</strong> and <strong>Token Secret</strong>.</li>
 </ol>
 </div>
+<div class="section" id="yelp-inline-bot-walkthrough">
+<span id="id5"></span><h4><a class="toc-backref" href="#id23">Yelp Inline Bot Walkthrough</a><a class="headerlink" href="#yelp-inline-bot-walkthrough" title="Permalink to this headline">¶</a></h4>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/jkZWr41cFdo"
+    frameborder="0" allowfullscreen></iframe>
+ <br><br><br></div>
 </div>
 <div class="section" id="the-flow">
-<h3><a class="toc-backref" href="#id20">The Flow</a><a class="headerlink" href="#the-flow" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id24">The Flow</a><a class="headerlink" href="#the-flow" title="Permalink to this headline">¶</a></h3>
 <p>In this flow, the bot only accepts inline mentions and does not accept direct
 messages. We assumed the input will have a certain structure and can be captured
 by the <code class="docutils literal"><span class="pre">Simple</span> <span class="pre">NLU</span> <span class="pre">for</span> <span class="pre">Inline</span> <span class="pre">Query</span></code> node:</p>
@@ -770,7 +782,7 @@ look at the full tutorial of <a class="reference internal" href="extended_exampl
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 

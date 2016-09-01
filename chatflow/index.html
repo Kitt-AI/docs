@@ -88,6 +88,7 @@
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
@@ -97,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -145,6 +146,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/index.txt" rel="nofollow"> View page source</a>
           
@@ -174,15 +178,27 @@ natural language understanding engine. Here&#8217;s a 20 minute walk-through:</p
  <br><br><br></div>
 <div class="section" id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
-<p>This documentation is still under construction. We are still working on the first
-four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tutorials are finished!</p>
+<p>This documentation is still under construction. We are still working on the
+Extended Example: A conversational Yelp bot, but most others all finished!</p>
 <div class="toctree-wrapper compound">
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-chatflow">Accessing ChatFlow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#a-first-conversational-flow">A first conversational flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#another-simple-flow-from-scratch">Another simple flow, from scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-app-from-a-sample-project">Create a New App from a Sample Project</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#creating-an-app-from-scratch">1. Creating an App from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#the-conversational-router">2. The Conversational Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#enter-and-state-nodes">Enter and State Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#adding-input-and-output">3. Adding input and output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#nlu-dealing-with-natural-language-input">4. NLU &amp; Dealing with Natural Language Input</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#reconfiguring-the-enter-nodes">5. Reconfiguring The Enter Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#build-a-bot-walkthrough-video">Build A Bot Walkthrough Video</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_a_bot.html#export-and-import">Export and Import</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a><ul>
@@ -190,7 +206,7 @@ four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tu
 <li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#router">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#enter-nodes">Enter Nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#state-nodes">State Nodes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#nlu">NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#id2">NLU</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dialogue_nodes.html#api-nodes">API Nodes</a></li>
 </ul>
 </li>
@@ -234,8 +250,8 @@ four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tu
 </li>
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="alexa.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa.html#create-an-alexa-copy-cat-chatflow-app">Create an Alexa Copy Cat Chatflow app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa.html#create-a-copy-cat-echo-skill">Create a Copy Cat Echo skill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa.html#alexa-in-and-out-nodes">Alexa In and Out Nodes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa.html#test-your-skill-with-an-echo">Test your skill with an Echo</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa.html#more-advanced-tutorials">More Advanced Tutorials</a></li>
 </ul>
@@ -243,21 +259,22 @@ four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tu
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-chatflow-app">Create the WiseGuy ChatFlow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa_advanced.html#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#create-an-nlu-project">Create an NLU Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#exporting-to-alexa-format">Exporting to Alexa Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="oauth2.html#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oauth2.html#creating-the-bot">Creating the bot</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oauth2.html#reusing-access-tokens">Reusing access tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth2.html#creating-the-bot">1. Creating the bot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth2.html#configuring-the-oauth2-node">2. Configuring the OAuth2 Node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth2.html#testing-the-application">3. Testing the Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="oauth2.html#reusing-access-tokens">4. Reusing Access Tokens</a></li>
 </ul>
 </li>
 </ul>
@@ -282,7 +299,7 @@ four sections below. But most bots (Telegram/Facebook/Slack/Twilio/Kik/Alexa) tu
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 

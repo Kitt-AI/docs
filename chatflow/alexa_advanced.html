@@ -37,7 +37,7 @@
 
   
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
-        <link rel="next" title="Advanced Alexa Skill Tutorial with NLU" href="alexa_nlu.html"/>
+        <link rel="next" title="Advanced Alexa Skill NLU Tutorial" href="alexa_nlu.html"/>
         <link rel="prev" title="Alexa Skill Tutorials" href="alexa.html"/> 
 
   
@@ -89,6 +89,7 @@
                 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
@@ -99,9 +100,14 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Alexa Skill Tutorial</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-the-wiseguy-chatflow-app">Create the WiseGuy ChatFlow app</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#create-the-wiseguy-alexa-skill">Create the WiseGuy Alexa Skill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wiseguy-tell-a-knock-knock-joke">WiseGuy: tell a Knock Knock joke</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-wiseguy-chatflow-app">1. Create the WiseGuy ChatFlow app</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#wiseguy-video-tutorial">WiseGuy Video Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-wiseguy-alexa-skill">2. Create the WiseGuy Alexa Skill</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#state-tracking">State tracking</a></li>
@@ -109,7 +115,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill Tutorial with NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -157,6 +163,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/alexa_advanced.txt" rel="nofollow"> View page source</a>
           
@@ -176,12 +185,17 @@
 <ul class="simple">
 <li><a class="reference internal" href="#advanced-alexa-skill-tutorial" id="id2">Advanced Alexa Skill Tutorial</a><ul>
 <li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
-<li><a class="reference internal" href="#wiseguy-tell-a-knock-knock-joke" id="id4">WiseGuy: tell a Knock Knock joke</a></li>
-<li><a class="reference internal" href="#create-the-wiseguy-chatflow-app" id="id5">Create the WiseGuy ChatFlow app</a></li>
-<li><a class="reference internal" href="#create-the-wiseguy-alexa-skill" id="id6">Create the WiseGuy Alexa Skill</a></li>
-<li><a class="reference internal" href="#multi-turn-and-state-tracking-explained" id="id7">Multi turn and state tracking explained</a><ul>
-<li><a class="reference internal" href="#the-global-variable" id="id8">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
-<li><a class="reference internal" href="#state-tracking" id="id9">State tracking</a></li>
+<li><a class="reference internal" href="#wiseguy-tell-a-knock-knock-joke" id="id4">WiseGuy: tell a Knock Knock joke</a><ul>
+<li><a class="reference internal" href="#create-the-wiseguy-chatflow-app" id="id5">1. Create the WiseGuy ChatFlow app</a><ul>
+<li><a class="reference internal" href="#wiseguy-video-tutorial" id="id6">WiseGuy Video Tutorial</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-the-wiseguy-alexa-skill" id="id7">2. Create the WiseGuy Alexa Skill</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multi-turn-and-state-tracking-explained" id="id8">Multi turn and state tracking explained</a><ul>
+<li><a class="reference internal" href="#the-global-variable" id="id9">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
+<li><a class="reference internal" href="#state-tracking" id="id10">State tracking</a></li>
 </ul>
 </li>
 </ul>
@@ -191,41 +205,52 @@
 <div class="section" id="introduction">
 <span id="intro"></span><h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial we will walk through a more complex Alexa skill that
-tells the <em>knock knock</em> joke. You will learn:</p>
-<ul class="simple">
+tells the <em>knock knock</em> joke.</p>
+<dl class="docutils">
+<dt>By the end of this tutorial, you will be able to:</dt>
+<dd><ul class="first last simple">
 <li>Using multiple intents with slots (entities) in an Alexa sample app</li>
 <li>Creating a multi-turn conversation</li>
 <li>Managing and tracking dialogue states</li>
 </ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="wiseguy-tell-a-knock-knock-joke">
 <h2><a class="toc-backref" href="#id4">WiseGuy: tell a Knock Knock joke</a><a class="headerlink" href="#wiseguy-tell-a-knock-knock-joke" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy">Wise Guy</a> is a sample Alexa skill that tells the <em>knock knock</em> joke:</p>
+<p><a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy">Wise Guy</a> is a sample Alexa skill that tells a <em>knock knock</em> joke:</p>
 <p><em>You: &#8220;Alexa, ask Wise Guy to tell a joke&#8221;</em></p>
 <p><em>Echo: &#8220;Knock knock&#8221;</em></p>
 <p><em>You: &#8220;who&#8217;s there?&#8221;</em></p>
 <p><em>Echo: &#8220;Beets!&#8221;</em></p>
 <p><em>You: &#8220;Beets who?&#8221;</em></p>
 <p><em>Echo: &#8220;Beats me!&#8221;</em></p>
-<p>However, it shows multi-turn ability with dialogue state tracking. At any given
-point, users can ask for help and Echo would explain how to proceed.</p>
+<p>This skill highlights Alexa&#8217;s multi-turn ability using dialogue state tracking.
+At any given point, the user can ask for help and Alexa will explain how to proceed.</p>
 <p>The main source files are the <a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets">Speech Assets</a>
 and <a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/blob/master/samples/wiseGuy/src/index.js">index.js</a> file.</p>
-<p>We&#8217;ll see how to easily recreate this application with ChatFlow and a more
+<p>We&#8217;ll see how to easily recreate this application with ChatFlow with a more
 intuitive interface.</p>
-</div>
 <div class="section" id="create-the-wiseguy-chatflow-app">
-<h2><a class="toc-backref" href="#id5">Create the WiseGuy ChatFlow app</a><a class="headerlink" href="#create-the-wiseguy-chatflow-app" title="Permalink to this headline">¶</a></h2>
+<span id="create-wiseguy-chatflow-app"></span><h3><a class="toc-backref" href="#id5">1. Create the WiseGuy ChatFlow app</a><a class="headerlink" href="#create-the-wiseguy-chatflow-app" title="Permalink to this headline">¶</a></h3>
 <p>Go to <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> and use the sample application &#8220;Alexa WiseGuy Skill&#8221;:</p>
 <img alt="_images/chatflow-wise-guy-app.png" class="align-center" src="_images/chatflow-wise-guy-app.png" />
 <p>The application can almost work out of the box. All we need to do is to copy
 the &#8220;Final URL&#8221; from the <strong>Alexa In</strong> node after hitting &#8220;DEPLOY&#8221;.</p>
+<div class="section" id="wiseguy-video-tutorial">
+<h4><a class="toc-backref" href="#id6">WiseGuy Video Tutorial</a><a class="headerlink" href="#wiseguy-video-tutorial" title="Permalink to this headline">¶</a></h4>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/GTaW4ze1OgM"
+    frameborder="0" allowfullscreen></iframe>
+<br> <br> <br></div>
 </div>
 <div class="section" id="create-the-wiseguy-alexa-skill">
-<h2><a class="toc-backref" href="#id6">Create the WiseGuy Alexa Skill</a><a class="headerlink" href="#create-the-wiseguy-alexa-skill" title="Permalink to this headline">¶</a></h2>
-<p>Now please follow the steps in <a class="reference internal" href="alexa.html#create-an-alexa-skill"><span class="std std-ref">Create an Alexa Skill</span></a> to create a skill
-for Wise Guy. In Step <a class="reference internal" href="alexa.html#sample-utterances"><span class="std std-ref">2. Sample Utterances</span></a> you&#8217;ll need to input
-<a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets">Speech Assets</a>.</p>
+<span id="create-wiseguy-alexa-skill"></span><h3><a class="toc-backref" href="#id7">2. Create the WiseGuy Alexa Skill</a><a class="headerlink" href="#create-the-wiseguy-alexa-skill" title="Permalink to this headline">¶</a></h3>
+<p>Now please follow the steps in <a class="reference internal" href="alexa.html#create-an-alexa-skill"><span class="std std-ref">2. Create an Alexa Skill</span></a> to create a skill
+for Wise Guy.</p>
+<ol class="arabic simple">
+<li>In Step <a class="reference internal" href="alexa.html#sample-utterances"><span class="std std-ref">Sample Utterances</span></a>, input
+<a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets">Speech Assets</a>.</li>
+</ol>
 <p><strong>Intent Schema</strong>:</p>
 <div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -337,12 +362,14 @@ SetupNameWhoIntent {SetupName} who
 </div>
 <p>Now we are all set! Use the Service Simulator or your Echo device to test it!</p>
 </div>
+</div>
 <div class="section" id="multi-turn-and-state-tracking-explained">
-<h2><a class="toc-backref" href="#id7">Multi turn and state tracking explained</a><a class="headerlink" href="#multi-turn-and-state-tracking-explained" title="Permalink to this headline">¶</a></h2>
+<span id="multiturn-and-state-tracking-explained"></span><h2><a class="toc-backref" href="#id8">Multi turn and state tracking explained</a><a class="headerlink" href="#multi-turn-and-state-tracking-explained" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="the-global-variable">
-<h3><a class="toc-backref" href="#id8">The <code class="docutils literal"><span class="pre">global</span></code> variable</a><a class="headerlink" href="#the-global-variable" title="Permalink to this headline">¶</a></h3>
-<p>Now let&#8217;s come back to the ChatFlow app. We have a <code class="docutils literal"><span class="pre">JOKE_LIST</span></code> that&#8217;s used
-across the dialogue. We set it in the <strong>init JOKE_LIST</strong> state node:</p>
+<h3><a class="toc-backref" href="#id9">The <code class="docutils literal"><span class="pre">global</span></code> variable</a><a class="headerlink" href="#the-global-variable" title="Permalink to this headline">¶</a></h3>
+<p>Take a look at the <strong>init JOKE_LIST</strong> state node. In it, we have created a
+global variable that can be used across the dialogue. It is called <code class="docutils literal"><span class="pre">JOKE_LIST</span></code>
+and was set in with the following code:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">JOKE_LIST</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="nx">setup</span><span class="o">:</span> <span class="s2">&quot;To&quot;</span><span class="p">,</span> <span class="nx">speechPunchline</span><span class="o">:</span> <span class="s2">&quot;Correct grammar is &lt;break time=\&quot;0.2s\&quot; /&gt; to whom.&quot;</span><span class="p">,</span>
     <span class="nx">cardPunchline</span><span class="o">:</span> <span class="s2">&quot;Correct grammar is &#39;to whom&#39;.&quot;</span><span class="p">},</span>
@@ -351,21 +378,20 @@ across the dialogue. We set it in the <strong>init JOKE_LIST</strong> state node
 <span class="nx">global</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s2">&quot;JOKE_LIST&quot;</span><span class="p">,</span> <span class="nx">JOKE_LIST</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Then later we can use:</p>
+<p>Then it can be retrieved later in any function or state node by using:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">JOKE_LIST</span> <span class="o">=</span> <span class="k">global</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JOKE_LIST&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>to retrieve this variable in any function or state node. The <code class="docutils literal"><span class="pre">global</span></code> environment
-has a scope to current application, i.e., one application cannot access another
-application&#8217;s <code class="docutils literal"><span class="pre">global</span></code> environment.</p>
-<p>Also, in the <strong>init JOKE_LIST</strong> state node, we initialized the dialogue stage:</p>
+<p>The <code class="docutils literal"><span class="pre">global</span></code> environment is limited to the current application. One
+application cannot access another application&#8217;s <code class="docutils literal"><span class="pre">global</span></code> environment.</p>
+<p>In addition, in the <strong>init JOKE_LIST</strong> state node, we initialized the dialogue stage:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="state-tracking">
-<h3><a class="toc-backref" href="#id9">State tracking</a><a class="headerlink" href="#state-tracking" title="Permalink to this headline">¶</a></h3>
-<p>Now take a look at the <strong>Tell Me A Joke</strong> state node, it sets up the dialogue stage:</p>
+<h3><a class="toc-backref" href="#id10">State tracking</a><a class="headerlink" href="#state-tracking" title="Permalink to this headline">¶</a></h3>
+<p>Take a look at the <strong>Tell Me A Joke</strong> state node, it sets up the dialogue stage:</p>
 <a class="reference internal image-reference" href="_images/tell-me-a-joke.png"><img alt="_images/tell-me-a-joke.png" class="align-center" src="_images/tell-me-a-joke.png" style="width: 400px;" /></a>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -385,9 +411,9 @@ attempting to visit another enter/state node.</p>
 </pre></div>
 </div>
 <p>Remember that everything in <code class="docutils literal"><span class="pre">msg.kitt</span></code> is maintained by the dialogue router,
-persisting over the whole dialogue session. Thus next time a new utterance within
+persisting over the whole dialogue session. Thus, whenever a new utterance within
 the <em>same</em> dialogue session comes in, previous turn&#8217;s <code class="docutils literal"><span class="pre">msg.kitt</span></code> can still be
-accessed. <code class="docutils literal"><span class="pre">msg.kitt</span></code> is also assigned to <code class="docutils literal"><span class="pre">sessionAttributes</span></code> when <em>outputting</em>
+accessed. <code class="docutils literal"><span class="pre">msg.kitt</span></code> is also assigned to <code class="docutils literal"><span class="pre">sessionAttributes</span></code> <em>outputted</em>
 through <strong>Alexa Out</strong> and persisted by the Alexa service. So next time an Alexa
 <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format">Request</a>
 comes in, the same session attributes can be accessed via <code class="docutils literal"><span class="pre">msg.alexa.session.attributes</span></code>
@@ -422,8 +448,8 @@ comes in, the same session attributes can be accessed via <code class="docutils 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>It also sets <code class="docutils literal"><span class="pre">msg.kitt._session_ended</span> <span class="pre">=</span> <span class="pre">true;</span></code> because that&#8217;s end of the
-<em>knock knock</em> joke!</p>
+<p>In addition, it sets <code class="docutils literal"><span class="pre">msg.kitt._session_ended</span> <span class="pre">=</span> <span class="pre">true;</span></code> because that&#8217;s end of
+the <em>knock knock</em> joke!</p>
 </div>
 </div>
 </div>
@@ -435,7 +461,7 @@ comes in, the same session attributes can be accessed via <code class="docutils 
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="alexa_nlu.html" class="btn btn-neutral float-right" title="Advanced Alexa Skill Tutorial with NLU" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="alexa_nlu.html" class="btn btn-neutral float-right" title="Advanced Alexa Skill NLU Tutorial" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="alexa.html" class="btn btn-neutral" title="Alexa Skill Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -448,7 +474,7 @@ comes in, the same session attributes can be accessed via <code class="docutils 
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 25, 2016.
+      Last updated on Sep 01, 2016.
 
     </p>
   </div> 
