@@ -66,6 +66,16 @@ By the end of this tutorial, you will be able to:
 2. A Simple Backwards-echo Bot
 ==============================
 
+Reverse Bot Video Tutorial
+__________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+
 1. Create a New Chatflow App with Twilio Nodes
 ______________________________________________
 
@@ -194,18 +204,6 @@ _________________________
 Send a text message (SMS) to the phone number you bought. Your app should
 respond in seconds with a message containing the text you sent, but reversed.
 
-Reverse Bot Echo Tutorial
-_________________________
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
-       frameborder="0" allowfullscreen></iframe>
-    <br><br><br>
-
-
-.. _debugging_twilio:
-
 3. Extra steps
 ==============
 5. Add Debugging Functionality
@@ -271,6 +269,17 @@ The following fields are taken as inputs by Twilio Out:
 
 An Advanced Twilio Bot with Session/Router Support
 ======================================================
+
+Add Bot Video Tutorial
+______________________
+
+.. raw:: html
+
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/qMnErJlZNLw" frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+Creating Add Bot from Scratch
+_____________________________
 
 1. Create a new app and add the following nodes:
 
@@ -352,11 +361,3 @@ Now by sending "add" message to your Twilio phone number you increase the counte
 .. note:: You can download the whole sample aplication
     `here <_static/json/twilio-router-bot.json>`_. You will only have to setup
     Twilio In/Out nodes manually.
-
-Add Bot Video Tutorial
-______________________
-
-.. raw:: html
-
-    <iframe width="640" height="360" src="https://www.youtube.com/embed/qMnErJlZNLw" frameborder="0" allowfullscreen></iframe>
-    <br><br><br>

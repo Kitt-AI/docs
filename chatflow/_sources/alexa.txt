@@ -26,6 +26,17 @@ You will learn:
 Create a Copy Cat Echo skill
 ==============================
 
+.. _echo_bot_video_walkthrough:
+
+Echo Bot Tutorial Video
+-----------------------
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/gJchjcdQPnU"
+       frameborder="0" allowfullscreen></iframe>
+   <br> <br> <br>
+
 1. Create an Alexa Copy Cat Chatflow app
 ----------------------------------------
 
@@ -164,17 +175,6 @@ Finishing up
 .. image:: _static/img/alexa/skill-on-app.png
    :align: center
    :width: 320
-
-.. _echo_bot_video_walkthrough:
-
-Echo Bot Tutorial Video
------------------------
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/gJchjcdQPnU"
-       frameborder="0" allowfullscreen></iframe>
-   <br> <br> <br>
 
 .. _alexa_nodes:
 

@@ -50,6 +50,20 @@ The final bot should go like this:
 
 A video tutorial is also appended in :ref:`walkthrough_video`.
 
+.. _walkthrough_video:
+
+Build A Bot Walkthrough Video
+=============================
+
+In addition, here is a video walking you through the entire creation process:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/t-SHOOCfDrI"
+      frameborder="0" allowfullscreen></iframe>
+   <br><br><br>
+
+
 1. Creating an App from Scratch
 ===============================
 
@@ -470,19 +484,6 @@ Go ahead and test you bot! The interactions should go a little like this:
      Your browser does not support the video tag.
    </video>
    <br> <br> <br>
-
-.. _walkthrough_video:
-
-Build A Bot Walkthrough Video
-=============================
-
-In addition, here is a video walking you through the entire creation process:
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/t-SHOOCfDrI"
-      frameborder="0" allowfullscreen></iframe>
-   <br><br><br>
 
 Export and Import
 =================

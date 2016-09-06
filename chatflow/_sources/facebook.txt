@@ -41,6 +41,16 @@ Creating a simple echo bot
 
 In this part of the tutorial, we will show you how to configure the facebook nodes.
 
+Facebook Echo Bot Video Tutorial
+_______________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/cjh4q5gAwno"
+       frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
 1. Create a new facebook page
 _____________________________
 
@@ -164,16 +174,6 @@ __________________________________
 
 After the application is deployed, your bot should be online. It should echo back
 your message!
-
-Facebook Echo Bot Tutorial
-__________________________
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/cjh4q5gAwno"
-       frameborder="0" allowfullscreen></iframe>
-
-    <br><br><br>
 
 Facebook In and Out Nodes
 =========================

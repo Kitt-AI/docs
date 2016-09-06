@@ -52,6 +52,18 @@ A Simple Echo Bot
 Before we build a Telegram Yelp Bot, let's create a simple Echo bot to
 demonstrate how the Telegram connection works.
 
+.. _telegram_echo_bot_tutorial:
+
+Telegram Echo Bot Video Tutorial
+________________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/NZA9n0f3_wc"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+
 1. Create a New Bot and Token in Telegram
 _________________________________________
 
@@ -147,17 +159,6 @@ _________________________
 
 After the application is deployed, your bot should be online. It will echo the
 message you sent to it.
-
-.. _telegram_echo_bot_tutorial:
-
-Telegram Echo Bot Tutorial
-__________________________
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/NZA9n0f3_wc"
-       frameborder="0" allowfullscreen></iframe>
-    <br><br><br>
 
 .. _set_up_inline:
 

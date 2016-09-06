@@ -29,6 +29,18 @@ By the end of this tutorial, you will be able to:
 WiseGuy: tell a Knock Knock joke
 ================================
 
+WiseGuy Video Tutorial
+______________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/GTaW4ze1OgM"
+       frameborder="0" allowfullscreen></iframe>
+   <br> <br> <br>
+
+Application Overview
+____________________
+
 `Wise Guy`_ is a sample Alexa skill that tells a *knock knock* joke:
 
 *You: "Alexa, ask Wise Guy to tell a joke"*
@@ -64,15 +76,6 @@ Go to ChatFlow_ and use the sample application "Alexa WiseGuy Skill":
 
 The application can almost work out of the box. All we need to do is to copy
 the "Final URL" from the **Alexa In** node after hitting "DEPLOY".
-
-WiseGuy Video Tutorial
-______________________
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/GTaW4ze1OgM"
-       frameborder="0" allowfullscreen></iframe>
-   <br> <br> <br>
 
 .. _create_wiseguy_alexa_skill:
 

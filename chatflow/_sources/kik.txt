@@ -38,6 +38,16 @@ A simple echo bot
 
 Let's first create a simple echo bot using ChatFlow.
 
+kik Echo Bot Video Tutorial
+___________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/XrQSL7zFjsE"
+       frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
 .. _create_kik_bot:
 
 1. Create a Kik Bot
@@ -126,17 +136,6 @@ ________________________________
    :align: center
 
 When you write to your bot, it answers you with the same message.
-
-kik Echo Bot Video Tutorial
-___________________________
-
-.. raw:: html
-
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/XrQSL7zFjsE"
-       frameborder="0" allowfullscreen></iframe>
-
-    <br><br><br>
-
 
 kik In and kik Out Nodes
 ========================

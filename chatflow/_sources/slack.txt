@@ -21,8 +21,6 @@ Slack Bot Tutorials
 .. _ChatFlow: https://chatflow.kitt.ai/
 .. _NLU: https://nlu.kitt.ai/
 
-.. TODO:: Make Simple Bot Tutorial and Choose Cat Bot Tutorial
-
 .. contents:: Table of Contents
    :depth: 4
 
@@ -33,6 +31,16 @@ such as:
 
   * Interactive messages
   * Custom slash commands
+
+Here is an example of the bot in action:
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/slack/catdemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
 
 By the end of this tutorial, you will be able to:
   * Connect a ChatFlow app to Slack.
@@ -46,6 +54,18 @@ A Simple Echo Bot
 
 .. note:: To connect ChatFlow to Slack, you need to create a new bot and its
           input credentials into the slack nodes.
+
+Slack Echo Bot Tutorial Video
+_____________________________
+
+.. raw:: html
+
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/XnbXGnlfetE">
+        frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
+
 
 1. Create a New Bot in Slack
 ____________________________
@@ -145,17 +165,6 @@ message you sent to it.
 
    * Enable your Slack bot application by clicking on the "Edit" button and the clicking on "Enable"
 
-Slack Echo Bot Tutorial Video
-_____________________________
-
-Here is a video tutorial walking you through the entire process of setting up an
-echobot.
-
-.. raw:: html
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/XnbXGnlfetE" frameborder="0" allowfullscreen></iframe>
-  <br><br><br>
-
-
 Slack In and Slack Out Nodes
 =============================
 
@@ -223,6 +232,17 @@ learn how to create application that uses:
 We will create a small voting game. The idea is simple: bot will show all
 members of your slack channel two pictures of two different cats. They can cast
 their vote by responding to the bot.
+
+Slash Commands and Interactive Messages Video Tutorial
+______________________________________________________
+
+.. raw:: html
+
+    <iframe width="640" height="360" src="https://www.youtube.com/embed/3ZjfTqttupc">
+        frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
 
 1. Create a Slack Application
 _____________________________
@@ -468,5 +488,3 @@ You can write the following text to your bot:
 
 You may also try slash command. Write in any chat ``/randomcat`` to see a random cat
 there.
-
-.. TODO:: @xuchen. Could you please make a quick video, showing how it works?
