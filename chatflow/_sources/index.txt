@@ -19,19 +19,21 @@ as Facebook Messenger, Slack, Kik, Telegram, SMS, and
 Amazon's Alexa platform (Amazon Echo).
 
 ChatFlow can be used in conjunction with NLU_, our intuitive and interactive
-natural language understanding engine. Here's a 20 minute walk-through:
+natural language understanding engine.
+
+Here's a brief video explaining ChatFlow:
 
 .. raw:: html
 
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/rHcQu4SNvew"
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/i7CbxrGdXek"
        frameborder="0" allowfullscreen></iframe>
     <br><br><br>
 
 Contents
 ==================
 
-This documentation is still under construction. We are still working on the 
-Extended Example: A conversational Yelp bot, but most others all finished!
+This documentation is still under construction. We are still working on the
+few more bells and whistles, but otherwise, it is complete!
 
 .. toctree::
    :maxdepth: 2

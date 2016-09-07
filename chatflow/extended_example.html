@@ -118,7 +118,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#answering-user-questions-about-the-choices-presented">7. Answering user questions about the choices presented</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#final-thoughts">Final thoughts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#final-thoughts">Final Thoughts</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
@@ -223,7 +223,7 @@
 <li><a class="reference internal" href="#answering-user-questions-about-the-choices-presented" id="id24">7. Answering user questions about the choices presented</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#final-thoughts" id="id25">Final thoughts</a></li>
+<li><a class="reference internal" href="#final-thoughts" id="id25">Final Thoughts</a></li>
 </ul>
 </li>
 </ul>
@@ -242,7 +242,7 @@ bots. In addition, this tutorial will showcase how to configure and integrate a
 API node into your bot seamlessly.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This project is avaiable in the sample projects section in the create
+<p class="last">This project is available in the sample projects section in the create
 new app dialogue.</p>
 </div>
 </div>
@@ -727,7 +727,7 @@ NLU.entities dictionary.</p>
 <div class="section" id="output-cases">
 <h4><a class="toc-backref" href="#id19">Output Cases</a><a class="headerlink" href="#output-cases" title="Permalink to this headline">¶</a></h4>
 <p>Currently, the bot can request user input, extract features from the user input,
-and store it in its memory. However, the extration process does not always go
+and store it in its memory. However, the extraction process does not always go
 smoothly and can results in four different cases:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -918,7 +918,7 @@ needed.</p>
 </div>
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id21">3. Fulfilling the User&#8217;s Request through a Yelp Query</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
-<p>Once we have the address and busines type, our agent is ready to query Yelp using
+<p>Once we have the address and business type, our agent is ready to query Yelp using
 the YELP API and get a list of suggestions. Although this sounds fairly
 complicated, it is not! ChatFlow has already conveniently packaged the query
 process into a <strong>API node</strong>.</p>
@@ -969,6 +969,16 @@ is true), we should go ahead with the request.</p>
 <li>Connect to this enter node a new state node, name it <em>Yelp request</em>, and add
 the following code:</li>
 </ol>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">prepare</span> <span class="n">yelp</span> <span class="n">search</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">yelp</span> <span class="o">=</span> <span class="p">{</span><span class="n">term</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">businesstype</span><span class="p">,</span>
+    <span class="n">location</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="mi">10</span><span class="p">};</span>
+
+<span class="o">//</span> <span class="n">don</span><span class="s1">&#39;t request the same search again</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">reqready</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <ol class="arabic simple" start="5">
 <li>Connect this state node to the Yelp node.</li>
 </ol>
@@ -984,12 +994,45 @@ output of the Yelp node (accessible as  <code class="docutils literal"><span cla
 <p class="last">For details on how the output is formatted, see the <a class="reference external" href="http://www.yelp.com/developers">Yelp API documentation</a>.</p>
 </div>
 <p>Our query will produce ten results. Presenting all ten at once would be
-diasterous in both speech-to-speech and chat scenarios. So let&#8217;s present three
+disastrous in both speech-to-speech and chat scenarios. So let&#8217;s present three
 choices at a time and give the user the option to hear further choices.</p>
 <ol class="arabic simple">
 <li>Add a new state node, name it <em>list choices</em>, add the following code to
 process the Yelp API results:</li>
 </ol>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">businesses</span><span class="p">;</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+
+<span class="n">var</span> <span class="n">numresults</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">numresults</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">length</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">numresults</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;I found &#39;</span> <span class="o">+</span> <span class="n">numresults</span> <span class="o">+</span> <span class="s2">&quot; places that might work. &quot;</span><span class="p">];</span>
+
+    <span class="k">if</span><span class="p">(</span><span class="n">numresults</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">numresults</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;The first 3 are:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numresults</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">image_url</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">image_url</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;Do any of these sound okay?&quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Oops I didn&#39;t find anything on Yelp. Please update the address and business type. &quot;</span><span class="p">];</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">businesstype</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>First, we are saving the results in a user variable called <code class="docutils literal"><span class="pre">yelp_results</span></code>.
 Then, we format the bot&#8217;s utterance directly in <code class="docutils literal"><span class="pre">msg.kitt._responses</span></code> by
 using a loop to add the names of the restaurants to the bot&#8217;s utterance.</p>
@@ -1037,6 +1080,37 @@ request for more choices) and respond accordingly.</p>
 <ol class="arabic simple" start="9">
 <li>Add a new state node, name it <em>list more choices</em>, and add the following code:</li>
 </ol>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">shift</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">var</span> <span class="n">numresults</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">length</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">numresults</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Sorry, I&#39;m all out of options, but you can try a different search request.&quot;</span> <span class="p">];</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Ok, I have &#39;</span> <span class="o">+</span> <span class="n">numresults</span> <span class="o">+</span> <span class="s2">&quot; more places. &quot;</span><span class="p">];</span>
+
+<span class="k">if</span><span class="p">(</span><span class="n">numresults</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">numresults</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s1">&#39;The next 3 are:</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">numresults</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">image_url</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">image_url</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;Do any of these sound okay?&quot;</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">intent</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>This code will remove the restaurant options we already used, check if there are
 still options available, and, if there still are options, present them to the user.</p>
 <ol class="arabic simple" start="10">
@@ -1054,7 +1128,7 @@ still options available, and, if there still are options, present them to the us
 <li><em>intent: list mode</em>.</li>
 </ul>
 </div></blockquote>
-<p>We now have the capability of preseting a small number of choices, and going
+<p>We now have the capability of presenting a small number of choices, and going
 down a list if necessary.</p>
 <p>Your flow should now look like the following figure:</p>
 <img alt="_images/Flow-7.png" class="align-center" src="_images/Flow-7.png" />
@@ -1076,6 +1150,41 @@ to them.</p>
 <li>Connect to this enter node a new state node.</li>
 <li>Name new state node, name it <em>repeat choice</em> and add the following code:</li>
 </ol>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">choice</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<span class="n">switch</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">enum_choice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">case</span> <span class="s2">&quot;first&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;one&quot;</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="n">case</span> <span class="s2">&quot;two&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;second&quot;</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="n">case</span> <span class="s2">&quot;three&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;last&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;3&quot;</span><span class="p">:</span>
+    <span class="n">case</span> <span class="s2">&quot;third&quot;</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="n">default</span><span class="p">:</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="n">choice</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sorry, I didn&#39;t get what your choice was. &quot;</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">choice_name</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Great, &quot;</span> <span class="o">+</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="p">;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="n">choice</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">intent</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>In this code, we check for the <code class="docutils literal"><span class="pre">NLU.entities.enum_choice</span></code> entity and set the
 <code class="docutils literal"><span class="pre">choice</span></code> variable appropriately. If a choice is made, we set the user
 variable <code class="docutils literal"><span class="pre">kitt.user_choice</span></code>, which we can access at any time in other nodes.</p>
@@ -1087,21 +1196,77 @@ variable <code class="docutils literal"><span class="pre">kitt.user_choice</span
 <p>Great! Our bot can guide users to a choice, but what if the user has questions
 about their choice and the other options?</p>
 <p>Well, we can great new flows to answer the users questions!</p>
-<ol class="arabic simple">
-<li>Add a new enter node, name it <em>intent: request rating</em> , and add three entrance conditions:
+<ol class="arabic">
+<li><p class="first">Add a new enter node, name it <em>intent: request rating</em> , and add three entrance conditions:
 * <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code>
 * <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.user_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>
-* <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li>Create a state node called <em>say rating</em> and input the following code:</li>
-<li>To handle questions that refer to a specific restaurant, we add a new enter
+* <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></p>
+</li>
+<li><p class="first">Create a state node called <em>say rating</em> and input the following code:</p>
+<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;It&#39;s got &quot;</span> <span class="o">+</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span><span class="p">]</span><span class="o">.</span><span class="n">review_count</span> <span class="o">+</span>
+    <span class="s2">&quot; reviews on Yelp, and the rating is &quot;</span> <span class="o">+</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span><span class="p">]</span><span class="o">.</span><span class="n">rating</span> <span class="o">+</span> <span class="s2">&quot; stars.&quot;</span><span class="p">];</span>
+
+<span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">intent</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">To handle questions that refer to a specific restaurant, we add a new enter
 node called <em>intent: rating request with choice</em> with the following entrance
 conditions:
 * <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code>
-* <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li>Connect this enter node to a new state node called <em>say rating by choice</em>, with the following code:</li>
+* <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></p>
+</li>
+<li><p class="first">Connect this enter node to a new state node called <em>say rating by choice</em>, with the following code:</p>
+</li>
 </ol>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">choice</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">status</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span><span class="p">;</span>
+
+<span class="k">switch</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">entities</span><span class="p">.</span><span class="nx">enum_choice</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">case</span> <span class="s2">&quot;first&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;1&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;one&quot;</span><span class="o">:</span>
+        <span class="nx">choice</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">&quot;two&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;2&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;second&quot;</span><span class="o">:</span>
+        <span class="nx">choice</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="s2">&quot;three&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;last&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;3&quot;</span><span class="o">:</span>
+    <span class="k">case</span> <span class="s2">&quot;third&quot;</span><span class="o">:</span>
+        <span class="nx">choice</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="nx">choice</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">];</span>
+<span class="k">if</span><span class="p">(</span><span class="nx">choice</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Sorry, I didn&#39;t get what your choice was. &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">choice_name</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">yelp_results</span><span class="p">[</span><span class="nx">choice</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nx">name</span><span class="p">;</span>
+    <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">choice</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+   <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">yelp_results</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span><span class="p">].</span><span class="nx">name</span> <span class="o">+</span>
+   <span class="s2">&quot; has &quot;</span> <span class="o">+</span>
+    <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">yelp_results</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span><span class="p">].</span><span class="nx">review_count</span> <span class="o">+</span>
+    <span class="s2">&quot;reviews on Yelp, and the rating is &quot;</span> <span class="o">+</span>
+    <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">yelp_results</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span><span class="p">].</span><span class="nx">rating</span> <span class="o">+</span> <span class="s2">&quot;stars.&quot;</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">intent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>Here, we have a code that combines the code in <em>Say rating</em> and <em>repeat choice</em>
-to generate a function that selects an ouput on the users input.</p>
+to generate a function that selects an output on the users input.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">You can add similar flows to handle questions about address and hours.</p>
@@ -1112,6 +1277,12 @@ to generate a function that selects an ouput on the users input.</p>
 * <code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">thanking</span></code></li>
 <li>Add a state named <em>respond to thanks</em>, add the following code:</li>
 </ol>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;No problem. &#39;</span><span class="p">,</span> <span class="s1">&#39;Sure, any time. &#39;</span><span class="p">,</span> <span class="s1">&#39;Glad to help. &#39;</span><span class="p">,</span> <span class="s1">&#39;Any time. &#39;</span><span class="p">]</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">intent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>This code stores a set of appropriate responses and randomly selects one to output!</p>
 <p>Well, what if our bot does not understand our user? We can create a flow to
 handle that!</p>
@@ -1120,6 +1291,32 @@ handle that!</p>
 * <code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 <li>Add a state named <em>Non understanding</em> and add the following code:</li>
 </ol>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Sorry, I didn&#39;t get what you said. &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Oops, I&#39;m not sure I understand. &quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Hmm, not sure I understand. &quot;</span><span class="p">];</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">address</span> <span class="o">!==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">businesstype</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&quot;I should point out that I&#39;m not good at understanding the names of businesses, so when I give you choices, just say first, second, or one, two, and so on. &quot;</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">str</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">address</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">businesstype</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&quot;Zip code might be easier for me. Or try something easy. &quot;</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">str</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">businesstype</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">str</span> <span class="o">=</span> <span class="s2">&quot;I&#39;m not good at business types at this point. Please try something simple. &quot;</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">str</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">intent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>Finally, we can create a flow that will end our dialogue with our user.</p>
 <ol class="arabic simple" start="10">
 <li>Add an enter node named <em>closing</em> with the entrance condition:</li>
@@ -1139,7 +1336,7 @@ handle that!</p>
 </div>
 </div>
 <div class="section" id="final-thoughts">
-<h2><a class="toc-backref" href="#id25">Final thoughts</a><a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id25">Final Thoughts</a><a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
 <p>That&#8217;s it! We now have a fully functional conversational interface to Yelp. Can
 you make it better? (Of course you can!)</p>
 <img alt="_images/superflow.png" class="align-center" src="_images/superflow.png" />

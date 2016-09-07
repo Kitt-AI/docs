@@ -37,7 +37,7 @@ is to provide you with a better understand of building more complex and robust
 bots. In addition, this tutorial will showcase how to configure and integrate a
 API node into your bot seamlessly.
 
-.. note:: This project is avaiable in the sample projects section in the create
+.. note:: This project is available in the sample projects section in the create
     new app dialogue.
 
 Starting your conversational project
@@ -439,7 +439,7 @@ Output Cases
 ............
 
 Currently, the bot can request user input, extract features from the user input,
-and store it in its memory. However, the extration process does not always go
+and store it in its memory. However, the extraction process does not always go
 smoothly and can results in four different cases:
   (1) Both Business Type and Address are extracted
   (2) Only Business Type is extracted
@@ -570,7 +570,7 @@ Your flow should now look like the following figure:
 3. Fulfilling the User's Request through a Yelp Query
 -----------------------------------------------------
 
-Once we have the address and busines type, our agent is ready to query Yelp using
+Once we have the address and business type, our agent is ready to query Yelp using
 the YELP API and get a list of suggestions. Although this sounds fairly
 complicated, it is not! ChatFlow has already conveniently packaged the query
 process into a **API node**.
@@ -608,6 +608,7 @@ The Yelp node builds a query by using a term in ``msg.yelp.term``, a location in
    the following code:
 
 .. code:: javascript
+
   // prepare yelp search
   msg.yelp = {term: msg.kitt.businesstype,
       location: msg.kitt.address, limit: 10};
@@ -633,13 +634,14 @@ output of the Yelp node (accessible as  ``msg.payload``.)
 .. note:: For details on how the output is formatted, see the `Yelp API documentation <http://www.yelp.com/developers>`_.
 
 Our query will produce ten results. Presenting all ten at once would be
-diasterous in both speech-to-speech and chat scenarios. So let's present three
+disastrous in both speech-to-speech and chat scenarios. So let's present three
 choices at a time and give the user the option to hear further choices.
 
 1. Add a new state node, name it *list choices*, add the following code to
    process the Yelp API results:
 
 .. code:: javascript
+
     msg.kitt.yelp_results = msg.payload.businesses;
     msg.payload = "";
 
@@ -709,6 +711,7 @@ request for more choices) and respond accordingly.
 9. Add a new state node, name it *list more choices*, and add the following code:
 
 .. code:: javascript
+
     for(var i = 0; i < 3; i++) {
     msg.kitt.yelp_results.shift();
     }
@@ -750,7 +753,7 @@ still options available, and, if there still are options, present them to the us
   * *intent: No*
   * *intent: list mode*.
 
-We now have the capability of preseting a small number of choices, and going
+We now have the capability of presenting a small number of choices, and going
 down a list if necessary.
 
 Your flow should now look like the following figure:
@@ -773,6 +776,7 @@ to them.
 3. Name new state node, name it *repeat choice* and add the following code:
 
 .. code:: javascript
+
     var choice = null;
     switch(msg.NLU.entities.enum_choice) {
         case "first":
@@ -832,6 +836,7 @@ Well, we can great new flows to answer the users questions!
 2. Create a state node called *say rating* and input the following code:
 
    .. code:: javascript
+
        msg.kitt._responses = ["It's got " +
            msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
            " reviews on Yelp, and the rating is " +
@@ -849,6 +854,7 @@ Well, we can great new flows to answer the users questions!
 4. Connect this enter node to a new state node called *say rating by choice*, with the following code:
 
 .. code-block:: javascript
+
     var choice = null;
     var status = "open";
 
@@ -892,7 +898,7 @@ Well, we can great new flows to answer the users questions!
     return msg;
 
 Here, we have a code that combines the code in *Say rating* and *repeat choice*
-to generate a function that selects an ouput on the users input.
+to generate a function that selects an output on the users input.
 
 .. tip:: You can add similar flows to handle questions about address and hours.
 
@@ -904,6 +910,7 @@ Can we make our bot accept gratitude? We sure can!
 7. Add a state named *respond to thanks*, add the following code:
 
 .. code-block:: javascript
+
     msg.kitt._responses = ['No problem. ', 'Sure, any time. ', 'Glad to help. ', 'Any time. ']
 
     msg.NLU.intent = null;
@@ -920,6 +927,7 @@ handle that!
 9. Add a state named *Non understanding* and add the following code:
 
 .. code-block:: javascript
+
     msg.kitt._responses = [
         "Sorry, I didn't get what you said. ",
         "Oops, I'm not sure I understand. ",
@@ -959,7 +967,7 @@ Your flow should now look like the following figure:
    :align: center
 
 
-Final thoughts
+Final Thoughts
 ==============
 
 That's it! We now have a fully functional conversational interface to Yelp. Can

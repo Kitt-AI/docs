@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">OAuth2/Uber Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#uber-oauth2-video-tutorial">Uber Oauth2 Video Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-descripton-of-oauth2-flow">Simple Descripton of OAuth2 Flow</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#registering-an-application-in-uber-service">Registering an application in Uber service</a></li>
 </ul>
@@ -179,14 +180,15 @@
 <ul class="simple">
 <li><a class="reference internal" href="#oauth2-uber-tutorials" id="id2">OAuth2/Uber Tutorials</a><ul>
 <li><a class="reference internal" href="#introduction" id="id3">Introduction</a><ul>
-<li><a class="reference internal" href="#simple-descripton-of-oauth2-flow" id="id4">Simple Descripton of OAuth2 Flow</a></li>
-<li><a class="reference internal" href="#registering-an-application-in-uber-service" id="id5">Registering an application in Uber service</a></li>
+<li><a class="reference internal" href="#uber-oauth2-video-tutorial" id="id4">Uber Oauth2 Video Tutorial</a></li>
+<li><a class="reference internal" href="#simple-descripton-of-oauth2-flow" id="id5">Simple Descripton of OAuth2 Flow</a></li>
+<li><a class="reference internal" href="#registering-an-application-in-uber-service" id="id6">Registering an application in Uber service</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#creating-the-bot" id="id6">1. Creating the bot</a></li>
-<li><a class="reference internal" href="#configuring-the-oauth2-node" id="id7">2. Configuring the OAuth2 Node</a></li>
-<li><a class="reference internal" href="#testing-the-application" id="id8">3. Testing the Application</a></li>
-<li><a class="reference internal" href="#reusing-access-tokens" id="id9">4. Reusing Access Tokens</a></li>
+<li><a class="reference internal" href="#creating-the-bot" id="id7">1. Creating the bot</a></li>
+<li><a class="reference internal" href="#configuring-the-oauth2-node" id="id8">2. Configuring the OAuth2 Node</a></li>
+<li><a class="reference internal" href="#testing-the-application" id="id9">3. Testing the Application</a></li>
+<li><a class="reference internal" href="#reusing-access-tokens" id="id10">4. Reusing Access Tokens</a></li>
 </ul>
 </li>
 </ul>
@@ -219,8 +221,14 @@ open links provided by an application. For example: using it in an app that comm
 SMS messages may not be a good idea, because some old feature phones don&#8217;t have any web browsers or
 users don&#8217;t want to or can&#8217;t use their data connection.</p>
 </div>
+<div class="section" id="uber-oauth2-video-tutorial">
+<h3><a class="toc-backref" href="#id4">Uber Oauth2 Video Tutorial</a><a class="headerlink" href="#uber-oauth2-video-tutorial" title="Permalink to this headline">¶</a></h3>
+<p>Here is a video tutorial walking you through the Uber Oauth2 configuration process:</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/ElKDTwMxKnU"
+   frameborder="0" allowfullscreen></iframe>
+<br><br><br></div>
 <div class="section" id="simple-descripton-of-oauth2-flow">
-<h3><a class="toc-backref" href="#id4">Simple Descripton of OAuth2 Flow</a><a class="headerlink" href="#simple-descripton-of-oauth2-flow" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Simple Descripton of OAuth2 Flow</a><a class="headerlink" href="#simple-descripton-of-oauth2-flow" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>The application asks the service to provide access credentials for user account and given scope of data/resources,
 by asking the user to open a specially crafted link in a browser. The link opens a page provided by the service.</li>
@@ -236,14 +244,14 @@ This token can expire too (it&#8217;s service-dependent).</p>
 <p>The OAuth2 Request node manages token acqusition and refreshing automatically.</p>
 </div>
 <div class="section" id="registering-an-application-in-uber-service">
-<h3><a class="toc-backref" href="#id5">Registering an application in Uber service</a><a class="headerlink" href="#registering-an-application-in-uber-service" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Registering an application in Uber service</a><a class="headerlink" href="#registering-an-application-in-uber-service" title="Permalink to this headline">¶</a></h3>
 <p>Go to <a class="reference external" href="https://developer.uber.com/dashboard">Uber Developer Dashboard</a>. Press the &#8220;+New App&#8221; button.
 Select &#8220;Rides API&#8221;, enter your app name, description, read the terms and if you agree with them,
 fill the corresponding checkbox, press the &#8220;Create&#8221; button. That&#8217;s all (for now), we&#8217;ll be back here later.</p>
 </div>
 </div>
 <div class="section" id="creating-the-bot">
-<h2><a class="toc-backref" href="#id6">1. Creating the bot</a><a class="headerlink" href="#creating-the-bot" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">1. Creating the bot</a><a class="headerlink" href="#creating-the-bot" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Create a new application.</li>
 <li>Add the following nodes to the flow:
@@ -277,7 +285,7 @@ Skip the first state node.</li>
 <img alt="_images/oauth2-func-clear-payload.png" class="align-center" src="_images/oauth2-func-clear-payload.png" />
 </div>
 <div class="section" id="configuring-the-oauth2-node">
-<h2><a class="toc-backref" href="#id7">2. Configuring the OAuth2 Node</a><a class="headerlink" href="#configuring-the-oauth2-node" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">2. Configuring the OAuth2 Node</a><a class="headerlink" href="#configuring-the-oauth2-node" title="Permalink to this headline">¶</a></h2>
 <p>Now comes the fun part, we&#8217;ll set up the OAuth2 Request node, so double click it to open the editor.</p>
 <ol class="arabic simple">
 <li>Name the Oauth 2 &#8220;uber profile&#8221;</li>
@@ -345,9 +353,9 @@ and enter the following code in the function body:</li>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>The first (upper) output of this node is used to ask the user for authorization to access his/her data.
-If the OAuth2 node can use credentials (access token plus other data) that it acquired previously and those
-credentials are still valid, then this node can proceed without asking the user to accept the access again
-(and a message won&#8217;t be emmited).</p>
+If the OAuth2 node can use credentials (access token plus other data) that it acquired previously,
+this node can proceed without asking the user to accept the access again so long
+as those credentials are still valid.</p>
 <p class="last">Only when the user authorizes the access, the OAuth2 request node will proceed.</p>
 </div>
 <ol class="arabic simple" start="17">
@@ -382,7 +390,7 @@ It&#8217;s mostly compatible with the HTTP Request node output.</p>
 all you have to do is fill in the &#8220;Client ID&#8221; and &#8220;Client Secret&#8221; fields.</p>
 </div>
 <div class="section" id="testing-the-application">
-<h2><a class="toc-backref" href="#id8">3. Testing the Application</a><a class="headerlink" href="#testing-the-application" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">3. Testing the Application</a><a class="headerlink" href="#testing-the-application" title="Permalink to this headline">¶</a></h2>
 <p>Now you can test your application. Open the Chat panel and send a <code class="docutils literal"><span class="pre">profile</span></code> message.
 The application should ask you to authorize its access to your data. Click on the provided link
 and press &#8220;Accept&#8221; on the Uber page. After that, the application should greet you with your first name (read from your Uber profile).</p>
@@ -392,21 +400,20 @@ obtained valid credentials (access token) previously, it can do it without askin
 <img alt="_images/oauth2-chat.png" class="align-center" src="_images/oauth2-chat.png" />
 </div>
 <div class="section" id="reusing-access-tokens">
-<h2><a class="toc-backref" href="#id9">4. Reusing Access Tokens</a><a class="headerlink" href="#reusing-access-tokens" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">4. Reusing Access Tokens</a><a class="headerlink" href="#reusing-access-tokens" title="Permalink to this headline">¶</a></h2>
 <p>Now let&#8217;s assume that credentials are kept in some persistent storage and use two requests to access different resources.
 For simplicity of this tutorial we won&#8217;t use any &#8220;real&#8221; storage yet.</p>
 <p>1. Open the configuration editor in OAuth2 Request node and change the field named &#8220;Where credentials are kept&#8221; to <code class="docutils literal"><span class="pre">uber_oauth2</span></code>.
 Data stored in <code class="docutils literal"><span class="pre">msg.kitt.*</span></code> is persisted in the dialog (session) storage by the router node, but data stored in other properties of <code class="docutils literal"><span class="pre">msg</span></code> is not.
 Leave the rest of the fields unchanged.
-If you deploy and test the application now, then you&#8217;ll see, that the user is asked for authorization every time we want to access his/her profile.</p>
+If you deploy and test the application now, you will see that the user is asked for authorization every time we want to access his/her profile.</p>
 <img alt="_images/oauth2_adv_credentials.png" class="align-center" src="_images/oauth2_adv_credentials.png" />
 <ol class="arabic simple" start="2">
-<li>Now add (and connect) two function nodes, one between the &#8220;Chat In&#8221; and the router, and another between the router and the &#8220;Chat out&#8221; node, so it will look like this:</li>
+<li>Now add two function nodes. Connect one between the &#8220;Chat In&#8221; and the router, and another between the router and the &#8220;Chat out&#8221; node, so it will look like this:</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you drop a node from the palette on an existing connection, then that connection will be &#8220;split&#8221; and the new node will be automatically connected.
-The connection is drawn with a dashed line (not a solid one) when this will happen.</p>
+<p class="last">If you drop a node from the palette on an existing connection, the connection will &#8220;split&#8221; and the new node will be automatically connected.</p>
 </div>
 <img alt="_images/oauth2_adv_storage.png" class="align-center" src="_images/oauth2_adv_storage.png" />
 <ol class="arabic simple" start="3">
@@ -425,7 +432,7 @@ you don&#8217;t have to know which user the credentials object belong to.
 In a real-world scenario you&#8217;d have to store credentials in some collection/table where the user
 identifier is the (primary) key.</p>
 <p class="last">This is very important, because if you do it the &#8220;wrong&#8221; way (like in this simplified example),
-then you&#8217;ll give access to protected resources to users not &#8220;owning&#8221; these resources.</p>
+you will give access to protected resources to users not &#8220;owning&#8221; these resources.</p>
 </div>
 <ol class="arabic simple" start="4">
 <li>Edit the function node placed after the router, name it &#8220;save credentials&#8221; and enter the following code in the function body:</li>
@@ -485,8 +492,8 @@ the existing state node called &#8220;authorize app&#8221;. Existing nodes and c
 </div>
 <img alt="_images/oauth2_adv_print_places.png" class="align-center" src="_images/oauth2_adv_print_places.png" />
 <ol class="arabic simple" start="11">
-<li>Now you can test your application again. If you authorized it after setting up the &#8220;save credentials&#8221; node, then you&#8217;ll see that it won&#8217;t ask for authorization.
-What&#8217;s more - if you end the dialogue session by sending &#8220;bye&#8221;, and use commands accessing Uber resources, you&#8217;ll see that the app will reuse the
+<li>Now you can test your application again. If you authorized it after setting up the &#8220;save credentials&#8221; node, you will see that it won&#8217;t ask for authorization.
+Once more - if you end the dialogue session by sending &#8220;bye&#8221;, and use commands accessing Uber resources, you will see that the app will reuse the
 credentials it obtained and stored in the mock &#8220;database&#8221; (<code class="docutils literal"><span class="pre">global</span></code> object).</li>
 </ol>
 <img alt="_images/oauth2_adv_chat_test.png" class="align-center" src="_images/oauth2_adv_chat_test.png" />

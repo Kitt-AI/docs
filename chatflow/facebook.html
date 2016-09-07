@@ -388,6 +388,23 @@ attachments. Both <cite>payload</cite> and <cite>attachments</cite> are optional
 <h3><a class="toc-backref" href="#id10">Facebook Out</a><a class="headerlink" href="#facebook-out" title="Permalink to this headline">¶</a></h3>
 <p>The Facebook Out Node sends its output back to Facebook and must receive input
 in the following format:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="nx">facebook</span><span class="o">:</span> <span class="p">{</span>
+                   <span class="nx">user</span><span class="o">:</span> <span class="s2">&quot;message.recipient.id&quot;</span><span class="p">,</span>
+                   <span class="nx">attachments</span><span class="o">:</span> <span class="nx">array_of</span><span class="p">(</span><span class="s2">&quot;message.attachment&quot;</span><span class="p">),</span>
+                   <span class="nx">attachment</span><span class="o">:</span> <span class="s2">&quot;message.attachment&quot;</span>
+                 <span class="p">}</span>
+       <span class="nx">payload</span><span class="o">:</span> <span class="s2">&quot;message.text&quot;</span>
+     <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
 <p><cite>user</cite> refers to the Facebook user ID. <cite>payload</cite> refers to the message text.
 <cite>attachments</cite> refers to an array of attachments. Facebook Out sends a separate
 messages for each of attachment. <cite>attachment</cite> refers to an attachment object

@@ -110,6 +110,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#api-nodes">API Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
@@ -208,84 +209,50 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#api-nodes" id="id14">API Nodes</a></li>
+<li><a class="reference internal" href="#summary" id="id15">Summary</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="nodes-in-chatflow">
 <h2><a class="toc-backref" href="#id4">Nodes in ChatFlow</a><a class="headerlink" href="#nodes-in-chatflow" title="Permalink to this headline">¶</a></h2>
-<p>ChatFlow conversational content are represented as nodes in a network
-and the connection between these nodes. The nodes have inputs
-(where they receive messages) and outputs (where they send messages).
-Execution of the network (running the conversation) happens through
+<p>ChatFlow conversational content is represented as nodes in a network or <strong>Flow</strong>. The nodes
+have <strong>inputs</strong> where they receive messages and <strong>outputs</strong> where they send messages.
+Execution of the Flow (running the conversation) happens through
 the flow of messages among the nodes in the network.</p>
 <div class="section" id="basic-flow-input-and-output">
 <h3><a class="toc-backref" href="#id5">Basic Flow, Input and Output</a><a class="headerlink" href="#basic-flow-input-and-output" title="Permalink to this headline">¶</a></h3>
-<p>In a ChatFlow conversation, messages typically originate from an input
-node from the <strong>bots</strong> section of the node palette. For example,
-<em>Alexa In</em>, <em>Cortana In</em>, and <em>Twilio Bot In</em> nodes are available to
+<p>In a ChatFlow conversation, messages typically originate from an <strong>Input Node</strong>
+from the <strong>bots</strong> section of the node library. For example,
+<em>Twilio In</em>, <em>Alexa In</em>, and <em>Cortana In</em> nodes are available to
 create and send messages based on user input coming from
-Amazon Echo, Microsoft Cortana or SMS. These input nodes do not
-receive messages from other nodes, so you will notice they do not
-accept incoming wires.</p>
+SMS, Amazon Echo, or Microsoft Cortana. These input nodes do not
+receive messages from other nodes, so they do not accept incoming wires.</p>
 <img alt="_images/In-Nodes.png" class="align-center" src="_images/In-Nodes.png" />
-<p>Once an input node receives user input from a Twilio number, the chat
-tab within ChatFlow, or an Amazon Echo device, it sends out a message
-through its output. The message created by an input node will contain
+<p>Once an input node receives user input, it sends out a message through its
+output. The message created by an input node will contain
 a <code class="docutils literal"><span class="pre">payload</span></code> property that holds a string corresponding to the
-user natural language input. Through a wire originating at the input node,
+user natural language input. Through the <strong>connection wire</strong>,
 this message typically goes to a <strong>Natural Language Understanding (NLU)</strong>
-node, which maps the natural language input into symbols that drive
+Node, which maps the natural language input into symbols that drive
 the ChatFlow interaction. The NLU results are added to the message as
-a property called <code class="docutils literal"><span class="pre">NLU</span></code>, and in a typically flow the message is then
-sent through a wire to the <strong>router</strong> node.</p>
+a property called <code class="docutils literal"><span class="pre">NLU</span></code>. The message is then sent through a connection wire
+to the <strong>Router</strong> Node.</p>
 <img alt="_images/NLU-router.png" class="align-center" src="_images/NLU-router.png" />
-<p>The router node then directs the message through a network of <strong>enter</strong> nodes
-and <strong>state</strong> nodes, which are not connected to the router by wires.
+<p>The Router Node then directs the message through a network of <strong>Enter</strong> Nodes
+and <strong>State</strong> Nodes (which are not connected to the router by wires).
 This process, described in the more detail under the <a class="reference internal" href="#router">router</a> section of
 the documentation, generates a system utterance, which the router
 places in its outgoing message as a string in the <code class="docutils literal"><span class="pre">payload</span></code> property. The
 router then sends the message out through a wire, which is typically connected
-to an output node matching the input node used (Slack In to Slack Out, Amazon In
+to an output node matching the input node used (Twilio In to Twilio Out, Amazon In
 to Amazon Out).</p>
 <img alt="_images/enter-state.png" class="align-center" src="_images/enter-state.png" />
-<p>The basic node types used in most ChatFlow conversations are:</p>
-<dl class="docutils">
-<dt><strong>input</strong></dt>
-<dd>An input node generates a message based on external user input,
-which is usually a natural language utterance. The string corresponding
-to the user input is accessible in the message sent by the input node
-as <code class="docutils literal"><span class="pre">msg.payload</span></code>.</dd>
-<dt><strong>output</strong></dt>
-<dd>An output node receives a message containing a system utterance
-as a string in <code class="docutils literal"><span class="pre">msg.payload</span></code>. This utterance is what the system
-wants to say to the user, and the output node sends this string out to
-the appropriate output channel.</dd>
-<dt><strong>enter</strong></dt>
-<dd>An enter node acts as an entry point to a specific part of the conversation.
-Each entry node contains a set of <em>entrance conditions</em>, which must all
-be satisfied in order for the conversation to proceed according to the
-content connected from the entry node. Entry nodes receive messages exclusively
-from the router, which chooses what entry nodes to send messages to.
-Once an entry node receives a message, it sends the message out through
-its output wire.</dd>
-<dt><strong>state</strong></dt>
-<dd>State nodes define what the agent does, says, and how the conversational
-context is updated. Context is kept as user variables that can be accessed
-in messages. System output, or agent utterances, are also set in state nodes.
-State nodes can contain arbitrary JavaScript code to manipulate the context
-and messages in general.</dd>
-<dt><strong>NLU</strong></dt>
-<dd>Having a Natural Language Understanding (NLU) node is crucial to allow a
-conversational agent deal with the unbounded variety of natural language input.
-NLU nodes essentially map natural language input utterances into a set
-of symbols that can be manipulated by the rest of the conversational flow.</dd>
-</dl>
 </div>
 </div>
 <div class="section" id="router">
 <h2><a class="toc-backref" href="#id6">Router</a><a class="headerlink" href="#router" title="Permalink to this headline">¶</a></h2>
-<p>The router node is of central importance in ChatFlow; it is responsible
+<p>The Router Node is of central importance in ChatFlow; it is responsible
 for choosing what system of actions to perform during each conversational turn.
 The choices presented to the router are the enter nodes in the flow. The router
 will only consider enter nodes with entrance conditions that are satisfied at
@@ -457,6 +424,38 @@ a few such nodes pre-built, with more to be added based in part by community
 demand.</p>
 <p>Additionally, the <strong>http request</strong> node can perform arbitrary http requests, so
 the opportunities to connect with the external world are endless!</p>
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id15">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>The basic node types used in most ChatFlow conversations are:</p>
+<dl class="docutils">
+<dt><strong>Input Nodes</strong></dt>
+<dd>Nodes that generate a message based on external user input,
+(usually a natural language utterance)</dd>
+<dt><strong>Output Nodes</strong></dt>
+<dd>Nodes that send what the system wants to say to the user out to the
+appropriate output channel</dd>
+<dt><strong>Enter Nodes</strong></dt>
+<dd>Nodes that acts as an entry point to a specific <strong>branch</strong> of the Flow by
+setting of <em>entrance conditions</em></dd>
+<dt><strong>State Nodes</strong></dt>
+<dd>Nodes that define what the bot does, says, and how the conversational
+context is updated</dd>
+<dt><strong>NLU Node</strong></dt>
+<dd>Nodes that map natural language input utterances into a set of symbols that
+can be manipulated by the rest of the conversational flow</dd>
+<dt><strong>Router Node</strong></dt>
+<dd>Nodes that is responsible for choosing what system of actions to perform
+during each conversational turn</dd>
+<dt><strong>API Nodes &amp; HTTP Request Nodes</strong></dt>
+<dd>Nodes that interact with APIs and web links allowing your bot to interact with
+the outside world</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">There are many other types of nodes in ChatFlow! Check out the <strong>Info Tab</strong> to
+learn more about how they work!</p>
+</div>
 </div>
 </div>
 

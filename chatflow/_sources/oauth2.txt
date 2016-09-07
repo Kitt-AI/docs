@@ -45,6 +45,17 @@ By the end of this tutorial, you will be able to:
     SMS messages may not be a good idea, because some old feature phones don't have any web browsers or
     users don't want to or can't use their data connection.
 
+Uber Oauth2 Video Tutorial
+==========================
+
+Here is a video tutorial walking you through the Uber Oauth2 configuration process:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/ElKDTwMxKnU"
+      frameborder="0" allowfullscreen></iframe>
+   <br><br><br>
+
 Simple Descripton of OAuth2 Flow
 ================================
 
@@ -186,9 +197,9 @@ the OAuth2 node will just output obtained credentials specificed in the next ste
 
 .. note::
   The first (upper) output of this node is used to ask the user for authorization to access his/her data.
-  If the OAuth2 node can use credentials (access token plus other data) that it acquired previously and those
-  credentials are still valid, then this node can proceed without asking the user to accept the access again
-  (and a message won't be emmited).
+  If the OAuth2 node can use credentials (access token plus other data) that it acquired previously,
+  this node can proceed without asking the user to accept the access again so long
+  as those credentials are still valid.
 
   Only when the user authorizes the access, the OAuth2 request node will proceed.
 
@@ -252,17 +263,16 @@ For simplicity of this tutorial we won't use any "real" storage yet.
 1. Open the configuration editor in OAuth2 Request node and change the field named "Where credentials are kept" to ``uber_oauth2``.
 Data stored in ``msg.kitt.*`` is persisted in the dialog (session) storage by the router node, but data stored in other properties of ``msg`` is not.
 Leave the rest of the fields unchanged.
-If you deploy and test the application now, then you'll see, that the user is asked for authorization every time we want to access his/her profile.
+If you deploy and test the application now, you will see that the user is asked for authorization every time we want to access his/her profile.
 
 .. image:: _static/img/oauth2/oauth2_adv_credentials.png
    :align: center
 
 
-2. Now add (and connect) two function nodes, one between the "Chat In" and the router, and another between the router and the "Chat out" node, so it will look like this:
+2. Now add two function nodes. Connect one between the "Chat In" and the router, and another between the router and the "Chat out" node, so it will look like this:
 
 .. note::
-    If you drop a node from the palette on an existing connection, then that connection will be "split" and the new node will be automatically connected.
-    The connection is drawn with a dashed line (not a solid one) when this will happen.
+    If you drop a node from the palette on an existing connection, the connection will "split" and the new node will be automatically connected.
 
 .. image:: _static/img/oauth2/oauth2_adv_storage.png
    :align: center
@@ -285,7 +295,7 @@ If you deploy and test the application now, then you'll see, that the user is as
     identifier is the (primary) key.
 
     This is very important, because if you do it the "wrong" way (like in this simplified example),
-    then you'll give access to protected resources to users not "owning" these resources.
+    you will give access to protected resources to users not "owning" these resources.
 
 
 4. Edit the function node placed after the router, name it "save credentials" and enter the following code in the function body:
@@ -350,8 +360,8 @@ the existing state node called "authorize app". Existing nodes and connections w
    :align: center
 
 
-11. Now you can test your application again. If you authorized it after setting up the "save credentials" node, then you'll see that it won't ask for authorization.
-    What's more - if you end the dialogue session by sending "bye", and use commands accessing Uber resources, you'll see that the app will reuse the
+11. Now you can test your application again. If you authorized it after setting up the "save credentials" node, you will see that it won't ask for authorization.
+    Once more - if you end the dialogue session by sending "bye", and use commands accessing Uber resources, you will see that the app will reuse the
     credentials it obtained and stored in the mock "database" (``global`` object).
 
 .. image:: _static/img/oauth2/oauth2_adv_chat_test.png

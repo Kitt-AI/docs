@@ -28,7 +28,7 @@ ChatFlow Quick Start
 Introduction
 ============
 
-This ChatFlow_tutorial provides a quick overview on how to access and navigate
+This ChatFlow_ tutorial provides a quick overview on how to access and navigate
 KITT.AI_'s ChatFlow_ platform.
 
 By the end of this tutorial, you will be able to:
@@ -41,7 +41,9 @@ Accessing ChatFlow
 
 ChatFlow is hosted by KITT.AI and can be accessed using any web browser.
 
-1. To access go to `<http://chatflow.kitt.ai>`_
+**To Access:**
+
+1. Go to `<http://chatflow.kitt.ai>`_
 
 2. Log in with your Google, Facebook, Twitter or Github account.
 
@@ -51,59 +53,71 @@ ChatFlow is hosted by KITT.AI and can be accessed using any web browser.
 Create a New App from a Sample Project
 ======================================
 
-1. Click on "Create new app" to start creating a new app. Each app or project
-   corresponds to a bot.
+1. Click on "Create new app" to start creating a new **app**. Each *app* or *project*
+   corresponds to a **bot**.
 
 .. image:: _static/img/quickstart/CreateNewApp.png
    :align: center
 
 
-2. In the pop-up, there will be a "Use a sample project" section. Look for the
-   "Hello Goodbye!" sample project. Click it. When the page refreshes, you will
-   be in the ChatFlow Editor.
+2. In the pop-up, under the **Use a sample project** section, Look for the
+   *"Hello Goodbye!"* sample project. Click on it. When the page refreshes, you will
+   be in the ChatFlow **Editor**.
 
 .. image:: _static/img/quickstart/Editor.png
    :align: center
 
-The **Node Library** is on the left side of the screen and contains various types
-of nodes.
+.. raw:: html
+     <br>
 
-.. image:: _static/img/quickstart/EditorLibrary.png
-   :align: center
+* The **Node Library** is on the left side of the *Editor* and contains various types
+  of nodes.
 
-The main area of the editor is the **Canvas**.
+  .. image:: _static/img/quickstart/EditorLibrary.png
+    :align: center
 
-.. note:: When you select a sample project, it will be already populated by
+.. raw:: html
+      <br>
+
+* The main area of the *Editor* is the **Canvas**. The nodes in your canvas will
+  become the content of our project.
+
+  .. note:: When you select a sample project, the canvas will be already populated by
     several nodes. If you start with a "clean project", the canvas will be
-    empty. The nodes in your canvas will become the content of our project.
+    empty.
 
-.. image:: _static/img/quickstart/EditorCanvas.png
-   :align: center
+  .. image:: _static/img/quickstart/EditorCanvas.png
+    :align: center
 
-The **Info Tab** on the right side of the screen contains the info tab provides
-information about the node you select. This is a great resource to learn more
-about each type of node.
+.. raw:: html
+    <br>
 
-.. image:: _static/img/quickstart/EditorInfo.png
-   :align: center
+* The **Info Tab** on the right side of the *Editor* provides information about
+  the current node.
 
-3. Click "Deploy" to deploy your bot.
+  .. tip:: This is a great resource to learn more about each type of node.
+
+  .. image:: _static/img/quickstart/EditorInfo.png
+    :align: center
+
+3. Click **Deploy** to deploy your bot allowing for you and your user to
+   interact with it.
 
 .. image:: _static/img/quickstart/deploy.png
    :align: center
 
-4. Click the **chat tab** on the left side of the screen. This is where you
+4. Click the **Chat Tab** on the left side of the *Editor*. This is where you
    can talk directly with the bot.
 
 .. image:: _static/img/quickstart/EditorChat.png
    :align: center
 
-5. Try saying "hi", "hello", and "goodbye" to the bot. The bot respond will respond
-   with the appropriate message. However, if you try to say anything else, it
+5. Test your bot. Try saying "hi", "hello", and "goodbye" to the bot. The bot
+   respond will respond with the appropriate message. If you try to say anything else, it
    will not understand you.
 
 .. image:: _static/img/quickstart/convo_sample.png
    :align: center
 
-Now you can proceed to next session to build a more complex bot with a Natural Langauge 
-Understanding engine and session management!
+You are now officially oriented with the ChatFlow Editor! A world of bots is
+waiting to be created! Are you up to the task?

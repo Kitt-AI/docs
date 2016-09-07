@@ -29,16 +29,16 @@ Introduction
 
 In this ChatFlow_ tutorial, we will walkthrough the process of building a bot
 from start to finish. In addition, we will introduce NLU_ - ChatFlow's
-**Natural Language Understanding** companion program.
+**Natural Language Understanding** companion platform.
 
 By the end of this tutorial, you will be able to:
   * create a new project from scratch
-  * configure Enter and State nodes
+  * configure Enter and State Nodes
   * create an NLU_ application.
   * configure the NLU node in ChatFlow_
-  * export and Import Projects
+  * export and import ChatFlow Projects
 
-The final bot should go like this:
+The final bot should act a like this:
 
 .. raw:: html
 
@@ -48,14 +48,12 @@ The final bot should go like this:
    </video>
    <br> <br> <br>
 
-A video tutorial is also appended in :ref:`walkthrough_video`.
-
 .. _walkthrough_video:
 
 Build A Bot Walkthrough Video
 =============================
 
-In addition, here is a video walking you through the entire creation process:
+Here is a video walking you through the entire Free Lunch Bot creation process:
 
 .. raw:: html
 
@@ -71,7 +69,7 @@ Let's create a simple flow that does a little more than just say hello. Our new
 bot will simply ask users for a free lunch. In addition, it will keep count of
 how many times it had to ask before getting a free lunch.
 
-1. Click on "Create new app" to start creating a new app.
+1. Click on "Create new app".
 
 .. image:: _static/img/quickstart/CreateNewApp.png
    :align: center
@@ -84,17 +82,17 @@ how many times it had to ask before getting a free lunch.
    :align: center
 
 3. Your bot will appear in your **App List**. Click on the name to enter the
-   editor.
+   *Editor*.
 
 .. image:: _static/img/quickstart/AppList.png
    :align: center
 
-4. Once the page loads, you will have an empty canvas, as shown below.
+4. Once the page loads, you will have an empty *Canvas*, as shown below.
 
 .. image:: _static/img/quickstart/BlankCanvas.png
    :align: center
 
-5. Drag in the Chat In and Chat Out Nodes.
+5. Drag in the **Chat In** and **Chat Out** Nodes.
 
 .. image:: _static/img/buildabot/chatin-chatout.png
    :align: center
@@ -102,50 +100,51 @@ how many times it had to ask before getting a free lunch.
 2. The Conversational Router
 ============================
 
-1. Drag a **router** node onto the empty canvas. Connect the Chat In, Router, and
+1. Drag a **Router** Node onto the empty Canvas. Connect the Chat In, Router, and
    Chat Out nodes like the image below:
 
-.. image:: _static/img/buildabot/router-node.png
+.. image:: _static/img/buildabot/Router-node.png
       :align: center
 
-.. note:: The router is responsible for directing messages within our flow
-    producing the conversational agent's output. In order to function, a project
-    must have a router!
+.. note:: The Router is responsible for directing messages within our Flow
+    producing the conversational agent's output.
 
-2. Double-click on the router node to name the router node.
+.. warning:: In order to function, a project must have a Router!
 
-.. image:: _static/img/buildabot/router-pop-up.png
+2. Double-click on the Router Node to name the Router Node.
+
+.. image:: _static/img/buildabot/Router-pop-up.png
    :align: center
 
-Enter and State Nodes
-=====================
+3. Enter and State Nodes
+========================
 
-Besides the router node, we are going to need two other nodes from the
-*dialogue* section of the Node Library - the **enter** and **state** nodes.
+Besides the Router Node, we are going to need two other nodes - the **Enter**
+and **State** Nodes.
 
-The **state** nodes are used to define what the bot will say. The **enter**
-nodes are used to specify *entrance conditions* to specify when specific
-**state** nodes will be used.
+**State** Nodes are used to define what the bot will say. **Enter**
+nodes are used to specify **entrance conditions** (the selection criteria that dictate
+when a branch in our Flow will be activated).
 
 Enter Node
 **********
 
-1. Add an **enter** node to the canvas. Each enter node contains a set of
-   *entrance conditions* that specify when that specific enter node is chosen by
-   the router.
+1. Add an **Enter** Node to the Canvas. Each Enter Node contains a set of
+   *entrance conditions* that specify when that specific Enter Node is chosen by
+   the Router.
 
 .. image:: _static/img/buildabot/enternode-1.png
    :align: center
 
-2. Doubleclick on the enter node to edit.
+2. Double click on the Enter Node to edit.
 
 .. image:: _static/img/buildabot/enternode-popup.png
    :align: center
 
 
-3. In this pop-up, name the node. Let's call this enter node *Initial state*.
+3. In this pop-up, name the node. Let's call this Enter Node *Initial state*.
 
-4. Below the name field is the selection conditions section. Remove the
+4. Below the name field is the **entrance conditions** section. Remove the
    conditions by clicking on the ""X"" to the right of the condition.
 
 .. image:: _static/img/buildabot/highlightedx.png
@@ -154,8 +153,8 @@ Enter Node
 .. note:: One condition is partially added by default to get you started.
 
 5. Check the box towards the bottom of the pop-up that says *Initial state*.
-   This will tell the router that this enter node is the first enter node of
-   the flow. You can then attach a :ref:`state_node` to it for initializing
+   This will tell the Router that this Enter Node marks the first branch of
+   Flow. You can then attach a :ref:`state_node` to it for initializing
    variables.
 
 .. image:: _static/img/buildabot/initial-state.png
@@ -166,20 +165,20 @@ Enter Node
 State Node
 ***********
 
-1. Drag a state node onto canvas to the right of the enter node.
+1. Drag a State Node onto Canvas to the right of the Enter Node.
 
-2. Connect the enter node and the state node together. Click on the grey dot on the
-   right of the enter node. Drag the resulting wire to the left grey dot of the
-   state node.
+2. Connect the Enter Node and the State Node together. Click on the grey dot on the
+   right of the Enter Node. Drag the resulting wire to the left grey dot of the
+   State Node.
 
 .. image:: _static/img/buildabot/Intialstate-statenode.png
    :align: center
 
-3. Doubleclick on the new state node. Name it *Initialize state*.
+3. Double click on the new State Node. Name it *Initialize state*.
 
-4. Below the name field, you will find a code editor. In the code editor, create
+4. Below the name field, you will find a **code editor**. In the code editor, create
    a single variable called ``count`` that will keep track of how many times our
-   bot has asked the user for lunch. The code inside this state node will be:
+   bot has asked the user for lunch. The code inside this State Node will be:
 
    .. code:: javascript
 
@@ -187,24 +186,24 @@ State Node
        return msg;
 
 .. note:: User variables are passed from node to node in the variable
-   ``msg``. In addition, special propery ``msg.kitt`` will be persisted
+   ``msg``. In addition, special property ``msg.kitt`` will be persisted
    over sessions so you can track your context over different dialogue turns.
    Our variable in this case is ``msg.kitt.count``.
 
-.. warning:: The code associated with the state node should end with ``return msg;``.
+.. warning:: The code associated with the State Node should end with ``return msg;``.
    Otherwise no message will be outputted, thus halting the conversation.
 
 5. Select the "Request User Input After This Node" option. The bot will wait for
    the users response before proceeding.
 
 6. In the *Output text* field, input *"Hello! Will you please buy me lunch?"*
-   Output text is outputted whenever the state node is activated. The figure
-   below shows what your state node should look like.
+   Output text is outputted whenever the State Node is activated. The figure
+   below shows what your State Node should look like.
 
 .. image:: _static/img/buildabot/initialize-state.png
    :align: center
 
-3. Adding input and output
+4. Adding input and output
 ==========================
 
 1. Deploy the bot.
@@ -212,65 +211,67 @@ State Node
 .. image:: _static/img/quickstart/deploy.png
    :align: center
 
-2. Open the chat tab. Enter *hello* into the input field on the bottom of the
-   screen. You should see a system output message from the state node *Initialize state*.
+2. Open the Chat Tab. Enter *hello* into the input field on the bottom of the
+   screen. You should see a system output message from the State Node *Initialize state*.
 
 .. image:: _static/img/buildabot/chat-bubble.png
    :align: center
 
-No Case
-*******
+The "No" Case
+*************
 
-Further input to this agent does nothing, since the system has nothing
-else to say. Let's now give the agent the ability to handle *yes* and
+If you try to continue, the bot does nothing since the bot has nothing
+else to say. Let's now give our bot the ability to handle *yes* and
 *no* answers from the user.
 
-1. Add an enter node and a state node and connect them as before.
+1. Add an Enter Node and a State Node. Connect them as before.
 
-2. Edit the enter node in the following way. Name it *"U: no"*. Set its
-   condition to ``Property msg.payload == no``, which simply checks if the
-   user input to the router coming from the *Chat In* node is "no".
+2. Edit the Enter Node:
+  * Name it *"U: no"*
+  * Set its condition to ``Property msg.payload == no``(This simply checks if the
+    user input to the Router coming from the *Chat In* node is "no")
 
 .. image:: _static/img/buildabot/u-no.png
    :align: center
 
-.. note:: By convention, the main output of nodes is placed into ``payload``, so
-   we can access the user input coming from *Chat In* in the value of ``msg.payload``.
+.. note:: By convention, the main output of nodes is placed into ``payload``.
+   The user input coming from *Chat In* is stored in ``msg.payload``.
 
-3. Edit the new state node. Name it *ask again* and add the following code into
-   its body:
+3. Edit the new State Node.
+  * Name it *ask again*
+  * Add the following code into its body:
 
-.. code:: javascript
+    .. code:: javascript
 
-    msg.kitt.count += 1;
-    return msg;
+        msg.kitt.count += 1;
+        return msg;
 
 4. In the *Output text* field, enter *I must insist. Will you reconsider?* Your
-   state node should look like the one shown below:
+   State Node should look like the one shown below:
 
 .. image:: _static/img/buildabot/ask-again.png
    :align: center
 
-Yes Case
-********
+The "Yes" Case
+**************
 
-Now that the system understands *no*, let's add another enter node and
-another state node to handle *yes*.
+Now that the system understands *no*, let's add another Enter Node and
+another State Node to handle *yes*.
 
-1. Add another enter and state nodes and connect them as before.
+1. Add another pair of Enter and State Nodes. Connect them as before.
 
-2. Name the enter node *U:yes* and add the entrance condition
-   ``Property msg.payload == yes``.
+2. Name the Enter Node *U:yes* and add the entrance condition:
+  * ``Property msg.payload == yes``
 
-3. Name the new state node *thank user*, and leave the code in this node as
-   simply ``return msg;`` since we don't need the system to do anything
-   else when it reaches this node.
+3. Name the new State Node *thank user*, and leave the code as ``return msg;``
+
+.. note:: Since we don't need the bot to do anything else when it reaches this
+    node, ``return msg;`` will simply dump out the raw output of the node.
 
 4. In the *Output text* field, enter *Thank you! Number of times I asked: {{kitt.count}}*.
 
-.. note:: While in the code editor we must use the full name of the variable
-   within the message ``msg.kitt.count``, in the *Output text* field, we can
-   access the value of user variables without the ``msg.kitt`` prefix.
+.. note:: In the *Output text* field, we can access variables stored in ``msg.kitt``
+    without the ``msg`` prefix.
 
 5. Check the box that says *Dialogue ends here* to tell the system that the
    conversation is over once we reach this state.
@@ -283,7 +284,7 @@ The figure below shows the  entire conversational network:
 .. image:: _static/img/buildabot/complete-flow-1.png
    :align: center
 
-6. Click Deploy and head to the chat tab. You should now be able to have a
+6. Click Deploy and head to the Chat Tab. You should now be able to have a
    simple conversation with the agent as shown below.
 
 .. image:: _static/img/buildabot/chat-bubble-1.png
@@ -292,51 +293,49 @@ The figure below shows the  entire conversational network:
 Unable To Process Case
 **********************
 
-The system only understands *yes* and *no*, because we only included
+Our bot only understands *yes* and *no*, because we only included
 case-sensitive tests for *yes* and *no* user input. If we say anything else,
-the agent will not response. We can easily create an enter node to handle all
+the agent will not response. We can easily create an Enter Node to handle all
 other input strings.
 
-1. Add an enter node and a state node to the canvas, and connect them.
+1. Add an Enter Node and a State Node to the Canvas. Connect them together.
 
-2. Edit the enter node so that its name is "U: default" and the single entrance
-   condition is ``Property msg.payload is not null``. In addition, add the
-   conditions ``Property msg.payload != yes`` and ``Property msg.payload != no``
+2. Edit the Enter Node, name is "U: default", and set it's entrance conditions to:
+  * ``Property msg.payload is not null``
+  * ``Property msg.payload != yes``
+  * ``Property msg.payload != no``
 
 .. image:: _static/img/buildabot/u-default.png
    :align: center
 
-3. In the new state node, change the name to *not understanding*, leave the code
-   as ``return msg;`` and add the following text to the *Output field*:
-   *Sorry, I didn't understand what you said. I only understand "yes" and "no".*
+3. In the new State Node, change the name to *not understanding*, leave the code
+   as ``return msg;``, and add the following text to the *Output field*:
+  * *Sorry, I didn't understand what you said. I only understand "yes" and "no".*
 
 .. image:: _static/img/buildabot/not-understanding.png
    :align: center
 
-Now, your agent will always have something to say, whether it understands the
-user or not. Your network and your new enter node should look like the figure
-below.
+Now, your bot will always have something to say, whether it understands the
+user or not. Your Flow should look like the figure below.
 
 .. image:: _static/img/buildabot/complete-flow-2.png
    :align: center
 
 
-We can now have interactions like the following using our simple
-conversational agent.
+We can now have interactions like the following using our bot!
 
 .. image:: _static/img/buildabot/chat-bubble-2.png
    :align: center
 
-4. NLU & Dealing with Natural Language Input
+5. NLU & Dealing with Natural Language Input
 ============================================
 
-We have built a simple conversational engine that illustrates the basic
-authoring process in ChatFlow. However, we have yet to address how our agent
-should understand real *natural language* utterances as input. To deal with
-input in the form of natural language utterances without restrictions, we use a
-**Natural Language Understanding (NLU)** node. The NLU node will map that
-utterance into a finite set of intents and entities, which we can then use in
-our enter nodes as the basis for our entrance conditions.
+We have built a simple bot that illustrates the basics of creating a bot in
+ChatFlow. However, we have yet to address how our bot can understand real
+*natural language* utterances. To deal with input in the form of natural language
+utterances without restrictions, we will use a **Natural Language Understanding (NLU)**
+node. The NLU node will map that utterance into a finite set of intents and
+entities, which we can then use in our Enter Nodes as the basis for our *entrance conditions*.
 
 Add an NLU Node
 ***************
@@ -393,19 +392,22 @@ Create and NLU App
    :align: center
 
 9. Once finished adding the ``positive_response`` and ``negative_response`` intents,
-   click "TRAIN APPLICATION", and then "DEPLOY".
+   click **TRAIN APPLICATION**, and then **DEPLOY**.
 
 .. image:: _static/img/buildabot/deploy-nlu.png
    :align: center
 
-10. Test you model in the "Train the model" Section. Input a sentence and click
+.. warning:: In order for your NLU model to update and be fully operation, you
+    must train your model and deploy it.
+
+10. Test you model in the *"Train the model"* Section. Input a sentence and click
     analyze.
 
 .. image:: _static/img/buildabot/train-the-model.png
    :align: center
 
-11. Once it has completed, check the result. You can correct it by on the blue
-    button and selecting the correct response. When finished, click submit.
+11. Once it has completed, check the result. You can correct the result by clicking
+    on the blue button and selecting the correct response. When finished, click submit.
 
 .. image:: _static/img/buildabot/submit-response.png
    :align: center
@@ -413,8 +415,9 @@ Create and NLU App
 Deploy the NLU App
 ******************
 
-.. warning:: Before the final deployment, please click "TRAIN APPLICATION" to fully
-   optimize the machine learner. Then you can issue RESTful API calls to your app.
+.. warning:: Before the final deployment, click "TRAIN APPLICATION" to fully
+   optimize you NLU app. Afterwards, you will be able to issue RESTful API calls
+   to your app.
 
 12. Click on "Show All Apps" in the upper lefthand corner to go back to the NLU
     app list.
@@ -424,7 +427,7 @@ Deploy the NLU App
 .. image:: _static/img/buildabot/deployment-information.png
    :align: center
 
-14. Copy the Deployment Url onto your clipboard.
+14. Copy the **Deployment Url** onto your clipboard.
 
 .. image:: _static/img/buildabot/deployment-url-expanded.png
    :align: center
@@ -432,27 +435,28 @@ Deploy the NLU App
 Configure the NLU Node
 **********************
 
-15. Edit the NLU Node. In the URL field paste the Deployment URL.
+15. Edit the NLU Node. In the URL field paste the **Deployment URL**.
 
 .. image:: _static/img/buildabot/flow-with-NLU.png
    :align: center
 
-.. note:: The NLU node with store all information in `msg.NLU`, for instance, ``msg.NLU.intent``,
-   ``msg.NLU.entities``, and ``msg.NLU.sentence``.
+.. note:: The NLU node with store all NLU information in `msg.NLU`. Intents,
+    entities and the original utterance will be stored in ``msg.NLU.intent``,
+    ``msg.NLU.entities``, and ``msg.NLU.sentence``, respectively.
 
-16. Add ``payload`` to the end of the URL. The final URL will look like this::
+16. Add ``{{{payload}}}`` to the end of the URL. The final URL will look like this::
 
 http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 
 .. image:: _static/img/buildabot/NLU-node-payload.png
    :align: center
 
-5. Reconfiguring The Enter Nodes
+6. Reconfiguring The Enter Nodes
 ================================
 
-We now have NLU configured for our bot. However, we are current not using this
+We now have NLU configured for our bot. However, we currently do not using this
 information within our bot. In order to do so, we must reconfigure the *U: Yes*
-and *U: No* Enter nodes.
+and *U: No* Enter Nodes.
 
 1. Edit the *U: Yes* node. Under the entrance conditions section, remove the
    ``Property msg.payload == yes`` condition.
@@ -461,10 +465,6 @@ and *U: No* Enter nodes.
 
 .. image:: _static/img/buildabot/u-yes-2.png
    :align: center
-
-.. note:: The NLU runs a query to the NLU app inputting in the payload input from
-   the *Chat In* node. It then maps it to an intent storing the intent
-   information in ``msg.NLU.intent``.
 
 3. Edit the *U: No* node. Under the entrance conditions section, remove the
    ``Property msg.payload == no`` condition. Add a new condition,
@@ -488,12 +488,12 @@ Go ahead and test you bot! The interactions should go a little like this:
 Export and Import
 =================
 
-In addition, you are able to *export* and *import* projects using the **Export**
-and **Import JSON** feature.
+You are able to *export* and *import* projects using the **Export**
+and **Import JSON** features.
 
-To export, simply click on Export in the ChatFlow Editor and selected whether you
-want the project to be exported with or without credentials. A JSON file containing
-the flow information will be exported.
+To export, simply click on **Export** in the *ChatFlow Editor* and select whether you
+wish to export the project with or without credentials. ChatFlow will export a
+JSON file containing the entire Flow.
 
 .. image:: _static/img/buildabot/export.png
    :align: center
@@ -504,7 +504,7 @@ the JSON file you wish to import.
 .. image:: _static/img/buildabot/import.png
    :align: center
 
-.. note:: Both ChatFlow and NLU have export and import features. However, ChatFlow
+.. warning:: Both ChatFlow and NLU have export and import features. However, ChatFlow
    apps cannot be imported in NLU and NLU apps cannot be imported into ChatFlow.
 
 Feel free to play with the bots template. You can either:

@@ -30,92 +30,53 @@ Nodes in ChatFlow
 
 .. ChatFlow is built on top of `Node-RED <http://nodered.org>`_ inheriting much of Node-RED's basic message flow paradigm.
 
-ChatFlow conversational content are represented as nodes in a network
-and the connection between these nodes. The nodes have inputs
-(where they receive messages) and outputs (where they send messages).
-Execution of the network (running the conversation) happens through
+ChatFlow conversational content is represented as nodes in a network or **Flow**. The nodes
+have **inputs** where they receive messages and **outputs** where they send messages.
+Execution of the Flow (running the conversation) happens through
 the flow of messages among the nodes in the network.
 
 Basic Flow, Input and Output
 ----------------------------
 
-In a ChatFlow conversation, messages typically originate from an input
-node from the **bots** section of the node palette. For example,
-*Alexa In*, *Cortana In*, and *Twilio Bot In* nodes are available to
+In a ChatFlow conversation, messages typically originate from an **Input Node**
+from the **bots** section of the node library. For example,
+*Twilio In*, *Alexa In*, and *Cortana In* nodes are available to
 create and send messages based on user input coming from
-Amazon Echo, Microsoft Cortana or SMS. These input nodes do not
-receive messages from other nodes, so you will notice they do not
-accept incoming wires.
+SMS, Amazon Echo, or Microsoft Cortana. These input nodes do not
+receive messages from other nodes, so they do not accept incoming wires.
 
 .. image:: _static/img/dialoguenodes/In-Nodes.png
    :align: center
 
-Once an input node receives user input from a Twilio number, the chat
-tab within ChatFlow, or an Amazon Echo device, it sends out a message
-through its output. The message created by an input node will contain
+Once an input node receives user input, it sends out a message through its
+output. The message created by an input node will contain
 a ``payload`` property that holds a string corresponding to the
-user natural language input. Through a wire originating at the input node,
+user natural language input. Through the **connection wire**,
 this message typically goes to a **Natural Language Understanding (NLU)**
-node, which maps the natural language input into symbols that drive
+Node, which maps the natural language input into symbols that drive
 the ChatFlow interaction. The NLU results are added to the message as
-a property called ``NLU``, and in a typically flow the message is then
-sent through a wire to the **router** node.
+a property called ``NLU``. The message is then sent through a connection wire
+to the **Router** Node.
 
 .. image:: _static/img/dialoguenodes/NLU-router.png
    :align: center
 
-The router node then directs the message through a network of **enter** nodes
-and **state** nodes, which are not connected to the router by wires.
+The Router Node then directs the message through a network of **Enter** Nodes
+and **State** Nodes (which are not connected to the router by wires).
 This process, described in the more detail under the router_ section of
 the documentation, generates a system utterance, which the router
 places in its outgoing message as a string in the ``payload`` property. The
 router then sends the message out through a wire, which is typically connected
-to an output node matching the input node used (Slack In to Slack Out, Amazon In
+to an output node matching the input node used (Twilio In to Twilio Out, Amazon In
 to Amazon Out).
 
 .. image:: _static/img/dialoguenodes/enter-state.png
    :align: center
 
-The basic node types used in most ChatFlow conversations are:
-
-**input**
-  An input node generates a message based on external user input,
-  which is usually a natural language utterance. The string corresponding
-  to the user input is accessible in the message sent by the input node
-  as ``msg.payload``.
-
-**output**
-  An output node receives a message containing a system utterance
-  as a string in ``msg.payload``. This utterance is what the system
-  wants to say to the user, and the output node sends this string out to
-  the appropriate output channel.
-
-**enter**
-  An enter node acts as an entry point to a specific part of the conversation.
-  Each entry node contains a set of *entrance conditions*, which must all
-  be satisfied in order for the conversation to proceed according to the
-  content connected from the entry node. Entry nodes receive messages exclusively
-  from the router, which chooses what entry nodes to send messages to.
-  Once an entry node receives a message, it sends the message out through
-  its output wire.
-
-**state**
-  State nodes define what the agent does, says, and how the conversational
-  context is updated. Context is kept as user variables that can be accessed
-  in messages. System output, or agent utterances, are also set in state nodes.
-  State nodes can contain arbitrary JavaScript code to manipulate the context
-  and messages in general.
-
-**NLU**
-  Having a Natural Language Understanding (NLU) node is crucial to allow a
-  conversational agent deal with the unbounded variety of natural language input.
-  NLU nodes essentially map natural language input utterances into a set
-  of symbols that can be manipulated by the rest of the conversational flow.
-
 Router
 ======
 
-The router node is of central importance in ChatFlow; it is responsible
+The Router Node is of central importance in ChatFlow; it is responsible
 for choosing what system of actions to perform during each conversational turn.
 The choices presented to the router are the enter nodes in the flow. The router
 will only consider enter nodes with entrance conditions that are satisfied at
@@ -153,7 +114,7 @@ Yelp developer API, as in the example provided later in this documentation.
 In each conversational turn, the system may use several enter nodes to build a system response.
 Once the router receives user input and the corresponding labeling from an NLU node, the router
 will prefer to choose an enter containing one or more entrance conditions involving ``msg.NLU``,
-with the goal of being responsive to user input. 
+with the goal of being responsive to user input.
 
 The router also remembers enter nodes it has evaluated in this dialogue turn. So an enter node is
 visited only once during each turn. This prevents the router from going to infinite loops.
@@ -204,7 +165,7 @@ Enter only from Direct link
 
 Each enter node includes a checkbox that says *Enter only from direct link*. If
 that box is checked, the enter node will only be chosen by the
-router **immediately after** the *directly link* state node is executed 
+router **immediately after** the *directly link* state node is executed
 (*Confirm Choice* state node in above picture). This is
 useful for state nodes that only make sense in a specific context.
 
@@ -308,3 +269,39 @@ demand.
 
 Additionally, the **http request** node can perform arbitrary http requests, so
 the opportunities to connect with the external world are endless!
+
+Summary
+=======
+
+The basic node types used in most ChatFlow conversations are:
+
+**Input Nodes**
+  Nodes that generate a message based on external user input,
+  (usually a natural language utterance)
+
+**Output Nodes**
+  Nodes that send what the system wants to say to the user out to the
+  appropriate output channel
+
+**Enter Nodes**
+  Nodes that acts as an entry point to a specific **branch** of the Flow by
+  setting of *entrance conditions*
+
+**State Nodes**
+  Nodes that define what the bot does, says, and how the conversational
+  context is updated
+
+**NLU Node**
+  Nodes that map natural language input utterances into a set of symbols that
+  can be manipulated by the rest of the conversational flow
+
+**Router Node**
+  Nodes that is responsible for choosing what system of actions to perform
+  during each conversational turn
+
+**API Nodes & HTTP Request Nodes**
+  Nodes that interact with APIs and web links allowing your bot to interact with
+  the outside world
+
+.. tip:: There are many other types of nodes in ChatFlow! Check out the **Info Tab** to
+    learn more about how they work!
