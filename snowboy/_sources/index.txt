@@ -221,7 +221,7 @@ The demo is fairly straight-forward::
     detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
     print('Listening... Press Ctrl+C to exit')
 
-    detector.start(detected_callback=snowboydecoder.ding_callback,
+    detector.start(detected_callback=snowboydecoder.play_audio_file,
                    interrupt_check=interrupt_callback,
                    sleep_time=0.03)
 
@@ -237,7 +237,7 @@ second, the function:
    the main loop and return.
 
 Here we assigned ``detected_callback`` with a default
-``snowboydecoder.ding_callback`` so that every time your hotword is heard the
+``snowboydecoder.play_audio_file`` so that every time your hotword is heard the
 computer will play a *ding* sound.
 
 .. note:: Do not append ``()`` to your callback function: the correct way is to
