@@ -25,7 +25,7 @@ Here's a brief video explaining ChatFlow:
 
 .. raw:: html
 
-   <iframe width="640" height="360" src="https://www.youtube.com/embed/i7CbxrGdXek"
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/NbvPPEKgvjI"
        frameborder="0" allowfullscreen></iframe>
     <br><br><br>
 
