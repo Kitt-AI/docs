@@ -61,9 +61,11 @@ Here is a video walking you through the entire Free Lunch Bot creation process:
       frameborder="0" allowfullscreen></iframe>
    <br><br><br>
 
+The Free Lunch Bot
+==================
 
 1. Creating an App from Scratch
-===============================
+_______________________________
 
 Let's create a simple flow that does a little more than just say hello. Our new
 bot will simply ask users for a free lunch. In addition, it will keep count of
@@ -98,7 +100,7 @@ how many times it had to ask before getting a free lunch.
    :align: center
 
 2. The Conversational Router
-============================
+____________________________
 
 1. Drag a **Router** Node onto the empty Canvas. Connect the Chat In, Router, and
    Chat Out nodes like the image below:
@@ -117,7 +119,7 @@ how many times it had to ask before getting a free lunch.
    :align: center
 
 3. Enter and State Nodes
-========================
+________________________
 
 Besides the Router Node, we are going to need two other nodes - the **Enter**
 and **State** Nodes.
@@ -204,7 +206,7 @@ State Node
    :align: center
 
 4. Adding input and output
-==========================
+__________________________
 
 1. Deploy the bot.
 
@@ -328,7 +330,7 @@ We can now have interactions like the following using our bot!
    :align: center
 
 5. NLU & Dealing with Natural Language Input
-============================================
+____________________________________________
 
 We have built a simple bot that illustrates the basics of creating a bot in
 ChatFlow. However, we have yet to address how our bot can understand real
@@ -446,13 +448,13 @@ Configure the NLU Node
 
 16. Add ``{{{payload}}}`` to the end of the URL. The final URL will look like this::
 
-http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+      http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 
 .. image:: _static/img/buildabot/NLU-node-payload.png
    :align: center
 
 6. Reconfiguring The Enter Nodes
-================================
+________________________________
 
 We now have NLU configured for our bot. However, we currently do not using this
 information within our bot. In order to do so, we must reconfigure the *U: Yes*

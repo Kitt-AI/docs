@@ -91,13 +91,14 @@
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A conversational Yelp bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A Conversational Yelp Bot</a></li>
 <li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Twilio Bot Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preparing-twilio-account">1. Preparing Twilio account</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#a-simple-backwards-echo-bot">2. A Simple Backwards-echo Bot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#preparing-twilio-account">Preparing Twilio account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-reverse-bot">A Simple Reverse Bot</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#reverse-bot-video-tutorial">Reverse Bot Video Tutorial</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-a-new-chatflow-app-with-twilio-nodes">1. Create a New Chatflow App with Twilio Nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configure-twilio-nodes">2. Configure Twilio Nodes</a></li>
@@ -105,7 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#deploy-the-application">4. Deploy the Application</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#extra-steps">3. Extra steps</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-debugging">Basic Debugging</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#add-debugging-functionality">5. Add Debugging Functionality</a></li>
 </ul>
 </li>
@@ -193,33 +194,36 @@
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
 <li><a class="reference internal" href="#twilio-bot-tutorials" id="id2">Twilio Bot Tutorials</a><ul>
-<li><a class="reference internal" href="#preparing-twilio-account" id="id3">1. Preparing Twilio account</a></li>
-<li><a class="reference internal" href="#a-simple-backwards-echo-bot" id="id4">2. A Simple Backwards-echo Bot</a><ul>
-<li><a class="reference internal" href="#reverse-bot-video-tutorial" id="id5">Reverse Bot Video Tutorial</a></li>
-<li><a class="reference internal" href="#create-a-new-chatflow-app-with-twilio-nodes" id="id6">1. Create a New Chatflow App with Twilio Nodes</a></li>
-<li><a class="reference internal" href="#configure-twilio-nodes" id="id7">2. Configure Twilio Nodes</a></li>
-<li><a class="reference internal" href="#configuring-the-function-node" id="id8">3. Configuring the Function Node</a></li>
-<li><a class="reference internal" href="#deploy-the-application" id="id9">4. Deploy the Application</a></li>
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#preparing-twilio-account" id="id4">Preparing Twilio account</a></li>
+<li><a class="reference internal" href="#a-simple-reverse-bot" id="id5">A Simple Reverse Bot</a><ul>
+<li><a class="reference internal" href="#reverse-bot-video-tutorial" id="id6">Reverse Bot Video Tutorial</a></li>
+<li><a class="reference internal" href="#create-a-new-chatflow-app-with-twilio-nodes" id="id7">1. Create a New Chatflow App with Twilio Nodes</a></li>
+<li><a class="reference internal" href="#configure-twilio-nodes" id="id8">2. Configure Twilio Nodes</a></li>
+<li><a class="reference internal" href="#configuring-the-function-node" id="id9">3. Configuring the Function Node</a></li>
+<li><a class="reference internal" href="#deploy-the-application" id="id10">4. Deploy the Application</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#extra-steps" id="id10">3. Extra steps</a><ul>
-<li><a class="reference internal" href="#add-debugging-functionality" id="id11">5. Add Debugging Functionality</a></li>
+<li><a class="reference internal" href="#basic-debugging" id="id11">Basic Debugging</a><ul>
+<li><a class="reference internal" href="#add-debugging-functionality" id="id12">5. Add Debugging Functionality</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#twilio-in-and-twilio-out-nodes" id="id12">Twilio In and Twilio Out Nodes</a><ul>
-<li><a class="reference internal" href="#twilio-in" id="id13">Twilio In</a></li>
-<li><a class="reference internal" href="#twilio-out" id="id14">Twilio Out</a></li>
+<li><a class="reference internal" href="#twilio-in-and-twilio-out-nodes" id="id13">Twilio In and Twilio Out Nodes</a><ul>
+<li><a class="reference internal" href="#twilio-in" id="id14">Twilio In</a></li>
+<li><a class="reference internal" href="#twilio-out" id="id15">Twilio Out</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#an-advanced-twilio-bot-with-session-router-support" id="id15">An Advanced Twilio Bot with Session/Router Support</a><ul>
-<li><a class="reference internal" href="#add-bot-video-tutorial" id="id16">Add Bot Video Tutorial</a></li>
-<li><a class="reference internal" href="#creating-add-bot-from-scratch" id="id17">Creating Add Bot from Scratch</a></li>
+<li><a class="reference internal" href="#an-advanced-twilio-bot-with-session-router-support" id="id16">An Advanced Twilio Bot with Session/Router Support</a><ul>
+<li><a class="reference internal" href="#add-bot-video-tutorial" id="id17">Add Bot Video Tutorial</a></li>
+<li><a class="reference internal" href="#creating-add-bot-from-scratch" id="id18">Creating Add Bot from Scratch</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this <a class="reference external" href="https://chatflow.kitt.ai/">Chatflow</a> tutorial, we&#8217;ll show you how to program a text reversing bot
 for Twilio.
 The following video shows the bot in action:</p>
@@ -238,8 +242,9 @@ nodes.</p>
 </ul>
 </dd>
 </dl>
+</div>
 <div class="section" id="preparing-twilio-account">
-<span id="preparing-twilio"></span><h2><a class="toc-backref" href="#id3">1. Preparing Twilio account</a><a class="headerlink" href="#preparing-twilio-account" title="Permalink to this headline">¶</a></h2>
+<span id="preparing-twilio"></span><h2><a class="toc-backref" href="#id4">Preparing Twilio account</a><a class="headerlink" href="#preparing-twilio-account" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">You can skip this section if you already have a Twilio account and/or
@@ -259,15 +264,15 @@ SMS capabilities enabled.</p>
 The first phone number in trial accounts (at time of writing) is free.</li>
 </ol>
 </div>
-<div class="section" id="a-simple-backwards-echo-bot">
-<span id="twilio-reverse-bot"></span><h2><a class="toc-backref" href="#id4">2. A Simple Backwards-echo Bot</a><a class="headerlink" href="#a-simple-backwards-echo-bot" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-simple-reverse-bot">
+<span id="twilio-reverse-bot"></span><h2><a class="toc-backref" href="#id5">A Simple Reverse Bot</a><a class="headerlink" href="#a-simple-reverse-bot" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="reverse-bot-video-tutorial">
-<h3><a class="toc-backref" href="#id5">Reverse Bot Video Tutorial</a><a class="headerlink" href="#reverse-bot-video-tutorial" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Reverse Bot Video Tutorial</a><a class="headerlink" href="#reverse-bot-video-tutorial" title="Permalink to this headline">¶</a></h3>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/SL6izsi9Xbk"
     frameborder="0" allowfullscreen></iframe>
  <br><br><br></div>
 <div class="section" id="create-a-new-chatflow-app-with-twilio-nodes">
-<h3><a class="toc-backref" href="#id6">1. Create a New Chatflow App with Twilio Nodes</a><a class="headerlink" href="#create-a-new-chatflow-app-with-twilio-nodes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">1. Create a New Chatflow App with Twilio Nodes</a><a class="headerlink" href="#create-a-new-chatflow-app-with-twilio-nodes" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Start by opening the ChatFlow application list and add a new application.
 Press the &#8220;Create new App&#8221; button.</li>
@@ -311,7 +316,7 @@ function node output to the &#8220;Twilio Out&#8221; input, so your flow looks l
 <img alt="_images/twilio-added-connected.png" class="align-center" src="_images/twilio-added-connected.png" />
 </div>
 <div class="section" id="configure-twilio-nodes">
-<h3><a class="toc-backref" href="#id7">2. Configure Twilio Nodes</a><a class="headerlink" href="#configure-twilio-nodes" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2. Configure Twilio Nodes</a><a class="headerlink" href="#configure-twilio-nodes" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Double click on the &#8220;Twilio in&#8221; node, and click on the displayed &#8220;Twilio
 receiving url&#8221; to copy it to your clipboard (highlighted in yellow).</li>
@@ -360,7 +365,7 @@ feature also allows you to use one &#8220;Twilio Out&#8221; node with multiple
 </div>
 </div>
 <div class="section" id="configuring-the-function-node">
-<h3><a class="toc-backref" href="#id8">3. Configuring the Function Node</a><a class="headerlink" href="#configuring-the-function-node" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">3. Configuring the Function Node</a><a class="headerlink" href="#configuring-the-function-node" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Double click on the function node. Fill it like in the example below:</li>
 </ol>
@@ -372,7 +377,7 @@ feature also allows you to use one &#8220;Twilio Out&#8221; node with multiple
 <img alt="_images/twilio-fn-reverse.png" class="align-center" src="_images/twilio-fn-reverse.png" />
 </div>
 <div class="section" id="deploy-the-application">
-<h3><a class="toc-backref" href="#id9">4. Deploy the Application</a><a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">4. Deploy the Application</a><a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Hit the &#8220;Deploy&#8221; button. Now your app is running and you can test it.</li>
 </ol>
@@ -381,10 +386,10 @@ feature also allows you to use one &#8220;Twilio Out&#8221; node with multiple
 respond in seconds with a message containing the text you sent, but reversed.</p>
 </div>
 </div>
-<div class="section" id="extra-steps">
-<h2><a class="toc-backref" href="#id10">3. Extra steps</a><a class="headerlink" href="#extra-steps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basic-debugging">
+<h2><a class="toc-backref" href="#id11">Basic Debugging</a><a class="headerlink" href="#basic-debugging" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="add-debugging-functionality">
-<h3><a class="toc-backref" href="#id11">5. Add Debugging Functionality</a><a class="headerlink" href="#add-debugging-functionality" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">5. Add Debugging Functionality</a><a class="headerlink" href="#add-debugging-functionality" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Add a debug node to the flow. Connect it&#8217;s input to the &#8220;Twilio in&#8221; output.</li>
 </ol>
@@ -405,9 +410,9 @@ You only have to setup Twilio In/Out nodes manually.</p>
 </div>
 </div>
 <div class="section" id="twilio-in-and-twilio-out-nodes">
-<h2><a class="toc-backref" href="#id12">Twilio In and Twilio Out Nodes</a><a class="headerlink" href="#twilio-in-and-twilio-out-nodes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Twilio In and Twilio Out Nodes</a><a class="headerlink" href="#twilio-in-and-twilio-out-nodes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="twilio-in">
-<span id="twilio-in-node"></span><h3><a class="toc-backref" href="#id13">Twilio In</a><a class="headerlink" href="#twilio-in" title="Permalink to this headline">¶</a></h3>
+<span id="twilio-in-node"></span><h3><a class="toc-backref" href="#id14">Twilio In</a><a class="headerlink" href="#twilio-in" title="Permalink to this headline">¶</a></h3>
 <dl class="docutils">
 <dt>The following fields are set in the output message:</dt>
 <dd><ul class="first last simple">
@@ -422,7 +427,7 @@ You only have to setup Twilio In/Out nodes manually.</p>
 for details (property names are always &#8220;camelCased&#8221; in this node output).</p>
 </div>
 <div class="section" id="twilio-out">
-<span id="twilio-out-node"></span><h3><a class="toc-backref" href="#id14">Twilio Out</a><a class="headerlink" href="#twilio-out" title="Permalink to this headline">¶</a></h3>
+<span id="twilio-out-node"></span><h3><a class="toc-backref" href="#id15">Twilio Out</a><a class="headerlink" href="#twilio-out" title="Permalink to this headline">¶</a></h3>
 <p>The following fields are taken as inputs by Twilio Out:</p>
 <blockquote>
 <div><ul class="simple">
@@ -442,13 +447,13 @@ sent.</li>
 </div>
 </div>
 <div class="section" id="an-advanced-twilio-bot-with-session-router-support">
-<span id="advanced-twilio-bot"></span><h2><a class="toc-backref" href="#id15">An Advanced Twilio Bot with Session/Router Support</a><a class="headerlink" href="#an-advanced-twilio-bot-with-session-router-support" title="Permalink to this headline">¶</a></h2>
+<span id="advanced-twilio-bot"></span><h2><a class="toc-backref" href="#id16">An Advanced Twilio Bot with Session/Router Support</a><a class="headerlink" href="#an-advanced-twilio-bot-with-session-router-support" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="add-bot-video-tutorial">
-<h3><a class="toc-backref" href="#id16">Add Bot Video Tutorial</a><a class="headerlink" href="#add-bot-video-tutorial" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Add Bot Video Tutorial</a><a class="headerlink" href="#add-bot-video-tutorial" title="Permalink to this headline">¶</a></h3>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/qMnErJlZNLw" frameborder="0" allowfullscreen></iframe>
 <br><br><br></div>
 <div class="section" id="creating-add-bot-from-scratch">
-<h3><a class="toc-backref" href="#id17">Creating Add Bot from Scratch</a><a class="headerlink" href="#creating-add-bot-from-scratch" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Creating Add Bot from Scratch</a><a class="headerlink" href="#creating-add-bot-from-scratch" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Create a new app and add the following nodes:</li>
 </ol>
@@ -545,7 +550,7 @@ Twilio In/Out nodes manually.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Sep 06, 2016.
+      Last updated on Sep 12, 2016.
 
     </p>
   </div> 

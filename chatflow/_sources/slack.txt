@@ -215,10 +215,6 @@ the `Slack messages API <https://api.slack.com/docs/messages>`_ for more details
 Payload contains message.text (the text data of the message). If it is not set,
 slack.text is used.
 
-.. TODO:: Do we know what raw_message_properties are the most commonly used in
-Chatflow or even the ones required for the Choose Cat Bot? It would be nice to
-provide a more detail description.
-
 .. _slash_commands_and_interactive_messages:
 
 Advanced: Slash Commands and Interactive Messages
@@ -226,8 +222,8 @@ Advanced: Slash Commands and Interactive Messages
 
 In this part we will show you how to use more advanced bot features. You will
 learn how to create application that uses:
-    * Custom `slash commands <https://api.slack.com/slash-commands>`_
-    * `Interactive messages <https://api.slack.com/docs/message-buttons>`_.
+* Custom `slash commands <https://api.slack.com/slash-commands>`_
+* `Interactive messages <https://api.slack.com/docs/message-buttons>`_
 
 We will create a small voting game. The idea is simple: bot will show all
 members of your slack channel two pictures of two different cats. They can cast
@@ -309,13 +305,11 @@ ___________________________
 .. image:: _static/img/slack/kitt-ai-node.png
    :align: center
 
-5. Add ``{{{payload}}}`` to the end of the url so the final string will look like:
-::
-  http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+5. Add ``{{{payload}}}`` to the end of the url so the final string will look like::
+    http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 
 .. image:: _static/img/slack/nluNode.png
    :align: center
-
 
 4. Slack App Setup
 ___________________________

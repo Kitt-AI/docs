@@ -23,7 +23,7 @@ OAuth2/Uber Tutorials
    :depth: 4
 
 Introduction
-------------
+============
 In this tutorial, we use OAuth2 Request node to make HTTP(S) requests requiring OAuth2
 app authentication with user authorization. OAuth2 authorization is helpful when your bot
 needs to take actions on behalf of the user.
@@ -46,7 +46,7 @@ By the end of this tutorial, you will be able to:
     users don't want to or can't use their data connection.
 
 Uber Oauth2 Video Tutorial
-==========================
+--------------------------
 
 Here is a video tutorial walking you through the Uber Oauth2 configuration process:
 
@@ -74,8 +74,11 @@ This token can expire too (it's service-dependent).
 
 The OAuth2 Request node manages token acqusition and refreshing automatically.
 
+Creating an Uber Access Bot
+===========================
+
 Registering an application in Uber service
-==========================================
+------------------------------------------
 
 Go to `Uber Developer Dashboard <https://developer.uber.com/dashboard>`_. Press the "+New App" button.
 Select "Rides API", enter your app name, description, read the terms and if you agree with them,

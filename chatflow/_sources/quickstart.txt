@@ -67,8 +67,6 @@ Create a New App from a Sample Project
 .. image:: _static/img/quickstart/Editor.png
    :align: center
 
-.. raw:: html
-     <br>
 
 * The **Node Library** is on the left side of the *Editor* and contains various types
   of nodes.
@@ -76,8 +74,6 @@ Create a New App from a Sample Project
   .. image:: _static/img/quickstart/EditorLibrary.png
     :align: center
 
-.. raw:: html
-      <br>
 
 * The main area of the *Editor* is the **Canvas**. The nodes in your canvas will
   become the content of our project.
@@ -89,8 +85,6 @@ Create a New App from a Sample Project
   .. image:: _static/img/quickstart/EditorCanvas.png
     :align: center
 
-.. raw:: html
-    <br>
 
 * The **Info Tab** on the right side of the *Editor* provides information about
   the current node.

@@ -23,6 +23,8 @@ Twilio Bot Tutorials
 .. contents:: Table of Contents
    :depth: 4
 
+Introduction
+============
 
 In this Chatflow_ tutorial, we'll show you how to program a text reversing bot
 for Twilio.
@@ -46,7 +48,7 @@ By the end of this tutorial, you will be able to:
 
 .. _preparing_twilio:
 
-1. Preparing Twilio account
+Preparing Twilio account
 ========================
 
 .. note:: You can skip this section if you already have a Twilio account and/or
@@ -63,8 +65,8 @@ By the end of this tutorial, you will be able to:
 
 .. _twilio_reverse_bot:
 
-2. A Simple Backwards-echo Bot
-==============================
+A Simple Reverse Bot
+====================
 
 Reverse Bot Video Tutorial
 __________________________
@@ -204,8 +206,9 @@ _________________________
 Send a text message (SMS) to the phone number you bought. Your app should
 respond in seconds with a message containing the text you sent, but reversed.
 
-3. Extra steps
-==============
+Basic Debugging
+===============
+
 5. Add Debugging Functionality
 ______________________________
 

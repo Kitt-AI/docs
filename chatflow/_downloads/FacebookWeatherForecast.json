@@ -51,7 +51,7 @@
             ],
             "method": "GET",
             "ret": "obj",
-            "url": "http://api.nlu4chatflow.kitt.ai/v1/api/51?q={{{payload}}}"
+            "url": ""
         },
         {
             "id": "6cf22ea3.82f94",

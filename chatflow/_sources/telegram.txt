@@ -321,19 +321,19 @@ manner:
           }
 
 
-To have your bot send an **image**in Telegram, format your msg in the following
+To have your bot send an **image** in Telegram, format your msg in the following
 manner:
 
-.. code-block:: javascript
-   :linenos:
+  .. code-block:: javascript
+     :linenos:
 
-   msg = {
-          payload: "http://server.com/image.png",
-          telegram: {
-                    user: {id: "user-id"},
-                    type: "image"
-                    }
-          }
+     msg = {
+            payload: "http://server.com/image.png",
+            telegram: {
+                      user: {id: "user-id"},
+                      type: "image"
+                      }
+            }
 
 
 To have your bot send a **sticker** in Telegram, formate your msg in the

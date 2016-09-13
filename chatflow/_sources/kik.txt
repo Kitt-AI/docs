@@ -29,9 +29,22 @@ In this tutorial, we start with creating a simple echo bot for kik. We also
 create a bot that shows you different cat images. In addition, we explain the
 input and output of the kik In and kik Out nodes.
 
+Here is an example of the bot in action:
+
+.. raw:: html
+
+   <video height="640" style="display:block; margin: 0 auto;" controls>
+     <source src="_static/img/kik/KikCatBotDemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+
 By the end of this tutorial, you will be able to:
-  * connect a chatflow application to kik
-  * understand the input and outputs of the kik In and kik Out nodes
+  * Connect a chatflow application to kik
+  * Understand the input and outputs of the kik In and kik Out nodes
+  * Create a custom keyboard for your bot
+  * Set global variables
 
 A simple echo bot
 =================

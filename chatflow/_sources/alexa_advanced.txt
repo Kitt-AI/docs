@@ -18,8 +18,17 @@ Advanced Alexa Skill Tutorial
 Introduction
 ============
 
-In this tutorial we will walk through a more complex Alexa skill that
+In this tutorial, we will walk through a more complex Alexa skill that
 tells the *knock knock* joke.
+
+.. raw:: html
+
+   <video width="640" style="display:block; margin: 0 auto;" controls>
+     <source src="_static/img/alexa/AlexaKnockKnockDemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
 
 By the end of this tutorial, you will be able to:
     * Using multiple intents with slots (entities) in an Alexa sample app

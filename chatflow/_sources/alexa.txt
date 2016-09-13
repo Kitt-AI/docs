@@ -13,13 +13,26 @@ Alexa Skill Tutorials
 Introduction
 ============
 
-In this tutorial we will walk through a simple Alexa skill that repeats user input.
-You will learn:
+In this tutorial, we will introduce how to configure a ChatFlow app to an Alexa
+skill. We will also walkthrough a simple Alexa skill that repeats user input.
 
-* How to create an Alexa skill through the Amazon developer console
-* How to create an Alexa Chatflow application
-* Message structures of the **Alexa In** and **Alexa Out** nodes
-* How to display help card on the Alexa companion app on your smart phone
+Here is an example of the skill in action:
+
+.. raw:: html
+
+   <video width="640" style="display:block; margin: 0 auto;" controls>
+     <source src="_static/img/alexa/AlexaEchoDemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+
+By the end of this tutorial, you will be able to:
+
+* Create an Alexa skill through the Amazon developer console
+* Create an Alexa Chatflow application
+* Understand structures of the **Alexa In** and **Alexa Out** nodes
+* Display help card on the Alexa companion app on your smart phone
 
 .. _copy_cat_skill:
 

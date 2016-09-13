@@ -1,8 +1,8 @@
 .. _extended_example:
 
-==================
-Extended Example: A conversational Yelp bot
-==================
+===========================================
+Extended Example: A Conversational Yelp Bot
+===========================================
 
 .. Bootstrap specific class labels
 
@@ -20,6 +20,7 @@ Extended Example: A conversational Yelp bot
 
 .. _ChatFlow: https://chatflow.kitt.ai/
 .. _NLU: https://nlu.kitt.ai/
+.. _NLU documentation: http://docs.kitt.ai/nlu
 
 .. contents:: Table of Contents
    :depth: 4
@@ -27,10 +28,18 @@ Extended Example: A conversational Yelp bot
 Introduction
 ============
 
-In this tutorial, we create a conversational bot that interacts with Yelp API on
-the users behalf.
+In this tutorial, we create a conversational bot that interacts with Yelp API.
 
-.. todo:: Add video showing the bot in action!
+Here is an example of the bot in action:
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/extendedexample/ExtendedExampleDemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
 
 This tutorial walks you through a more advanced bot. The goal of this tutorial
 is to provide you with a better understand of building more complex and robust
@@ -46,7 +55,8 @@ Starting your conversational project
 1. Create a Project
 -------------------
 
-1. Create a new up from scratch.
+1. Create a new app from scratch in ChatFlow_.. Double click it in the app list to open the
+   ChatFlow editor.
 
 2. Add a **router** node to the canvas.
 
@@ -80,7 +90,7 @@ Starting your conversational project
 +----------------------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``reject``                 |User does not like any choices        | Yes, Yeah, Sure                                                                                                                                 |
 +----------------------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``openning``               |User greets the bot                   | No, Nope, None                                                                                                                                  |
+| ``opening``                |User greets the bot                   | No, Nope, None                                                                                                                                  |
 +----------------------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 | ``thanking``               |User thanks the bot                   | thanks, thank you, much appreciated                                                                                                             |
 +----------------------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -90,15 +100,15 @@ Starting your conversational project
 
 3. Next, click on "set-up entities" and add the following *entities*:
 
-+-------------------------+-------------------------------------+-----------------------------------+
-| *entities*              |Description                          | Phrases                           |
-+=========================+=====================================+===================================+
-| ``businesstype``        |Type of Restaurant                   | Tacos, Coffee, Chinese Restaurant |
-+-------------------------+-------------------------------------+-----------------------------------+
-| ``location``            |Location of Search                   | Seattle, Tokyo, U-district        |
-+-------------------------+-------------------------------------+-----------------------------------+
-| ``enum_choice entity``  |Number Associated with Users Choice  | First, 2, Three                   |
-+-------------------------+-------------------------------------+-----------------------------------+
++------------------+-------------------------------------+-----------------------------------+
+| *entities*       |Description                          | Phrases                           |
++==================+=====================================+===================================+
+| ``businesstype`` |Type of Restaurant                   | Tacos, Coffee, Chinese Restaurant |
++------------------+-------------------------------------+-----------------------------------+
+| ``location``     |Location of Search                   | Seattle, Tokyo, U-district        |
++------------------+-------------------------------------+-----------------------------------+
+| ``enum_choice``  |Number Associated with Users Choice  | First, 2, Three                   |
++------------------+-------------------------------------+-----------------------------------+
 
 .. note:: Feel free to add any more *intents* and *entities* you may need.
 
@@ -111,7 +121,7 @@ You can download the :download:`example Yelp NLU app <_static/json/yelp_nlu.json
 import to NLU_ using the import JSON feature.
 
 .. note:: For more information on creating effective NLU models using the intent
-   and entity paradigm, see INSERT LINK TO NLU docs.
+   and entity paradigm, see `NLU documentation`_.
 
 3. Configuring NLU
 ------------------
@@ -123,7 +133,13 @@ import to NLU_ using the import JSON feature.
 .. image:: _static/img/extendedexample/Initial-Flow.png
    :align: center
 
-3. Double click in NLU node. Paste the Deployment URL into the URL field.
+3. Double click in NLU node. Paste the Deployment URL into the URL field.  Don't forget
+   to add ``{{{payload}}}`` to the end of the URL. The final URL will look like this::
+
+    http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+   .. image:: _static/img/buildabot/NLU-node-payload.png
+      :align: center
 
 Creating your flow
 ==================
@@ -155,7 +171,7 @@ Creating your flow
   information we need for a Yelp query, but have not yet issued the query. The
   ``user_choice`` variable keeps track of which restaurant the user has chosen.
 
-.. tip:: This initialization enter-state node flow is a great place create user
+.. tip:: This initialization enter-state node flow is a great place to create user
    defined variables that will appear throughout the entire app!
 
 5. In the *Output text* box, write a welcome message:
@@ -165,11 +181,14 @@ Creating your flow
 
 7. Connect the enter node and the state node.
 
-8. Next add another **enter** node, name it *intent hello*, and set it's entrnace
+8. Next add another **enter** node, name it *intent: hello*, and set it's entrnace
    condition to:
-  * ``Property msg.NLU.intent == hello``
+  * ``Property msg.NLU.intent == opening``
 
-.. tip:: It is a good idea to have your bot return back to its initial state
+9. Finally, connect the *intent: hello* enter node to the *Initialized state*
+   state node.
+
+.. tip:: It is a good idea to have your bot return to its initial state
   whenever a user says *hello*.
 
 Your flow should now look like the following figure:
@@ -178,42 +197,43 @@ Your flow should now look like the following figure:
    :align: center
 
 
-2. Prompting the user and understanding the user's request
-----------------------------------------------------------
+2. Understanding the User's Request
+-----------------------------------
 
 Next, let's create the parts of the conversational flow that allow the agent to
-collect information from the user. Our system is ready to recognize that it
-needs to fill the location and business type variables, we need an enter node
-that will be triggered when the NLU module determines that the user has generated
-input with the intent of providing that information. The intent label in our NLU
-model that corresponds to this situation is ``request_suggestion``.
+collect information from the user.
 
-1. Add another enter node. Name it *U: request suggestion*, Create a
+1. Add another enter node. Name it *entity: businesstype*, Create a
    *direct link* from the state node *Initialized State*.
 
-.. note:: To create a *direct link*, simple connect the output of the state node
+.. note:: To create a *direct link*, connect the output of the state node
    to the input of enter node. The connection will be marked by a dash line.
 
-2. Edit the entrance condition to be ``Property msg.NLU.intent == request_suggestion``.
+2. Edit the entrance condition to be ``Property msg.NLU.entities.businesstype is not null``.
 
-3. Next, add a state node to follow the recently created enter node. Call it
+.. note:: NLU.entities is a dictionary with the entity types present in the
+   utterance set as the keys and the correspond part of the utterance set as the
+   values. If an entity is not present in an utterance, it will not appear in the
+   NLU.entities dictionary.
+
+3. Add one more enter node. Name it *entity: location*, edit the entrance
+   condition to be ``Property msg.NLU.entities.location is not null``.
+
+4. Create a *direct link* from the state node *Initialized State*.
+
+5. Next, add a state node to follow the recently created enter nodes. Call it
    *Save business type and address*, and add the following code:
 
   .. code:: javascript
 
-      if('business_type' in msg.NLU.entities) {
-          msg.kitt.business_type = msg.NLU.entities.business_type;
+      if('businesstype' in msg.NLU.entities) {
+          msg.kitt.businesstype = msg.NLU.entities.businesstype;
       }
       if('location' in msg.NLU.entities) {
           msg.kitt.location = msg.NLU.entities.location;
       }
 
       return msg;
-
-.. note:: NLU.entities is a dictionary with the entity types present in the
-   utterance set as the keys and the correspond part of the utterance set as the
-   values. If an entity is not present in an utterance, it will not appear in the
-   NLU.entities dictionary.
 
 Your flow should now look like the following figure:
 
@@ -224,22 +244,26 @@ Information Cases
 .................
 
 Let's now add four new enter nodes that handle the cases where the state node
-above set:
-  (1) both type and location,
-  (2) only type
+above sets:
+  (1) both business type and location,
+  (2) only business type
   (3) only location
-  (4) neither type nor location
+  (4) neither business type nor location
 
-4. Drag in a new enter node, name it *Got Business Type and Address* and set the
+6. Drag in a new enter node, name it *Got Business Type and Address* and set the
    entrance conditions to:
-    * ``Property msg.kitt.business_type is not null``
+    * ``Property msg.kitt.businesstype is not null``
     * ``Property msg.kitt.location is not null``.
 
-5. Create a *direct link* with the last state node added.
+7. Check the box that says *Enter only from direct link*.
 
-6. Additionally, check the box that says *Enter only from direct link*.
+8. Additionally, create a *direct link* with the last state node added.
 
-7. Add state node, connect it to the enter node, and input the following code
+.. note:: A *direct link* connection creates an **ordering preference**, which
+   ensures that, once pervious state node has been executed, any enter nodes
+   *linked* to it will be given priority by the router.
+
+9. Add state node, connect it to the enter node, and input the following code
    into the body of the function:
 
   .. code:: javascript
@@ -247,43 +271,32 @@ above set:
       msg.kitt.req_pending = true;
       return msg;
 
-8. Add another enter node, name it *Got address but not business*, and set its
-   conditions to:
-    * ``Property msg.kitt.business_type is not null``
-    * ``Property msg.kitt.location is null``
-
-9. Check *Enter only from direct link* and create a *direct link* with the
-   *Save business type and address* state node.
-
-10. Add another state node and connect it to enter node and add the following
-    output text: *Ok, I got {{kitt.address}}, but I didn't get the restaurant type.*
-
-11. Add another enter node, name it *Got business but not address*, and set its
+10. Add another enter node, name it *Got address but not business*, and set its
     conditions to:
-      * ``Property msg.kitt.location is not null``
-      * ``Property msg.kitt.business_type is null``
-
-12. Check *Enter only from direct link* and create a *direct link* with the
-    *Save business type and address* state node.
-
-13. Add a new state node, connected to the enter nodes, and add the output text:
-    *Ok, a place in {{kitt.business_type}}, but I didn't get the location.*
-
-14. Add the final enter node, name it *No Business Type or Address*, and set its
-    conditions to:
-      * ``Property msg.kitt.business_type is null``
+      * ``Property msg.kitt.businesstype is not null``
       * ``Property msg.kitt.location is null``
 
-.. note:: This case is mostly likely a results of an error related to NLU_.
-   Although it is crucially important to make sure the NLU performs adequately,
-   it is also important to understand that the NLU will make mistakes, and plan
-   for those mistakes in the way we design our flow.
-
-15. Check *Enter only from direct link* and create a *direct link* with the
+11. Check *Enter only from direct link* and create a *direct link* with the
     *Save business type and address* state node.
 
-16. Add a state node, connect it to the last enter node, and add the output text
-    *I didn't get the restaurant type or location*.
+12. Add another state node and connect it to enter node and add the following
+    output text:
+     * *Ok, I got {{kitt.address}}, but I didn't get the restaurant type*
+
+.. note:: To access user variables in output text, use ``{{kitt.variable}}``
+        where variable is in place of the variable you wish to include.
+
+13. Add another enter node, name it *Got business but not address*, and set its
+    conditions to:
+      * ``Property msg.kitt.location is not null``
+      * ``Property msg.kitt.businesstype is null``
+
+14. Check *Enter only from direct link* and create a *direct link* with the
+    *Save business type and address* state node.
+
+15. Add a new state node, connected to the enter nodes, and add the output text:
+
+       * *Ok, a place in {{kitt.businesstype}}, but I didn't get the location*
 
 Your flow should now look like the following figure:
 
@@ -297,48 +310,30 @@ Now we have a network that allows the agent to welcome the user, prompt the user
 to request a restaurant suggestion, determine whether the agent picked up a
 location and restaurant type from the user's request, and give the user feedback.
 
-Recall that the agent prompts the user for a request because the agent does not
-have a location or restaurant type yet. After the user's request, the agent may
-have a location, a restaurant type, both, or neither. If for some reason the
-agent has neither, the same *no location, no type* conditions will be met, and
-the agent will prompt the user again. Now let's see how we add additional nodes
-that take care of the situations where we have either just type or just location.
+Now let's see how we add additional nodes that take care of the situations
+where we have either ``businesstype`` or ``location``.
 
-17. Add an enter node, name it *state: no address*, and set the entrance
-    condition ``Property msg.kitt.location is null``.
+16. Add an enter node, name it *state: no address*, and set the entrance
+    condition:
+      * ``Property msg.kitt.location is null``
 
-18. Add a new state node and connect to it a new enter node and the output text
-    *What's the desired location?*. Name it *ask for location*.
+17. Add a new state node and connect to it a new enter node, name it
+    *ask for location*, and set the output text:
+      * *What's the desired location?*
 
-19. Next, add a new enter node that will serve as the entry point for when the
-    user does express a location. Name it *entity: location* Add the single entrance
-    condition, ``Property msg.NLU.entities.location is not null``.
-
-20. Create a direct link from the state node *ask for location* to the new enter
+18. Create a direct link from the state node *ask for location* to the enter
     node *entity: location*.
 
-.. note:: A *direct connection* creates an **ordering preference**, which
-   ensures that once the agent asks for a location, a user utterance that
-   expresses a location will result in this enter node being chosen next
-   by the router.
+19. Add another enter node, name it *state: no business type* and set the
+    entrance condition to:
+      * ``Property msg.kitt.businesstype is null``
 
-21. Connect the output of this enter node to the input for the
-    *save type and location, if available* that we had already created for the
-    original prompt.
+20. Add a new state node, name it *ask for business type*, and set the output
+    text to:
+      * *What kind of restaurant are you looking for?*
 
-22. Add another enter node, name it *state: no business type* and set the
-    entrance condition to ``Property msg.kitt.business_type is null``.
-
-23. Add a new state node, name it *ask for business type*, and set the output
-    text to *What kind of restaurant are you looking for?*
-
-24. Create a new enter node called *entity: business_type* with the entrance
-    condition ``Property msg.NLU.entities.business_type is not null``
-
-25. Create a *direct link* from the state node *ask for business* to the enter
-    node *entity: business_type*.
-
-26. Finally, connect the enter node to the state node *Save business type and address*.
+21. Finally, create a *direct link* from the state node *ask for business* to
+    the enter node *entity: businesstype*.
 
 Now the system is ready to accept user requests, and to clarify requests when
 needed.
@@ -358,265 +353,39 @@ is already conveniently packaged as a ChatFlow node.
 
 1.  Drag in a Yelp node and double click to edit.
 
+.. image:: _static/img/extendedexample/yelp-node.png
+   :align: center
+
 2. In the node into put your *Consumer key*, a *Consumer secret*, a *Token* and
    a *Token secret*.
 
-.. note:: You must provide these values to configure your Yelp node. You can
-    obtain these by signing up for the `Yelp developer API <http://www.yelp.com/developers>`_.
+  .. WARNING:: You must provide these values to configure your Yelp node. You can
+      obtain these by signing up for the `Yelp developer API <http://www.yelp.com/developers>`_.
 
-The Yelp node builds a query by using a term in ``msg.yelp_term``, a location in
-``msg.yelp_location``, and a limit on the number of candidates in the output in
-``msg.yelp_limit``. The result of the Yelp query will be placed in the
-``msg.payload`` coming out of the Yelp node.
+  The Yelp node builds a query by using a term in ``msg.yelp.term`` and a location in
+  ``msg.yelp.location``. ``msg.yelp.limit`` limits the number of candidates in the
+  output. The result of the Yelp query will be placed in the ``msg.payload``.
 
-3. Add a new enter node, name it *state: got type and location*, set its
+  .. tip:: For more information about an API nodes input requirements and outputs,
+           check out the info tab!
+
+3. Add a new enter node, name it *state: request ready*, set its
    entrance conditions to the following:
-   * ``Property msg.kitt.business_type is not null``
-   * ``Property msg.kitt.location is not null``
-   * ``Property msg.kitt.req_pending is true``
-
-.. note:: The third condition checks whether we have already issued a Yelp query
-   for this location and business type. If the request is pending (``req_pending``
-   is true), we should go ahead with the request.
+    * ``Property msg.kitt.req_pending is true``
 
 4. Connect to this enter node a new state node, name it *Yelp request*, and add
    the following code:
 
-Your flow should now look like the following figure:
+   .. code:: javascript
 
-.. image:: _static/img/extendedexample/Flow-2.png
-   :align: center
+    // prepare yelp search
+    msg.yelp = {term: msg.kitt.businesstype,
+                location: msg.kitt.address, limit: 10};
 
+    // dont request the same search again
+    msg.kitt.reqready = false;
 
-2. Prompting the User and Understanding the User's Request
-----------------------------------------------------------
-
-Next, let's create the parts of the conversational flow that allow the agent to
-collect information from the user.
-
-1. Add another enter node. Name it *entity: businesstype*, Create a
-   **direct link** from the state node *Initialized State*.
-
-.. note:: To create a **direct link**, simple connect the output of the state node
-   to the input of enter node. The connection will be marked by a dash line.
-
-For more information on *direct links* check out the Dialogue Node tutorial.
-
-2. Edit the entrance condition to be:
-  * ``Property msg.NLU.entities == businesstype``.
-
-3. Add another enter node. Name it *entity: location*, create a **direct link**
-   from the state node *Initialized State*, and set its entrance condition to:
-  * ``Property msg.NLU.entities == location``
-
-4. Next, add a state node, name it *Save business type and address*, and add
-   the following code:
-
-  .. code:: javascript
-
-      if('businesstype' in msg.NLU.entities) {
-          msg.kitt.businesstype = msg.NLU.entities.businesstype;
-      }
-      if('location' in msg.NLU.entities) {
-          msg.kitt.address = msg.NLU.entities.location;
-      }
-
-      msg.NLU.intent = null;
-      msg.NLU.entities = null;
-      return msg;
-
-.. note:: NLU.entities is a dictionary with the entity types present in the
-   utterance set as the keys and the correspond part of the utterance set as the
-   values. If an entity is not present in an utterance, it will not appear in the
-   NLU.entities dictionary.
-
-Your flow should now look like the following figure:
-
-.. image:: _static/img/extendedexample/Flow-3.png
-   :align: center
-
-Output Cases
-............
-
-Currently, the bot can request user input, extract features from the user input,
-and store it in its memory. However, the extraction process does not always go
-smoothly and can results in four different cases:
-  (1) Both Business Type and Address are extracted
-  (2) Only Business Type is extracted
-  (3) Only Address is extraced
-  (4) Neither Business Type or Address are extracted
-
-4. Drag in a new enter node, name it *Got Business Type and Address* and set the
-   entrance conditions to:
-  * ``Property msg.kitt.businesstype is not null``
-  * ``Property msg.kitt.address is not null``.
-
-5. Check the box that says *Enter only from direct link*.
-
-6. Create a **direct link** with the *Save business type and address* state node.
-
-7. Add state node, connect it to the enter node, and input the following code
-   into the body of the function:
-
-  .. code:: javascript
-
-      msg.kitt.req_pending = true;
-      return msg;
-
-8. Set the state nodes output text to:
-  * *Alright, {{kitt.businesstype}} in {{kitt.address}}.*
-
-9. Add another enter node, name it *Got address but not business*, and set its
-   conditions to:
-  * ``Property msg.kitt.businesstype is not null``
-  * ``Property msg.kitt.address is null``
-
-10. Check *Enter only from direct link* and create a **direct link** with the
-    *Save business type and address* state node.
-
-11. Add another state node and connect it to enter node and add the following
-    output text:
-  * *Ok, I got {{kitt.address}}, but I didn't get the restaurant type.*
-
-12. Add another enter node, name it *Got business but not address*, and set its
-    conditions to:
-  * ``Property msg.kitt.address is not null``
-  * ``Property msg.kitt.businesstype is null``
-
-13. Check *Enter only from direct link* and create a **direct link** with the
-    *Save business type and address* state node.
-
-14. Add a new state node, connected to the enter nodes, and add the output text:
-  * *Ok, a place in {{kitt.businesstype}}, but I didn't get the location.*
-
-15. Add the final enter node, name it *No Business Type or Address*, and set its
-    conditions to:
-  * ``Property msg.kitt.businesstype is null``
-  * ``Property msg.kitt.address is null``
-
-.. note:: This case is mostly likely a results of an error related to NLU_.
-   Although it is crucially important to make sure the NLU performs adequately,
-   it is also important to understand that the NLU will make mistakes, and plan
-   for those mistakes in the way we design our flow.
-
-16. Check *Enter only from direct link* and create a **direct link** with the
-    *Save business type and address* state node.
-
-17. Add a state node, connect it to the last enter node, and add the output text
-  * *I'm sorry! I did not get location or business type.*.
-
-Your flow should now look like the following figure:
-
-.. image:: _static/img/extendedexample/Flow-4.png
-   :align: center
-
-Collect Missing Information
-...........................
-
-Now we have a bot that welcomes the user, request user input, extract features
-from the user input, and prompt the user if information is missing. Now, let's
-create the dialogue that will collect the missing information.
-
-1. Add an enter node, name it *state: no business type*, and set the entrance
-   condition to:
-  * ``Property msg.kitt.businesstype is null``
-
-2. Add a new state node and connect to it a new enter node. Name it
-   *ask for business type* and set the output text to:
-  * *What kind of business are you looking for?*.
-
-3. Check the *request User Input after this node* option.
-
-4. Next, add a new enter node that will serve as the entry point for when the
-   user does express a location. Name it *entity: businesstype* Add the single entrance
-   condition:
-  * ``Property msg.NLU.entities.businesstype is not null``.
-
-5. Create a direct link from the state node *ask for business type* to the new enter
-   node *entity: businesstype*.
-
-6. Connect the *entity: businesstype* state node to the
-   *Save business type and address* state node.
-
-7. Add another enter node, name it *state: no address* and set the
-   entrance condition to:
-  * ``Property msg.kitt.address is null``.
-
-8. Add a new state node, name it *ask for address*, and set the output
-   text to:
-  * *What is the location?*
-
-9. Check the *request User Input after this node* option.
-
-10. Create a new enter node called *entity: location* with the entrance
-    condition:
-  * ``Property msg.NLU.entities.location is not null``
-
-11. Create a **direct link** from the *ask for address* state node to the *entity: location*
-    enter node.
-
-12. Finally, connect the *entity: location* enter node to the
-    *Save business type and address* state node.
-
-Now the system is ready to accept user requests, and to clarify requests when
-needed.
-
-Your flow should now look like the following figure:
-
-.. image:: _static/img/extendedexample/Flow-5.png
-   :align: center
-
-
-3. Fulfilling the User's Request through a Yelp Query
------------------------------------------------------
-
-Once we have the address and business type, our agent is ready to query Yelp using
-the YELP API and get a list of suggestions. Although this sounds fairly
-complicated, it is not! ChatFlow has already conveniently packaged the query
-process into a **API node**.
-
-1.  Drag in a Yelp node and double click to edit.
-
-2. In the node, input the following:
-  * *Consumer key*
-  * *Consumer secret*
-  * *Token*
-  * *Token secret*.
-
-.. note:: You must provide these credentials to configure the Yelp node. You can
-    obtain these by signing into the `Yelp developer API <http://www.yelp.com/developers>`_.
-
-The Yelp node builds a query by using a term in ``msg.yelp.term``, a location in
-``msg.yelp.location``, and a limit on the number of candidates in the output in
-``msg.yelp.limit``. The result of the Yelp query will be placed in the
-``msg.payload`` coming out of the Yelp node.
-
-.. tip:: For more information about an **API node**, check out the info tab on
-  the right side of the editor
-
-3. Add a new enter node, name it *state: got type and location*, set its
-   entrance conditions to the following:
-  * ``Property msg.kitt.businesstype is not null``
-  * ``Property msg.kitt.address is not null``
-  * ``Property msg.kitt.req_pending is true``
-
-.. note:: The third condition checks whether we have already issued a Yelp query
-   for this location and business type. If the request is pending (``req_pending``
-   is true), we should go ahead with the request.
-
-4. Connect to this enter node a new state node, name it *Yelp request*, and add
-   the following code:
-
-.. code:: javascript
-
-  // prepare yelp search
-  msg.yelp = {term: msg.kitt.businesstype,
-      location: msg.kitt.address, limit: 10};
-
-  // don't request the same search again
-  msg.kitt.reqready = false;
-
-  return msg;
+    return msg;
 
 5. Connect this state node to the Yelp node.
 
@@ -629,7 +398,7 @@ Your flow should now look like the following figure:
 --------------------------------------
 
 Now the bot can issue queries through the Yelp API. Next, we need to process the
-output of the Yelp node (accessible as  ``msg.payload``.)
+output of the Yelp node (accessible as  ``msg.payload``).
 
 .. note:: For details on how the output is formatted, see the `Yelp API documentation <http://www.yelp.com/developers>`_.
 
@@ -640,54 +409,56 @@ choices at a time and give the user the option to hear further choices.
 1. Add a new state node, name it *list choices*, add the following code to
    process the Yelp API results:
 
-.. code:: javascript
+  .. code:: javascript
 
-    msg.kitt.yelp_results = msg.payload.businesses;
-    msg.payload = "";
+      msg.kitt.yelp_results = msg.payload.businesses;
+      msg.payload = "";
 
-    var numresults = 0;
-    if (msg.kitt.yelp_results) {
-        numresults = msg.kitt.yelp_results.length;
-    }
+      var numresults = 0;
+      if (msg.kitt.yelp_results) {
+          numresults = msg.kitt.yelp_results.length;
+      }
 
-    if (numresults > 0) {
-        msg.kitt._responses = ['I found ' + numresults + " places that might work. "];
+      if (numresults > 0) {
+          msg.kitt._responses = ['I found ' + numresults + " places that might work. "];
 
-        if(numresults > 3) {
-            numresults = 3;
-            msg.kitt._responses[0] += 'The first 3 are:\n';
-        }
+          if(numresults > 3) {
+              numresults = 3;
+              msg.kitt._responses[0] += 'The first 3 are:\n';
+          }
 
-        for(var i = 1; i <= numresults; i++) {
-            msg.kitt._responses[0] += " " + i + ". " + msg.kitt.yelp_results[i-1].name + "\n";
-            if (msg.kitt.yelp_results[i-1].image_url) {
-                msg.kitt._responses[0] += msg.kitt.yelp_results[i-1].image_url + "\n";
-            }
-        }
+          for(var i = 1; i <= numresults; i++) {
+              msg.kitt._responses[0] += " " + i + ". " + msg.kitt.yelp_results[i-1].name + "\n";
+              if (msg.kitt.yelp_results[i-1].image_url) {
+                  msg.kitt._responses[0] += msg.kitt.yelp_results[i-1].image_url + "\n";
+              }
+          }
 
-        msg.kitt._responses[0] += "Do any of these sound okay?";
-    } else {
-        msg.kitt._responses = ["Oops I didn't find anything on Yelp. Please update the address and business type. "];
-        msg.kitt.address = null;
-        msg.kitt.businesstype = null;
-    }
+          msg.kitt._responses[0] += "Do any of these sound okay?";
+      } else {
+          msg.kitt._responses = ["Oops I didn't find anything on Yelp. Please update the address and business type. "];
+          msg.kitt.address = null;
+          msg.kitt.businesstype = null;
+      }
 
-    return msg;
+      return msg;
 
-First, we are saving the results in a user variable called ``yelp_results``.
-Then, we format the bot's utterance directly in ``msg.kitt._responses`` by
-using a loop to add the names of the restaurants to the bot's utterance.
+  First, we are saving the results in a user variable called ``yelp_results``.
+  We can access this variable in other nodes as ``msg.kitt.yelp_results``.
 
-..note:: **Output text** field sets ``msg.kitt._responses[0]`` with the content
-    of the text field.
+  Then, we format the bot's utterance directly in ``msg.kitt._responses`` by
+  using a loop to add the names of the restaurants to the bot's utterance.
 
-The bot will end with the question: *Do any of these sound okay?*
+  .. note:: **Output text** field sets ``msg.kitt._responses[0]`` with the content
+      of the text field.
 
-From here, we need our bot to extract the user input (affirmative, negative, or a
-request for more choices) and respond accordingly.
+  The bot will end with the question: *Do any of these sound okay?*
+
+  From here, we need our bot to extract the user input (affirmative, negative, or a
+  request for more choices) and respond accordingly.
 
 2. Add an enter node, name it *intent: Yes*, set the entrance condition to
-   ``Property msg.NLU.intent == accept``. Check the
+   ``Property msg.NLU.intent == accept``.
 
 3. Check *Enter only from direct link* and create a **direct link** from the
    *list choices* state node.
@@ -704,54 +475,54 @@ request for more choices) and respond accordingly.
    *list choices* enter node.
 
 8. Add another enter node, name it *intent: list more*, and add the following two
-    entrance conditions:
-  * ``Property msg.NLU.intent == request_more_options``
-  * ``Property msg.kitt.yelp_results is not null``
+   entrance conditions:
+    * ``Property msg.NLU.intent == request_more_options``
+    * ``Property msg.kitt.yelp_results is not null``
 
 9. Add a new state node, name it *list more choices*, and add the following code:
 
-.. code:: javascript
+  .. code:: javascript
 
-    for(var i = 0; i < 3; i++) {
-    msg.kitt.yelp_results.shift();
-    }
+      for(var i = 0; i < 3; i++) {
+      msg.kitt.yelp_results.shift();
+      }
 
-    var numresults = msg.kitt.yelp_results.length;
+      var numresults = msg.kitt.yelp_results.length;
 
-    if(numresults == 0) {
-    msg.kitt._responses = ["Sorry, I'm all out of options, but you can try a different search request." ];
-    return msg;
-    }
+      if(numresults == 0) {
+      msg.kitt._responses = ["Sorry, I'm all out of options, but you can try a different search request." ];
+      return msg;
+      }
 
-    msg.kitt._responses = ['Ok, I have ' + numresults + " more places. "];
+      msg.kitt._responses = ['Ok, I have ' + numresults + " more places. "];
 
-    if(numresults > 3) {
-    numresults = 3;
-    msg.kitt._responses[0] += 'The next 3 are:\n';
-    }
+      if(numresults > 3) {
+      numresults = 3;
+      msg.kitt._responses[0] += 'The next 3 are:\n';
+      }
 
-    for(var i = 1; i <= numresults; i++) {
-    msg.kitt._responses[0] += " " + i + ". " + msg.kitt.yelp_results[i-1].name + "\n";
-    if (msg.kitt.yelp_results[i-1].image_url) {
-        msg.kitt._responses[0] += msg.kitt.yelp_results[i-1].image_url + "\n";
-    }
-    }
+      for(var i = 1; i <= numresults; i++) {
+      msg.kitt._responses[0] += " " + i + ". " + msg.kitt.yelp_results[i-1].name + "\n";
+      if (msg.kitt.yelp_results[i-1].image_url) {
+          msg.kitt._responses[0] += msg.kitt.yelp_results[i-1].image_url + "\n";
+      }
+      }
 
-    msg.kitt._responses[0] += "Do any of these sound okay?"
+      msg.kitt._responses[0] += "Do any of these sound okay?"
 
-    msg.NLU.intent = null;
-    return msg;
+      msg.NLU.intent = null;
+      return msg;
 
-This code will remove the restaurant options we already used, check if there are
-still options available, and, if there still are options, present them to the user.
+  This code will remove the restaurant options we already used, check if there are
+  still options available, and, if there still are options, present them to the user.
 
 10. Connect the *intent: list more* and *intent: No* enter nodes to the state node
-   called *list more choices*.
+    called *list more choices*.
 
 11. Create **direct links** from *list more choices* to each of the enter nodes:
   * *intent: Yes*
   * *intent: No*
-  * *intent: list mode*.
+  * *intent: list more*.
 
 We now have the capability of presenting a small number of choices, and going
 down a list if necessary.
@@ -775,63 +546,63 @@ to them.
 
 3. Name new state node, name it *repeat choice* and add the following code:
 
-.. code:: javascript
+  .. code:: javascript
 
-    var choice = null;
-    switch(msg.NLU.entities.enum_choice) {
-        case "first":
-        case "1":
-        case "one":
-            choice = 1;
-            break;
-        case "two":
-        case "2":
-        case "second":
-            choice = 2;
-            break;
-        case "three":
-        case "last":
-        case "3":
-        case "third":
-            choice = 3;
-            break;
-        default:
-            choice = 0;
-    }
+      var choice = null;
+      switch(msg.NLU.entities.enum_choice) {
+          case "first":
+          case "1":
+          case "one":
+              choice = 1;
+              break;
+          case "two":
+          case "2":
+          case "second":
+              choice = 2;
+              break;
+          case "three":
+          case "last":
+          case "3":
+          case "third":
+              choice = 3;
+              break;
+          default:
+              choice = 0;
+      }
 
-    msg.kitt._responses = [""];
-    if(choice === 0) {
-        msg.kitt._responses[0] = "Sorry, I didn't get what your choice was. ";
-    } else {
-        msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
-        msg.kitt._responses[0] = "Great, " + msg.kitt.yelp_results[choice-1].name + ". ";
-        msg.kitt.user_choice = "" + (choice - 1);
-    }
+      msg.kitt._responses = [""];
+      if(choice === 0) {
+          msg.kitt._responses[0] = "Sorry, I didn't get what your choice was. ";
+      } else {
+          msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
+          msg.kitt._responses[0] = "Great, " + msg.kitt.yelp_results[choice-1].name + ". ";
+          msg.kitt.user_choice = "" + (choice - 1);
+      }
 
-    msg.NLU.intent = null;
-    return msg;
+      msg.NLU.intent = null;
+      return msg;
 
-In this code, we check for the ``NLU.entities.enum_choice`` entity and set the
-``choice`` variable appropriately. If a choice is made, we set the user
-variable ``kitt.user_choice``, which we can access at any time in other nodes.
+  In this code, we check for the ``NLU.entities.enum_choice`` entity and set the
+  ``choice`` variable appropriately. If a choice is made, we set the user
+  variable ``kitt.user_choice``, which we can access at any time in other nodes.
 
 Your flow should now look like the following figure:
 
 .. image:: _static/img/extendedexample/Flow-8.png
   :align: center
 
-7. Answering user questions about the choices presented
+6. Answering user questions about the choices presented
 -------------------------------------------------------
 
 Great! Our bot can guide users to a choice, but what if the user has questions
 about their choice and the other options?
 
-Well, we can great new flows to answer the users questions!
+Well, we can creat new flows to answer the users questions!
 
 1. Add a new enter node, name it *intent: request rating* , and add three entrance conditions:
-   * ``Property msg.NLU.intent == request_rating``
-   * ``Property msg.kitt.user_choice is not null``
-   * ``Property msg.NLU.entities.enum_choice is not null``
+  * ``Property msg.NLU.intent == request_rating``
+  * ``Property msg.kitt.user_choice is not null``
+  * ``Property msg.NLU.entities.enum_choice is not null``
 
 2. Create a state node called *say rating* and input the following code:
 
@@ -848,75 +619,75 @@ Well, we can great new flows to answer the users questions!
 3. To handle questions that refer to a specific restaurant, we add a new enter
    node called *intent: rating request with choice* with the following entrance
    conditions:
-   * ``Property msg.NLU.intent == request_rating``
-   * ``Property msg.NLU.entities.enum_choice is not null``
+  * ``Property msg.NLU.intent == request_rating``
+  * ``Property msg.NLU.entities.enum_choice is not null``
 
 4. Connect this enter node to a new state node called *say rating by choice*, with the following code:
 
-.. code-block:: javascript
+  .. code-block:: javascript
 
-    var choice = null;
-    var status = "open";
+      var choice = null;
+      var status = "open";
 
-    switch(msg.NLU.entities.enum_choice) {
-        case "first":
-        case "1":
-        case "one":
-            choice = 1;
-            break;
-        case "two":
-        case "2":
-        case "second":
-            choice = 2;
-            break;
-        case "three":
-        case "last":
-        case "3":
-        case "third":
-            choice = 3;
-            break;
-        default:
-            choice = 0;
-    }
+      switch(msg.NLU.entities.enum_choice) {
+          case "first":
+          case "1":
+          case "one":
+              choice = 1;
+              break;
+          case "two":
+          case "2":
+          case "second":
+              choice = 2;
+              break;
+          case "three":
+          case "last":
+          case "3":
+          case "third":
+              choice = 3;
+              break;
+          default:
+              choice = 0;
+      }
 
-    msg.kitt._responses = [""];
-    if(choice === 0) {
-        msg.kitt._responses[0] = "Sorry, I didn't get what your choice was. ";
-    }
-    else {
-        msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
-        msg.kitt.user_choice = "" + (choice - 1);
+      msg.kitt._responses = [""];
+      if(choice === 0) {
+          msg.kitt._responses[0] = "Sorry, I didn't get what your choice was. ";
+      }
+      else {
+          msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;
+          msg.kitt.user_choice = "" + (choice - 1);
 
-       msg.kitt._responses = [msg.kitt.yelp_results[msg.kitt.user_choice].name +
-       " has " +
-        msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
-        "reviews on Yelp, and the rating is " +
-        msg.kitt.yelp_results[msg.kitt.user_choice].rating + "stars."];
-    }
+         msg.kitt._responses = [msg.kitt.yelp_results[msg.kitt.user_choice].name +
+         " has " +
+          msg.kitt.yelp_results[msg.kitt.user_choice].review_count +
+          "reviews on Yelp, and the rating is " +
+          msg.kitt.yelp_results[msg.kitt.user_choice].rating + "stars."];
+      }
 
-    msg.NLU.intent = null;
-    return msg;
+      msg.NLU.intent = null;
+      return msg;
 
-Here, we have a code that combines the code in *Say rating* and *repeat choice*
-to generate a function that selects an output on the users input.
+  Here, we have a code that combines the code in *Say rating* and *repeat choice*
+  to generate a function that selects an output on the users input.
 
 .. tip:: You can add similar flows to handle questions about address and hours.
 
-Can we make our bot accept gratitude? We sure can!
+Can we make our bot respond to gratitude? We sure can!
 
 6. Add an enter node named *intent: thanking* with the entrance condition:
    * ``Properties msg.NLU.intent == thanking``
 
 7. Add a state named *respond to thanks*, add the following code:
 
-.. code-block:: javascript
+  .. code-block:: javascript
 
-    msg.kitt._responses = ['No problem. ', 'Sure, any time. ', 'Glad to help. ', 'Any time. ']
+      msg.kitt._responses = ['No problem. ', 'Sure, any time. ', 'Glad to help. ', 'Any time. ']
 
-    msg.NLU.intent = null;
-    return msg;
+      msg.NLU.intent = null;
+      return msg;
 
-This code stores a set of appropriate responses and randomly selects one to output!
+  This code stores a set of appropriate responses and randomly selects one to output!
 
 Well, what if our bot does not understand our user? We can create a flow to
 handle that!
@@ -926,32 +697,37 @@ handle that!
 
 9. Add a state named *Non understanding* and add the following code:
 
-.. code-block:: javascript
+  .. code-block:: javascript
 
-    msg.kitt._responses = [
-        "Sorry, I didn't get what you said. ",
-        "Oops, I'm not sure I understand. ",
-        "Hmm, not sure I understand. "];
+      msg.kitt._responses = [
+          "Sorry, I didn't get what you said. ",
+          "Oops, I'm not sure I understand. ",
+          "Hmm, not sure I understand. "];
 
-    if (msg.kitt.address !== null && msg.kitt.businesstype !== null) {
-        var str = "I should point out that I'm not good at understanding the names of businesses, so when I give you choices, just say first, second, or one, two, and so on. ";
-        for(var i = 0; i < msg.kitt._responses.length; i++) {
-            msg.kitt._responses[i] += str;
-        }
-    } else if (msg.kitt.address === null && msg.kitt.businesstype !== null) {
-        var str = "Zip code might be easier for me. Or try something easy. ";
-        for(var i = 0; i < msg.kitt._responses.length; i++) {
-            msg.kitt._responses[i] += str;
-        }
-    } else if (msg.kitt.businesstype === null) {
-        var str = "I'm not good at business types at this point. Please try something simple. ";
-        for(var i = 0; i < msg.kitt._responses.length; i++) {
-            msg.kitt._responses[i] += str;
-        }
-    }
+      if (msg.kitt.address !== null && msg.kitt.businesstype !== null) {
+          var str = "I should point out that I'm not good at understanding the names of businesses, so when I give you choices, just say first, second, or one, two, and so on. ";
+          for(var i = 0; i < msg.kitt._responses.length; i++) {
+              msg.kitt._responses[i] += str;
+          }
+      } else if (msg.kitt.address === null && msg.kitt.businesstype !== null) {
+          var str = "Zip code might be easier for me. Or try something easy. ";
+          for(var i = 0; i < msg.kitt._responses.length; i++) {
+              msg.kitt._responses[i] += str;
+          }
+      } else if (msg.kitt.businesstype === null) {
+          var str = "I'm not good at business types at this point. Please try something simple. ";
+          for(var i = 0; i < msg.kitt._responses.length; i++) {
+              msg.kitt._responses[i] += str;
+          }
+      }
 
-    msg.NLU.intent = null;
-    return msg;
+      msg.NLU.intent = null;
+      return msg;
+
+  .. note:: This outcome is mostly likely a results from an NLU_ error.
+     Although it is crucially important to make sure the NLU performs adequately,
+     it is also important to understand that the NLU will make mistakes. Make sure
+     your flow can account for those mistakes.
 
 Finally, we can create a flow that will end our dialogue with our user.
 
@@ -979,7 +755,7 @@ you make it better? (Of course you can!)
 In addition, you can import and play with the application by either:
 
    * Downloading the :download:`JSON <_static/json/yelp.json>` file for our
-     application and import the project on the `applications <https://chatflow.kitt.ai/apps>`_
+     application and importing the project on the `applications <https://chatflow.kitt.ai/apps>`_
      page
    * Creating a new project form the "Yelp Bot" sample application under "Use a
      Sample Project" on the `applications <https://chatflow.kitt.ai/apps>`_ page.
