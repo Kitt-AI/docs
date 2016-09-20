@@ -1,0 +1,457 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Advanced Alexa Skill NLU Tutorial &mdash; KITT.AI NLU 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="KITT.AI NLU 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Intents and Entities" href="intent_and_entities.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://nlu.kitt.ai" target="_blank" class="icon icon-home"> KITT.AI NLU
+            
+          
+
+          
+            
+            <img src="_static/nlu-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to KITT.AI NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">NLU Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_an_app.html">Build An App Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intent_and_entities.html">Intents and Entities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced Alexa Skill NLU Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#alexa-skills-app-walkthrough">Alexa Skills App Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-an-alexa-skill">Creating an Alexa Skill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exporting-to-alexa-format">Exporting to Alexa Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KITT.AI NLU</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Advanced Alexa Skill NLU Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/alexa_nlu.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="advanced-alexa-skill-nlu-tutorial">
+<h1><a class="toc-backref" href="#id1">Advanced Alexa Skill NLU Tutorial</a><a class="headerlink" href="#advanced-alexa-skill-nlu-tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#advanced-alexa-skill-nlu-tutorial" id="id1">Advanced Alexa Skill NLU Tutorial</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#alexa-skills-app-walkthrough" id="id3">Alexa Skills App Walkthrough</a></li>
+<li><a class="reference internal" href="#creating-an-alexa-skill" id="id4">Creating an Alexa Skill</a></li>
+<li><a class="reference internal" href="#exporting-to-alexa-format" id="id5">Exporting to Alexa Format</a></li>
+<li><a class="reference internal" href="#summary" id="id6">Summary</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will teach you how to use <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> to easily generate the
+Intent Schema and Sample Utterances needed for Speech Assets of an Alexa Skill.
+Speciically, we will be build the Speech Assets for the Alexa <a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy">WiseGuy</a> Skill.</p>
+</div>
+<div class="section" id="alexa-skills-app-walkthrough">
+<h2><a class="toc-backref" href="#id3">Alexa Skills App Walkthrough</a><a class="headerlink" href="#alexa-skills-app-walkthrough" title="Permalink to this headline">¶</a></h2>
+<p>The following video shows how to quickly create an NLU project for Wise Guy.
+It&#8217;s 6 minutes long and we hope you enjoy Kevin MacLeod&#8217;s Firebrand as background
+music.</p>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/Wi4vXT92UWo"
+    frameborder="0" allowfullscreen></iframe></div>
+<div class="section" id="creating-an-alexa-skill">
+<h2><a class="toc-backref" href="#id4">Creating an Alexa Skill</a><a class="headerlink" href="#creating-an-alexa-skill" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Create a new App and name it <em>Wise Guy Skill</em>.</li>
+<li>Click on &#8220;set-up intents&#8221; and add the following <em>intents</em>:</li>
+</ol>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="26%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><em>intents</em></th>
+<th class="head">Description</th>
+<th class="head">Sample Utterances</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">TellMeAJokeIntent</span></code></td>
+<td>Users asked Alexa to tell Knock Knock Joke</td>
+<td>Can it tell me a knock knock joke, What is knock knock joke, To tell me a knock knock joke</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">WhosThereIntent</span></code></td>
+<td>Users asks Alexa &#8220;Who&#8217;s there&#8221;</td>
+<td>Who&#8217;s there, Who is there, Who&#8217;s this</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">SetupNameWhoIntent</span></code></td>
+<td>User sets Alexa up for the punchline</td>
+<td>A broken pencil who, Little old lady who, Berry who, Owls who, Atch who, Spell Who</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="3">
+<li>Next, click on &#8220;set-up entities&#8221; and add a <code class="docutils literal"><span class="pre">SetupName</span></code> entity that will
+setup the joke. Input the following phrase examples:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>to</li>
+<li>beets</li>
+<li>little Old Lady</li>
+<li>a broken pencil</li>
+<li>snow</li>
+<li>boo</li>
+<li>woo</li>
+<li>spell</li>
+<li>atch</li>
+<li>owls</li>
+<li>berry</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Next, click <strong>Train Applcation</strong> and then <strong>Deploy</strong>..</li>
+<li>Use the Model Tester to check your models performance. Correct any classifications
+and click submit.</li>
+</ol>
+<p>You can also quickly reproduce this project by importing this <a class="reference download internal" href="_downloads/Wise_Guy_Skill_NLU.json" download=""><code class="xref download docutils literal"><span class="pre">JSON</span> <span class="pre">file</span></code></a>
+in <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>.</p>
+</div>
+<div class="section" id="exporting-to-alexa-format">
+<h2><a class="toc-backref" href="#id5">Exporting to Alexa Format</a><a class="headerlink" href="#exporting-to-alexa-format" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Click &#8220;Export&#8221; then &#8220;Alexa Skills&#8221;, a pop up with the three speech assets will appear.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/ExportDropDown.png" class="align-center" src="_images/ExportDropDown.png" />
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The three fields follow the format of ASK <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference">Custom Interaction Model</a>.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p class="first">Copy all three sections into their respective sections in the Alexa Skill Kit
+developer.</p>
+<img alt="_images/AlexaExport.png" class="align-center" src="_images/AlexaExport.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The &#8220;Advanced Skill&#8221; relies on an accurate recognition with the AMAZON.LITERAL slot, whose performance varies by application. Please use with caution.</p>
+</div>
+<p>Below is an example of what you should expect as the output of the Export/Alexa
+feature.</p>
+<p><strong>Intent Schema</strong></p>
+<p>The Intent Schema will contain only user-defined intent and slot. If you need
+any Amazon default intent, please manually add them.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;SetupNameWhoIntent&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;slots&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;SetupName&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;LIST_OF_SetupName&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;TellMeAJokeIntent&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;WhosThereIntent&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Custom Slots</strong></p>
+<p>Custom Slots are list of phrases for slots (entities). NLU also supports list of
+regular expressions to match entities. The Alexa console does not support it.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nl">LIST_OF_SetupName:</span>
+<span class="n">to</span>
+<span class="n">beets</span>
+<span class="n">little</span> <span class="n">Old</span> <span class="n">Lady</span>
+<span class="n">a</span> <span class="n">broken</span> <span class="n">pencil</span>
+<span class="n">snow</span>
+<span class="n">boo</span>
+<span class="n">woo</span>
+<span class="n">spell</span>
+<span class="n">atch</span>
+<span class="n">owls</span>
+<span class="n">berry</span>
+</pre></div>
+</div>
+<p><strong>Sample Utterances</strong></p>
+<p>Sample utterances are all utterances in the project, with intents and slots (entities)
+marked within utterances. It follows the old verbose style, and you can
+<a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/migrating-to-the-improved-built-in-and-custom-slot-types">migrate</a>
+to new improved interfaces.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">is</span> <span class="n">there</span>
+<span class="n">WhosThereIntent</span> <span class="n">whos</span> <span class="n">there</span>
+<span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">there</span>
+<span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">is</span> <span class="k">this</span>
+<span class="n">WhosThereIntent</span> <span class="n">whos</span> <span class="k">this</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">tell</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">say</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">give</span> <span class="n">me</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">tell</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">say</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">make</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">give</span> <span class="n">me</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">the</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">the</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">whats</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">what</span> <span class="n">is</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="k">if</span> <span class="n">it</span> <span class="n">can</span> <span class="n">tell</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">will</span> <span class="n">it</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">call</span> <span class="n">it</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">to</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">whats</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">what</span> <span class="n">is</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="k">if</span> <span class="n">it</span> <span class="n">can</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">will</span> <span class="n">it</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">can</span> <span class="n">it</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">TellMeAJokeIntent</span> <span class="n">to</span> <span class="n">tell</span> <span class="n">me</span> <span class="n">a</span> <span class="n">knock</span> <span class="n">knock</span> <span class="n">joke</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">to</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">beets</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">snow</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">boo</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">woo</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">spell</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="n">atch</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">owls</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">berry</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">little</span> <span class="n">old</span> <span class="n">lady</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+<span class="n">SetupNameWhoIntent</span> <span class="o">{</span><span class="n">a</span> <span class="n">broken</span> <span class="n">pencil</span><span class="o">|</span><span class="n">SetupName</span><span class="o">}</span> <span class="n">who</span>
+</pre></div>
+</div>
+<p>Finally, copy these exports and fill them in the Interaction Model following
+Step <span class="xref std std-ref">sample_utterances</span> in the basic Alexa tutorial:</p>
+<img alt="_images/wise-guy-interaction-model.png" class="align-center" src="_images/wise-guy-interaction-model.png" />
+</div>
+<div class="section" id="summary">
+<h2><a class="toc-backref" href="#id6">Summary</a><a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we have shown you how to quickly build an NLU project and
+incorporate it into an Alexa Skill. KITT.AI <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> provides an interactive interface
+for you to quickly bootstrap an NLU engine with minimal data. You can immediately
+observe system&#8217;s performance, mark and correct inaccurate predictions, and
+improve the NLU engine on the fly. It&#8217;s a great assistant to building an Alexa
+skill.</p>
+<p>Happy Alexa skills building!!!</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="intent_and_entities.html" class="btn btn-neutral" title="Intents and Entities" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Sep 19, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

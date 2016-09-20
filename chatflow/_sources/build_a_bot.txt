@@ -376,7 +376,7 @@ Create and NLU App
 
 7. When finished, click on the red "X" on the top right to exit the window.
 
-.. image:: _static/img/buildabot/positive_response.png
+.. image:: _static/img/buildabot/positive-utterance.png
    :align: center
 
 8. Click on add intent. Name the new intent ``negative_response`` and click create.

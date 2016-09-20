@@ -1,0 +1,132 @@
+.. _build_an_app:
+
+=====================
+Build An App Tutorial
+=====================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+.. _ChatFlow documentation: http://docs.kitt.ai/chatflow
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+In this tutorial, we will walk you through the entire processes of building a NLU_
+applicaiton. Specifically be building the NLU application for the Build a bot
+in the `ChatFlow documentation`_
+
+Create and NLU App
+==================
+
+1. Go to NLU_. Create a new NLU app and name the application.
+
+2. In the app, click on "Set Up Intents" to expand the "Set Up Intents" drop down.
+
+.. image:: _static/img/buildanapp/setup-intents.png
+   :align: center
+
+3. Click on add intent.
+
+4. Name the new intent ``positive_response`` and click create.
+
+.. image:: _static/img/buildanapp/positive_response.png
+   :align: center
+
+5. Under Example of Use, add the following natural language input strings. Feel
+   free to include more:
+
+   * Yes
+   * yes
+   * sure
+   * of course
+   * you bet!
+   * it would be my honor
+
+6. When finished, click on the red "X" on the top right to exit the window.
+
+.. image:: _static/img/buildanapp/positive-utterance.png
+   :align: center
+
+7. Click on add intent. Name the new intent ``negative_response`` and click create.
+   Under Example of Use, add the following natural language input strings. Feel
+   free to include more:
+
+    * Nah
+    * no
+    * No way jose!
+    * Never
+    * I shall not
+    * We are not amused
+
+.. image:: _static/img/buildanapp/negative-response.png
+   :align: center
+
+8. Once finished adding the ``positive_response`` and ``negative_response`` intents,
+   click **TRAIN APPLICATION**, and then **DEPLOY**.
+
+.. image:: _static/img/buildanapp/deploy-nlu.png
+   :align: center
+
+.. warning:: In order for your NLU model to update and be fully operation, you
+    must train your model and deploy it.
+
+9. Test you model in the *"Train the model"* Section. Input a sentence and click
+   analyze.
+
+.. image:: _static/img/buildanapp/train-the-model.png
+   :align: center
+
+10. Once it has completed, check the result. You can correct the result by clicking
+    on the blue button and selecting the correct response. When finished, click submit.
+
+.. image:: _static/img/buildanapp/submit-response.png
+   :align: center
+
+Deploy the NLU App
+==================
+
+.. warning:: Before the final deployment, click "TRAIN APPLICATION" to fully
+   optimize you NLU app. Afterwards, you will be able to issue RESTful API calls
+   to your app.
+
+11. Click on "Show All Apps" in the upper lefthand corner to go back to the NLU
+    app list.
+
+12. In you newly created apps bubble, click on Deployment Information.
+
+.. image:: _static/img/buildanapp/deployment-information.png
+   :align: center
+
+13. Copy the **Deployment Url** onto your clipboard.
+
+.. image:: _static/img/buildanapp/deployment-url-expanded.png
+   :align: center
+
+Final Thoughts
+==============
+
+With that, you can configure your NLU application to your ChatFlow_ App. To do so,
+drag in an NLU Node, paste the **Deployment Url** in the URL field, and add
+``{{{payload}}}`` to the end of the URL.
+
+And with that, you have successfully configured your NLU app to ChatFlow_. For
+more examples of ChatFlow Apps with NLU components, check out the `ChatFlow documentation`_.
+
+Happy App Building!!!

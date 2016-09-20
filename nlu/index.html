@@ -36,7 +36,8 @@
   
 
   
-    <link rel="top" title="KITT.AI NLU 0.1 documentation" href="#"/> 
+    <link rel="top" title="KITT.AI NLU 0.1 documentation" href="#"/>
+        <link rel="next" title="NLU Quick Start" href="quickstart.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -86,6 +87,10 @@
             
                 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome to KITT.AI NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">NLU Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_an_app.html">Build An App Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intent_and_entities.html">Intents and Entities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 </ul>
 
             
@@ -132,6 +137,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
             
             <a href="_sources/index.txt" rel="nofollow"> View page source</a>
           
@@ -149,17 +157,47 @@
 <p><a class="reference external" href="https://nlu.kitt.ai/">KITT.AI NLU</a> is an interactive and intuitive Natural Language Understanding
 engine, providing &#8220;understanding as a service&#8221;. It is supposed to be used
 with KITT.AI&#8217;s <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> (<a class="reference external" href="https://docs.kitt.ai/chatflow">docs</a>), providing &#8220;conversation engine as a service&#8221;.
-Together they fulfill KITT.AI&#8217;s mission: &#8220;Conversational Understanding as a Service&#8221;.</p>
+Together they fulfill KITT.AI&#8217;s mission - &#8220;Conversational Understanding as a Service&#8221;.</p>
 <p>Here&#8217;s a 20 minute walk-through to use ChatFlow and NLU together:</p>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/rHcQu4SNvew"
     frameborder="0" allowfullscreen></iframe>
- <br><br><br></div>
+ <br><br><br><p>You are welcome to post your question to our <a class="reference external" href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat">forum</a>.</p>
+</div>
 <div class="section" id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
 <p>This documentation is still under construction.</p>
 <div class="toctree-wrapper compound">
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Welcome to KITT.AI NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">NLU Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#accessing-nlu">Accessing NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#create-a-new-app">Create a New App</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="build_an_app.html">Build An App Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="build_an_app.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_an_app.html#create-and-nlu-app">Create and NLU App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_an_app.html#deploy-the-nlu-app">Deploy the NLU App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="build_an_app.html#final-thoughts">Final Thoughts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intent_and_entities.html">Intents and Entities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="intent_and_entities.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intent_and_entities.html#intents">Intents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intent_and_entities.html#entities">Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intent_and_entities.html#a-classification-example">A Classification Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intent_and_entities.html#definitions">Definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#alexa-skills-app-walkthrough">Alexa Skills App Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#creating-an-alexa-skill">Creating an Alexa Skill</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#exporting-to-alexa-format">Exporting to Alexa Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alexa_nlu.html#summary">Summary</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -169,13 +207,20 @@ Together they fulfill KITT.AI&#8217;s mission: &#8220;Conversational Understandi
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="NLU Quick Start" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Aug 26, 2016.
+      Last updated on Sep 19, 2016.
 
     </p>
   </div> 

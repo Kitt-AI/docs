@@ -1,0 +1,96 @@
+.. _intent_and_entities:
+
+====================
+Intents and Entities
+====================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+.. _KITT.AI: https://kitt.ai
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+NLU_ is a Natural Language Understanding engine classifying utterances by **intents**
+and extracting content from uttereances called **entities**. In this section of
+the documentation, we will discuss in more detail about these two key components
+of NLU.
+
+Intents
+=======
+
+Intents are utterance classes that capture the main communicative intent of the
+input utterance. For example, the intent *dialgoue.yes* captures the communicative
+intent of many  utterances, such as "I agree", "yes", "of course", "yes, I agree",
+and "I think so too".
+
+The intent vocabulary or **Sample Utterance** consists of an arbitrary number of
+arbitrary strings. These intents can be thought of as buckets in which each
+incoming input utterance will be placed by the NLU node.
+
+NLU contains some predefined intents which you can use in your NLU app.
+
+.. image:: _static/img/intentsnentities/intents.png
+   :align: center
+
+Entities
+========
+In addition to one **intents**, each utterance may contain zero or more **entities**
+or subunits of an utterance that contain key information. Common examples of
+entities include *locations*, *names of organizations*, and *prices*.
+
+The entity vocabulary or **Phrases** consist of an arbitrary number of words. NLU
+will search each utterances for these Phrases. In addition, **entities** can be
+learned as a *place* or *occurance* in the utterance. For example, in the utterance
+"I want seafood in downtown seattle.", NLU learned that the *location* entity always
+occurs after the preposition **"in"**.
+
+.. warning:: You must train your model over a large dataset in order to have your NLU app learn
+             where in the utterance a specific **entity** will occur.
+
+NLU contains some predfinied entities which you can use in your NLU app.
+
+.. image:: _static/img/intentsnentities/entities.png
+   :align: center
+
+A Classification Example
+========================
+
+Consider, the following utterance:
+  *"Please make me a reservation for six people at Matsuhisa at 7 pm." *
+
+The intent here may be *make_restaurant_reservation*, and the entities may be *party_size*
+(corresponding to the word "six"), *restaurant_name* (corresponding to the word
+"Matsuhisa") and *time* (corresponding to "7 pm").
+
+.. note:: These assignments are made in the context of the current utterance.
+    The word "six" could be a time in a different utterance ("I need a reservation at six").
+    It is the job of the NLU to assign the right entities and intents in each utterance.
+
+Definitions
+===========
+
+**Intent**
+    Utterance classes that capture the main communicative intent of the input
+    utterance
+
+**Entity**
+    Subunits of an utterances that contain key information we can use in our
+    applications.

@@ -1,0 +1,356 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Build An App Tutorial &mdash; KITT.AI NLU 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="KITT.AI NLU 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Intents and Entities" href="intent_and_entities.html"/>
+        <link rel="prev" title="NLU Quick Start" href="quickstart.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://nlu.kitt.ai" target="_blank" class="icon icon-home"> KITT.AI NLU
+            
+          
+
+          
+            
+            <img src="_static/nlu-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to KITT.AI NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">NLU Quick Start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Build An App Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-and-nlu-app">Create and NLU App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploy-the-nlu-app">Deploy the NLU App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#final-thoughts">Final Thoughts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intent_and_entities.html">Intents and Entities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KITT.AI NLU</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Build An App Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/build_an_app.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="build-an-app-tutorial">
+<span id="build-an-app"></span><h1><a class="toc-backref" href="#id1">Build An App Tutorial</a><a class="headerlink" href="#build-an-app-tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#build-an-app-tutorial" id="id1">Build An App Tutorial</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#create-and-nlu-app" id="id3">Create and NLU App</a></li>
+<li><a class="reference internal" href="#deploy-the-nlu-app" id="id4">Deploy the NLU App</a></li>
+<li><a class="reference internal" href="#final-thoughts" id="id5">Final Thoughts</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will walk you through the entire processes of building a <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>
+applicaiton. Specifically be building the NLU application for the Build a bot
+in the <a class="reference external" href="http://docs.kitt.ai/chatflow">ChatFlow documentation</a></p>
+</div>
+<div class="section" id="create-and-nlu-app">
+<h2><a class="toc-backref" href="#id3">Create and NLU App</a><a class="headerlink" href="#create-and-nlu-app" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>. Create a new NLU app and name the application.</li>
+<li>In the app, click on &#8220;Set Up Intents&#8221; to expand the &#8220;Set Up Intents&#8221; drop down.</li>
+</ol>
+<img alt="_images/setup-intents.png" class="align-center" src="_images/setup-intents.png" />
+<ol class="arabic simple" start="3">
+<li>Click on add intent.</li>
+<li>Name the new intent <code class="docutils literal"><span class="pre">positive_response</span></code> and click create.</li>
+</ol>
+<img alt="_images/positive_response.png" class="align-center" src="_images/positive_response.png" />
+<ol class="arabic simple" start="5">
+<li>Under Example of Use, add the following natural language input strings. Feel
+free to include more:<ul>
+<li>Yes</li>
+<li>yes</li>
+<li>sure</li>
+<li>of course</li>
+<li>you bet!</li>
+<li>it would be my honor</li>
+</ul>
+</li>
+<li>When finished, click on the red &#8220;X&#8221; on the top right to exit the window.</li>
+</ol>
+<img alt="_images/positive-utterance.png" class="align-center" src="_images/positive-utterance.png" />
+<ol class="arabic" start="7">
+<li><p class="first">Click on add intent. Name the new intent <code class="docutils literal"><span class="pre">negative_response</span></code> and click create.
+Under Example of Use, add the following natural language input strings. Feel
+free to include more:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Nah</li>
+<li>no</li>
+<li>No way jose!</li>
+<li>Never</li>
+<li>I shall not</li>
+<li>We&nbsp;are not amused</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<img alt="_images/negative-response.png" class="align-center" src="_images/negative-response.png" />
+<ol class="arabic simple" start="8">
+<li>Once finished adding the <code class="docutils literal"><span class="pre">positive_response</span></code> and <code class="docutils literal"><span class="pre">negative_response</span></code> intents,
+click <strong>TRAIN APPLICATION</strong>, and then <strong>DEPLOY</strong>.</li>
+</ol>
+<img alt="_images/deploy-nlu.png" class="align-center" src="_images/deploy-nlu.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">In order for your NLU model to update and be fully operation, you
+must train your model and deploy it.</p>
+</div>
+<ol class="arabic simple" start="9">
+<li>Test you model in the <em>&#8220;Train the model&#8221;</em> Section. Input a sentence and click
+analyze.</li>
+</ol>
+<img alt="_images/train-the-model.png" class="align-center" src="_images/train-the-model.png" />
+<ol class="arabic simple" start="10">
+<li>Once it has completed, check the result. You can correct the result by clicking
+on the blue button and selecting the correct response. When finished, click submit.</li>
+</ol>
+<img alt="_images/submit-response.png" class="align-center" src="_images/submit-response.png" />
+</div>
+<div class="section" id="deploy-the-nlu-app">
+<h2><a class="toc-backref" href="#id4">Deploy the NLU App</a><a class="headerlink" href="#deploy-the-nlu-app" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Before the final deployment, click &#8220;TRAIN APPLICATION&#8221; to fully
+optimize you NLU app. Afterwards, you will be able to issue RESTful API calls
+to your app.</p>
+</div>
+<ol class="arabic simple" start="11">
+<li>Click on &#8220;Show All Apps&#8221; in the upper lefthand corner to go back to the NLU
+app list.</li>
+<li>In you newly created apps bubble, click on Deployment Information.</li>
+</ol>
+<img alt="_images/deployment-information.png" class="align-center" src="_images/deployment-information.png" />
+<ol class="arabic simple" start="13">
+<li>Copy the <strong>Deployment Url</strong> onto your clipboard.</li>
+</ol>
+<img alt="_images/deployment-url-expanded.png" class="align-center" src="_images/deployment-url-expanded.png" />
+</div>
+<div class="section" id="final-thoughts">
+<h2><a class="toc-backref" href="#id5">Final Thoughts</a><a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
+<p>With that, you can configure your NLU application to your <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> App. To do so,
+drag in an NLU Node, paste the <strong>Deployment Url</strong> in the URL field, and add
+<code class="docutils literal"><span class="pre">{{{payload}}}</span></code> to the end of the URL.</p>
+<p>And with that, you have successfully configured your NLU app to <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a>. For
+more examples of ChatFlow Apps with NLU components, check out the <a class="reference external" href="http://docs.kitt.ai/chatflow">ChatFlow documentation</a>.</p>
+<p>Happy App Building!!!</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intent_and_entities.html" class="btn btn-neutral float-right" title="Intents and Entities" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="quickstart.html" class="btn btn-neutral" title="NLU Quick Start" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Sep 19, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

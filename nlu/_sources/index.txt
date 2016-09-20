@@ -8,12 +8,12 @@
 .. _KITT.AI NLU: https://nlu.kitt.ai/
 
 Welcome to KITT.AI NLU
-====================================
+======================
 
 `KITT.AI NLU`_ is an interactive and intuitive Natural Language Understanding
 engine, providing "understanding as a service". It is supposed to be used
 with KITT.AI's ChatFlow_ (docs_), providing "conversation engine as a service".
-Together they fulfill KITT.AI's mission: "Conversational Understanding as a Service".
+Together they fulfill KITT.AI's mission - "Conversational Understanding as a Service".
 
 Here's a 20 minute walk-through to use ChatFlow and NLU together:
 
@@ -23,12 +23,17 @@ Here's a 20 minute walk-through to use ChatFlow and NLU together:
        frameborder="0" allowfullscreen></iframe>
     <br><br><br>
 
-Contents
-==================
+You are welcome to post your question to our `forum <https://groups.google.com/a/kitt.ai/forum/#!forum/chat>`_.
 
+Contents
+========
 This documentation is still under construction.
 
 .. toctree::
    :maxdepth: 2
 
    self
+   quickstart
+   build_an_app
+   intent_and_entities
+   alexa_nlu

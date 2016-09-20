@@ -1,0 +1,112 @@
+.. _quickstart:
+
+===============
+NLU Quick Start
+===============
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _KITT.AI: https://kitt.ai
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+This NLU_ tutorial provides a quick overview on how to access and navigate
+KITT.AI_'s NLU_ platform.
+
+By the end of this tutorial, you will be able to:
+  * access NLU
+  * create a Project
+  * orient yourself in the NLU editor
+
+Accessing NLU
+=============
+
+NLU is hosted by KITT.AI and can be accessed using any web browser.
+
+**To Access:**
+
+1. Go to `<https://nlu.kitt.ai>`_
+
+2. Log in with your Google, Facebook, Twitter or Github account.
+
+  .. image:: _static/img/quickstart/Login.png
+     :align: center
+
+Create a New App
+================
+
+1. Click on "Create new app" to start creating a new **app**.
+
+  .. image:: _static/img/quickstart/CreateNewApp.png
+    :align: center
+
+2. Name you application and click save.
+
+  .. image:: _static/img/quickstart/name-app.png
+    :align: center
+
+3. When the page reloads, you are now in the NLU editor. This is where you can
+   add your **intents** (utterance type classes) and **entities** (phrase type classes).
+
+  .. image:: _static/img/quickstart/NLUeditor.png
+    :align: center
+
+  * Under **Set up intents**, you can add new **intents** to your model. Your intents will be displayed under the **Intents** section.
+
+  .. image:: _static/img/quickstart/setupintents.png
+    :align: center
+
+  * Under **Set up entities**, you can add new **entities** to your model. Your entities will be displayed under the **Entities** section.
+
+  .. image:: _static/img/quickstart/setupentities.png
+    :align: center
+
+4. When you finish adding all the *intents* and *entities*, click **Train Applcation** and then **Deploy**.
+
+  .. image:: _static/img/quickstart/deployandtrain.png
+    :align: center
+
+5. Next, train your model using the NLU_ model trainer.
+
+  .. image:: _static/img/quickstart/modeltrainer.png
+    :align: center
+
+6. Make corrections to the classifications and click submit to shave them.
+
+  .. image:: _static/img/quickstart/submitresponse.png
+    :align: center
+
+.. tip:: You can check your model's performances by refering to the **Stats bar**
+      at the bottom of the editor.
+
+      .. image:: _static/img/quickstart/stats.png
+        :align: center
+
+8. To look at all the classifications ever made by the model, click on **Show Log**.
+
+.. image:: _static/img/quickstart/showlog.png
+  :align: center
+
+.. tip:: You can go back an correct previous classifications and see the exact cases
+      where the model is failing.
+
+You are now officially oriented with the NLU Editor! The time has come for you to
+build Natural Language Understanding machines! Are you up to the task?

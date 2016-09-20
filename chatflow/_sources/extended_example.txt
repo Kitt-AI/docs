@@ -230,7 +230,7 @@ collect information from the user.
           msg.kitt.businesstype = msg.NLU.entities.businesstype;
       }
       if('location' in msg.NLU.entities) {
-          msg.kitt.location = msg.NLU.entities.location;
+          msg.kitt.address = msg.NLU.entities.location;
       }
 
       return msg;
@@ -253,7 +253,7 @@ above sets:
 6. Drag in a new enter node, name it *Got Business Type and Address* and set the
    entrance conditions to:
     * ``Property msg.kitt.businesstype is not null``
-    * ``Property msg.kitt.location is not null``.
+    * ``Property msg.kitt.address is not null``.
 
 7. Check the box that says *Enter only from direct link*.
 
@@ -274,7 +274,7 @@ above sets:
 10. Add another enter node, name it *Got address but not business*, and set its
     conditions to:
       * ``Property msg.kitt.businesstype is not null``
-      * ``Property msg.kitt.location is null``
+      * ``Property msg.kitt.address is null``
 
 11. Check *Enter only from direct link* and create a *direct link* with the
     *Save business type and address* state node.
@@ -288,7 +288,7 @@ above sets:
 
 13. Add another enter node, name it *Got business but not address*, and set its
     conditions to:
-      * ``Property msg.kitt.location is not null``
+      * ``Property msg.kitt.address is not null``
       * ``Property msg.kitt.businesstype is null``
 
 14. Check *Enter only from direct link* and create a *direct link* with the
@@ -315,7 +315,7 @@ where we have either ``businesstype`` or ``location``.
 
 16. Add an enter node, name it *state: no address*, and set the entrance
     condition:
-      * ``Property msg.kitt.location is null``
+      * ``Property msg.kitt.address is null``
 
 17. Add a new state node and connect to it a new enter node, name it
     *ask for location*, and set the output text:
