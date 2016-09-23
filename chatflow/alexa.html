@@ -255,7 +255,14 @@ skill. We will also walkthrough a simple Alexa skill that repeats user input.</p
 <span id="echo-bot-video-walkthrough"></span><h3><a class="toc-backref" href="#id11">Echo Bot Tutorial Video</a><a class="headerlink" href="#echo-bot-tutorial-video" title="Permalink to this headline">¶</a></h3>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/gJchjcdQPnU"
     frameborder="0" allowfullscreen></iframe>
-<br> <br> <br></div>
+<br> <br> <br><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The Copy Cat demo uses <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span></code> for a truly open-vocabulary
+speech recognition experience. However, starting <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#literal-slot-type-reference">November 16, 2016</a>,
+Amazon will not <em>certify</em> skills that use <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span></code> (but they still work as your
+own demo skills).</p>
+</div>
+</div>
 <div class="section" id="create-an-alexa-copy-cat-chatflow-app">
 <h3><a class="toc-backref" href="#id12">1. Create an Alexa Copy Cat Chatflow app</a><a class="headerlink" href="#create-an-alexa-copy-cat-chatflow-app" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
@@ -274,11 +281,6 @@ skill. We will also walkthrough a simple Alexa skill that repeats user input.</p
 <li>Copy the &#8220;Final URL&#8221; onto your clipboard. It will be used later in Step
 <a class="reference internal" href="#alexa-config"><span class="std std-ref">Configuration</span></a>.</li>
 </ol>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">re-take this pic to change <code class="docutils literal"><span class="pre">chatflow-test</span></code> to <code class="docutils literal"><span class="pre">chatflow</span></code>
-after production server is deployed.</p>
-</div>
 <p>Now let&#8217;s go to the Amazon developer console and register an Alexa skill there.</p>
 </div>
 <div class="section" id="create-an-alexa-skill">
@@ -347,9 +349,16 @@ recognition, while everything will be tagged as a single <code class="docutils l
 <div class="section" id="configuration">
 <span id="alexa-config"></span><h4><a class="toc-backref" href="#id16">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple" start="5">
-<li>Paste the &#8220;Final URL&#8221; from <strong>Alexa In</strong> node:</li>
+<li>Paste the &#8220;Final URL&#8221; from <strong>Alexa In</strong> node and choose the <strong>North America</strong> region:</li>
 </ol>
 <img alt="_images/skill-config.png" class="align-center" src="_images/skill-config.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span></code> slot is only supported in US English,
+but not UK English or German (<a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#literal-slot-type-reference">source</a>).
+So please only select <strong>North America</strong> here. For migrating <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span></code>,
+check out the <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/migrating-to-the-improved-built-in-and-custom-slot-types#replacing-literal-with-custom-slot-types">migration guide</a> to custom slots.</p>
+</div>
 </div>
 <div class="section" id="ssl-certificate">
 <h4><a class="toc-backref" href="#id17">SSL Certificate</a><a class="headerlink" href="#ssl-certificate" title="Permalink to this headline">¶</a></h4>
@@ -560,7 +569,7 @@ tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced-
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Sep 19, 2016.
+      Last updated on Sep 23, 2016.
 
     </p>
   </div> 

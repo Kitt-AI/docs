@@ -50,6 +50,12 @@ Echo Bot Tutorial Video
        frameborder="0" allowfullscreen></iframe>
    <br> <br> <br>
 
+.. warning:: The Copy Cat demo uses ``AMAZON.LITERAL`` for a truly open-vocabulary
+   speech recognition experience. However, starting `November 16, 2016 <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#literal-slot-type-reference>`_,
+   Amazon will not *certify* skills that use ``AMAZON.LITERAL`` (but they still work as your
+   own demo skills).
+
+
 1. Create an Alexa Copy Cat Chatflow app
 ----------------------------------------
 
@@ -70,9 +76,6 @@ This app listens on incoming message sent from your Echo device through the
 
 3. Copy the "Final URL" onto your clipboard. It will be used later in Step
    :ref:`alexa_config`.
-
-.. TODO:: re-take this pic to change ``chatflow-test`` to ``chatflow``
-   after production server is deployed.
 
 Now let's go to the Amazon developer console and register an Alexa skill there.
 
@@ -146,10 +149,15 @@ We use ``z`` and ``z z`` here to enable both *single-word* and *multi-word* reco
 Configuration
 *************
 
-5. Paste the "Final URL" from **Alexa In** node:
+5. Paste the "Final URL" from **Alexa In** node and choose the **North America** region:
 
 .. image:: _static/img/alexa/skill-config.png
    :align: center
+
+.. note:: The ``AMAZON.LITERAL`` slot is only supported in US English,
+   but not UK English or German (`source <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interaction-model-reference#literal-slot-type-reference>`_).
+   So please only select **North America** here. For migrating ``AMAZON.LITERAL``,
+   check out the `migration guide <https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/migrating-to-the-improved-built-in-and-custom-slot-types#replacing-literal-with-custom-slot-types>`_ to custom slots.
 
 SSL Certificate
 ***************
