@@ -26,7 +26,22 @@ Snowboy, a Customizable Hotword Detection Engine
 :Contact: snowboy@kitt.ai
 :Website: https://snowboy.kitt.ai
 :Github: https://github.com/kitt-ai/snowboy
-:Version: 1.0.4 (2016-07-13)
+:Version: 1.1.0 (2016-09-20)
+
+**New!**
+
+Snowboy now offers **Hotword as a Service**. You can programatically use our
+:ref:`restful_api` to train a hotword model providing 3 voice samples.
+
+The following is an example with different customized hotwords in
+both English and Chinese. In the video you first pick a hotword, say it
+3 times (indicated by the 3 LED lights), a model is trained on device on the fly,
+then the device does hotword detection immediately.
+
+
+.. raw:: html
+
+   <video controls src="_static/snowboy-pi.web.mp4"></video>
 
 
 Introduction
@@ -83,11 +98,11 @@ Downloads
 
 We provide pre-packaged Snowboy binaries and their Python wrappers for:
 
-* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.0.4.tar.bz2>`_
-  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.0.4.tar.bz2>`_
-* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.0.4.tar.bz2>`_
+* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.1.0.tar.bz2>`_
+  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.1.0.tar.bz2>`_
+* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.1.0.tar.bz2>`_
 * Raspberry Pi with Raspbian 8.0, all versions
-  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.0.4.tar.bz2>`_)
+  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.1.0.tar.bz2>`_)
 
 Or you can check out `GitHub <https://github.com/kitt-ai/snowboy>`_ to compile
 a version yourself.
@@ -221,7 +236,7 @@ The demo is fairly straight-forward::
     detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
     print('Listening... Press Ctrl+C to exit')
 
-    detector.start(detected_callback=snowboydecoder.play_audio_file,
+    detector.start(detected_callback=snowboydecoder.ding_callback,
                    interrupt_check=interrupt_callback,
                    sleep_time=0.03)
 
@@ -237,7 +252,7 @@ second, the function:
    the main loop and return.
 
 Here we assigned ``detected_callback`` with a default
-``snowboydecoder.play_audio_file`` so that every time your hotword is heard the
+``snowboydecoder.ding_callback`` so that every time your hotword is heard the
 computer will play a *ding* sound.
 
 .. note:: Do not append ``()`` to your callback function: the correct way is to
@@ -504,6 +519,235 @@ the IoT relay:
 
    <video controls src="_static/toggle-light-relay.m4v"></video>
 
+.. _restful_api:
+
+RESTful API Calls
+=======================
+
+Snowboy provides the following HTTP endpoints for you to train and improve
+a model *without* using the website:
+
+* ``/api/v1/train``: train a model with 3 .wav files
+* ``/api/v1/improve``: contribute .wav sample files to an existing model, for
+  instance, false alarmed sound
+
+All uploaded .wav files are not visible from the Snowboy library. So your
+privacy is protected. However, we do not provide an API to retrieve these
+files either.
+
+/api/v1/train
+--------------------
+
+* **Endpoint**: ``https://snowboy.kitt.ai/api/v1/train/``
+* **Type**: ``POST``
+* **Return**: a binary personal model, or error
+
+The ``/api/v1/train`` endpoint provides an opportunity to:
+
+1. programmatically train a model without using the web interface
+2. achieve better acoustic consistency and less distortions among different
+   microphones, since the training and test voice samples will be collected
+   off the *same* microphone
+
+Now you can define truly customized hotword for **each** of your end customer.
+Just ask them to say the hotword 3 times and a model will be trained on the fly!
+
++---------------+------------+------------------------------------------------+
+| Parameter     | Required   | Value                                          |
++===============+============+================================================+
+| voice_samples |     Y      | A list of 3 voice samples in .wav format.      |
++---------------+------------+------------------------------------------------+
+| token         |     Y      | Secret user token                              |
++---------------+------------+------------------------------------------------+
+| name          |     Y      | String, or “unknown” if we don’t know hotword  |
+|               |            | name                                           |
++---------------+------------+------------------------------------------------+
+| language      |     N      | ar (Arabic), zh (Chinese), nl (Dutch), en      |
+|               |            | (English), fr (French), dt (German), hi        |
+|               |            | (Hindi), it (Italian), jp (Japanese), ko       |
+|               |            | (Korean), fa (Persian), pl (Polish), pt        |
+|               |            | (Portuguese), ru (Russian), es (Spanish), ot   |
+|               |            | (Other)                                        |
++---------------+------------+------------------------------------------------+
+| age_group     |     N      | 0_9, 10_19, 20_29, 30_39, 40_49, 50_59, 60+    |
++---------------+------------+------------------------------------------------+
+| gender        |     N      | F/M                                            |
++---------------+------------+------------------------------------------------+
+| microphone    |     N      | String, your microphone type                   |
++---------------+------------+------------------------------------------------+
+
+Return value of ``/api/v1/train`` endpoint is a binary .pmdl personal model.
+
+API token can be obtained by logging into |WEBSITE|, click on "Profile settings":
+
+.. image:: _static/profile_token.png
+
+The following is a sample example in Python:
+
+.. code-block:: python
+    :linenos:
+
+    import sys
+    import base64
+    import requests
+
+
+    def get_wave(fname):
+        with open(fname) as infile:
+            return base64.b64encode(infile.read())
+
+
+    endpoint = "https://snowboy.kitt.ai/api/v1/train/"
+
+
+    ############# MODIFY THE FOLLOWING #############
+    token = ""
+    hotword_name = "???"
+    language = "en"
+    age_group = "20_29"
+    gender = "M"
+    microphone = "macbook microphone"
+    ############### END OF MODIFY ##################
+
+    if __name__ == "__main__":
+        try:
+            [_, wav1, wav2, wav3, out] = sys.argv
+        except ValueError:
+            print "Usage: %s wave_file1 wave_file2 wave_file3 out_model_name" % sys.argv[0]
+            sys.exit()
+
+        data = {
+            "name": hotword_name,
+            "language": language,
+            "age_group": age_group,
+            "gender": gender,
+            "microphone": microphone,
+            "token": token,
+            "voice_samples": [
+                {"wave": get_wave(wav1)},
+                {"wave": get_wave(wav2)},
+                {"wave": get_wave(wav3)}
+            ]
+        }
+
+        response = requests.post(endpoint, json=data)
+        if response.ok:
+            with open(out, "w") as outfile:
+                outfile.write(response.content)
+            print "Saved model to '%s'." % out
+        else:
+            print "Request failed."
+            print response.text
+
+Save the file as ``training_service.py``. Usage is simple::
+
+    python training_service.py 1.wav 2.wav 3.wav saved_model.pmdl
+
+where you can use the ``rec`` command to record a .wav file on terminal::
+
+    rec -r 16000 -c 1 -b 16 -e signed-integer 1.wav
+
+
+The following is a sample example in ``bash`` with ``curl``:
+
+.. code-block:: shell
+    :linenos:
+
+    #! /usr/bin/env bash
+    ENDPOINT="https://snowboy.kitt.ai/api/v1/train/"
+
+    ############# MODIFY THE FOLLOWING #############
+    TOKEN="??"
+    NAME="??"
+    LANGUAGE="en"
+    AGE_GROUP="20_29"
+    GENDER="M"
+    MICROPHONE="PS3 Eye"
+    ############### END OF MODIFY ##################
+
+    if [[ "$#" != 4 ]]; then
+        printf "Usage: %s wave_file1 wave_file2 wave_file3 out_model_name" $0
+        exit
+    fi
+
+    WAV1=`base64 $1`
+    WAV2=`base64 $2`
+    WAV3=`base64 $3`
+    OUTFILE="$4"
+
+    cat <<EOF >data.json
+    {
+        "name": "$NAME",
+        "language": "$LANGUAGE",
+        "age_group": "$AGE_GROUP",
+        "token": "$TOKEN",
+        "gender": "$GENDER",
+        "microphone": "$MICROPHONE",
+        "voice_samples": [
+            {"wave": "$WAV1"},
+            {"wave": "$WAV2"},
+            {"wave": "$WAV3"}
+        ]
+    }
+    EOF
+
+    curl -H "Content-Type: application/json" -X POST -d @data.json $ENDPOINT > $OUTFILE
+
+
+/api/v1/improve
+--------------------
+
+* **Endpoint**: ``https://snowboy.kitt.ai/api/v1/improve/``
+* **Type**: ``POST``
+* **Return**: 200 OK or errors
+
+The ``/api/v1/improve`` service can be used to collect
+voice samples for opportunities that in the future we can improve the model.
+This is especially useful when you get **false alarms** for a model and we can
+later add these false alarms to negative set of training data.
+
++-----------------+------------+------------------------------------------------+
+|   Parameter     | Required   | Value                                          |
++=================+============+================================================+
+| voice_samples   |     Y      | A list of *up to* 3 samples in .wav format.    |
++-----------------+------------+------------------------------------------------+
+|  token          |     Y      | Secret user token                              |
++-----------------+------------+------------------------------------------------+
+|  name           |     Y      | String, or “unknown” if we don’t know hotword  |
+|                 |            | name                                           |
++-----------------+------------+------------------------------------------------+
+|  language       |     N      | ar (Arabic), zh (Chinese), nl (Dutch), en      |
+|                 |            | (English), fr (French), dt (German), hi        |
+|                 |            | (Hindi), it (Italian), jp (Japanese), ko       |
+|                 |            | (Korean), fa (Persian), pl (Polish), pt        |
+|                 |            | (Portuguese), ru (Russian), es (Spanish), ot   |
+|                 |            | (Other)                                        |
++-----------------+------------+------------------------------------------------+
+|  age_group      |     N      | 0_9, 10_19, 20_29, 30_39, 40_49, 50_59, 60+    |
++-----------------+------------+------------------------------------------------+
+|  gender         |     N      | F/M                                            |
++-----------------+------------+------------------------------------------------+
+|  microphone     |     N      | String, your microphone type                   |
++-----------------+------------+------------------------------------------------+
+| detection_score |     N      | Float, decoding score on this voice sample.    |
+|                 |            | Helps to roughly identify true positives, false|
+|                 |            | positives and false negatives                  |
++-----------------+------------+------------------------------------------------+
+
+The only difference to the ``/api/v1/train`` endpoint is that it includes
+an optional ``detection_score`` field. You can upload up to three voice samples
+in the ``voice_samples`` list.
+
+Return value of ``/api/v1/improve`` endpoint is just a 200 OK HTTP Response.
+
+
+Quota and Rate Limit
+--------------------
+
+Each user gets 1000 free API calls for each end point every 30 days, and the
+API endpoint is rate limited at 1 call per second.
+
+If you'd like to purchase more, please contact snowboy@kitt.ai
 
 .. _Advanced_Usage:
 
