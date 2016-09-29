@@ -32,6 +32,12 @@ In this tutorial, we will walk you through the entire processes of building a NL
 applicaiton. Specifically be building the NLU application for the Build a bot
 in the `ChatFlow documentation`_
 
+By the end of this tutorial, you will be able to:
+  * Create a NLU app from scratch
+  * Add Intents and sample utterances
+  * Add Entities and sample phrases
+  * Deploy you app in ChatFlow
+
 Create and NLU App
 ==================
 
@@ -109,7 +115,7 @@ Deploy the NLU App
 11. Click on "Show All Apps" in the upper lefthand corner to go back to the NLU
     app list.
 
-12. In you newly created apps bubble, click on Deployment Information.
+12. In your newly created apps bubble, click on Deployment Information.
 
 .. image:: _static/img/buildanapp/deployment-information.png
    :align: center

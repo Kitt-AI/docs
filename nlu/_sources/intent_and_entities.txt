@@ -45,7 +45,9 @@ The intent vocabulary or **Sample Utterance** consists of an arbitrary number of
 arbitrary strings. These intents can be thought of as buckets in which each
 incoming input utterance will be placed by the NLU node.
 
-NLU contains some predefined intents which you can use in your NLU app.
+NLU contains some predefined intents which you can use in your NLU app. These
+intents already contain sample utterances and are ready to be integrated as is.
+However, you can add more examples if you wish.
 
 .. image:: _static/img/intentsnentities/intents.png
    :align: center
@@ -65,10 +67,39 @@ occurs after the preposition **"in"**.
 .. warning:: You must train your model over a large dataset in order to have your NLU app learn
              where in the utterance a specific **entity** will occur.
 
-NLU contains some predfinied entities which you can use in your NLU app.
+NLU contains some predfinied entities which you can use in your NLU app. These
+entities already contain sample phrases and are ready to be integrated as is.
+However, you can add more examples if you wish.
 
 .. image:: _static/img/intentsnentities/entities.png
    :align: center
+
+NLU Input and Output
+====================
+
+NLU takes in an string **Input** and outputs the following **Output**:
+
+.. code-block:: javascript
+
+    {
+        "tokenized_sentence": "utterance",
+        "intents": [
+            {
+                "score": intent_probability_score,
+                "intent": "intent_type"
+            },
+        ],
+        "entities": [
+            {
+                "text": "text",
+                "end": endpoint,
+                "start": startpoint,
+                "entity": "entity_type"
+            },
+        ],
+        "sentence": "utterance"
+    }
+
 
 A Classification Example
 ========================

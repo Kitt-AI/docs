@@ -36,4 +36,5 @@ This documentation is still under construction.
    quickstart
    build_an_app
    intent_and_entities
+   smart_light
    alexa_nlu

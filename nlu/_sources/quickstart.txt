@@ -32,9 +32,9 @@ This NLU_ tutorial provides a quick overview on how to access and navigate
 KITT.AI_'s NLU_ platform.
 
 By the end of this tutorial, you will be able to:
-  * access NLU
-  * create a Project
-  * orient yourself in the NLU editor
+  * Access NLU
+  * Create a Project
+  * Orient yourself in the NLU editor
 
 Accessing NLU
 =============
@@ -107,6 +107,10 @@ Create a New App
 
 .. tip:: You can go back an correct previous classifications and see the exact cases
       where the model is failing.
+
+.. note:: In the *Log*, the first row in each entry refers to the **User Annotations**.
+    This is where any changes made by the user are stored. The second row
+    contains the original predictions from the model or the **App Annotations**.
 
 You are now officially oriented with the NLU Editor! The time has come for you to
 build Natural Language Understanding machines! Are you up to the task?

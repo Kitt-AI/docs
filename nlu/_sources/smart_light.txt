@@ -1,0 +1,253 @@
+.. _smart_light:
+
+====================
+Smart Light Tutorial
+====================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _KITT.AI: https://kitt.ai
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+In this tutorial, we will walk you through the entire processes of building a NLU_
+applicaiton that can control lights.
+
+By the end of this tutorial, you will be able to:
+  * Create Intents and Entities
+  * Train your app with test utterances
+  * Correct identification errors
+  * Perform endpoint testing
+
+Smart Light Tutorial
+====================
+
+The following video walks you through the entire process of creating a Smart
+Light application.
+
+.. raw:: html
+
+   <iframe width="640" height="420" src="https://www.youtube.com/embed/Z6jydYpWFfU?rel=0"
+       frameborder="0" allowfullscreen></iframe>
+
+Creating Smart Light Understanding
+==================================
+
+1. Add Intents
+__________________
+
+1. Go to NLU_ and create a new NLU app.
+
+2. In the app, click on "Set Up Intents" and add a new intent called `turn_on`.
+
+3. Add the following example utterances:
+  * Turn on lights
+  * Lights on
+
+4. In the app, click on "Set Up Intents" and add a new intent called `turn_off`.
+
+5. Add the following example utterances:
+  * Turn off lights
+  * Lights off
+
+You should now have two intents in your *intents* dropdown.
+
+.. image:: _static/img/smartlight/Intents.png
+  :align: center
+
+2. Add Entities
+_________________
+
+Next, we want our app to identify a specific light.
+
+1. Under "Set Up Entities", add a new entity called `name` to refer to the names
+  of the lights.
+
+2. Add the following example phrases:
+  * Kitchen
+  * Living Room
+  * Bedroom
+
+You should have one entity in you *entities* dropdown.
+
+.. image:: _static/img/smartlight/Entities.png
+  :align: center
+
+3. Test the App
+_______________
+
+1. Test your model in the *"Train the model"* Section. Input a sentence and click
+   analyze.
+
+2. Once it has completed, check the result. You can correct the result by clicking
+   on the blue button and selecting the correct intent or by highlighting and
+   selecting the correct entity. When finished, click submit.
+
+.. tip:: Try novel light names such as "porch", "garage", and "bathroom" to test
+    how the model will behave in novel cases.
+
+    .. image:: _static/img/smartlight/Test1.png
+      :align: center
+
+4. Building a strobe
+____________________
+
+After we have tested our app, let's add some more sophisticated actions such as
+strobing or `blink`.
+
+1. Add a new intent called `blink`. Don't add any example utterances yet.
+
+  .. image:: _static/img/smartlight/Intents2.png
+    :align: center
+
+2. Add a new entity called `color` and add the following example phrases:
+  * Red
+  * Green
+  * Yellow
+
+.. note:: You can add more examples into your phrase list.
+
+3. Add the predefined entity `number`.
+
+  .. image:: _static/img/smartlight/numbers.png
+    :align: center
+
+You should now have three entities in your *entities* dropdown.
+
+  .. image:: _static/img/smartlight/Entities2.png
+    :align: center
+
+5. Strobe Test
+______________
+
+1. Test the following sentence in your model:
+  * Blink the bedroom light 5 times red.
+
+.. note:: The App may only be able to recognize name and number and not color.
+
+      .. image:: _static/img/smartlight/Test2.png
+        :align: center
+
+2. Once it has completed, check the result. You can correct the result by clicking
+   on the blue button and selecting the correct intent or by highlighting the
+   correct and selecting the entity. When finished, click submit.
+
+   .. image:: _static/img/smartlight/CorrectEntities.png
+     :align: center
+
+.. tip:: Test you app against novel colors.
+
+    In addition, test the app against new `turn_on`/`turn_off` utterances that
+    contain a color entity.
+
+      .. image:: _static/img/smartlight/NovelTest.png
+        :align: center
+
+3. Once you are done testing you model, click on **Train Model** and then
+   **Deploy**.
+
+.. tip:: Use the *Stats bar* and the *Log* to understand how your models performance.
+
+      .. image:: _static/img/smartlight/StatsLog.png
+        :align: center
+
+6. Deploy and Testing the endpoint
+__________________________________
+
+1. Click on **Deployed** and click on **Test Endpoint** in the dropdown.
+
+  .. image:: _static/img/smartlight/TestEndPoint.png
+    :align: center
+
+2. In the pop-up under the **Query** section, enter in a sentence and click test
+   end point. You should see the following text in the **Output** section:
+
+   .. image:: _static/img/smartlight/TestEndPointPopUp.png
+     :align: center
+
+
+  An example output for the utterance *"Blink the bathroom light 8 times in blue"*:
+
+  .. code-block:: javascript
+
+      {
+          "tokenized_sentence": "Blink the bathroom light 8 times in blue",
+          "intents": [
+              {
+                  "score": 0.7512977154761208,
+                  "intent": "turn_on"
+              },
+              {
+                  "score": 0.2487022845238792,
+                  "intent": "turn_off"
+              },
+              {
+                  "score": 0,
+                  "intent": "blink"
+              }
+          ],
+          "entities": [
+              {
+                  "text": "bathroom",
+                  "end": 3,
+                  "start": 2,
+                  "entity": "name"
+              },
+              {
+                  "text": "8",
+                  "end": 5,
+                  "start": 4,
+                  "entity": "number"
+              },
+              {
+                  "text": "blue",
+                  "end": 8,
+                  "start": 7,
+                  "entity": "color"
+              }
+          ],
+          "sentence": "Blink the bathroom light 8 times in blue"
+      }
+
+3. Once you have finished Endpoint testing, click on **Show Log**. Note that the
+   examples you just tested do not have *User annotations*. If the *App annotations*
+   are correct, click on the **Green Thumbs Up**.
+
+   .. image:: _static/img/smartlight/GreenThumb.png
+     :align: center
+
+.. note:: When you click on the **Green Thumbs Up**, the *App annotations* will
+    automatically be apply onto the *User annotations*.
+
+.. warning:: If there are contradictions in your training data, your accuracy will
+    decrease dramatically.
+
+.. tip:: To quickly check performance by intent, click on the **i** button within
+    the intent to show the stats. In addition, you can use this dropdown to filter
+    the log by each intent.
+
+4. Click on "Show All Apps" to go back to the NLU app list.
+
+5. In your newly created apps bubble, click on Deployment Information and copy
+   the **Deployment Url** onto your clipboard.
+
+   .. image:: _static/img/smartlight/Deployment.png
+     :align: center

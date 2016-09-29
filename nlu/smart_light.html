@@ -1,0 +1,525 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Smart Light Tutorial &mdash; KITT.AI NLU 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="KITT.AI NLU 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Advanced Alexa Skill NLU Tutorial" href="alexa_nlu.html"/>
+        <link rel="prev" title="Intents and Entities" href="intent_and_entities.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://nlu.kitt.ai" target="_blank" class="icon icon-home"> KITT.AI NLU
+            
+          
+
+          
+            
+            <img src="_static/nlu-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to KITT.AI NLU</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">NLU Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_an_app.html">Build An App Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intent_and_entities.html">Intents and Entities</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Smart Light Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Smart Light Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-smart-light-understanding">Creating Smart Light Understanding</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-intents">1. Add Intents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#add-entities">2. Add Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-the-app">3. Test the App</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-a-strobe">4. Building a strobe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#strobe-test">5. Strobe Test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deploy-and-testing-the-endpoint">6. Deploy and Testing the endpoint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">KITT.AI NLU</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Smart Light Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/smart_light.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="smart-light-tutorial">
+<span id="smart-light"></span><h1><a class="toc-backref" href="#id2">Smart Light Tutorial</a><a class="headerlink" href="#smart-light-tutorial" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#smart-light-tutorial" id="id2">Smart Light Tutorial</a><ul>
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#id1" id="id4">Smart Light Tutorial</a></li>
+<li><a class="reference internal" href="#creating-smart-light-understanding" id="id5">Creating Smart Light Understanding</a><ul>
+<li><a class="reference internal" href="#add-intents" id="id6">1. Add Intents</a></li>
+<li><a class="reference internal" href="#add-entities" id="id7">2. Add Entities</a></li>
+<li><a class="reference internal" href="#test-the-app" id="id8">3. Test the App</a></li>
+<li><a class="reference internal" href="#building-a-strobe" id="id9">4. Building a strobe</a></li>
+<li><a class="reference internal" href="#strobe-test" id="id10">5. Strobe Test</a></li>
+<li><a class="reference internal" href="#deploy-and-testing-the-endpoint" id="id11">6. Deploy and Testing the endpoint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will walk you through the entire processes of building a <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>
+applicaiton that can control lights.</p>
+<dl class="docutils">
+<dt>By the end of this tutorial, you will be able to:</dt>
+<dd><ul class="first last simple">
+<li>Create Intents and Entities</li>
+<li>Train your app with test utterances</li>
+<li>Correct identification errors</li>
+<li>Perform endpoint testing</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id4">Smart Light Tutorial</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The following video walks you through the entire process of creating a Smart
+Light application.</p>
+<iframe width="640" height="420" src="https://www.youtube.com/embed/Z6jydYpWFfU?rel=0"
+    frameborder="0" allowfullscreen></iframe></div>
+<div class="section" id="creating-smart-light-understanding">
+<h2><a class="toc-backref" href="#id5">Creating Smart Light Understanding</a><a class="headerlink" href="#creating-smart-light-understanding" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-intents">
+<h3><a class="toc-backref" href="#id6">1. Add Intents</a><a class="headerlink" href="#add-intents" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> and create a new NLU app.</li>
+<li>In the app, click on &#8220;Set Up Intents&#8221; and add a new intent called <cite>turn_on</cite>.</li>
+<li>Add the following example utterances:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Turn on lights</li>
+<li>Lights on</li>
+</ul>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>In the app, click on &#8220;Set Up Intents&#8221; and add a new intent called <cite>turn_off</cite>.</li>
+<li>Add the following example utterances:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Turn off lights</li>
+<li>Lights off</li>
+</ul>
+</div></blockquote>
+<p>You should now have two intents in your <em>intents</em> dropdown.</p>
+<img alt="_images/Intents.png" class="align-center" src="_images/Intents.png" />
+</div>
+<div class="section" id="add-entities">
+<h3><a class="toc-backref" href="#id7">2. Add Entities</a><a class="headerlink" href="#add-entities" title="Permalink to this headline">¶</a></h3>
+<p>Next, we want our app to identify a specific light.</p>
+<ol class="arabic simple">
+<li>Under &#8220;Set Up Entities&#8221;, add a new entity called <cite>name</cite> to refer to the names</li>
+</ol>
+<blockquote>
+<div>of the lights.</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Add the following example phrases:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Kitchen</li>
+<li>Living Room</li>
+<li>Bedroom</li>
+</ul>
+</div></blockquote>
+<p>You should have one entity in you <em>entities</em> dropdown.</p>
+<img alt="_images/Entities.png" class="align-center" src="_images/Entities.png" />
+</div>
+<div class="section" id="test-the-app">
+<h3><a class="toc-backref" href="#id8">3. Test the App</a><a class="headerlink" href="#test-the-app" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Test your model in the <em>&#8220;Train the model&#8221;</em> Section. Input a sentence and click
+analyze.</li>
+<li>Once it has completed, check the result. You can correct the result by clicking
+on the blue button and selecting the correct intent or by highlighting and
+selecting the correct entity. When finished, click submit.</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Try novel light names such as &#8220;porch&#8221;, &#8220;garage&#8221;, and &#8220;bathroom&#8221; to test
+how the model will behave in novel cases.</p>
+<img alt="_images/Test1.png" class="last align-center" src="_images/Test1.png" />
+</div>
+</div>
+<div class="section" id="building-a-strobe">
+<h3><a class="toc-backref" href="#id9">4. Building a strobe</a><a class="headerlink" href="#building-a-strobe" title="Permalink to this headline">¶</a></h3>
+<p>After we have tested our app, let&#8217;s add some more sophisticated actions such as
+strobing or <cite>blink</cite>.</p>
+<ol class="arabic simple">
+<li>Add a new intent called <cite>blink</cite>. Don&#8217;t add any example utterances yet.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/Intents2.png" class="align-center" src="_images/Intents2.png" />
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li>Add a new entity called <cite>color</cite> and add the following example phrases:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Red</li>
+<li>Green</li>
+<li>Yellow</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can add more examples into your phrase list.</p>
+</div>
+<ol class="arabic simple" start="3">
+<li>Add the predefined entity <cite>number</cite>.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/numbers.png" class="align-center" src="_images/numbers.png" />
+</div></blockquote>
+<p>You should now have three entities in your <em>entities</em> dropdown.</p>
+<blockquote>
+<div><img alt="_images/Entities2.png" class="align-center" src="_images/Entities2.png" />
+</div></blockquote>
+</div>
+<div class="section" id="strobe-test">
+<h3><a class="toc-backref" href="#id10">5. Strobe Test</a><a class="headerlink" href="#strobe-test" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Test the following sentence in your model:</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>Blink the bedroom light 5 times red.</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>The App may only be able to recognize name and number and not color.</p>
+<img alt="_images/Test2.png" class="last align-center" src="_images/Test2.png" />
+</div>
+<ol class="arabic" start="2">
+<li><p class="first">Once it has completed, check the result. You can correct the result by clicking
+on the blue button and selecting the correct intent or by highlighting the
+correct and selecting the entity. When finished, click submit.</p>
+<img alt="_images/CorrectEntities.png" class="align-center" src="_images/CorrectEntities.png" />
+</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Test you app against novel colors.</p>
+<p>In addition, test the app against new <cite>turn_on</cite>/<cite>turn_off</cite> utterances that
+contain a color entity.</p>
+<blockquote class="last">
+<div><img alt="_images/NovelTest.png" class="align-center" src="_images/NovelTest.png" />
+</div></blockquote>
+</div>
+<ol class="arabic simple" start="3">
+<li>Once you are done testing you model, click on <strong>Train Model</strong> and then
+<strong>Deploy</strong>.</li>
+</ol>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Use the <em>Stats bar</em> and the <em>Log</em> to understand how your models performance.</p>
+<img alt="_images/StatsLog.png" class="last align-center" src="_images/StatsLog.png" />
+</div>
+</div>
+<div class="section" id="deploy-and-testing-the-endpoint">
+<h3><a class="toc-backref" href="#id11">6. Deploy and Testing the endpoint</a><a class="headerlink" href="#deploy-and-testing-the-endpoint" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Click on <strong>Deployed</strong> and click on <strong>Test Endpoint</strong> in the dropdown.</li>
+</ol>
+<blockquote>
+<div><img alt="_images/TestEndPoint.png" class="align-center" src="_images/TestEndPoint.png" />
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p class="first">In the pop-up under the <strong>Query</strong> section, enter in a sentence and click test
+end point. You should see the following text in the <strong>Output</strong> section:</p>
+<img alt="_images/TestEndPointPopUp.png" class="align-center" src="_images/TestEndPointPopUp.png" />
+</li>
+</ol>
+<blockquote>
+<div><p>An example output for the utterance <em>&#8220;Blink the bathroom light 8 times in blue&#8221;</em>:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;tokenized_sentence&quot;</span><span class="o">:</span> <span class="s2">&quot;Blink the bathroom light 8 times in blue&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.7512977154761208</span><span class="p">,</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;turn_on&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mf">0.2487022845238792</span><span class="p">,</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;turn_off&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;score&quot;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;blink&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;entities&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;bathroom&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;end&quot;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+            <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">&quot;entity&quot;</span><span class="o">:</span> <span class="s2">&quot;name&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;8&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;end&quot;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+            <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="s2">&quot;entity&quot;</span><span class="o">:</span> <span class="s2">&quot;number&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;end&quot;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+            <span class="s2">&quot;start&quot;</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+            <span class="s2">&quot;entity&quot;</span><span class="o">:</span> <span class="s2">&quot;color&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;sentence&quot;</span><span class="o">:</span> <span class="s2">&quot;Blink the bathroom light 8 times in blue&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="3">
+<li><p class="first">Once you have finished Endpoint testing, click on <strong>Show Log</strong>. Note that the
+examples you just tested do not have <em>User annotations</em>. If the <em>App annotations</em>
+are correct, click on the <strong>Green Thumbs Up</strong>.</p>
+<img alt="_images/GreenThumb.png" class="align-center" src="_images/GreenThumb.png" />
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When you click on the <strong>Green Thumbs Up</strong>, the <em>App annotations</em> will
+automatically be apply onto the <em>User annotations</em>.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If there are contradictions in your training data, your accuracy will
+decrease dramatically.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">To quickly check performance by intent, click on the <strong>i</strong> button within
+the intent to show the stats. In addition, you can use this dropdown to filter
+the log by each intent.</p>
+</div>
+<ol class="arabic" start="4">
+<li><p class="first">Click on &#8220;Show All Apps&#8221; to go back to the NLU app list.</p>
+</li>
+<li><p class="first">In your newly created apps bubble, click on Deployment Information and copy
+the <strong>Deployment Url</strong> onto your clipboard.</p>
+<img alt="_images/Deployment.png" class="align-center" src="_images/Deployment.png" />
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="alexa_nlu.html" class="btn btn-neutral float-right" title="Advanced Alexa Skill NLU Tutorial" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="intent_and_entities.html" class="btn btn-neutral" title="Intents and Entities" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Sep 29, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
