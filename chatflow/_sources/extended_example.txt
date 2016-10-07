@@ -49,6 +49,20 @@ API node into your bot seamlessly.
 .. note:: This project is available in the sample projects section in the create
     new app dialogue.
 
+.. _walkthrough_video:
+
+Extended Example Walkthrough Video
+==================================
+
+Here is a video walking you through the entire Yelp Bot creation process:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/XdHMGkgyNZQ"
+      frameborder="0" allowfullscreen></iframe>
+   <br><br><br>
+
+
 Starting your conversational project
 ====================================
 

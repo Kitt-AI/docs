@@ -242,30 +242,64 @@ Twilio In
 __________
 
 The following fields are set in the output message:
-    * twilio.from (string) Sender phone number in E.164 format.
-    * twilio.to (string) Recipient phone number in E.164 format.
-    * twilio.body (string) Message body.
-    * payload (string) Message body (duplicated).
 
-The twilio property may contain other sub-properties, `see Twilio documentation <https://www.twilio.com/docs/api/twiml/sms/twilio_request>`_
-for details (property names are always "camelCased" in this node output).
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          twillio: {
+                      from: "who.sent.the.message",
+                      to: "who.is.the.message.sent.to",
+                      body: "message.content"
+                    }
+          payload: "message.content"
+        }
+
++-----------------+--------+--------------------------------------------+
+| Variable        | Type   | Description                                |
++=================+========+============================================+
+| ``twilio.from`` | String | Sender phone number in E.164 format        |
++-----------------+--------+--------------------------------------------+
+| ``twilio.to``   | String | Recipient phone number in E.164 format     |
++-----------------+--------+--------------------------------------------+
+| ``twilio.body`` | String | Message Body                               |
++-----------------+--------+--------------------------------------------+
+| ``payload``     | String | Message Body (duplicate of ``twilio.body``)|
++-----------------+--------+--------------------------------------------+
+
+.. note:: The twilio property may contain other sub-properties, see the
+    `Twilio documentation <https://www.twilio.com/docs/api/twiml/sms/twilio_request>`_
+    for details (property names are always "camelCased" in this node output).
 
 .. _twilio_out_node:
 
 Twilio Out
 ___________
 
-The following fields are taken as inputs by Twilio Out:
+The following is an acceptable input for Twilio Out:
 
-    * msg.twilio.from or the field set in the configuration (string) Sender of
-      the message, may be overriden by configuration (which is recommended).
-      This number should be in E.164 format or an Alphanumeric Sender ID, see
-      Twilio documentation.
-    * msg.twilio.to (string) Recipient of the message (must be in E.164 format)
-    * msg.payload or the field set in the configuration (string) Message to be
-      sent.
+.. code-block:: javascript
+   :linenos:
 
-..note:: Notice: longer messages (especially containing "high" unicode characters)
+   msg = {
+          twillio: {
+                      from: "who.sent.the.message",
+                      to: "who.is.the.message.sent.to"
+                    }
+          payload: "message.content"
+        }
+
++-----------------+--------+---------------------------------------------------------------------------+
+| Variable        | Type   | Description                                                               |
++=================+========+===========================================================================+
+| ``twilio.from`` | String | Sender phone number. Must be in E.164 format or an Alphanumeric Sender ID |
++-----------------+--------+---------------------------------------------------------------------------+
+| ``twilio.to``   | String | Recipient phone number. Must be in E.164 format                           |
++-----------------+--------+---------------------------------------------------------------------------+
+| ``payload``     | String | Message Body                                                              |
++-----------------+--------+---------------------------------------------------------------------------+
+
+.. warning:: Notice: longer messages (especially containing "high" unicode characters)
     may be sent in multiple parts, part arrival order is not guaranteed by Twilio.
 
 .. _advanced_twilio_bot:

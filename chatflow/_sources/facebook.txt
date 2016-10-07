@@ -206,16 +206,27 @@ The Facebook In receives input from Facebook and outputs the following msg:
                }
          }
 
++--------------------------+------------------+------------------------------------------------------+
+| Variable                 | Type             | Description                                          |
++==========================+==================+======================================================+
+| ``payload``              | String           | Contains the message text                            |
++--------------------------+------------------+------------------------------------------------------+
+| ``facebook.message``     | Object           | Original message object received from Facebook       |
++--------------------------+------------------+------------------------------------------------------+
+| ``facebook.user``        | String           | Facebook user ID                                     |
++--------------------------+------------------+------------------------------------------------------+
+| ``facebook.timestamp``   | String           | Facebook's timestamp                                 |
++--------------------------+------------------+------------------------------------------------------+
+| ``facebook.seq``         | String           | Facebook sequence counter                            |
++--------------------------+------------------+------------------------------------------------------+
+| ``facebook.mid``         | String           | Facebook message ID                                  |
++--------------------------+------------------+------------------------------------------------------+
+| ``facebook.attachments`` | Array            | Array of attachments                                 |
++--------------------------+------------------+------------------------------------------------------+
+| ``kitt``                 | Object           | used by the Router for session management and timeout|
++--------------------------+------------------+------------------------------------------------------+
 
-`message` is the original message object received from Facebook. `user` refers
-to the Facebook sender ID. `timestamp` refers to Facebook's timestamp. `seq`
-refers to the Facebook sequence counter. `mid` refers to the Facebook message ID.
-
-`payload` refers to the message text. `attachments` refers to the Array of
-attachments. Both `payload` and `attachments` are optional.
-
-msg.kitt field will be used by the Router node for session management and timeout.
-
+.. warning:: Both ``payload`` and ``attachments`` are optional. But one is required!
 
 Facebook Out
 ____________
@@ -236,14 +247,21 @@ in the following format:
         }
 
 
-`user` refers to the Facebook user ID. `payload` refers to the message text.
-`attachments` refers to an array of attachments. Facebook Out sends a separate
-messages for each of attachment. `attachment` refers to an attachment object
-(Ex. written documentation).
++--------------------------+------------------+-------------------------------------------------------------------------------+
+| Variable                 | Type             | Description                                                                   |
++==========================+==================+===============================================================================+
+| ``payload``              | String           | Contains the message text                                                     |
++--------------------------+------------------+-------------------------------------------------------------------------------+
+| ``facebook.user``        | String           | Facebook user ID                                                              |
++--------------------------+------------------+-------------------------------------------------------------------------------+
+| ``facebook.attachments`` | Array            | Array of attachments                                                          |
++--------------------------+------------------+-------------------------------------------------------------------------------+
+| ``facebook.attachment``  | String           | An attachment object (Ex. written documentation)                              |
++--------------------------+------------------+-------------------------------------------------------------------------------+
 
-.. Note:: Although payload and attachments/attachment are optional,
-    **either** payload or attachments/attachment must contain a value.
-    However, **both cannot** be set (otherwise you will not receive a reply).
+.. warning:: Although payload and attachments/attachment are optional,
+    **either** payload, attachments, or attachment must contain a value.
+    However,  only **one** can be set otherwise you will not receive a reply.
 
 
 Advanced: templates and buttons

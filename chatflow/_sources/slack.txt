@@ -176,7 +176,7 @@ and the required formats for the **Slack Out** node input.
 Slack In
 ________
 
-The Slack In node receives input from telegram and outputs the following msg:
+The Slack In node receives input from Slack and outputs the following msg:
 
 .. code-block:: javascript
    :linenos:
@@ -189,9 +189,15 @@ The Slack In node receives input from telegram and outputs the following msg:
           }
 
 
-Slack contains the raw message from slack. Payload contains the message.text of
-the incoming message object. Kitt contains two variables used by the Router node
-for session management.
++-----------------------+---------+-------------------------------------------------------------------------+
+| Variable              | Type    | Description                                                             |
++=======================+=========+=========================================================================+
+| ``payload``           | String  | Text of the incoming message object                                     |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``slack``             | Object  | The raw message from slack                                              |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``kitt``              | Object  | Used by the Router node for session management and timeout              |
++-----------------------+---------+-------------------------------------------------------------------------+
 
 .. _slack_out_node:
 
@@ -209,11 +215,18 @@ following properties:
           }
 
 
-Slack contains a raw message you construct in the appropriate Slack format. See
-the `Slack messages API <https://api.slack.com/docs/messages>`_ for more details.
++-----------------------+---------+-------------------------------------------------------------------------+
+| Variable              | Type    | Description                                                             |
++=======================+=========+=========================================================================+
+| ``payload``           | String  | Text of the incoming message object                                     |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``slack``             | Object  | The raw message from slack                                              |
++-----------------------+---------+-------------------------------------------------------------------------+
 
-Payload contains message.text (the text data of the message). If it is not set,
-slack.text is used.
+.. hint:: See the `Slack messages API <https://api.slack.com/docs/messages>`_ for more
+      details.
+
+.. note:: If ``payload`` it is not set, slack.text is used.
 
 .. _slash_commands_and_interactive_messages:
 

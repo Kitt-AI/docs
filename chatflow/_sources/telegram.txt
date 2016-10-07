@@ -242,12 +242,33 @@ The Telegram In node receives input from telegram and outputs the following msg:
     }
 
 
-Payload contains information regarding text, location, venue, image, or contact.
-We will go into more detail about these nodes in the Telegram Out node section.
-Location, venue, image, and contact are optional fields and will be populated if
-the original message from telegram contained these fields.
 
-msg.kitt field will be used by the Router node for session management and timeout.
++-----------------------+---------+-------------------------------------------------------------------------+
+| Variable              | Type    | Description                                                             |
++=======================+=========+=========================================================================+
+| ``payload``           | Various | contains information regarding text, location, venue, image, or contact |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.message``  | String  | Contains message text                                                   |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.user``     | Object  | Contains information about who the message is from                      |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.chat``     | String  | The Chat ID (determined by Telegram)                                    |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.type``     | String  | The type of message                                                     |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.location`` | Object  | Contains Latitude and Longitude Information                             |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.venue``    | Object  | Contains information about a venue such as Name, Location, etc.         |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.image``    | String  | URL to Image                                                            |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``telegram.contact``  | Object  | Contains information about a Contact                                    |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``kitt``              | Object  | Used by the Router node for session management and timeout              |
++-----------------------+---------+-------------------------------------------------------------------------+
+
+.. note:: Location, venue, image, and contact are optional fields and will be populated if
+    the original message from telegram contained these fields.
 
 .. _telegram_out_node:
 

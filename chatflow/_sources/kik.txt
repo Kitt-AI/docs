@@ -182,11 +182,23 @@ The kik In node receives messages from kik. It has the following output:
           }
 
 
-kik.message is the original message received from the kik server. ``payload`` contains
-the message body (i.e. text, image, URL). ``user`` is the sender's kik User name.
-``chatId`` is the id of the chat where the message is received. ``type`` refers to the
-type of message received. Check out `kik message formats <https://dev.kik.com/#/docs/messaging#message-formats>`_
-for more details.
++---------------------+------------------+-------------------------------------------------------------------------------+
+| Variable            | Type             | Description                                                                   |
++=====================+==================+===============================================================================+
+| ``payload``         | String           | Contains the message body (i.e. text, image, URL)                             |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.message``     | String           | The original message from the kik server                                      |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.user``        | String           | kik username                                                                  |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.chatId``      | String           | The chat ID where the message will be sent (determined by kik)                |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.type``        | String           |  Message type                                                                 |
++---------------------+------------------+-------------------------------------------------------------------------------+
+
+.. hint:: For more info on types of kik messages,  check out
+    `kik message formats <https://dev.kik.com/#/docs/messaging#message-formats>`_
+    for more details.
 
 .. _kik_out_node:
 
@@ -210,14 +222,22 @@ format:
    }
 
 
-``payload`` contains the message body (i.e. text, image, URL). ``user`` refers to
-the kik username. ``chatId`` refers to the chatId of the chat where the message
-will be sent.
++---------------------+------------------+-------------------------------------------------------------------------------+
+| Variable            | Type             | Description                                                                   |
++=====================+==================+===============================================================================+
+| ``payload``         | String           | Contains the message body (i.e. text, image, URL)                             |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.user``        | String           | kik username                                                                  |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.chatId``      | String           | The chat ID where the message will be sent (determined by kik)                |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.type``        | String           |  Message type                                                                 |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.suggestions`` | Array of Strings | Array of suggested answers to the bot.  Sets the custom keyboard in kik app.  |
++---------------------+------------------+-------------------------------------------------------------------------------+
 
-``type`` and ``suggestions`` are both optional. ``type`` refers to the message
-type. ``suggestions`` refers to an array of suggested answers to the bot. It
-sets the custom keyboard in kik app. See `kik keyboards <https://dev.kik.com/#/docs/messaging#keyboards>`_
-for more details.
+.. hint:: For more on custon keyboards, see `kik keyboards <https://dev.kik.com/#/docs/messaging#keyboards>`_
+      for more details.
 
 Advanced: attachments and custom keyboards
 ==========================================
@@ -230,7 +250,7 @@ different color.
 Sending attachments
 ___________________
 
-..TO.DO:: Provide information about attachments.
+.. TODO:: Provide information about attachments.
 
 .. _custom_keyboard:
 

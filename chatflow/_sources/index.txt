@@ -48,6 +48,7 @@ few more bells and whistles, but otherwise, it is complete!
    slack
    twilio
    kik
+   skype
    alexa
    alexa_advanced
    alexa_nlu

@@ -105,7 +105,7 @@ ____________________________
 1. Drag a **Router** Node onto the empty Canvas. Connect the Chat In, Router, and
    Chat Out nodes like the image below:
 
-.. image:: _static/img/buildabot/Router-node.png
+.. image:: _static/img/buildabot/router-node.png
       :align: center
 
 .. note:: The Router is responsible for directing messages within our Flow
@@ -115,7 +115,7 @@ ____________________________
 
 2. Double-click on the Router Node to name the Router Node.
 
-.. image:: _static/img/buildabot/Router-pop-up.png
+.. image:: _static/img/buildabot/router-pop-up.png
    :align: center
 
 3. Enter and State Nodes

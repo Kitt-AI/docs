@@ -1,0 +1,409 @@
+[
+    {
+        "id": "e755eaf8.9b9d98",
+        "type": "function",
+        "name": "Search book images",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 250,
+        "y": 440,
+        "wires": [
+            [
+                "980e13b0.a44e3"
+            ]
+        ],
+        "func": "var items = msg.payload.ItemSearchResponse\n    .Items.Item;\n\nvar itemID = []\nvar newItems = [];\n\nitems.forEach(function(item){\n    itemID.push(item.ASIN);\n    var links=[{\n        \"type\":\"openUrl\",\n        \"title\":\"Details\",\n        \"value\": item.DetailPageURL\n    }];\n    \n    if(item.ItemLinks && item.ItemLinks.ItemLink){\n        item.ItemLinks.ItemLink.forEach(function(link){\n            if(link.Description==\"Add To Wishlist\" || \n                link.Description==\"All Offers\"){\n            links.push({\n                \"type\":\"openUrl\",\n                \"title\":link.Description.replace(\"All Offers\",\"Buy\"),\n                \"value\": link.URL\n            });}\n        })\n    }\n    \n    newItems.push({\n        id: item.ASIN,\n        name: item.ItemAttributes.Title,\n        author: item.ItemAttributes.Author ? ((typeof item.ItemAttributes.Author === 'string') ? item.ItemAttributes.Author : item.ItemAttributes.Author.join(', ')) : null,\n        price: item.ItemAttributes.ListPrice ?\n            item.ItemAttributes.ListPrice.FormattedPrice : null,\n        buttons:links\n    });\n});\n\n\nglobal.set('items',newItems)\n\nmsg.payload={\n    command:\"ItemLookup\",\n    request:{\n        ItemId:itemID,\n        ResponseGroup:\"Images\"\n    }\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "84906197.5505c",
+        "type": "switch",
+        "name": "Is item found?",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 700,
+        "y": 320,
+        "wires": [
+            [
+                "d69d0e8f.be92a"
+            ],
+            [
+                "e755eaf8.9b9d98"
+            ]
+        ],
+        "outputs": 2,
+        "checkall": "true",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "propertyType": "msg",
+        "property": "payload.ItemSearchResponse.Items.Item"
+    },
+    {
+        "id": "211121c5.990ebe",
+        "type": "function",
+        "name": "Merge images and book info",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 980,
+        "y": 460,
+        "wires": [
+            [
+                "92ed6d3a.9aca7"
+            ]
+        ],
+        "func": "var items = msg.payload.ItemLookupResponse.Items.Item;\nvar oldItems = global.get('items');\n\nvar newItems = [];\ni=0;\noldItems.forEach(function(item){\n    if(items[i].MediumImage)\n        item.image = items[i].MediumImage.URL\n    newItems.push(item);\n    i++;\n});\n\nmsg.payload = newItems;\n\nvar elements = [];\nvar messages = [];\nmsg.payload.forEach(function(item){\n    msg.skype.type = \"message/card.carousel\";\n    msg.skype.attachments = [{\n        \"contentType\":\"application/vnd.microsoft.card.hero\",\n        \"content\":{\n            \"title\":item.name,\n            \"images\": [{\"url\": item.image}],\n            \"subtitle\": \"by \"+item.author+(item.price?(\", from \"+item.price):''),\n            \"buttons\": item.buttons\n        }\n    }];\n    \n    msg.payload=null;\n    \n    messages.push(JSON.stringify(msg));\n});\n\nreturn {payload:messages.join('>>>>>')};\n",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "59dfdbcc.d7e664",
+        "type": "switch",
+        "name": "Are images found?",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 710,
+        "y": 440,
+        "wires": [
+            [
+                "d69d0e8f.be92a"
+            ],
+            [
+                "211121c5.990ebe"
+            ]
+        ],
+        "outputs": 2,
+        "checkall": "true",
+        "rules": [
+            {
+                "t": "null"
+            },
+            {
+                "t": "nnull"
+            }
+        ],
+        "propertyType": "msg",
+        "property": "payload.ItemLookupResponse"
+    },
+    {
+        "id": "1bba7b48.3ed1d5",
+        "type": "router",
+        "name": "",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 430,
+        "y": 60,
+        "wires": [
+            [
+                "92af8045.ab8f8",
+                "b5cb7152.971d5"
+            ]
+        ],
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "timeout": "1800"
+    },
+    {
+        "id": "a468e041.d72a",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "2bdd60c1.f54c9",
+        "type": "enter",
+        "name": "Hello",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 610,
+        "y": 160,
+        "wires": [
+            [
+                "ab4817fe.87a648"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "regex",
+                "p": "payload",
+                "v": "hello|hi",
+                "case": true
+            }
+        ]
+    },
+    {
+        "id": "ab4817fe.87a648",
+        "type": "state",
+        "name": "Greeting",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 810,
+        "y": 160,
+        "wires": [
+            []
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "Hello. I can search books on Amazon for you. Just name a book and I'll search it for you"
+    },
+    {
+        "id": "de36f4e6.29a6e8",
+        "type": "enter",
+        "name": "Book Name",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "f12ef47b.6aa268",
+                "328d2b3f.982e74"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "case": true,
+                "v": "^((?!bye|see\\syou|hi|hello).)*$",
+                "p": "payload",
+                "t": "regex"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "328d2b3f.982e74",
+        "type": "state",
+        "name": "OK. Searching...",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 420,
+        "y": 240,
+        "wires": [
+            []
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "OK. Searching...",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "8357f34c.7e347",
+        "type": "state",
+        "name": "Show items",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 1390,
+        "y": 460,
+        "wires": [
+            []
+        ],
+        "func": "msg = JSON.parse(msg.payload);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "c87c16d5.addf38",
+        "type": "enter",
+        "name": "Bye",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 210,
+        "y": 140,
+        "wires": [
+            [
+                "22d153ed.e98abc"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "case": true,
+                "v": "bye|see\\syou",
+                "p": "payload",
+                "t": "regex"
+            }
+        ]
+    },
+    {
+        "id": "22d153ed.e98abc",
+        "type": "state",
+        "name": "See ya",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 410,
+        "y": 140,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": true,
+        "response": "See ya"
+    },
+    {
+        "id": "f12ef47b.6aa268",
+        "type": "function",
+        "name": "Search books",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 250,
+        "y": 320,
+        "wires": [
+            [
+                "283ada8d.876ed6"
+            ]
+        ],
+        "func": "var book=msg.payload;\nmsg.payload={\n    command:\"ItemSearch\",\n    request:{\n          \"SearchIndex\": \"Books\",\n          \"Keywords\": book,\n          \"ResponseGroup\": \"ItemAttributes,Offers\"\n    }}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "d69d0e8f.be92a",
+        "type": "state",
+        "name": "Item not found",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 980,
+        "y": 320,
+        "wires": [
+            []
+        ],
+        "func": "\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Nothing found. Please try again",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "283ada8d.876ed6",
+        "type": "Product Advertising",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "84906197.5505c"
+            ]
+        ],
+        "request": "",
+        "command": "",
+        "awsCredentials": "22fac4b3.e3ea7c"
+    },
+    {
+        "id": "980e13b0.a44e3",
+        "type": "Product Advertising",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 470,
+        "y": 440,
+        "wires": [
+            [
+                "59dfdbcc.d7e664"
+            ]
+        ],
+        "request": "",
+        "command": "",
+        "awsCredentials": "22fac4b3.e3ea7c"
+    },
+    {
+        "id": "b2cb1da8.1c98d",
+        "type": "Skype In",
+        "name": "",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 210,
+        "y": 60,
+        "wires": [
+            [
+                "1bba7b48.3ed1d5"
+            ]
+        ],
+        "skype": "a47e0264.14c07"
+    },
+    {
+        "id": "b5cb7152.971d5",
+        "type": "debug",
+        "name": "",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "active": true,
+        "console": "false",
+        "complete": "skype",
+        "x": 630,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "92af8045.ab8f8",
+        "type": "Skype Out",
+        "name": "",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 630,
+        "y": 60,
+        "wires": [],
+        "skype": "a47e0264.14c07"
+    },
+    {
+        "id": "92ed6d3a.9aca7",
+        "type": "split",
+        "name": "",
+        "z": "a468e041.d72a",
+        "in": [],
+        "out": [],
+        "x": 1210,
+        "y": 460,
+        "wires": [
+            [
+                "8357f34c.7e347"
+            ]
+        ],
+        "splt": ">>>>>"
+    }
+]
