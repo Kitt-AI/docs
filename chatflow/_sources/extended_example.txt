@@ -49,7 +49,7 @@ API node into your bot seamlessly.
 .. note:: This project is available in the sample projects section in the create
     new app dialogue.
 
-.. _walkthrough_video:
+.. _extended_example_walkthrough_video:
 
 Extended Example Walkthrough Video
 ==================================
@@ -189,6 +189,7 @@ Creating your flow
    defined variables that will appear throughout the entire app!
 
 5. In the *Output text* box, write a welcome message:
+
   * *Welcome! I can find restaurants for you in Yelp! What can I help you with?*
 
 6. Check the *request User Input after this node* option.
@@ -197,6 +198,7 @@ Creating your flow
 
 8. Next add another **enter** node, name it *intent: hello*, and set it's entrnace
    condition to:
+
   * ``Property msg.NLU.intent == opening``
 
 9. Finally, connect the *intent: hello* enter node to the *Initialized state*
@@ -259,6 +261,7 @@ Information Cases
 
 Let's now add four new enter nodes that handle the cases where the state node
 above sets:
+
   (1) both business type and location,
   (2) only business type
   (3) only location
@@ -266,6 +269,7 @@ above sets:
 
 6. Drag in a new enter node, name it *Got Business Type and Address* and set the
    entrance conditions to:
+
     * ``Property msg.kitt.businesstype is not null``
     * ``Property msg.kitt.address is not null``.
 
@@ -287,6 +291,7 @@ above sets:
 
 10. Add another enter node, name it *Got address but not business*, and set its
     conditions to:
+
       * ``Property msg.kitt.businesstype is not null``
       * ``Property msg.kitt.address is null``
 
@@ -295,6 +300,7 @@ above sets:
 
 12. Add another state node and connect it to enter node and add the following
     output text:
+
      * *Ok, I got {{kitt.address}}, but I didn't get the restaurant type*
 
 .. note:: To access user variables in output text, use ``{{kitt.variable}}``
@@ -302,6 +308,7 @@ above sets:
 
 13. Add another enter node, name it *Got business but not address*, and set its
     conditions to:
+
       * ``Property msg.kitt.address is not null``
       * ``Property msg.kitt.businesstype is null``
 
@@ -329,10 +336,12 @@ where we have either ``businesstype`` or ``location``.
 
 16. Add an enter node, name it *state: no address*, and set the entrance
     condition:
+
       * ``Property msg.kitt.address is null``
 
 17. Add a new state node and connect to it a new enter node, name it
     *ask for location*, and set the output text:
+
       * *What's the desired location?*
 
 18. Create a direct link from the state node *ask for location* to the enter
@@ -340,10 +349,12 @@ where we have either ``businesstype`` or ``location``.
 
 19. Add another enter node, name it *state: no business type* and set the
     entrance condition to:
+
       * ``Property msg.kitt.businesstype is null``
 
 20. Add a new state node, name it *ask for business type*, and set the output
     text to:
+
       * *What kind of restaurant are you looking for?*
 
 21. Finally, create a *direct link* from the state node *ask for business* to
@@ -385,6 +396,7 @@ is already conveniently packaged as a ChatFlow node.
 
 3. Add a new enter node, name it *state: request ready*, set its
    entrance conditions to the following:
+
     * ``Property msg.kitt.req_pending is true``
 
 4. Connect to this enter node a new state node, name it *Yelp request*, and add
@@ -478,6 +490,7 @@ choices at a time and give the user the option to hear further choices.
    *list choices* state node.
 
 4. Add a new state node, name it *request choice*, and set the Output text field:
+
   * *Great! Which one?*
 
 5. Check the *request User Input after this node* option.
@@ -490,6 +503,7 @@ choices at a time and give the user the option to hear further choices.
 
 8. Add another enter node, name it *intent: list more*, and add the following two
    entrance conditions:
+
     * ``Property msg.NLU.intent == request_more_options``
     * ``Property msg.kitt.yelp_results is not null``
 
@@ -534,6 +548,7 @@ choices at a time and give the user the option to hear further choices.
     called *list more choices*.
 
 11. Create **direct links** from *list more choices* to each of the enter nodes:
+
   * *intent: Yes*
   * *intent: No*
   * *intent: list more*.
@@ -553,6 +568,7 @@ Now we are ready to have the user choose a restaurant from the options presented
 to them.
 
 1. Add a new enter node called *intent: state choice* with the entrance conditions:
+
   * ``Property msg.NLU.intent == state_choice``
   * ``Property msg.kitt.yelp_results is not null``.
 
@@ -614,6 +630,7 @@ about their choice and the other options?
 Well, we can creat new flows to answer the users questions!
 
 1. Add a new enter node, name it *intent: request rating* , and add three entrance conditions:
+
   * ``Property msg.NLU.intent == request_rating``
   * ``Property msg.kitt.user_choice is not null``
   * ``Property msg.NLU.entities.enum_choice is not null``
@@ -633,6 +650,7 @@ Well, we can creat new flows to answer the users questions!
 3. To handle questions that refer to a specific restaurant, we add a new enter
    node called *intent: rating request with choice* with the following entrance
    conditions:
+
   * ``Property msg.NLU.intent == request_rating``
   * ``Property msg.NLU.entities.enum_choice is not null``
 
@@ -690,6 +708,7 @@ Well, we can creat new flows to answer the users questions!
 Can we make our bot respond to gratitude? We sure can!
 
 6. Add an enter node named *intent: thanking* with the entrance condition:
+
    * ``Properties msg.NLU.intent == thanking``
 
 7. Add a state named *respond to thanks*, add the following code:
@@ -707,6 +726,7 @@ Well, what if our bot does not understand our user? We can create a flow to
 handle that!
 
 8. Add an enter node named *intent: default* with the entrance condition:
+
    * ``Properties msg.NLU.intent is not null``
 
 9. Add a state named *Non understanding* and add the following code:
@@ -746,10 +766,11 @@ handle that!
 Finally, we can create a flow that will end our dialogue with our user.
 
 10. Add an enter node named *closing* with the entrance condition:
+
    * ``Properties msg.NLU.intent == goodbye``
 
 11. Add a state named *good bye*, add the output text *Goodbye* check the
-   *Dialogue ends here* box.
+    *Dialogue ends here* box.
 
 Your flow should now look like the following figure:
 

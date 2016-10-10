@@ -1,19 +1,29 @@
 .. _alexa_advanced:
 
-.. _ChatFlow: https://chatflow.kitt.ai/
-
-.. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
-
-.. _alexa_advanced_title:
-
 =============================
 Advanced Alexa Skill Tutorial
 =============================
 
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+.. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
+
 .. contents:: Table of Contents
    :depth: 4
-
-.. _intro:
 
 Introduction
 ============
@@ -76,7 +86,7 @@ intuitive interface.
 .. _create_wiseguy_chatflow_app:
 
 1. Create the WiseGuy ChatFlow app
----------------------------------
+__________________________________
 
 Go to ChatFlow_ and use the sample application "Alexa WiseGuy Skill":
 
@@ -89,7 +99,7 @@ the "Final URL" from the **Alexa In** node after hitting "DEPLOY".
 .. _create_wiseguy_alexa_skill:
 
 2. Create the WiseGuy Alexa Skill
----------------------------------
+_________________________________
 
 Now please follow the steps in :ref:`create_an_alexa_skill` to create a skill
 for Wise Guy.
@@ -149,7 +159,7 @@ for Wise Guy.
 
 **Sample Utterances**:
 
-.. code-block:: java
+.. code-block:: javascript
 
     TellMeAJokeIntent tell me a joke
     TellMeAJokeIntent tell a joke
@@ -194,7 +204,7 @@ Multi turn and state tracking explained
 =======================================
 
 The ``global`` variable
-------------------------
+_______________________
 
 Take a look at the **init JOKE_LIST** state node. In it, we have created a
 global variable that can be used across the dialogue. It is called ``JOKE_LIST``
@@ -221,7 +231,7 @@ In addition, in the **init JOKE_LIST** state node, we initialized the dialogue s
     msg.kitt.stage = null;
 
 State tracking
---------------
+______________
 
 Take a look at the **Tell Me A Joke** state node, it sets up the dialogue stage:
 

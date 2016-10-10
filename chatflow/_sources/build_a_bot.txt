@@ -1,8 +1,8 @@
 .. _build_a_bot:
 
-===========================
+=============================
 ChatFlow Build A Bot Tutorial
-===========================
+=============================
 
 .. Bootstrap specific class labels
 
@@ -229,9 +229,10 @@ else to say. Let's now give our bot the ability to handle *yes* and
 1. Add an Enter Node and a State Node. Connect them as before.
 
 2. Edit the Enter Node:
+
   * Name it *"U: no"*
-  * Set its condition to ``Property msg.payload == no``(This simply checks if the
-    user input to the Router coming from the *Chat In* node is "no")
+  * Set its condition to ``Property msg.payload == no``
+    .. note:: This simply checks if the user input to the Router coming from the *Chat In* node is "no"
 
 .. image:: _static/img/buildabot/u-no.png
    :align: center
@@ -240,8 +241,9 @@ else to say. Let's now give our bot the ability to handle *yes* and
    The user input coming from *Chat In* is stored in ``msg.payload``.
 
 3. Edit the new State Node.
-  * Name it *ask again*
-  * Add the following code into its body:
+
+   * Name it *ask again*
+   * Add the following code into its body:
 
     .. code:: javascript
 
@@ -263,7 +265,8 @@ another State Node to handle *yes*.
 1. Add another pair of Enter and State Nodes. Connect them as before.
 
 2. Name the Enter Node *U:yes* and add the entrance condition:
-  * ``Property msg.payload == yes``
+
+   * ``Property msg.payload == yes``
 
 3. Name the new State Node *thank user*, and leave the code as ``return msg;``
 
@@ -303,16 +306,16 @@ other input strings.
 1. Add an Enter Node and a State Node to the Canvas. Connect them together.
 
 2. Edit the Enter Node, name is "U: default", and set it's entrance conditions to:
-  * ``Property msg.payload is not null``
-  * ``Property msg.payload != yes``
-  * ``Property msg.payload != no``
+   * ``Property msg.payload is not null``
+   * ``Property msg.payload != yes``
+   * ``Property msg.payload != no``
 
 .. image:: _static/img/buildabot/u-default.png
    :align: center
 
 3. In the new State Node, change the name to *not understanding*, leave the code
    as ``return msg;``, and add the following text to the *Output field*:
-  * *Sorry, I didn't understand what you said. I only understand "yes" and "no".*
+   * *Sorry, I didn't understand what you said. I only understand "yes" and "no".*
 
 .. image:: _static/img/buildabot/not-understanding.png
    :align: center

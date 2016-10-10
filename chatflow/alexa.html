@@ -285,7 +285,7 @@ own demo skills).</p>
 <p>Now let&#8217;s go to the Amazon developer console and register an Alexa skill there.</p>
 </div>
 <div class="section" id="create-an-alexa-skill">
-<span id="id1"></span><h3><a class="toc-backref" href="#id13">2. Create an Alexa Skill</a><a class="headerlink" href="#create-an-alexa-skill" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id13">2. Create an Alexa Skill</a><a class="headerlink" href="#create-an-alexa-skill" title="Permalink to this headline">¶</a></h3>
 <p>We want to create a skill that repeats what user says. For those who have worked
 with an Alexa skill, you already know by default Alexa only gives you the intent
 type and slots, but not the whole utterances. So the trick here is to use the
@@ -296,7 +296,7 @@ and click &#8220;ALEXA&#8221; to get started with the <strong>Alexa Skills Kit</
 </ol>
 <img alt="_images/alexa-get-started.png" class="align-center" src="_images/alexa-get-started.png" />
 <div class="section" id="skill-information">
-<span id="id2"></span><h4><a class="toc-backref" href="#id14">Skill Information</a><a class="headerlink" href="#skill-information" title="Permalink to this headline">¶</a></h4>
+<span id="id3"></span><h4><a class="toc-backref" href="#id14">Skill Information</a><a class="headerlink" href="#skill-information" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple" start="2">
 <li>In <strong>Skill Information</strong>, pick a skill name and invocation name:</li>
 </ol>
@@ -336,7 +336,7 @@ we use the <code class="docutils literal"><span class="pre">AMAZON.LITERAL</span
 recognition, while everything will be tagged as a single <code class="docutils literal"><span class="pre">SuperIntent</span></code>.</p>
 </div>
 <div class="section" id="sample-utterances">
-<span id="id3"></span><h4><a class="toc-backref" href="#id15">Sample Utterances</a><a class="headerlink" href="#sample-utterances" title="Permalink to this headline">¶</a></h4>
+<span id="id4"></span><h4><a class="toc-backref" href="#id15">Sample Utterances</a><a class="headerlink" href="#sample-utterances" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple" start="4">
 <li>In <strong>Sample Utterances</strong>, enter these two lines:</li>
 </ol>
@@ -411,44 +411,38 @@ see your Copy Cat skill.</li>
 <p>This section of the tutorial provides insight into message structures of the
 <strong>Alexa In</strong> and <strong>Alexa Out</strong> nodes</p>
 <div class="section" id="alexa-in">
-<span id="id4"></span><h3><a class="toc-backref" href="#id21">Alexa In</a><a class="headerlink" href="#alexa-in" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3><a class="toc-backref" href="#id21">Alexa In</a><a class="headerlink" href="#alexa-in" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>Alexa In</strong> node wraps an external request in <code class="docutils literal"><span class="pre">msg.alexa</span></code>, which follows
 the Alexa <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format">Request Format</a>.</p>
 <p>There are three types of requests:</p>
 <ol class="arabic simple">
-<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#launchrequest">LaunchRequest</a>:</li>
-</ol>
-<blockquote>
-<div>when you say &#8220;<em>Alexa, open &lt;skill invocation name&gt;</em>&#8221;. At this time, Alexa should
+<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#launchrequest">LaunchRequest</a>:
+when you say &#8220;<em>Alexa, open &lt;skill invocation name&gt;</em>&#8221;. At this time, Alexa should
 play a welcome message or provide usage instructions. <code class="docutils literal"><span class="pre">msg.kitt._skill_launched</span></code>
-is set to <code class="docutils literal"><span class="pre">true</span></code>.</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#intentrequest">IntentRequest</a>:</li>
-</ol>
-<blockquote>
-<div>when you engage with a skill in a session. The very first message in this session
+is set to <code class="docutils literal"><span class="pre">true</span></code>.</li>
+<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#intentrequest">IntentRequest</a>:
+when you engage with a skill in a session. The very first message in this session
 has <code class="docutils literal"><span class="pre">msg.alexa.session.new</span> <span class="pre">=</span> <span class="pre">true</span></code>. The rest has it <code class="docutils literal"><span class="pre">false</span></code>. <code class="docutils literal"><span class="pre">msg.kitt._session_started</span></code>
-reflects this.</div></blockquote>
-<ol class="arabic simple" start="3">
-<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#sessionendedrequest">SessionEndedRequest</a>:</li>
+reflects this.</li>
+<li><a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#sessionendedrequest">SessionEndedRequest</a>:
+when you explicitly asks Alexa to exit from session, such as by saying &#8220;<em>exit</em>&#8221;.
+<code class="docutils literal"><span class="pre">msg.kitt._session_ended</span></code> is set to <code class="docutils literal"><span class="pre">true</span></code>.</li>
 </ol>
-<blockquote>
-<div>when you explicitly asks Alexa to exit from session, such as by saying &#8220;<em>exit</em>&#8221;.
-<code class="docutils literal"><span class="pre">msg.kitt._session_ended</span></code> is set to <code class="docutils literal"><span class="pre">true</span></code>.</div></blockquote>
 <p>Additionally, <code class="docutils literal"><span class="pre">msg.kitt</span></code> also automatically sets:</p>
-<ul class="simple">
+<blockquote>
+<div><ul class="simple">
 <li><code class="docutils literal"><span class="pre">msg.kitt._session_id</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.sessionId</span></code>, used by the Router.</li>
 <li><code class="docutils literal"><span class="pre">msg.kitt._user_id</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.user.userId</span></code>, used by the Router.</li>
 <li><code class="docutils literal"><span class="pre">msg.kitt._timeout</span></code> (by default 30 seconds), used by the Router.</li>
 <li><code class="docutils literal"><span class="pre">msg.kitt._access_token</span></code> from <code class="docutils literal"><span class="pre">msg.alexa.session.user.accessToken</span></code> if it appears.</li>
 </ul>
-<blockquote>
-<div>It&#8217;s the remote access token if user has enabled <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system">account linking</a>.</div></blockquote>
+</div></blockquote>
+<p>It&#8217;s the remote access token if user has enabled <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/linking-an-alexa-user-with-a-user-in-your-system">account linking</a>.</p>
 <p>We will discuss <code class="docutils literal"><span class="pre">msg.NLU</span></code> in <a class="reference internal" href="#intent-request"><span class="std std-ref">2. Intent Request</span></a> and outgoing message
 structures in <a class="reference internal" href="#card-reprompt"><span class="std std-ref">Companion App Card</span></a>.</p>
 </div>
 <div class="section" id="alexa-out">
-<span id="id5"></span><h3><a class="toc-backref" href="#id22">Alexa Out</a><a class="headerlink" href="#alexa-out" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3><a class="toc-backref" href="#id22">Alexa Out</a><a class="headerlink" href="#alexa-out" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>Alexa Out</strong> node sends a response back to the Alexa skill that called
 <strong>Alexa In</strong> node or <strong>Alexa NLU</strong> node.</p>
 <p>The response format follows <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#ResponseFormat">Amazon&#8217;s specification</a>.</p>
@@ -458,8 +452,8 @@ has the following properties:</p>
 <li><code class="docutils literal"><span class="pre">version</span></code> (string): the same as version in Alexa In request, otherwise 1.0</li>
 <li><code class="docutils literal"><span class="pre">sessionAttributes</span></code> (object): set from <code class="docutils literal"><span class="pre">msg.kitt</span></code> to persist across sessions.</li>
 <li><code class="docutils literal"><span class="pre">response.outputSpeech</span></code> <em>optional</em> (object): {type: &#8220;PlainText&#8221;, text: msg.payload}. However, if available, <code class="docutils literal"><span class="pre">msg.alexa.outputSpeech</span></code> is assigned to <code class="docutils literal"><span class="pre">response.outputSpeech</span></code> &#8211; this is helpful if users want to have SSML output.</li>
-<li><code class="docutils literal"><span class="pre">response.card</span></code> <em>optional</em> (object): set from <code class="docutils literal"><span class="pre">msg.alexa.card</span></code> if availalbe to hold a Card Object. More information can be found <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object">here</a>.</li>
-<li><code class="docutils literal"><span class="pre">response.reprompt</span></code> <em>optional</em> (object): set from <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code> if availalbe to hold a Reprompt Object. More information can be found <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object">here</a>.</li>
+<li><code class="docutils literal"><span class="pre">response.card</span></code> <em>optional</em> (object): set from <code class="docutils literal"><span class="pre">msg.alexa.card</span></code> if availalbe to hold a Card Object. More information can be found <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object">on the Card Object</a>.</li>
+<li><code class="docutils literal"><span class="pre">response.reprompt</span></code> <em>optional</em> (object): set from <code class="docutils literal"><span class="pre">msg.alexa.reprompt</span></code> if availalbe to hold a Reprompt Object. More information can be found <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#reprompt-object">on the Reprompt Object Page</a>.</li>
 <li><code class="docutils literal"><span class="pre">shouldEndSession</span></code> (boolean): true if session is ended, then your skill will close and not expect further user input.</li>
 </ul>
 </div>
@@ -546,7 +540,7 @@ sentence at all. There are two ways to go from here:</p>
 <p>However, we do not recommend this way because Alexa&#8217;s speech output might not be
 perfect. Instead we suggest that you use Alexa&#8217;s own NLU with its language model
 smoothed out with in-domain utterances. We have created a more advanced
-tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced-title"><span class="std std-ref">next</span></a> to demonstrate how this is done.</p>
+tutorial <a class="reference internal" href="alexa_advanced.html#alexa-advanced"><span class="std std-ref">next</span></a> to demonstrate how this is done.</p>
 </div>
 </div>
 

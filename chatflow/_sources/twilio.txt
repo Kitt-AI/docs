@@ -1,8 +1,8 @@
 .. _twilio:
 
-======================
+====================
 Twilio Bot Tutorials
-======================
+====================
 
 .. Bootstrap specific class labels
 
@@ -396,5 +396,5 @@ Now by sending "add" message to your Twilio phone number you increase the counte
 (and reset/kill the counter).
 
 .. note:: You can download the whole sample aplication
-    `here <_static/json/twilio-router-bot.json>`_. You will only have to setup
+    `from here <_static/json/twilio-router-bot.json>`_. You will only have to setup
     Twilio In/Out nodes manually.

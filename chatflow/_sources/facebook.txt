@@ -1,8 +1,8 @@
 .. _facebook:
 
-======================
+==================
 Facebook Tutorials
-======================
+==================
 
 .. Bootstrap specific class labels
 
@@ -42,7 +42,7 @@ Creating a simple echo bot
 In this part of the tutorial, we will show you how to configure the facebook nodes.
 
 Facebook Echo Bot Video Tutorial
-_______________________________
+________________________________
 
 .. raw:: html
 
@@ -82,6 +82,7 @@ __________________________________
 
 4. Now you are on the dashboard page. This is where you can setup your new
    Facebook application by follow these steps:
+
     1. Click on "+ Add Product"
     2. Click on "Get Started" button in the "Messenger" section. A new page will
        load.
@@ -304,6 +305,7 @@ ____________
 
 4. Go back to ChatFlow. Open the **KITT.AI NLU** node and paste the Deployment URL.
    Add ``{{{payload}}}``, so your final string would look like: ::
+
      http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 
 .. image:: _static/img/facebook/kitt.png

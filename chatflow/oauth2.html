@@ -178,22 +178,22 @@
            <div itemprop="articleBody">
             
   <div class="section" id="oauth2-uber-tutorials">
-<span id="twilio"></span><h1><a class="toc-backref" href="#id2">OAuth2/Uber Tutorials</a><a class="headerlink" href="#oauth2-uber-tutorials" title="Permalink to this headline">¶</a></h1>
+<span id="oauth2"></span><h1><a class="toc-backref" href="#id1">OAuth2/Uber Tutorials</a><a class="headerlink" href="#oauth2-uber-tutorials" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#oauth2-uber-tutorials" id="id2">OAuth2/Uber Tutorials</a><ul>
-<li><a class="reference internal" href="#introduction" id="id3">Introduction</a><ul>
-<li><a class="reference internal" href="#uber-oauth2-video-tutorial" id="id4">Uber Oauth2 Video Tutorial</a></li>
+<li><a class="reference internal" href="#oauth2-uber-tutorials" id="id1">OAuth2/Uber Tutorials</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a><ul>
+<li><a class="reference internal" href="#uber-oauth2-video-tutorial" id="id3">Uber Oauth2 Video Tutorial</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#simple-descripton-of-oauth2-flow" id="id5">Simple Descripton of OAuth2 Flow</a></li>
-<li><a class="reference internal" href="#creating-an-uber-access-bot" id="id6">Creating an Uber Access Bot</a><ul>
-<li><a class="reference internal" href="#registering-an-application-in-uber-service" id="id7">Registering an application in Uber service</a></li>
-<li><a class="reference internal" href="#creating-the-bot" id="id8">1. Creating the bot</a></li>
-<li><a class="reference internal" href="#configuring-the-oauth2-node" id="id9">2. Configuring the OAuth2 Node</a></li>
-<li><a class="reference internal" href="#testing-the-application" id="id10">3. Testing the Application</a></li>
-<li><a class="reference internal" href="#reusing-access-tokens" id="id11">4. Reusing Access Tokens</a></li>
+<li><a class="reference internal" href="#simple-descripton-of-oauth2-flow" id="id4">Simple Descripton of OAuth2 Flow</a></li>
+<li><a class="reference internal" href="#creating-an-uber-access-bot" id="id5">Creating an Uber Access Bot</a><ul>
+<li><a class="reference internal" href="#registering-an-application-in-uber-service" id="id6">Registering an application in Uber service</a></li>
+<li><a class="reference internal" href="#creating-the-bot" id="id7">1. Creating the bot</a></li>
+<li><a class="reference internal" href="#configuring-the-oauth2-node" id="id8">2. Configuring the OAuth2 Node</a></li>
+<li><a class="reference internal" href="#testing-the-application" id="id9">3. Testing the Application</a></li>
+<li><a class="reference internal" href="#reusing-access-tokens" id="id10">4. Reusing Access Tokens</a></li>
 </ul>
 </li>
 </ul>
@@ -201,7 +201,7 @@
 </ul>
 </div>
 <div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial, we use OAuth2 Request node to make HTTP(S) requests requiring OAuth2
 app authentication with user authorization. OAuth2 authorization is helpful when your bot
 needs to take actions on behalf of the user.</p>
@@ -229,14 +229,14 @@ SMS messages may not be a good idea, because some old feature phones don&#8217;t
 users don&#8217;t want to or can&#8217;t use their data connection.</p>
 </div>
 <div class="section" id="uber-oauth2-video-tutorial">
-<h3><a class="toc-backref" href="#id4">Uber Oauth2 Video Tutorial</a><a class="headerlink" href="#uber-oauth2-video-tutorial" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Uber Oauth2 Video Tutorial</a><a class="headerlink" href="#uber-oauth2-video-tutorial" title="Permalink to this headline">¶</a></h3>
 <p>Here is a video tutorial walking you through the Uber Oauth2 configuration process:</p>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/ElKDTwMxKnU"
    frameborder="0" allowfullscreen></iframe>
 <br><br><br></div>
 </div>
 <div class="section" id="simple-descripton-of-oauth2-flow">
-<h2><a class="toc-backref" href="#id5">Simple Descripton of OAuth2 Flow</a><a class="headerlink" href="#simple-descripton-of-oauth2-flow" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Simple Descripton of OAuth2 Flow</a><a class="headerlink" href="#simple-descripton-of-oauth2-flow" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>The application asks the service to provide access credentials for user account and given scope of data/resources,
 by asking the user to open a specially crafted link in a browser. The link opens a page provided by the service.</li>
@@ -252,15 +252,15 @@ This token can expire too (it&#8217;s service-dependent).</p>
 <p>The OAuth2 Request node manages token acqusition and refreshing automatically.</p>
 </div>
 <div class="section" id="creating-an-uber-access-bot">
-<h2><a class="toc-backref" href="#id6">Creating an Uber Access Bot</a><a class="headerlink" href="#creating-an-uber-access-bot" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Creating an Uber Access Bot</a><a class="headerlink" href="#creating-an-uber-access-bot" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="registering-an-application-in-uber-service">
-<h3><a class="toc-backref" href="#id7">Registering an application in Uber service</a><a class="headerlink" href="#registering-an-application-in-uber-service" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Registering an application in Uber service</a><a class="headerlink" href="#registering-an-application-in-uber-service" title="Permalink to this headline">¶</a></h3>
 <p>Go to <a class="reference external" href="https://developer.uber.com/dashboard">Uber Developer Dashboard</a>. Press the &#8220;+New App&#8221; button.
 Select &#8220;Rides API&#8221;, enter your app name, description, read the terms and if you agree with them,
 fill the corresponding checkbox, press the &#8220;Create&#8221; button. That&#8217;s all (for now), we&#8217;ll be back here later.</p>
 </div>
 <div class="section" id="creating-the-bot">
-<h3><a class="toc-backref" href="#id8">1. Creating the bot</a><a class="headerlink" href="#creating-the-bot" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">1. Creating the bot</a><a class="headerlink" href="#creating-the-bot" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Create a new application.</li>
 <li>Add the following nodes to the flow:
@@ -294,7 +294,7 @@ Skip the first state node.</li>
 <img alt="_images/oauth2-func-clear-payload.png" class="align-center" src="_images/oauth2-func-clear-payload.png" />
 </div>
 <div class="section" id="configuring-the-oauth2-node">
-<h3><a class="toc-backref" href="#id9">2. Configuring the OAuth2 Node</a><a class="headerlink" href="#configuring-the-oauth2-node" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2. Configuring the OAuth2 Node</a><a class="headerlink" href="#configuring-the-oauth2-node" title="Permalink to this headline">¶</a></h3>
 <p>Now comes the fun part, we&#8217;ll set up the OAuth2 Request node, so double click it to open the editor.</p>
 <ol class="arabic simple">
 <li>Name the Oauth 2 &#8220;uber profile&#8221;</li>
@@ -316,7 +316,7 @@ you may want to use the biggest common set of scopes, so user will have to autho
 <ol class="arabic simple" start="5">
 <li>Click on the pencil icon in the &#8220;Configuration&#8221; line to add a new configuration:</li>
 <li>Name it &#8220;uber&#8221;.</li>
-<li>Go to the <a class="reference external" href="https://developer.uber.com/dashboard/">Uber Developer Dashboard</a>,
+<li>Go to the <a class="reference external" href="https://developer.uber.com/dashboard">Uber Developer Dashboard</a>,
 open your application details, copy &#8220;Client ID&#8221; and &#8220;Client secret&#8221; to OAuth2 Configuration in ChatFlow,</li>
 </ol>
 <img alt="_images/oauth2-uber-creds.png" class="align-center" src="_images/oauth2-uber-creds.png" />
@@ -399,7 +399,7 @@ It&#8217;s mostly compatible with the HTTP Request node output.</p>
 all you have to do is fill in the &#8220;Client ID&#8221; and &#8220;Client Secret&#8221; fields.</p>
 </div>
 <div class="section" id="testing-the-application">
-<h3><a class="toc-backref" href="#id10">3. Testing the Application</a><a class="headerlink" href="#testing-the-application" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">3. Testing the Application</a><a class="headerlink" href="#testing-the-application" title="Permalink to this headline">¶</a></h3>
 <p>Now you can test your application. Open the Chat panel and send a <code class="docutils literal"><span class="pre">profile</span></code> message.
 The application should ask you to authorize its access to your data. Click on the provided link
 and press &#8220;Accept&#8221; on the Uber page. After that, the application should greet you with your first name (read from your Uber profile).</p>
@@ -409,7 +409,7 @@ obtained valid credentials (access token) previously, it can do it without askin
 <img alt="_images/oauth2-chat.png" class="align-center" src="_images/oauth2-chat.png" />
 </div>
 <div class="section" id="reusing-access-tokens">
-<h3><a class="toc-backref" href="#id11">4. Reusing Access Tokens</a><a class="headerlink" href="#reusing-access-tokens" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">4. Reusing Access Tokens</a><a class="headerlink" href="#reusing-access-tokens" title="Permalink to this headline">¶</a></h3>
 <p>Now let&#8217;s assume that credentials are kept in some persistent storage and use two requests to access different resources.
 For simplicity of this tutorial we won&#8217;t use any &#8220;real&#8221; storage yet.</p>
 <p>1. Open the configuration editor in OAuth2 Request node and change the field named &#8220;Where credentials are kept&#8221; to <code class="docutils literal"><span class="pre">uber_oauth2</span></code>.

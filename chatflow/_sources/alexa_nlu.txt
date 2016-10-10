@@ -1,23 +1,34 @@
-.. _alexa_nlu::
-
-.. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
-
-.. _ChatFlow: https://chatflow.kitt.ai/
-
-.. _NLU: https://nlu.kitt.ai/
+.. _alexa_nlu:
 
 =================================
 Advanced Alexa Skill NLU Tutorial
 =================================
 
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+.. _Wise Guy: https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy
+
 .. contents:: Table of Contents
    :depth: 4
-
 
 Introduction
 ============
 
-In the :ref:`previous <alexa_advanced_title>` tutorial, we implemented the `Wise Guy`_
+In the :ref:`previous <alexa_advanced>` tutorial, we implemented the `Wise Guy`_
 skill with ChatFlow. Everything was smooth except one thing - creating the
 `Speech Assets <https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets>`_.
 

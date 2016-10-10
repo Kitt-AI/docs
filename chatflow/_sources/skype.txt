@@ -38,11 +38,20 @@ By the end of this tutorial, you will be able to:
 A Simple Echo Bot
 =================
 
+Skype Echo Bot Video Tutorial
+_____________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/1sA-qoqlf2Y"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
 1. Create a New Bot for Skype
 _____________________________
 
 1. Visit Microsoft's `New Bot Framework <https://dev.botframework.com/bots/new>`_
-  page and sign in with your Microsoft Account.
+   page and sign in with your Microsoft Account.
 
   .. image:: _static/img/skype/microsoft_log_in.png
      :align: center
@@ -78,8 +87,10 @@ _____________________________
   .. warning:: Copy you App Secret onto your clipboard. It is the only time you
       will be able to see it.
 
+  When finished, click on "Finish and Go back to Bot Framework"
+
 5. Under the Publisher Profile, enter in the Publisher Name, Publisher Email,
-  Privacy Statement, and Terms of Use.
+   Privacy Statement, and Terms of Use.
 
   .. image:: _static/img/skype/PublisherProfile.png
      :align: center
@@ -175,13 +186,13 @@ __________
 Microsoft provides great tools to test your app. We encourage you to use them.
 
 1. On the Preview Publishing Page, click on the **Add to Skype** to test your
-  ChatFlow App.
+   ChatFlow App.
 
   .. image:: _static/img/skype/AddToSkype.png
      :align: center
 
 2. In the new pop window, click on the **Add to Contacts**. Follow the instruction
-  that will rediriect you to your Skype App.
+   that will rediriect you to your Skype App.
 
   .. image:: _static/img/skype/AddToContacts.png
      :align: center
@@ -330,11 +341,13 @@ __________________
      :align: center
 
 3. Next, drag in an **Enter Node** and **State Node**. Connect them.
+
   * Set the Enter Node's entrances condition to ``msg.payload matches regex hello|hi``
   * Select **Ignore Case**
   * Set the State nodes output text to *"Hello. I can search books on Amazon for you. Just name a book and I'll search it for you"*
 
 4. Drag in another **Enter Node** and **State Node**. Connect them.
+
   * Set the Enter Node's entrance condition to ``msg.payload matches regex bye|see\syou``
   * Select **Ignore Case**
   * Set the State nodes output text to *"See Ya"*
@@ -349,16 +362,19 @@ Your flow should now look like this:
 _______________________
 
 1. Drag in an **Enter Node** and **State Node**.
+
   * Set the Enter Node's entrance condition to ``msg.payload matches regex ^((?!bye|see\syou|hi|hello).)*$``
   * Select **Ignore Case**
   * Set the State Node's output text to *"OK. Searching..."*
 
 2. Drag in a Function node. Connect it to the previous Enter Node.
+
   * Name it *Search Books*
   * Add the following code into the body function:
 
 .. code-block:: javascript
     :linenos:
+
     var book=msg.payload;
     msg.payload={
         command:"ItemSearch",
@@ -381,12 +397,14 @@ _______________________
       able to try AWS free for one month.
 
 4. Next drag in a **Switch Node**.
+
   * Name it *Is item found?*
   * Set the property to ``msg.payload.ItemSearchResponse.Items.Item``.
   * Set the first rule to ``is null``
   * Set the second rule to ``is not null``
 
 5. Drag in a **State Node**. Connect it to the first output of the Switch Node.
+
   * Name it *Item not found*
   * Set the output text to *"Nothing found. Please try again"*
 
@@ -396,6 +414,7 @@ Your follow should look like this:
    :align: center
 
 6. Drag in a **Function Node**. Connect it to the Second Output of the *Is item found?* Switch Node.
+
   * Name it *Search book images*
   * Add the following code into the body function:
 
@@ -452,6 +471,7 @@ Your follow should look like this:
 7. Drag in a Amazon **Product Adverting Node**. Connect it to the Function node.
 
 8. Next drag in a **Switch Node**.
+
   * Name it *Are images found?*
   * Set the property to ``msg.payload.payload.ItemLookupResponse``.
   * Set the first rule to ``is null``
@@ -465,6 +485,7 @@ Your flow should look like this:
    :align: center
 
 10. Drag in a **Function Node**. Connect it to the Second Output of the *Are images found?* Switch Node.
+
   * Name it *Search book images*
   * Add the following code into the body function:
 

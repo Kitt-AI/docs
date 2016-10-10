@@ -1,8 +1,8 @@
 .. _slack:
 
-======================
+===================
 Slack Bot Tutorials
-======================
+===================
 
 .. Bootstrap specific class labels
 

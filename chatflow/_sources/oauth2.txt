@@ -1,8 +1,8 @@
-.. _twilio:
+.. _oauth2:
 
-======================
+=====================
 OAuth2/Uber Tutorials
-======================
+=====================
 
 .. Bootstrap specific class labels
 
@@ -24,6 +24,7 @@ OAuth2/Uber Tutorials
 
 Introduction
 ============
+
 In this tutorial, we use OAuth2 Request node to make HTTP(S) requests requiring OAuth2
 app authentication with user authorization. OAuth2 authorization is helpful when your bot
 needs to take actions on behalf of the user.
@@ -119,9 +120,9 @@ fill the corresponding checkbox, press the "Create" button. That's all (for now)
 
 .. code-block:: javascript
 
- msg.payload = null;
+   msg.payload = null;
 
- return msg;
+   return msg;
 
 .. image:: _static/img/oauth2/oauth2-func-clear-payload.png
    :align: center
@@ -151,7 +152,7 @@ the OAuth2 node will just output obtained credentials specificed in the next ste
 
 5. Click on the pencil icon in the "Configuration" line to add a new configuration:
 6. Name it "uber".
-7. Go to the `Uber Developer Dashboard <https://developer.uber.com/dashboard/>`_,
+7. Go to the `Uber Developer Dashboard`_,
    open your application details, copy "Client ID" and "Client secret" to OAuth2 Configuration in ChatFlow,
 
 .. image:: _static/img/oauth2/oauth2-uber-creds.png
@@ -212,9 +213,9 @@ the OAuth2 node will just output obtained credentials specificed in the next ste
 
 .. code-block:: javascript
 
- msg.kitt._responses = ['Hello, ' + msg.payload.first_name + '!'];
+   msg.kitt._responses = ['Hello, ' + msg.payload.first_name + '!'];
 
- return msg;
+   return msg;
 
 .. image:: _static/img/oauth2/oauth2-state-greet.png
    :align: center

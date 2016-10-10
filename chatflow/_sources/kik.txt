@@ -1,8 +1,8 @@
 .. _kik:
 
-======================
+=================
 Kik Bot Tutorials
-======================
+=================
 
 .. Bootstrap specific class labels
 
@@ -369,9 +369,9 @@ Colored Cats Application:
 .. image:: _static/img/kik/kitt.png
    :align: center
 
-5. Add ``{{{payload}}}``, so your final string would look like:
-::
-  http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+5. Add ``{{{payload}}}``, so your final string would look like:::
+  
+    http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 
 .. image:: _static/img/kik/nluNode.png
    :align: center

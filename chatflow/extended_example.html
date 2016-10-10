@@ -188,39 +188,39 @@
            <div itemprop="articleBody">
             
   <div class="section" id="extended-example-a-conversational-yelp-bot">
-<span id="extended-example"></span><h1><a class="toc-backref" href="#id2">Extended Example: A Conversational Yelp Bot</a><a class="headerlink" href="#extended-example-a-conversational-yelp-bot" title="Permalink to this headline">¶</a></h1>
+<span id="extended-example"></span><h1><a class="toc-backref" href="#id3">Extended Example: A Conversational Yelp Bot</a><a class="headerlink" href="#extended-example-a-conversational-yelp-bot" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="table-of-contents">
 <p class="topic-title first">Table of Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#extended-example-a-conversational-yelp-bot" id="id2">Extended Example: A Conversational Yelp Bot</a><ul>
-<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
-<li><a class="reference internal" href="#extended-example-walkthrough-video" id="id4">Extended Example Walkthrough Video</a></li>
-<li><a class="reference internal" href="#starting-your-conversational-project" id="id5">Starting your conversational project</a><ul>
-<li><a class="reference internal" href="#create-a-project" id="id6">1. Create a Project</a></li>
-<li><a class="reference internal" href="#create-an-nlu-project" id="id7">2. Create an NLU project</a></li>
-<li><a class="reference internal" href="#configuring-nlu" id="id8">3. Configuring NLU</a></li>
+<li><a class="reference internal" href="#extended-example-a-conversational-yelp-bot" id="id3">Extended Example: A Conversational Yelp Bot</a><ul>
+<li><a class="reference internal" href="#introduction" id="id4">Introduction</a></li>
+<li><a class="reference internal" href="#extended-example-walkthrough-video" id="id5">Extended Example Walkthrough Video</a></li>
+<li><a class="reference internal" href="#starting-your-conversational-project" id="id6">Starting your conversational project</a><ul>
+<li><a class="reference internal" href="#create-a-project" id="id7">1. Create a Project</a></li>
+<li><a class="reference internal" href="#create-an-nlu-project" id="id8">2. Create an NLU project</a></li>
+<li><a class="reference internal" href="#configuring-nlu" id="id9">3. Configuring NLU</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#creating-your-flow" id="id9">Creating your flow</a><ul>
-<li><a class="reference internal" href="#initialization" id="id10">1. Initialization</a></li>
-<li><a class="reference internal" href="#understanding-the-user-s-request" id="id11">2. Understanding the User&#8217;s Request</a><ul>
-<li><a class="reference internal" href="#information-cases" id="id12">Information Cases</a></li>
-<li><a class="reference internal" href="#collect-missing-information" id="id13">Collect Missing Information</a></li>
+<li><a class="reference internal" href="#creating-your-flow" id="id10">Creating your flow</a><ul>
+<li><a class="reference internal" href="#initialization" id="id11">1. Initialization</a></li>
+<li><a class="reference internal" href="#understanding-the-user-s-request" id="id12">2. Understanding the User&#8217;s Request</a><ul>
+<li><a class="reference internal" href="#information-cases" id="id13">Information Cases</a></li>
+<li><a class="reference internal" href="#collect-missing-information" id="id14">Collect Missing Information</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#fulfilling-the-user-s-request-through-a-yelp-query" id="id14">3. Fulfilling the User&#8217;s Request through a Yelp Query</a></li>
-<li><a class="reference internal" href="#presenting-yelp-results-to-the-user" id="id15">4. Presenting Yelp Results to the User</a></li>
-<li><a class="reference internal" href="#getting-a-choice-from-the-user" id="id16">5. Getting a Choice from the User</a></li>
-<li><a class="reference internal" href="#answering-user-questions-about-the-choices-presented" id="id17">6. Answering user questions about the choices presented</a></li>
+<li><a class="reference internal" href="#fulfilling-the-user-s-request-through-a-yelp-query" id="id15">3. Fulfilling the User&#8217;s Request through a Yelp Query</a></li>
+<li><a class="reference internal" href="#presenting-yelp-results-to-the-user" id="id16">4. Presenting Yelp Results to the User</a></li>
+<li><a class="reference internal" href="#getting-a-choice-from-the-user" id="id17">5. Getting a Choice from the User</a></li>
+<li><a class="reference internal" href="#answering-user-questions-about-the-choices-presented" id="id18">6. Answering user questions about the choices presented</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#final-thoughts" id="id18">Final Thoughts</a></li>
+<li><a class="reference internal" href="#final-thoughts" id="id19">Final Thoughts</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial, we create a conversational bot that interacts with Yelp API.</p>
 <p>Here is an example of the bot in action:</p>
 <video width="640"  controls>
@@ -238,15 +238,15 @@ new app dialogue.</p>
 </div>
 </div>
 <div class="section" id="extended-example-walkthrough-video">
-<span id="walkthrough-video"></span><h2><a class="toc-backref" href="#id4">Extended Example Walkthrough Video</a><a class="headerlink" href="#extended-example-walkthrough-video" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id5">Extended Example Walkthrough Video</a><a class="headerlink" href="#extended-example-walkthrough-video" title="Permalink to this headline">¶</a></h2>
 <p>Here is a video walking you through the entire Yelp Bot creation process:</p>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/XdHMGkgyNZQ"
    frameborder="0" allowfullscreen></iframe>
 <br><br><br></div>
 <div class="section" id="starting-your-conversational-project">
-<h2><a class="toc-backref" href="#id5">Starting your conversational project</a><a class="headerlink" href="#starting-your-conversational-project" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Starting your conversational project</a><a class="headerlink" href="#starting-your-conversational-project" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-a-project">
-<h3><a class="toc-backref" href="#id6">1. Create a Project</a><a class="headerlink" href="#create-a-project" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">1. Create a Project</a><a class="headerlink" href="#create-a-project" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Create a new app from scratch in <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a>.. Double click it in the app list to open the
 ChatFlow editor.</li>
@@ -255,7 +255,7 @@ ChatFlow editor.</li>
 </ol>
 </div>
 <div class="section" id="create-an-nlu-project">
-<h3><a class="toc-backref" href="#id7">2. Create an NLU project</a><a class="headerlink" href="#create-an-nlu-project" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">2. Create an NLU project</a><a class="headerlink" href="#create-an-nlu-project" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> and create a new project.</li>
 <li>Add the following <em>intents</em>:</li>
@@ -371,7 +371,7 @@ and entity paradigm, see <a class="reference external" href="http://docs.kitt.ai
 </div>
 </div>
 <div class="section" id="configuring-nlu">
-<h3><a class="toc-backref" href="#id8">3. Configuring NLU</a><a class="headerlink" href="#configuring-nlu" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">3. Configuring NLU</a><a class="headerlink" href="#configuring-nlu" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Back in Chatflow, drag in an NLU node.</li>
 <li>Connect the Chat In, NLU, Router, and Chat Out Nodes together like below:</li>
@@ -389,9 +389,9 @@ to add <code class="docutils literal"><span class="pre">{{{payload}}}</span></co
 </div>
 </div>
 <div class="section" id="creating-your-flow">
-<h2><a class="toc-backref" href="#id9">Creating your flow</a><a class="headerlink" href="#creating-your-flow" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Creating your flow</a><a class="headerlink" href="#creating-your-flow" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="initialization">
-<h3><a class="toc-backref" href="#id10">1. Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id11">1. Initialization</a><a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Start by adding an <strong>enter</strong> node and a <strong>state</strong> node.</li>
 <li>Set up the enter node by removing the default entrance condition, and check
@@ -451,7 +451,7 @@ whenever a user says <em>hello</em>.</p>
 <img alt="_images/Flow-2.png" class="align-center" src="_images/Flow-2.png" />
 </div>
 <div class="section" id="understanding-the-user-s-request">
-<h3><a class="toc-backref" href="#id11">2. Understanding the User&#8217;s Request</a><a class="headerlink" href="#understanding-the-user-s-request" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">2. Understanding the User&#8217;s Request</a><a class="headerlink" href="#understanding-the-user-s-request" title="Permalink to this headline">¶</a></h3>
 <p>Next, let&#8217;s create the parts of the conversational flow that allow the agent to
 collect information from the user.</p>
 <ol class="arabic simple">
@@ -495,7 +495,7 @@ condition to be <code class="docutils literal"><span class="pre">Property</span>
 <p>Your flow should now look like the following figure:</p>
 <img alt="_images/Flow-3.png" class="align-center" src="_images/Flow-3.png" />
 <div class="section" id="information-cases">
-<h4><a class="toc-backref" href="#id12">Information Cases</a><a class="headerlink" href="#information-cases" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id13">Information Cases</a><a class="headerlink" href="#information-cases" title="Permalink to this headline">¶</a></h4>
 <p>Let&#8217;s now add four new enter nodes that handle the cases where the state node
 above sets:</p>
 <blockquote>
@@ -589,7 +589,7 @@ conditions to:</p>
 <img alt="_images/Flow-4.png" class="align-center" src="_images/Flow-4.png" />
 </div>
 <div class="section" id="collect-missing-information">
-<h4><a class="toc-backref" href="#id13">Collect Missing Information</a><a class="headerlink" href="#collect-missing-information" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id14">Collect Missing Information</a><a class="headerlink" href="#collect-missing-information" title="Permalink to this headline">¶</a></h4>
 <p>Now we have a network that allows the agent to welcome the user, prompt the user
 to request a restaurant suggestion, determine whether the agent picked up a
 location and restaurant type from the user&#8217;s request, and give the user feedback.</p>
@@ -642,7 +642,7 @@ needed.</p>
 </div>
 </div>
 <div class="section" id="fulfilling-the-user-s-request-through-a-yelp-query">
-<h3><a class="toc-backref" href="#id14">3. Fulfilling the User&#8217;s Request through a Yelp Query</a><a class="headerlink" href="#fulfilling-the-user-s-request-through-a-yelp-query" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">3. Fulfilling the User&#8217;s Request through a Yelp Query</a><a class="headerlink" href="#fulfilling-the-user-s-request-through-a-yelp-query" title="Permalink to this headline">¶</a></h3>
 <p>Once we have the location and restaurant type, the agent is ready to get a list
 of restaurant suggestions by issuing a query to Yelp through the Yelp API, which
 is already conveniently packaged as a ChatFlow node.</p>
@@ -698,7 +698,7 @@ the following code:</p>
 <img alt="_images/Flow-6.png" class="align-center" src="_images/Flow-6.png" />
 </div>
 <div class="section" id="presenting-yelp-results-to-the-user">
-<h3><a class="toc-backref" href="#id15">4. Presenting Yelp Results to the User</a><a class="headerlink" href="#presenting-yelp-results-to-the-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">4. Presenting Yelp Results to the User</a><a class="headerlink" href="#presenting-yelp-results-to-the-user" title="Permalink to this headline">¶</a></h3>
 <p>Now the bot can issue queries through the Yelp API. Next, we need to process the
 output of the Yelp node (accessible as  <code class="docutils literal"><span class="pre">msg.payload</span></code>).</p>
 <div class="admonition note">
@@ -845,7 +845,7 @@ down a list if necessary.</p>
 <img alt="_images/Flow-7.png" class="align-center" src="_images/Flow-7.png" />
 </div>
 <div class="section" id="getting-a-choice-from-the-user">
-<h3><a class="toc-backref" href="#id16">5. Getting a Choice from the User</a><a class="headerlink" href="#getting-a-choice-from-the-user" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">5. Getting a Choice from the User</a><a class="headerlink" href="#getting-a-choice-from-the-user" title="Permalink to this headline">¶</a></h3>
 <p>Now we are ready to have the user choose a restaurant from the options presented
 to them.</p>
 <ol class="arabic simple">
@@ -905,7 +905,7 @@ variable <code class="docutils literal"><span class="pre">kitt.user_choice</span
 <img alt="_images/Flow-8.png" class="align-center" src="_images/Flow-8.png" />
 </div>
 <div class="section" id="answering-user-questions-about-the-choices-presented">
-<h3><a class="toc-backref" href="#id17">6. Answering user questions about the choices presented</a><a class="headerlink" href="#answering-user-questions-about-the-choices-presented" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">6. Answering user questions about the choices presented</a><a class="headerlink" href="#answering-user-questions-about-the-choices-presented" title="Permalink to this headline">¶</a></h3>
 <p>Great! Our bot can guide users to a choice, but what if the user has questions
 about their choice and the other options?</p>
 <p>Well, we can creat new flows to answer the users questions!</p>
@@ -998,8 +998,10 @@ to generate a function that selects an output on the users input.</p>
 </div>
 <p>Can we make our bot respond to gratitude? We sure can!</p>
 <ol class="arabic simple" start="6">
-<li>Add an enter node named <em>intent: thanking</em> with the entrance condition:
-* <code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">thanking</span></code></li>
+<li>Add an enter node named <em>intent: thanking</em> with the entrance condition:<ul>
+<li><code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">thanking</span></code></li>
+</ul>
+</li>
 <li>Add a state named <em>respond to thanks</em>, add the following code:</li>
 </ol>
 <blockquote>
@@ -1014,8 +1016,10 @@ to generate a function that selects an output on the users input.</p>
 <p>Well, what if our bot does not understand our user? We can create a flow to
 handle that!</p>
 <ol class="arabic simple" start="8">
-<li>Add an enter node named <em>intent: default</em> with the entrance condition:
-* <code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li>Add an enter node named <em>intent: default</em> with the entrance condition:<ul>
+<li><code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+</ul>
+</li>
 <li>Add a state named <em>Non understanding</em> and add the following code:</li>
 </ol>
 <blockquote>
@@ -1063,16 +1067,15 @@ your flow can account for those mistakes.</p>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="11">
-<li>Add a state named <em>good bye</em>, add the output text <em>Goodbye</em> check the</li>
+<li>Add a state named <em>good bye</em>, add the output text <em>Goodbye</em> check the
+<em>Dialogue ends here</em> box.</li>
 </ol>
-<blockquote>
-<div><em>Dialogue ends here</em> box.</div></blockquote>
 <p>Your flow should now look like the following figure:</p>
 <img alt="_images/Flow-9.png" class="align-center" src="_images/Flow-9.png" />
 </div>
 </div>
 <div class="section" id="final-thoughts">
-<h2><a class="toc-backref" href="#id18">Final Thoughts</a><a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id19">Final Thoughts</a><a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
 <p>That&#8217;s it! We now have a fully functional conversational interface to Yelp. Can
 you make it better? (Of course you can!)</p>
 <img alt="_images/superflow.png" class="align-center" src="_images/superflow.png" />

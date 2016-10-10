@@ -1,8 +1,8 @@
 .. _dialogue_nodes:
 
-==================
+==============
 Dialogue Nodes
-==================
+==============
 
 .. Bootstrap specific class labels
 

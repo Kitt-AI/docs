@@ -7,7 +7,7 @@
 .. _NLU: https://nlu.kitt.ai/
 
 Welcome to ChatFlow
-====================================
+===================
 
 ChatFlow_ is a platform that provides a simple way to
 create conversational agents, or smart bots, using a visual interface.
@@ -30,7 +30,7 @@ Here's a brief video explaining ChatFlow:
     <br><br><br>
 
 Contents
-==================
+========
 
 This documentation is still under construction. We are still working on the
 few more bells and whistles, but otherwise, it is complete!
