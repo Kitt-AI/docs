@@ -118,9 +118,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-custom-keyboard">Creating a custom keyboard</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#attachments-and-custom-keyboard-demo">Attachments and Custom Keyboard Demo</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#importing-the-colored-cats-application">1. Importing the &#8220;Colored Cats&#8221; Application</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kik-color-cat-bot-video-walkthrough">kik Color Cat Bot Video Walkthrough</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#nlu-setup">2. NLU Setup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#set-up-colored-cats-application">3. Set up &#8220;Colored Cats&#8221; application</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#kik-color-cat-bot-video-walkthrough">kik Color Cat Bot Video Walkthrough</a></li>
 </ul>
 </li>
 </ul>
@@ -220,9 +220,9 @@
 <li><a class="reference internal" href="#creating-a-custom-keyboard" id="id19">Creating a custom keyboard</a></li>
 <li><a class="reference internal" href="#attachments-and-custom-keyboard-demo" id="id20">Attachments and Custom Keyboard Demo</a><ul>
 <li><a class="reference internal" href="#importing-the-colored-cats-application" id="id21">1. Importing the &#8220;Colored Cats&#8221; Application</a></li>
-<li><a class="reference internal" href="#nlu-setup" id="id22">2. NLU Setup</a></li>
-<li><a class="reference internal" href="#set-up-colored-cats-application" id="id23">3. Set up &#8220;Colored Cats&#8221; application</a></li>
-<li><a class="reference internal" href="#kik-color-cat-bot-video-walkthrough" id="id24">kik Color Cat Bot Video Walkthrough</a></li>
+<li><a class="reference internal" href="#kik-color-cat-bot-video-walkthrough" id="id22">kik Color Cat Bot Video Walkthrough</a></li>
+<li><a class="reference internal" href="#nlu-setup" id="id23">2. NLU Setup</a></li>
+<li><a class="reference internal" href="#set-up-colored-cats-application" id="id24">3. Set up &#8220;Colored Cats&#8221; application</a></li>
 </ul>
 </li>
 </ul>
@@ -478,10 +478,55 @@ for more details.</p>
 different color.</p>
 <div class="section" id="sending-attachments">
 <span id="id3"></span><h3><a class="toc-backref" href="#id18">Sending attachments</a><a class="headerlink" href="#sending-attachments" title="Permalink to this headline">¶</a></h3>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Provide information about attachments.</p>
-</div>
+<p>Attachments can be sent by setting the corresponding <code class="docutils literal"><span class="pre">kik</span></code> variable to a URL
+link to the attachment. For example, to send a picture attachment, use the following
+code:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+       <span class="nx">kik</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">user</span><span class="o">:</span> <span class="nx">username</span><span class="p">,</span>
+             <span class="nx">chatId</span><span class="o">:</span> <span class="nx">chatId</span><span class="p">,</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="nx">type</span><span class="p">,</span>
+             <span class="nx">picture</span><span class="o">:</span> <span class="nx">picture</span><span class="p">.</span><span class="nx">url</span>
+       <span class="p">}</span>
+       <span class="nx">payload</span><span class="o">:</span> <span class="nx">payload</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>The following is a list of attachment variables and the corresponding attachment
+type.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.link</span></code></td>
+<td>a URL to a web address</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.picture</span></code></td>
+<td>a URL to an image</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.video</span></code></td>
+<td>a URL to a video, as well as some playback configurations</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.sticker</span></code></td>
+<td>information required to display a sticker.</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="creating-a-custom-keyboard">
 <span id="custom-keyboard"></span><h3><a class="toc-backref" href="#id19">Creating a custom keyboard</a><a class="headerlink" href="#creating-a-custom-keyboard" title="Permalink to this headline">¶</a></h3>
@@ -524,6 +569,9 @@ template:</li>
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
 </ul>
 <img alt="_images/coloredCats.png" class="align-center" src="_images/coloredCats.png" />
+</div>
+<div class="section" id="kik-color-cat-bot-video-walkthrough">
+<h4><a class="toc-backref" href="#id22">kik Color Cat Bot Video Walkthrough</a><a class="headerlink" href="#kik-color-cat-bot-video-walkthrough" title="Permalink to this headline">¶</a></h4>
 <p>In addition, here is a walkthrough video explaining the process of making the
 Colored Cats Application:</p>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
@@ -531,7 +579,7 @@ Colored Cats Application:</p>
 
  <br><br><br></div>
 <div class="section" id="nlu-setup">
-<h4><a class="toc-backref" href="#id22">2. NLU Setup</a><a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id23">2. NLU Setup</a><a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li>Download <a class="reference download internal" href="_downloads/KikColoredCats-nlu.json" download=""><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> to
 import it as <a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</li>
@@ -554,7 +602,7 @@ to deploy your NLU app!</li>
 <img alt="_images/nluNode.png" class="align-center" src="_images/nluNode.png" />
 </div>
 <div class="section" id="set-up-colored-cats-application">
-<h4><a class="toc-backref" href="#id23">3. Set up &#8220;Colored Cats&#8221; application</a><a class="headerlink" href="#set-up-colored-cats-application" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id24">3. Set up &#8220;Colored Cats&#8221; application</a><a class="headerlink" href="#set-up-colored-cats-application" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li>Register the kik bot, as described in <a class="reference internal" href="#create-kik-bot"><span class="std std-ref">1. Create a Kik Bot</span></a> section.</li>
 <li>Copy and paste bot name and bot API key, as described in <a class="reference internal" href="#create-chatflow-app"><span class="std std-ref">2. Create a ChatFlow application</span></a> section.</li>
@@ -562,13 +610,7 @@ to deploy your NLU app!</li>
 </ol>
 <p>After deploying your application, you can write to your bot and tell him to show
 you a specific color cat.</p>
-</div>
-<div class="section" id="kik-color-cat-bot-video-walkthrough">
-<h4><a class="toc-backref" href="#id24">kik Color Cat Bot Video Walkthrough</a><a class="headerlink" href="#kik-color-cat-bot-video-walkthrough" title="Permalink to this headline">¶</a></h4>
-<iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
-    frameborder="0" allowfullscreen></iframe>
-
- <br><br><br><div class="admonition-todo admonition" id="index-1">
+<div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
 <p class="last">write more about the &#8220;Cat 1&#8221; and &#8220;Cat 2&#8221; buttons that correspond to interactive messages.
 &#64;xuchen: May I ask to make here a video, too?</p>
@@ -598,7 +640,7 @@ you a specific color cat.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Oct 07, 2016.
+      Last updated on Oct 10, 2016.
 
     </p>
   </div> 
