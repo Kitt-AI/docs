@@ -80,20 +80,21 @@ function ThemeNav () {
 
         // Add expand links to all parents of nested ul
         function addSpan() {
-            var link = $(this);
-            console.log(link);
-            expand = $('<span class="toctree-expand"></span>');
-            expand.on('click', function (ev) {
-                self.toggleCurrent(link);
-                ev.stopPropagation();
-                return false;
-            });
-            link.prepend(expand);
+            return function () {
+                var link = $(this);
+                let expand = $('<span class="toctree-expand"></span>');
+                expand.on('click', function (ev) {
+                    self.toggleCurrent(link);
+                    ev.stopPropagation();
+                    return false;
+                });
+                link.prepend(expand);
+            }
         }
 
         // Add expand links to all parents of nested ul
-        $('.wy-menu-vertical ul.current>li + li').children('a').each(addSpan);
-        $('.wy-menu-vertical ul>li:has(ul)').children('a').each(addSpan);
+        $('.wy-menu-vertical ul.current>li:not(".current")').children('a').each(addSpan());
+        $('.wy-menu-vertical li:has(ul)').children('a').each(addSpan());
     };
 
     nav.reset = function () {
