@@ -250,37 +250,7 @@ different color.
 Sending attachments
 ___________________
 
-Attachments can be sent by setting the corresponding ``kik`` variable to a URL
-link to the attachment. For example, to send a picture attachment, use the following
-code:
-
-.. code-block:: javascript
-   :linenos:
-
-   msg = {
-          kik: {
-                user: username,
-                chatId: chatId,
-                type: type,
-                picture: picture.url
-          }
-          payload: payload
-   }
-
-The following is a list of attachment variables and the corresponding attachment
-type.
-
-+-----------------+-----------------------------------------------------------+
-| Variable        | Description                                               |
-+=================+===========================================================+
-| ``kik.link``    | a URL to a web address                                    |
-+-----------------+-----------------------------------------------------------+
-| ``kik.picture`` | a URL to an image                                         |
-+-----------------+-----------------------------------------------------------+
-| ``kik.video``   | a URL to a video, as well as some playback configurations |
-+-----------------+-----------------------------------------------------------+
-| ``kik.sticker`` | information required to display a sticker.                |
-+-----------------+-----------------------------------------------------------+
+.. TODO:: Provide information about attachments.
 
 .. _custom_keyboard:
 
@@ -332,9 +302,6 @@ ____________________________________
 .. image:: _static/img/kik/coloredCats.png
    :align: center
 
-kik Color Cat Bot Video Walkthrough
-...................................
-
 In addition, here is a walkthrough video explaining the process of making the
 Colored Cats Application:
 
@@ -342,10 +309,10 @@ Colored Cats Application:
 
 .. raw:: html
 
-  <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
-      frameborder="0" allowfullscreen></iframe>
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
+       frameborder="0" allowfullscreen></iframe>
 
-   <br><br><br>
+    <br><br><br>
 
 2. NLU Setup
 ............
@@ -387,6 +354,17 @@ Colored Cats Application:
 
 After deploying your application, you can write to your bot and tell him to show
 you a specific color cat.
+
+kik Color Cat Bot Video Walkthrough
+...................................
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
+       frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
 
 .. TODO:: write more about the "Cat 1" and "Cat 2" buttons that correspond to interactive messages.
    @xuchen: May I ask to make here a video, too?

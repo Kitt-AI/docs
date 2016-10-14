@@ -113,6 +113,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#an-advanced-bot-amazon-books">An Advanced Bot: Amazon Books</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-books-walkthrough">Amazon Books Walkthrough</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#getting-started">1. Getting Started</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#searching-for-a-book">2. Searching for a Book</a></li>
 </ul>
@@ -205,8 +206,9 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#an-advanced-bot-amazon-books" id="id14">An Advanced Bot: Amazon Books</a><ul>
-<li><a class="reference internal" href="#getting-started" id="id15">1. Getting Started</a></li>
-<li><a class="reference internal" href="#searching-for-a-book" id="id16">2. Searching for a Book</a></li>
+<li><a class="reference internal" href="#amazon-books-walkthrough" id="id15">Amazon Books Walkthrough</a></li>
+<li><a class="reference internal" href="#getting-started" id="id16">1. Getting Started</a></li>
+<li><a class="reference internal" href="#searching-for-a-book" id="id17">2. Searching for a Book</a></li>
 </ul>
 </li>
 </ul>
@@ -215,8 +217,12 @@
 </div>
 <p>In this <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> tutorial, we start by creating a simple Skype bot that echos
 your message. In addition, we will also show you how to build a more advanced
-Amazon Book Bot for Skype.</p>
-<dl class="docutils">
+Amazon Book Bot for Skype. Here is an example of the bots function:</p>
+<video width="640"  controls>
+  <source src="_static/img/skype/Demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br> <br> <br><dl class="docutils">
 <dt>By the end of this tutorial, you will be able to:</dt>
 <dd><ul class="first last simple">
 <li>Connect a ChatFlow app to Skype.</li>
@@ -230,6 +236,7 @@ Amazon Book Bot for Skype.</p>
 <h2><a class="toc-backref" href="#id4">A Simple Echo Bot</a><a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="skype-echo-bot-video-tutorial">
 <h3><a class="toc-backref" href="#id5">Skype Echo Bot Video Tutorial</a><a class="headerlink" href="#skype-echo-bot-video-tutorial" title="Permalink to this headline">¶</a></h3>
+<p>Here is a video tutorial demonstrating how to configure an Echo Bot to Skype.</p>
 <iframe width="640" height="360" src="https://www.youtube.com/embed/1sA-qoqlf2Y"
     frameborder="0" allowfullscreen></iframe>
  <br><br><br></div>
@@ -268,7 +275,7 @@ Secret.</p>
 <img alt="_images/GenerateAppSecret.png" class="align-center" src="_images/GenerateAppSecret.png" />
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Copy you App Secret onto your clipboard. It is the only time you
+<p class="last">Copy you App Secret onto your clipboard. It is the <strong>only time</strong> you
 will be able to see it.</p>
 </div>
 <p>When finished, click on &#8220;Finish and Go back to Bot Framework&#8221;</p>
@@ -597,8 +604,14 @@ message types:</p>
 <p>In this section of the tutorial, we will walk you through the process of building
 a Skype Amazon Books Bot which will be able to look up books according to the
 User&#8217;s specifications.</p>
+<div class="section" id="amazon-books-walkthrough">
+<h3><a class="toc-backref" href="#id15">Amazon Books Walkthrough</a><a class="headerlink" href="#amazon-books-walkthrough" title="Permalink to this headline">¶</a></h3>
+<p>Here is a video walkthrough transforming a Skype Echo Bot into an Amazon Books Bot.</p>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/apM20fQczjY"
+    frameborder="0" allowfullscreen></iframe>
+ <br><br><br></div>
 <div class="section" id="getting-started">
-<h3><a class="toc-backref" href="#id15">1. Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">1. Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Create a new app in ChatFlow. Click on your new app in the app list.</li>
 <li>Once the editor has loaded, drag in a <strong>Skype In</strong>, <strong>Router</strong>, <strong>Skype Out</strong> nodes.
@@ -632,7 +645,7 @@ Connect them like so:</li>
 <img alt="_images/Flow2.png" class="align-center" src="_images/Flow2.png" />
 </div>
 <div class="section" id="searching-for-a-book">
-<h3><a class="toc-backref" href="#id16">2. Searching for a Book</a><a class="headerlink" href="#searching-for-a-book" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">2. Searching for a Book</a><a class="headerlink" href="#searching-for-a-book" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Drag in an <strong>Enter Node</strong> and <strong>State Node</strong>.</li>
 </ol>
@@ -676,19 +689,52 @@ Connect them like so:</li>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This function will prepare our payload by formatting into a format
-accepted by the Amazon Product Adverting Node.</p>
+accepted by the Amazon Product Advertizing Node.</p>
 </div>
 <ol class="arabic simple" start="3">
-<li>Drag in a Amazon <strong>Product Adverting Node</strong>. Connect it to the <em>Search Books</em>
+<li>Drag in a Amazon <strong>Product Advertizing Node</strong>. Connect it to the <em>Search Books</em>
 Function node.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To configure the Amazon Product Adverting node. You must create a
-Amazon Web Services (AWS) account. At the time of this tutorial, you are
-able to try AWS free for one month.</p>
+<p>To configure the Amazon Product Advertizing node. You must create a
+Amazon account <a class="reference external" href="https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html">here</a>.</p>
+<img alt="_images/aws-1.png" class="align-center" src="_images/aws-1.png" />
+<p>Once you have signed up, click on <strong>Manage Account</strong>.</p>
+<img alt="_images/aws-2.png" class="align-center" src="_images/aws-2.png" />
+<p>Follow the instructions on the Manage Account Page to access you AWS Key
+and AWS Secret.</p>
+<img alt="_images/aws-3.png" class="align-center" src="_images/aws-3.png" />
+<p class="last">In addition you must become an associate to get your associates tag. For
+more information about becoming an associate, go to the
+<a class="reference external" href="http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html">Becoming an Associate</a>.</p>
 </div>
-<ol class="arabic simple" start="4">
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">If the Product Advertizing Node is not in your Node Library, install it using the
+<strong>node installer</strong>.</p>
+</div>
+<ol class="arabic" start="4">
+<li><p class="first">To configure the <strong>Product Advertizing Node</strong>, click on edit next to &#8220;Add new
+AWS Credentials...&#8221;.</p>
+<img alt="_images/product-node-edit.png" class="align-center" src="_images/product-node-edit.png" />
+<p>Input the following:</p>
+</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>AWS ID</li>
+<li>AWS Secret</li>
+<li>Associate Tag</li>
+</ul>
+<img alt="_images/add-aws.png" class="align-center" src="_images/add-aws.png" />
+</div></blockquote>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can input anything in the <strong>Associate Tag</strong> field to make it work. But getting it
+right makes sure you get paid by Amazon correctly.</p>
+</div>
+<ol class="arabic simple" start="5">
 <li>Next drag in a <strong>Switch Node</strong>.</li>
 </ol>
 <blockquote>
@@ -699,7 +745,7 @@ able to try AWS free for one month.</p>
 <li>Set the second rule to <code class="docutils literal"><span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
-<ol class="arabic simple" start="5">
+<ol class="arabic simple" start="6">
 <li>Drag in a <strong>State Node</strong>. Connect it to the first output of the Switch Node.</li>
 </ol>
 <blockquote>
@@ -710,7 +756,7 @@ able to try AWS free for one month.</p>
 </div></blockquote>
 <p>Your follow should look like this:</p>
 <img alt="_images/Flow3.png" class="align-center" src="_images/Flow3.png" />
-<ol class="arabic simple" start="6">
+<ol class="arabic simple" start="7">
 <li>Drag in a <strong>Function Node</strong>. Connect it to the Second Output of the <em>Is item found?</em> Switch Node.</li>
 </ol>
 <blockquote>
@@ -813,7 +859,7 @@ able to try AWS free for one month.</p>
 </pre></div>
 </td></tr></table></div>
 <ol class="arabic simple" start="7">
-<li>Drag in a Amazon <strong>Product Adverting Node</strong>. Connect it to the Function node.</li>
+<li>Drag in a Amazon <strong>Product Advertizing Node</strong>. Connect it to the Function node.</li>
 <li>Next drag in a <strong>Switch Node</strong>.</li>
 </ol>
 <blockquote>
@@ -915,6 +961,11 @@ Set the split to <code class="docutils literal"><span class="pre">&gt;&gt;&gt;&g
 <p class="first admonition-title">Note</p>
 <p class="last">A Split Node will split the payload by specified character(s).</p>
 </div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">If the Split Node is not in your Node Library, install it using the
+<strong>node installer</strong>.</p>
+</div>
 <ol class="arabic simple" start="12">
 <li>Add a <strong>State Node</strong>. Add the following code to the body of the function:</li>
 </ol>
@@ -961,7 +1012,7 @@ page.</li>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Oct 10, 2016.
+      Last updated on Oct 14, 2016.
 
     </p>
   </div> 

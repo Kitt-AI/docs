@@ -27,7 +27,15 @@ Skype Bot Tutorials
 
 In this ChatFlow_ tutorial, we start by creating a simple Skype bot that echos
 your message. In addition, we will also show you how to build a more advanced
-Amazon Book Bot for Skype.
+Amazon Book Bot for Skype. Here is an example of the bots function:
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/skype/Demo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
 
 By the end of this tutorial, you will be able to:
   * Connect a ChatFlow app to Skype.
@@ -40,6 +48,8 @@ A Simple Echo Bot
 
 Skype Echo Bot Video Tutorial
 _____________________________
+
+Here is a video tutorial demonstrating how to configure an Echo Bot to Skype.
 
 .. raw:: html
 
@@ -84,7 +94,7 @@ _____________________________
   .. image:: _static/img/skype/GenerateAppSecret.png
      :align: center
 
-  .. warning:: Copy you App Secret onto your clipboard. It is the only time you
+  .. warning:: Copy you App Secret onto your clipboard. It is the **only time** you
       will be able to see it.
 
   When finished, click on "Finish and Go back to Bot Framework"
@@ -329,6 +339,17 @@ In this section of the tutorial, we will walk you through the process of buildin
 a Skype Amazon Books Bot which will be able to look up books according to the
 User's specifications.
 
+Amazon Books Walkthrough
+________________________
+
+Here is a video walkthrough transforming a Skype Echo Bot into an Amazon Books Bot.
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/apM20fQczjY"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
 1. Getting Started
 __________________
 
@@ -387,23 +408,61 @@ _______________________
     return msg;
 
 .. note:: This function will prepare our payload by formatting into a format
-      accepted by the Amazon Product Adverting Node.
+      accepted by the Amazon Product Advertizing Node.
 
-3. Drag in a Amazon **Product Adverting Node**. Connect it to the *Search Books*
+3. Drag in a Amazon **Product Advertizing Node**. Connect it to the *Search Books*
    Function node.
 
-.. note:: To configure the Amazon Product Adverting node. You must create a
-      Amazon Web Services (AWS) account. At the time of this tutorial, you are
-      able to try AWS free for one month.
+.. note:: To configure the Amazon Product Advertizing node. You must create a
+      Amazon account `here <https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html>`_.
 
-4. Next drag in a **Switch Node**.
+      .. image:: _static/img/skype/aws-1.png
+         :align: center
+
+      Once you have signed up, click on **Manage Account**.
+
+      .. image:: _static/img/skype/aws-2.png
+         :align: center
+
+      Follow the instructions on the Manage Account Page to access you AWS Key
+      and AWS Secret.
+
+      .. image:: _static/img/skype/aws-3.png
+         :align: center
+
+      In addition you must become an associate to get your associates tag. For
+      more information about becoming an associate, go to the
+      `Becoming an Associate <http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html>`_.
+
+.. hint:: If the Product Advertizing Node is not in your Node Library, install it using the
+    **node installer**.
+
+4. To configure the **Product Advertizing Node**, click on edit next to "Add new
+   AWS Credentials...".
+
+   .. image:: _static/img/skype/product-node-edit.png
+      :align: center
+
+   Input the following:
+
+  * AWS ID
+  * AWS Secret
+  * Associate Tag
+
+  .. image:: _static/img/skype/add-aws.png
+     :align: center
+
+.. hint:: You can input anything in the **Associate Tag** field to make it work. But getting it
+   right makes sure you get paid by Amazon correctly.
+
+5. Next drag in a **Switch Node**.
 
   * Name it *Is item found?*
   * Set the property to ``msg.payload.ItemSearchResponse.Items.Item``.
   * Set the first rule to ``is null``
   * Set the second rule to ``is not null``
 
-5. Drag in a **State Node**. Connect it to the first output of the Switch Node.
+6. Drag in a **State Node**. Connect it to the first output of the Switch Node.
 
   * Name it *Item not found*
   * Set the output text to *"Nothing found. Please try again"*
@@ -413,7 +472,7 @@ Your follow should look like this:
 .. image:: _static/img/skype/Flow3.png
    :align: center
 
-6. Drag in a **Function Node**. Connect it to the Second Output of the *Is item found?* Switch Node.
+7. Drag in a **Function Node**. Connect it to the Second Output of the *Is item found?* Switch Node.
 
   * Name it *Search book images*
   * Add the following code into the body function:
@@ -468,7 +527,7 @@ Your follow should look like this:
       }
       return msg;
 
-7. Drag in a Amazon **Product Adverting Node**. Connect it to the Function node.
+7. Drag in a Amazon **Product Advertizing Node**. Connect it to the Function node.
 
 8. Next drag in a **Switch Node**.
 
@@ -531,6 +590,9 @@ Your flow should look like this:
     Set the split to ``>>>>>``.
 
 .. note:: A Split Node will split the payload by specified character(s).
+
+.. hint:: If the Split Node is not in your Node Library, install it using the
+    **node installer**.
 
 12. Add a **State Node**. Add the following code to the body of the function:
 
