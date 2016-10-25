@@ -1,4 +1,4 @@
-.. _alexa_nlu::
+.. _alexa_nlu:
 
 =================================
 Advanced Alexa Skill NLU Tutorial
@@ -64,6 +64,7 @@ Creating an Alexa Skill
 
 3. Next, click on "set-up entities" and add a ``SetupName`` entity that will
    setup the joke. Input the following phrase examples:
+
   * to
   * beets
   * little Old Lady
@@ -204,9 +205,9 @@ to new improved interfaces.
     SetupNameWhoIntent {little old lady|SetupName} who
     SetupNameWhoIntent {a broken pencil|SetupName} who
 
-Finally, copy these exports and fill them in the Interaction Model following
-Step :ref:`sample_utterances` in the basic Alexa tutorial:
 
+Finally, copy these exports and fill them in the Interaction Model in the
+Alexa Skills Step Up:
 
 .. image:: _static/img/alexa/wise-guy-interaction-model.png
    :align: center

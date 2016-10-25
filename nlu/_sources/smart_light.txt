@@ -59,12 +59,14 @@ __________________
 2. In the app, click on "Set Up Intents" and add a new intent called `turn_on`.
 
 3. Add the following example utterances:
+
   * Turn on lights
   * Lights on
 
 4. In the app, click on "Set Up Intents" and add a new intent called `turn_off`.
 
 5. Add the following example utterances:
+
   * Turn off lights
   * Lights off
 
@@ -79,9 +81,10 @@ _________________
 Next, we want our app to identify a specific light.
 
 1. Under "Set Up Entities", add a new entity called `name` to refer to the names
-  of the lights.
+   of the lights.
 
 2. Add the following example phrases:
+
   * Kitchen
   * Living Room
   * Bedroom
@@ -119,6 +122,7 @@ strobing or `blink`.
     :align: center
 
 2. Add a new entity called `color` and add the following example phrases:
+
   * Red
   * Green
   * Yellow
@@ -139,6 +143,7 @@ You should now have three entities in your *entities* dropdown.
 ______________
 
 1. Test the following sentence in your model:
+
   * Blink the bedroom light 5 times red.
 
 .. note:: The App may only be able to recognize name and number and not color.

@@ -79,11 +79,11 @@ function ThemeNav () {
             .wrap("<div class='wy-table-responsive'></div>");
 
         // Add expand links to all parents of nested ul
-        function addSpan() {
+        function addSpan(inside) {
             return function () {
                 var link = $(this);
                 let expand = $('<span class="toctree-expand"></span>');
-                expand.on('click', function (ev) {
+                if (inside) expand.on('click', function (ev) {
                     self.toggleCurrent(link);
                     ev.stopPropagation();
                     return false;
@@ -93,8 +93,8 @@ function ThemeNav () {
         }
 
         // Add expand links to all parents of nested ul
-        $('.wy-menu-vertical ul.current>li:not(".current")').children('a').each(addSpan());
-        $('.wy-menu-vertical li:has(ul)').children('a').each(addSpan());
+        $('.wy-menu-vertical ul.current>li + li:not(.current)').children('a').each(addSpan());
+        $('.wy-menu-vertical ul>li:has(ul)').children('a').each(addSpan(true));
     };
 
     nav.reset = function () {

@@ -104,8 +104,7 @@ NLU takes in an string **Input** and outputs the following **Output**:
 A Classification Example
 ========================
 
-Consider, the following utterance:
-  *"Please make me a reservation for six people at Matsuhisa at 7 pm." *
+Consider, the following utterance - *"Please make me a reservation for six people at Matsuhisa at 7 pm."*
 
 The intent here may be *make_restaurant_reservation*, and the entities may be *party_size*
 (corresponding to the word "six"), *restaurant_name* (corresponding to the word
