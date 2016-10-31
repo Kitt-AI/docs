@@ -38,7 +38,7 @@
   
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
         <link rel="next" title="Telegram Bot Tutorials" href="telegram.html"/>
-        <link rel="prev" title="Dialogue Nodes" href="dialogue_nodes.html"/> 
+        <link rel="prev" title="Debug ChatFlow" href="debug.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">Debug ChatFlow</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Extended Example: A Conversational Yelp Bot</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#extended-example-walkthrough-video">Extended Example Walkthrough Video</a></li>
@@ -658,7 +659,7 @@ a <em>Token secret</em>.</li>
 <div><div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">You must provide these values to configure your Yelp node. You can
-obtain these by signing up for the <a class="reference external" href="http://www.yelp.com/developers">Yelp developer API</a>.</p>
+obtain these by signing up for the <a class="reference external" href="http://www.yelp.com/developers/v2">Yelp developer API</a>.</p>
 </div>
 <p>The Yelp node builds a query by using a term in <code class="docutils literal"><span class="pre">msg.yelp.term</span></code> and a location in
 <code class="docutils literal"><span class="pre">msg.yelp.location</span></code>. <code class="docutils literal"><span class="pre">msg.yelp.limit</span></code> limits the number of candidates in the
@@ -703,7 +704,7 @@ the following code:</p>
 output of the Yelp node (accessible as  <code class="docutils literal"><span class="pre">msg.payload</span></code>).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For details on how the output is formatted, see the <a class="reference external" href="http://www.yelp.com/developers">Yelp API documentation</a>.</p>
+<p class="last">For details on how the output is formatted, see the <a class="reference external" href="http://www.yelp.com/developers/v2">Yelp API documentation</a>.</p>
 </div>
 <p>Our query will produce ten results. Presenting all ten at once would be
 disastrous in both speech-to-speech and chat scenarios. So let&#8217;s present three
@@ -1103,7 +1104,7 @@ Sample Project&#8221; on the <a class="reference external" href="https://chatflo
         <a href="telegram.html" class="btn btn-neutral float-right" title="Telegram Bot Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dialogue_nodes.html" class="btn btn-neutral" title="Dialogue Nodes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="debug.html" class="btn btn-neutral" title="Debug ChatFlow" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -1113,7 +1114,7 @@ Sample Project&#8221; on the <a class="reference external" href="https://chatflo
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Oct 25, 2016.
+      Last updated on Oct 31, 2016.
 
     </p>
   </div> 

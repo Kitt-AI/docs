@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Debug ChatFlow &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Extended Example: A Conversational Yelp Bot" href="extended_example.html"/>
+        <link rel="prev" title="Dialogue Nodes" href="dialogue_nodes.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://chatflow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/chatflow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Debug ChatFlow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#openning-the-debug-tab">Openning the Debug Tab</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-debug-node">The Debug Node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-in-breakpoints">Adding in Breakpoints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#moving-line-by-line">Moving Line by Line</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#deploying-in-debug-mode">Deploying in Debug mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving-step-by-step">Moving Step by Step</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#print-inside-your-code">Print inside your code</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A Conversational Yelp Bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skype.html">Skype Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Debug ChatFlow</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/debug.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="debug-chatflow">
+<span id="debug"></span><h1><a class="toc-backref" href="#id1">Debug ChatFlow</a><a class="headerlink" href="#debug-chatflow" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#debug-chatflow" id="id1">Debug ChatFlow</a><ul>
+<li><a class="reference internal" href="#introduction" id="id2">Introduction</a></li>
+<li><a class="reference internal" href="#getting-started" id="id3">Getting Started</a><ul>
+<li><a class="reference internal" href="#openning-the-debug-tab" id="id4">Openning the Debug Tab</a></li>
+<li><a class="reference internal" href="#the-debug-node" id="id5">The Debug Node</a></li>
+<li><a class="reference internal" href="#adding-in-breakpoints" id="id6">Adding in Breakpoints</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#moving-line-by-line" id="id7">Moving Line by Line</a><ul>
+<li><a class="reference internal" href="#deploying-in-debug-mode" id="id8">Deploying in Debug mode</a></li>
+<li><a class="reference internal" href="#moving-step-by-step" id="id9">Moving Step by Step</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#print-inside-your-code" id="id10">Print inside your code</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will demonstrate how to use the debug function in ChatFlow.</p>
+<dl class="docutils">
+<dt>By the end of this tutorial you will be able to</dt>
+<dd><ul class="first last simple">
+<li>Enter Debug Mode in ChatFlow</li>
+<li>Check the output of a node</li>
+<li>Set a breakpoint in your app</li>
+<li>Walk through your app breakpoint by breakpoint</li>
+<li>Walk through your app step by step</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="getting-started">
+<h2><a class="toc-backref" href="#id3">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Download the <a class="reference download internal" href="_downloads/YelpTelegramBot.json" download=""><code class="xref download docutils literal"><span class="pre">Line</span> <span class="pre">By</span> <span class="pre">Line</span> <span class="pre">Sample</span> <span class="pre">Application</span> <span class="pre">JSON</span></code></a>
+and import it using the import it to ChatFlow.</li>
+</ol>
+<div class="section" id="openning-the-debug-tab">
+<h3><a class="toc-backref" href="#id4">Openning the Debug Tab</a><a class="headerlink" href="#openning-the-debug-tab" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic" start="2">
+<li><p class="first">To toggle the <strong>Info &amp; Debug Tabs</strong>, click on Click on &#8220;≡&#8221; in the upper right hand
+corner of the Canvas to toggle.</p>
+<a class="reference internal image-reference" href="_images/triplebar.png"><img alt="_images/triplebar.png" class="align-center" src="_images/triplebar.png" style="width: 249.0px; height: 149.0px;" /></a>
+</li>
+<li><p class="first">To open the Debug Tab, click on <strong>Debug</strong> on the right hand corner of the tab.</p>
+<a class="reference internal image-reference" href="_images/debugtab.png"><img alt="_images/debugtab.png" class="align-center" src="_images/debugtab.png" style="width: 261.0px; height: 375.5px;" /></a>
+</li>
+</ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can clear the content of the debug tab by clicking on the red
+trashcan.</p>
+</div>
+</div>
+<div class="section" id="the-debug-node">
+<h3><a class="toc-backref" href="#id5">The Debug Node</a><a class="headerlink" href="#the-debug-node" title="Permalink to this headline">¶</a></h3>
+<p>The Debug outputs the output of the connected node to the Debug Tab.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">This is a great tool to figure out what a node is outputting. Simply
+connect and watch the node&#8217;s output populate the debug node.</p>
+</div>
+<img alt="_images/debug.png" class="align-center" src="_images/debug.png" />
+<ol class="arabic simple" start="4">
+<li>Add a debug and connect it to the &#8220;4&#8221; state.</li>
+</ol>
+<a class="reference internal image-reference" href="_images/addDebug.png"><img alt="_images/addDebug.png" class="align-center" src="_images/addDebug.png" style="width: 424.0px; height: 138.0px;" /></a>
+</div>
+<div class="section" id="adding-in-breakpoints">
+<h3><a class="toc-backref" href="#id6">Adding in Breakpoints</a><a class="headerlink" href="#adding-in-breakpoints" title="Permalink to this headline">¶</a></h3>
+<p>Breakpoints and the Stepping functionality can be found in the <strong>Debug Toolbar</strong>
+at the bottom of the Canvas.</p>
+<a class="reference internal image-reference" href="_images/DebugToolbar.png"><img alt="_images/DebugToolbar.png" class="align-center" src="_images/DebugToolbar.png" style="width: 418.0px; height: 468.5px;" /></a>
+<ol class="arabic simple" start="5">
+<li>Click on the red break point in the debug toolbar and drag it to the output
+of the &#8220;1&#8221; enter node and to the input of the &#8220;2&#8221; enter node.</li>
+</ol>
+<a class="reference internal image-reference" href="_images/breakpoint.png"><img alt="_images/breakpoint.png" class="align-center" src="_images/breakpoint.png" style="width: 590.0px; height: 152.0px;" /></a>
+</div>
+</div>
+<div class="section" id="moving-line-by-line">
+<h2><a class="toc-backref" href="#id7">Moving Line by Line</a><a class="headerlink" href="#moving-line-by-line" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="deploying-in-debug-mode">
+<h3><a class="toc-backref" href="#id8">Deploying in Debug mode</a><a class="headerlink" href="#deploying-in-debug-mode" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Click on &#8220;Deploy&#8221;.</li>
+</ol>
+<img alt="_images/deploy.png" class="align-center" src="_images/deploy.png" />
+<ol class="arabic simple" start="2">
+<li>Once the application has deployed, open the Deploy drop down menu and click
+on <strong>Switch to Debug</strong>.</li>
+</ol>
+<a class="reference internal image-reference" href="_images/switch.png"><img alt="_images/switch.png" class="align-center" src="_images/switch.png" style="width: 233.0px; height: 175.0px;" /></a>
+</div>
+<div class="section" id="moving-step-by-step">
+<h3><a class="toc-backref" href="#id9">Moving Step by Step</a><a class="headerlink" href="#moving-step-by-step" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple" start="3">
+<li>Open the Chat Tab and send the string &#8220;1&#8221; to your application.</li>
+<li>The app should shop at the first breakpoint. Click on the continue button in
+the debug toolbar to continue onto the next breakpoint.</li>
+</ol>
+<img alt="_images/continue.png" class="align-center" src="_images/continue.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As you progress through the flow, the debug node you added will
+send its output to the Debug Tab.</p>
+</div>
+<p>The process should look something like this:</p>
+<video width="640"  controls>
+  <source src="_static/img/debug/Continue.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br> <br> <br><ol class="arabic simple" start="5">
+<li>In the Chat Tab, send the string &#8220;1&#8221; again.</li>
+<li>In the debug toolbar, click on the step button to move step by step to move
+node by node.</li>
+</ol>
+<img alt="_images/step.png" class="align-center" src="_images/step.png" />
+<p>The process should look something like this:</p>
+<video width="640"  controls>
+  <source src="_static/img/debug/Step.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br> <br> <br><p>Feel free to play around with the debug tools in you application!</p>
+</div>
+</div>
+<div class="section" id="print-inside-your-code">
+<h2><a class="toc-backref" href="#id10">Print inside your code</a><a class="headerlink" href="#print-inside-your-code" title="Permalink to this headline">¶</a></h2>
+<p>The debug toolbar gives you freedom to pause among nodes, but not from <em>inside</em> nodes.
+You can use the <code class="docutils literal"><span class="pre">node.log()</span></code> function in both the <em>function</em> and <em>state</em> nodes to
+print a message to the debug panel.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extended_example.html" class="btn btn-neutral float-right" title="Extended Example: A Conversational Yelp Bot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dialogue_nodes.html" class="btn btn-neutral" title="Dialogue Nodes" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Oct 31, 2016.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

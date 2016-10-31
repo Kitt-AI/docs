@@ -385,7 +385,7 @@ is already conveniently packaged as a ChatFlow node.
    a *Token secret*.
 
   .. WARNING:: You must provide these values to configure your Yelp node. You can
-      obtain these by signing up for the `Yelp developer API <http://www.yelp.com/developers>`_.
+      obtain these by signing up for the `Yelp developer API <http://www.yelp.com/developers/v2>`_.
 
   The Yelp node builds a query by using a term in ``msg.yelp.term`` and a location in
   ``msg.yelp.location``. ``msg.yelp.limit`` limits the number of candidates in the
@@ -426,7 +426,7 @@ Your flow should now look like the following figure:
 Now the bot can issue queries through the Yelp API. Next, we need to process the
 output of the Yelp node (accessible as  ``msg.payload``).
 
-.. note:: For details on how the output is formatted, see the `Yelp API documentation <http://www.yelp.com/developers>`_.
+.. note:: For details on how the output is formatted, see the `Yelp API documentation <http://www.yelp.com/developers/v2>`_.
 
 Our query will produce ten results. Presenting all ten at once would be
 disastrous in both speech-to-speech and chat scenarios. So let's present three

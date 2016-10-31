@@ -438,7 +438,7 @@ Feel free to import this bot into your own project and play with it.
 In order for the bot to work, you'll need:
 
 1. Bot access token (already covered in :ref:`telegram_echo_bot` )
-2. Yelp app `credentials <https://www.yelp.com/developers>`_, including
+2. Yelp app `credentials <https://www.yelp.com/developers/v2>`_, including
    **Consumer Key**, **Consumer Secret**, **Token** and **Token Secret**.
 
 .. _yelp_inline_bot_walkthrough:

@@ -42,6 +42,7 @@ few more bells and whistles, but otherwise, it is complete!
    quickstart
    build_a_bot
    dialogue_nodes
+   debug
    extended_example
    telegram
    facebook
