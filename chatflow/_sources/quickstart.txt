@@ -120,7 +120,7 @@ Create a New App from a Sample Project
 .. image:: _static/img/quickstart/EditorChat.png
    :align: center
 
-5. Test your bot. Try saying "hi", "hello", and "goodbye" to the bot. The bot
+5. Test your bot. Try saying “hi”, “hello”,"howdy" ,“goodbye”, "bye", "bye bye" to the bot. The bot
    respond will respond with the appropriate message. If you try to say anything else, it
    will not understand you.
 

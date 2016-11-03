@@ -388,5 +388,3 @@ Colored Cats Application:
 After deploying your application, you can write to your bot and tell him to show
 you a specific color cat.
 
-.. TODO:: write more about the "Cat 1" and "Cat 2" buttons that correspond to interactive messages.
-   @xuchen: May I ask to make here a video, too?

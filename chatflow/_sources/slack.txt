@@ -403,8 +403,6 @@ Interactive messages
 .. image:: _static/img/slack/pasteButtonsURL.png
    :align: center
 
-.. TODO:: write more about the "Cat 1" and "Cat 2" buttons that correspond to interactive messages.
-
 
 Redirect URL
 ^^^^^^^^^^^^

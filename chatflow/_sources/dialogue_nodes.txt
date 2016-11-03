@@ -119,6 +119,8 @@ with the goal of being responsive to user input.
 The router also remembers enter nodes it has evaluated in this dialogue turn. So an enter node is
 visited only once during each turn. This prevents the router from going to infinite loops.
 
+.. note:: You can only add *one router per application*.
+
 Enter Nodes
 ===========
 
