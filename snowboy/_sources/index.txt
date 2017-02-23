@@ -111,6 +111,7 @@ You can download pre-packaged Snowboy binaries and their Python wrappers for:
 * Raspberry Pi with Raspbian 8.0, all versions
   (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.1.0.tar.bz2>`_)
 * Pine 64 with Debian Jessie 8.5 (3.10.102) ([Pine64](https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/pine64-debian-jessie-1.1.0.tar.bz2))
+* Intel Edison with Ubilinux (Debian Wheezy 7.8) ([Edison](https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/edison-ubilinux-1.1.0.tar.bz2))
 
 Or you can check out `GitHub <https://github.com/kitt-ai/snowboy>`_ to compile
 a version yourself.
