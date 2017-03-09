@@ -92,6 +92,7 @@ Currently, Snowboy supports:
 * Android with ARMv7 CPUs
 * Pine 64 with Debian Jessie 8.5 (3.10.102)
 * Intel Edison with Ubilinux (Debian Wheezy 7.8)
+* Samsung Artik (Fedora 25)
 
 .. tip:: For iOS/Android, please check out Snowboy's `GitHub <https://github.com/kitt-ai/snowboy>`_ page.
 
