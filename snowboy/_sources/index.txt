@@ -26,7 +26,7 @@ Snowboy, a Customizable Hotword Detection Engine
 :Contact: snowboy@kitt.ai
 :Website: https://snowboy.kitt.ai
 :Github: https://github.com/kitt-ai/snowboy
-:Version: 1.1.1 (2017-03-24)
+:Version: 1.2.0 (2017-03-25)
 
 .. important:: **New!**
 
@@ -104,13 +104,13 @@ Downloads
 
 You can download pre-packaged Snowboy binaries and their Python wrappers for:
 
-* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.1.1.tar.bz2>`_
-  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.1.1.tar.bz2>`_
-* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.1.1.tar.bz2>`_
+* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.2.0.tar.bz2>`_
+  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.2.0.tar.bz2>`_
+* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.2.0.tar.bz2>`_
 * Raspberry Pi with Raspbian 8.0, all versions
-  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.1.1.tar.bz2>`_)
-* Pine 64 with Debian Jessie 8.5 (3.10.102) (`Pine64 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/pine64-debian-jessie-1.1.1.tar.bz2>`_)
-* Intel Edison with Ubilinux (Debian Wheezy 7.8) (`Edison <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/edison-ubilinux-1.1.1.tar.bz2>`_)
+  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.2.0.tar.bz2>`_)
+* Pine 64 with Debian Jessie 8.5 (3.10.102) (`Pine64 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/pine64-debian-jessie-1.2.0.tar.bz2>`_)
+* Intel Edison with Ubilinux (Debian Wheezy 7.8) (`Edison <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/edison-ubilinux-1.2.0.tar.bz2>`_)
 
 Or you can check out `GitHub <https://github.com/kitt-ai/snowboy>`_ to compile
 a version yourself.
