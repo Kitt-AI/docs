@@ -15,6 +15,8 @@
   
     <link rel="shortcut icon" href="_static/favicon.png"/>
   
+  
+  
 
   
 
@@ -36,6 +38,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="Snowboy 1.0.0 documentation" href="#"/> 
 
   
@@ -45,6 +50,7 @@
 
 <body class="wy-body-for-nav" role="document">
 
+   
   <div class="wy-grid-for-nav">
 
     
@@ -85,8 +91,11 @@
           
             
             
-                <!-- Local TOC -->
-                <div class="local-toc"><ul>
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
 <li><a class="reference internal" href="#">Snowboy, a Customizable Hotword Detection Engine</a><ul>
 <li><a class="reference internal" href="#introduction">Introduction</a></li>
 <li><a class="reference internal" href="#downloads">Downloads</a></li>
@@ -109,7 +118,6 @@
 </li>
 <li><a class="reference internal" href="#restful-api-calls">RESTful API Calls</a><ul>
 <li><a class="reference internal" href="#api-v1-train">/api/v1/train</a></li>
-<li><a class="reference internal" href="#api-v1-improve">/api/v1/improve</a></li>
 <li><a class="reference internal" href="#quota-and-rate-limit">Quota and Rate Limit</a></li>
 </ul>
 </li>
@@ -118,14 +126,14 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#faq">FAQ</a><ul>
-<li><a class="reference internal" href="#what-s-the-cpu-ram-usage">What&#8217;s the CPU/RAM usage?</a></li>
+<li><a class="reference internal" href="#what-s-the-cpu-ram-usage">What’s the CPU/RAM usage?</a></li>
 <li><a class="reference internal" href="#what-is-detection-sensitivity">What is detection sensitivity</a></li>
 <li><a class="reference internal" href="#what-audio-format-does-snowboy-support">What Audio format does Snowboy support?</a></li>
 <li><a class="reference internal" href="#my-pmdl-model-works-well-for-me-but-does-not-work-well-for-others">My pmdl model works well for me, but does not work well for others</a></li>
-<li><a class="reference internal" href="#my-trained-model-works-well-on-laptops-but-not-on-pi-s">My trained model works well on laptops but not on Pi&#8217;s</a></li>
+<li><a class="reference internal" href="#my-trained-model-works-well-on-laptops-but-not-on-pi-s">My trained model works well on laptops but not on Pi’s</a></li>
 <li><a class="reference internal" href="#the-volume-of-my-recording-is-too-low-high">The volume of my recording is too low/high</a></li>
 <li><a class="reference internal" href="#does-snowboy-come-with-vad">Does Snowboy come with VAD?</a></li>
-<li><a class="reference internal" href="#how-to-use-snowboy-s-vad-to-detect-voice-and-silence">How to use Snowboy&#8217;s VAD to detect voice and silence?</a></li>
+<li><a class="reference internal" href="#how-to-use-snowboy-s-vad-to-detect-voice-and-silence">How to use Snowboy’s VAD to detect voice and silence?</a></li>
 <li><a class="reference internal" href="#who-wrote-snowboy">Who wrote Snowboy?</a></li>
 </ul>
 </li>
@@ -143,8 +151,10 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="#">Snowboy</a>
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Snowboy</a>
+        
       </nav>
 
 
@@ -153,23 +163,40 @@
         <div class="rst-content">
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="#">Docs</a> &raquo;</li>
-      
-    <li>Snowboy, a Customizable Hotword Detection Engine</li>
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>Snowboy, a Customizable Hotword Detection Engine</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/index.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -187,7 +214,7 @@
 </tr>
 <tr class="field-odd field"><th class="field-name">Github:</th><td class="field-body"><a class="reference external" href="https://github.com/kitt-ai/snowboy">https://github.com/kitt-ai/snowboy</a></td>
 </tr>
-<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">1.2.0 (2017-03-25)</td>
+<tr class="field-even field"><th class="field-name">Version:</th><td class="field-body">1.1.1 (2017-03-24)</td>
 </tr>
 </tbody>
 </table>
@@ -206,7 +233,7 @@ be trained and returned.</li>
 </ol>
 </div></blockquote>
 <p>Upon completion, the device can immediately perform hotword detection.</p>
-<p>The following video demonstrates how it&#8217;s done using different customized
+<p>The following video demonstrates how it’s done using different customized
 hotwords in both English and Mandarin Chinese.</p>
 <div class="last"><video controls src="_static/snowboy-pi.web.mp4" align="middle"></video></div></div>
 <div class="section" id="introduction">
@@ -217,8 +244,8 @@ Raspberry Pi, (Ubuntu) Linux, and Mac OS X.</p>
 <p>A <strong>hotword</strong> (also known as <strong>wake word</strong> or <strong>trigger word</strong>) is a keyword
 or phrase that the computer constantly listens for as a signal to trigger other
 actions.</p>
-<p>Some examples of hotword include <em>&#8220;Alexa&#8221;</em> on Amazon Echo, <em>&#8220;OK Google&#8221;</em> on some
-Android devices and <em>&#8220;Hey Siri&#8221;</em> on iPhones. These hotwords are used to initiate
+<p>Some examples of hotword include <em>“Alexa”</em> on Amazon Echo, <em>“OK Google”</em> on some
+Android devices and <em>“Hey Siri”</em> on iPhones. These hotwords are used to initiate
 a full-fledged speech interaction interface. However, hotwords can be used in other
 ways too like performing simple <em>command &amp; control</em> actions.</p>
 <p>In one hacky solution, one can run a full ASR (Automatic Speech Recognition) to
@@ -230,12 +257,12 @@ to solve these problems!</p>
 <p>Snowboy is:</p>
 <ul class="simple">
 <li><strong>highly customizable</strong> allowing you to freely define your own magic hotword
-such as (but not limited to) &#8220;open sesame&#8221;, &#8220;garage door open&#8221;, or
-&#8220;hello dreamhouse&#8221;. If you can think it, you can hotword it!</li>
+such as (but not limited to) “open sesame”, “garage door open”, or
+“hello dreamhouse”. If you can think it, you can hotword it!</li>
 <li><strong>always listening but protects your privacy</strong> because Snowboy does not connect
 to the Internet or stream your voice anywhere.</li>
-<li><strong>light-weight and embedded</strong> allowing you to runs it on Raspberry Pi&#8217;s
-consuming less than 10% CPU on the smallest Pi&#8217;s (single-core 700M Hz ARMv6).</li>
+<li><strong>light-weight and embedded</strong> allowing you to runs it on Raspberry Pi’s
+consuming less than 10% CPU on the smallest Pi’s (single-core 700M Hz ARMv6).</li>
 <li><strong>Apache licensed</strong>!</li>
 </ul>
 <p>Currently, Snowboy supports:</p>
@@ -250,7 +277,7 @@ consuming less than 10% CPU on the smallest Pi&#8217;s (single-core 700M Hz ARMv
 </ul>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">For iOS/Android, please check out Snowboy&#8217;s <a class="reference external" href="https://github.com/kitt-ai/snowboy">GitHub</a> page.</p>
+<p class="last">For iOS/Android, please check out Snowboy’s <a class="reference external" href="https://github.com/kitt-ai/snowboy">GitHub</a> page.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -262,13 +289,13 @@ feel free to send a pull request to the <a class="reference external" href="http
 <h2>Downloads<a class="headerlink" href="#downloads" title="Permalink to this headline">¶</a></h2>
 <p>You can download pre-packaged Snowboy binaries and their Python wrappers for:</p>
 <ul class="simple">
-<li>64 bit Ubuntu <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.2.0.tar.bz2">12.04</a>
-/ <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.2.0.tar.bz2">14.04</a></li>
-<li><a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.2.0.tar.bz2">MacOS X</a></li>
+<li>64 bit Ubuntu <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.1.1.tar.bz2">12.04</a>
+/ <a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.1.1.tar.bz2">14.04</a></li>
+<li><a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.1.1.tar.bz2">MacOS X</a></li>
 <li>Raspberry Pi with Raspbian 8.0, all versions
-(<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.2.0.tar.bz2">1/2/3/Zero</a>)</li>
-<li>Pine 64 with Debian Jessie 8.5 (3.10.102) (<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/pine64-debian-jessie-1.2.0.tar.bz2">Pine64</a>)</li>
-<li>Intel Edison with Ubilinux (Debian Wheezy 7.8) (<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/edison-ubilinux-1.2.0.tar.bz2">Edison</a>)</li>
+(<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.1.1.tar.bz2">1/2/3/Zero</a>)</li>
+<li>Pine 64 with Debian Jessie 8.5 (3.10.102) (<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/pine64-debian-jessie-1.1.1.tar.bz2">Pine64</a>)</li>
+<li>Intel Edison with Ubilinux (Debian Wheezy 7.8) (<a class="reference external" href="https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/edison-ubilinux-1.1.1.tar.bz2">Edison</a>)</li>
 </ul>
 <p>Or you can check out <a class="reference external" href="https://github.com/kitt-ai/snowboy">GitHub</a> to compile
 a version yourself.</p>
@@ -284,7 +311,7 @@ to /boot/config.txt to boot the cores in ARMv8 state.</p>
 </div>
 <div class="section" id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
-<p>To use Snowboy, you&#8217;ll need:</p>
+<p>To use Snowboy, you’ll need:</p>
 <ol class="arabic simple">
 <li>A supported device with a <strong>microphone</strong> (or a microphone input)</li>
 <li>The corresponding decoder (downloaded above)</li>
@@ -310,10 +337,10 @@ microphone setup is correctly.</p>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you don&#8217;t have Homebrew, install it <a class="reference external" href="http://brew.sh/">here</a></p>
+<p class="last">If you don’t have Homebrew, install it <a class="reference external" href="http://brew.sh/">here</a></p>
 </div>
 <ol class="arabic" start="2">
-<li><p class="first">Install PortAudio&#8217;s Python bindings:</p>
+<li><p class="first">Install PortAudio’s Python bindings:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pyaudio</span>
 </pre></div>
 </div>
@@ -321,7 +348,7 @@ microphone setup is correctly.</p>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you don&#8217;t have <code class="docutils literal"><span class="pre">pip</span></code>, you can install it
+<p class="last">If you don’t have <code class="docutils literal"><span class="pre">pip</span></code>, you can install it
 <a class="reference external" href="https://pip.pypa.io/en/stable/installing/">here</a></p>
 </div>
 <div class="admonition tip">
@@ -340,7 +367,7 @@ run:</p>
 </ol>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">If you see an error on Raspberry Pi&#8217;s, please refer to the <a class="reference internal" href="#running-on-pi">Running_on_Pi</a> section.</p>
+<p class="last">If you see an error on Raspberry Pi’s, please refer to the <a class="reference internal" href="#running-on-pi">Running_on_Pi</a> section.</p>
 </div>
 </div>
 <div class="section" id="decoder-structures">
@@ -363,7 +390,7 @@ run:</p>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">_snowboydetect.so</span></code> is a dynamically linked library compiled with SWIG. It has
-dependencies on your system&#8217;s Python2 library. All snowboy-related
+dependencies on your system’s Python2 library. All snowboy-related
 libraries are <em>statically</em> linked in this file.</p>
 <p><code class="docutils literal"><span class="pre">snowboydetect.py</span></code> is a Python wrapper file generated by SWIG. Because it is
 not very easy to read, we created the other high-level wrapper: <code class="docutils literal"><span class="pre">snowboydecoder.py</span></code>.</p>
@@ -396,7 +423,7 @@ suffix indicates a <em>universal</em> model.</p>
 <ol class="arabic simple" start="2">
 <li>When prompt, speak into your microphone to see whether snowboy detects your magic phrase.</li>
 </ol>
-<p>The demo is fairly straight-forward. The following is the demo&#8217;s code:</p>
+<p>The demo is fairly straight-forward. The following is the demo’s code:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snowboydecoder</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">signal</span>
@@ -453,13 +480,13 @@ Use a <code class="docutils literal"><span class="pre">lambda</span></code> func
 </div>
 <div class="section" id="running-on-raspberry-pi">
 <span id="running-on-pi"></span><h2>Running on Raspberry Pi<a class="headerlink" href="#running-on-raspberry-pi" title="Permalink to this headline">¶</a></h2>
-<p>Raspberry Pi&#8217;s are excellent hardware for running Snowboy. We support all
+<p>Raspberry Pi’s are excellent hardware for running Snowboy. We support all
 versions of Raspberry Pi (1, 2, 3 and Zero). Supported OS is Raspbian 8.0.</p>
 <div class="section" id="set-up-audio">
 <h3>Set up Audio<a class="headerlink" href="#set-up-audio" title="Permalink to this headline">¶</a></h3>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">You&#8217;ll need a USB microphone for audio input. The on-board 3.5mm audio jack
+<p class="last">You’ll need a USB microphone for audio input. The on-board 3.5mm audio jack
 only has audio <cite>out</cite> but no audio <cite>in</cite> thus a microphone with a 3.5mm audio
 jack will not work.</p>
 </div>
@@ -477,7 +504,7 @@ test whether your microphone can be accessed with <cite>rec</cite>:</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">even though USB webcams should be &#8220;plug-n-play&#8221;, we experienced that
+<p class="last">even though USB webcams should be “plug-n-play”, we experienced that
 for some of them you have to <strong>reboot</strong> the Pi after plugging in the webcam.</p>
 </div>
 <p>If you see errors, check whether your alsa/pulseaudio is configured
@@ -552,9 +579,9 @@ to change the audio output to the 3.5mm audio jack.</p>
 <span id="id8"></span><h3>Blink an LED light<a class="headerlink" href="#blink-an-led-light" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="wire-an-led">
 <h4>Wire an LED<a class="headerlink" href="#wire-an-led" title="Permalink to this headline">¶</a></h4>
-<p>Wiring an LED onto Pi&#8217;s GPIO ports is very easy. However, note that the LED has
+<p>Wiring an LED onto Pi’s GPIO ports is very easy. However, note that the LED has
 a shorter leg and a longer leg. The shorter leg is usually connected to ground
-(GND). The following demonstrates how to wire your LED to your Pi&#8217;s GPIO:</p>
+(GND). The following demonstrates how to wire your LED to your Pi’s GPIO:</p>
 <img alt="_images/led-wiring.png" class="align-center" src="_images/led-wiring.png" />
 <p>A few hundred Ohms would be enough for the resistor.</p>
 </div>
@@ -596,7 +623,7 @@ a shorter leg and a longer leg. The shorter leg is usually connected to ground
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_off</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">light</span> <span class="o">=</span> <span class="n">Light</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
     <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
         <span class="n">light</span><span class="o">.</span><span class="n">blink</span><span class="p">()</span>
@@ -611,7 +638,7 @@ a shorter leg and a longer leg. The shorter leg is usually connected to ground
 </div>
 <div class="section" id="blink-an-led-with-snowboy">
 <h4>Blink an LED with Snowboy<a class="headerlink" href="#blink-an-led-with-snowboy" title="Permalink to this headline">¶</a></h4>
-<p>Replace Snowboy&#8217;s callback function with LED&#8217;s <cite>blink()</cite> function:</p>
+<p>Replace Snowboy’s callback function with LED’s <cite>blink()</cite> function:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snowboydecoder</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">signal</span>
@@ -662,9 +689,9 @@ a shorter leg and a longer leg. The shorter leg is usually connected to ground
 </div>
 <div class="section" id="toggle-an-ac-powered-lamp">
 <span id="toggle-an-ac-powerd-lamp"></span><h3>Toggle an AC-powered Lamp<a class="headerlink" href="#toggle-an-ac-powered-lamp" title="Permalink to this headline">¶</a></h3>
-<p>Controlling an LED light is pretty simple so let&#8217;s go bigger and control some
+<p>Controlling an LED light is pretty simple so let’s go bigger and control some
 real home appliances!</p>
-<p>In this example, we will use Raspberry Pi&#8217;s GPIO output to connect and
+<p>In this example, we will use Raspberry Pi’s GPIO output to connect and
 break a higher voltage AC circuit.</p>
 <p>This can be done with help of a <a class="reference external" href="https://en.wikipedia.org/wiki/Bipolar_junction_transistor">bipolar transistor</a>.
 Luckily, one has already been built thanks to a successful kickstarter
@@ -675,10 +702,10 @@ You can purchase the IoT relay on Amazon for
 <img alt="_images/iot-relay.jpg" class="align-center" src="_images/iot-relay.jpg" />
 <p>The mechanism of the IoT Relay is very simple:</p>
 <ul class="simple">
-<li>When red wire has high DC voltage (say, 3.3V or 12V), the top two &#8220;normally ON&#8221;
-outlets will turn off and the bottom two &#8220;normally OFF&#8221; outlets will turn on</li>
-<li>When red wire has no DC voltage, the top two &#8220;normally ON&#8221;
-outlets will turn on and the bottom two &#8220;normally OFF&#8221; outlets will turn off</li>
+<li>When red wire has high DC voltage (say, 3.3V or 12V), the top two “normally ON”
+outlets will turn off and the bottom two “normally OFF” outlets will turn on</li>
+<li>When red wire has no DC voltage, the top two “normally ON”
+outlets will turn on and the bottom two “normally OFF” outlets will turn off</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -694,12 +721,10 @@ LED lights on the right and a lamp on the left through the IoT relay:</p>
 </div>
 <div class="section" id="restful-api-calls">
 <span id="restful-api"></span><h2>RESTful API Calls<a class="headerlink" href="#restful-api-calls" title="Permalink to this headline">¶</a></h2>
-<p>Snowboy provides the following HTTP endpoints for you to train and improve
+<p>Snowboy provides the following HTTP endpoints for you to train
 a model <em>without</em> using the website:</p>
 <ul class="simple">
 <li><code class="docutils literal"><span class="pre">/api/v1/train</span></code>: train a model with 3 .wav files</li>
-<li><code class="docutils literal"><span class="pre">/api/v1/improve</span></code>: contribute .wav sample files to an existing model, for
-instance, false alarmed sound</li>
 </ul>
 <p>All uploaded .wav files will not be visible on the Snowboy library, so your
 privacy is protected. However, we do not provide an API to retrieve these
@@ -775,7 +800,7 @@ name</td>
 </table>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>API token can be obtained by logging into <a class="reference external" href="https://snowboy.kitt.ai">https://snowboy.kitt.ai</a>, click on &#8220;Profile settings&#8221;:</p>
+<p>API token can be obtained by logging into <a class="reference external" href="https://snowboy.kitt.ai">https://snowboy.kitt.ai</a>, click on “Profile settings”:</p>
 <img alt="_images/profile_token.png" class="last align-center" src="_images/profile_token.png" />
 </div>
 <p>The following is a sample call script using Python. Save the file as
@@ -853,7 +878,7 @@ name</td>
 <span class="n">microphone</span> <span class="o">=</span> <span class="s2">&quot;macbook microphone&quot;</span>
 <span class="c1">############### END OF MODIFY ##################</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="p">[</span><span class="n">_</span><span class="p">,</span> <span class="n">wav1</span><span class="p">,</span> <span class="n">wav2</span><span class="p">,</span> <span class="n">wav3</span><span class="p">,</span> <span class="n">out</span><span class="p">]</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span>
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
@@ -976,84 +1001,11 @@ name</td>
 </td></tr></table></div>
 </div></blockquote>
 </div>
-<div class="section" id="api-v1-improve">
-<h3>/api/v1/improve<a class="headerlink" href="#api-v1-improve" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal"><span class="pre">/api/v1/improve</span></code> service can be used to collect
-voice samples for opportunities that in the future we can improve the model.
-This is especially useful when you get <strong>false alarms</strong> for a model and we can
-later add these false alarms to negative set of training data.</p>
-<ul class="simple">
-<li><strong>Endpoint</strong>: <code class="docutils literal"><span class="pre">https://snowboy.kitt.ai/api/v1/improve/</span></code></li>
-<li><strong>Type</strong>: <code class="docutils literal"><span class="pre">POST</span></code></li>
-<li><strong>Return</strong>: 200 OK HTTP Response or errors</li>
-</ul>
-<table border="1" class="docutils">
-<colgroup>
-<col width="22%" />
-<col width="16%" />
-<col width="62%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Parameter</th>
-<th class="head">Required</th>
-<th class="head">Value</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>voice_samples</td>
-<td>Y</td>
-<td>A list of <em>up to</em> 3 samples in .wav format.</td>
-</tr>
-<tr class="row-odd"><td>token</td>
-<td>Y</td>
-<td>Secret user token</td>
-</tr>
-<tr class="row-even"><td>name</td>
-<td>Y</td>
-<td>String, or “unknown” if we don’t know hotword
-name</td>
-</tr>
-<tr class="row-odd"><td>language</td>
-<td>N</td>
-<td>ar (Arabic), zh (Chinese), nl (Dutch), en
-(English), fr (French), dt (German), hi
-(Hindi), it (Italian), jp (Japanese), ko
-(Korean), fa (Persian), pl (Polish), pt
-(Portuguese), ru (Russian), es (Spanish), ot
-(Other)</td>
-</tr>
-<tr class="row-even"><td>age_group</td>
-<td>N</td>
-<td>0_9, 10_19, 20_29, 30_39, 40_49, 50_59, 60+</td>
-</tr>
-<tr class="row-odd"><td>gender</td>
-<td>N</td>
-<td>F/M</td>
-</tr>
-<tr class="row-even"><td>microphone</td>
-<td>N</td>
-<td>String, your microphone type</td>
-</tr>
-<tr class="row-odd"><td>detection_score</td>
-<td>N</td>
-<td>Float, decoding score on this voice sample.
-Helps to roughly identify true positives, false
-positives and false negatives</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The only difference to the <code class="docutils literal"><span class="pre">/api/v1/train</span></code> endpoint is that it includes
-an optional <code class="docutils literal"><span class="pre">detection_score</span></code> field. You can upload up to three voice samples
-in the <code class="docutils literal"><span class="pre">voice_samples</span></code> list.</p>
-</div>
-</div>
 <div class="section" id="quota-and-rate-limit">
 <h3>Quota and Rate Limit<a class="headerlink" href="#quota-and-rate-limit" title="Permalink to this headline">¶</a></h3>
 <p>Each user gets 1000 free API calls for each end point every 30 days with a rate
 limited of 1 call per second.</p>
-<p>If you&#8217;d like to purchase more, please send us an email at <a class="reference external" href="mailto:snowboy&#37;&#52;&#48;kitt&#46;ai">snowboy<span>&#64;</span>kitt<span>&#46;</span>ai</a></p>
+<p>If you’d like to purchase more, please send us an email at <a class="reference external" href="mailto:snowboy&#37;&#52;&#48;kitt&#46;ai">snowboy<span>&#64;</span>kitt<span>&#46;</span>ai</a></p>
 </div>
 </div>
 <div class="section" id="advanced-usage">
@@ -1061,7 +1013,7 @@ limited of 1 call per second.</p>
 <div class="section" id="multiple-models-and-callbacks">
 <h3>Multiple Models and Callbacks<a class="headerlink" href="#multiple-models-and-callbacks" title="Permalink to this headline">¶</a></h3>
 <p>So far we have worked with only one model that can dictate a <em>binary</em> state.
-Wouldn&#8217;t it nice to listen to multiple models at the same time?</p>
+Wouldn’t it nice to listen to multiple models at the same time?</p>
 <p><cite>demo2.py</cite> demonstrates how to listen to multiple models at the same time:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">snowboydecoder</span>
 <span class="kn">import</span> <span class="nn">sys</span>
@@ -1105,8 +1057,8 @@ Wouldn&#8217;t it nice to listen to multiple models at the same time?</p>
 </pre></div>
 </div>
 <p>In this example, we used two models for the decoder and provided two callback
-functions. If the first hotword is detected, it&#8217;ll play a <em>Ding</em> sound. If the
-second hotword is detected, it&#8217;ll play a <em>Dong</em> sound.</p>
+functions. If the first hotword is detected, it’ll play a <em>Ding</em> sound. If the
+second hotword is detected, it’ll play a <em>Dong</em> sound.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">You are not limited to just using only two models nor are you limited
@@ -1119,8 +1071,8 @@ powerful enough to process them all.</p>
 <div class="section" id="faq">
 <h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="what-s-the-cpu-ram-usage">
-<h3>What&#8217;s the CPU/RAM usage?<a class="headerlink" href="#what-s-the-cpu-ram-usage" title="Permalink to this headline">¶</a></h3>
-<p>Snowboy takes minimal CPU on modern computers. On a Raspberry Pi&#8217;s with decade-old
+<h3>What’s the CPU/RAM usage?<a class="headerlink" href="#what-s-the-cpu-ram-usage" title="Permalink to this headline">¶</a></h3>
+<p>Snowboy takes minimal CPU on modern computers. On a Raspberry Pi’s with decade-old
 CPU chips, it takes less than 5% ~ 10% of CPU. In terms of memory usage,
 the <cite>PortAudio</cite> Python wrapper usually uses about 10MB of RAM while the
 standalone C binary uses less than 2MB.</p>
@@ -1191,7 +1143,7 @@ model that works well for everyone, you should use the universal model (with suf
 umdl).</p>
 </div>
 <div class="section" id="my-trained-model-works-well-on-laptops-but-not-on-pi-s">
-<h3>My trained model works well on laptops but not on Pi&#8217;s<a class="headerlink" href="#my-trained-model-works-well-on-laptops-but-not-on-pi-s" title="Permalink to this headline">¶</a></h3>
+<h3>My trained model works well on laptops but not on Pi’s<a class="headerlink" href="#my-trained-model-works-well-on-laptops-but-not-on-pi-s" title="Permalink to this headline">¶</a></h3>
 <p>This is due to the <em>acoustic distortion</em> that results from the different
 microphones. If you record your voice with two different microphones (one on
 your laptop and the other on your Pi) and then play them (<code class="docutils literal"><span class="pre">play</span> <span class="pre">t.wav</span></code>), you will
@@ -1221,17 +1173,17 @@ Raspberry Pi usually have low volume, thus increasing the audio gain may help.</
                 <span class="n">audio_gain</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Set <code class="docutils literal"><span class="pre">audio_gain</span></code> to be larger than 1 if your test recording&#8217;s volume is too low, or smaller
+<p>Set <code class="docutils literal"><span class="pre">audio_gain</span></code> to be larger than 1 if your test recording’s volume is too low, or smaller
 than 1 if too high.</p>
 </div>
 <div class="section" id="does-snowboy-come-with-vad">
 <h3>Does Snowboy come with VAD?<a class="headerlink" href="#does-snowboy-come-with-vad" title="Permalink to this headline">¶</a></h3>
-<p>Yes it does! VAD is Voice Activity Detection which usually detects whether there&#8217;s human
+<p>Yes it does! VAD is Voice Activity Detection which usually detects whether there’s human
 voice in the audio. It needs much less resources than hotword detection. Thus,
 Snowboy uses VAD as a filtering layer before hotword detection to reduce CPU usage.</p>
 </div>
 <div class="section" id="how-to-use-snowboy-s-vad-to-detect-voice-and-silence">
-<h3>How to use Snowboy&#8217;s VAD to detect voice and silence?<a class="headerlink" href="#how-to-use-snowboy-s-vad-to-detect-voice-and-silence" title="Permalink to this headline">¶</a></h3>
+<h3>How to use Snowboy’s VAD to detect voice and silence?<a class="headerlink" href="#how-to-use-snowboy-s-vad-to-detect-voice-and-silence" title="Permalink to this headline">¶</a></h3>
 <p>The return value of <code class="docutils literal"><span class="pre">SnowboyDetect.RunDetection()</span></code> function indicates silence,
 voice, error, and triggered words:</p>
 <table border="1" class="docutils">
@@ -1274,6 +1226,9 @@ who is also a contributor to the open-source speech recognition software
 
 
            </div>
+           <div class="articleComments">
+            
+           </div>
           </div>
           <footer>
   
@@ -1283,7 +1238,7 @@ who is also a contributor to the open-source speech recognition software
   <div role="contentinfo">
     <p>
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Mar 24, 2017.
+      Last updated on Aug 15, 2017.
 
     </p>
   </div>
@@ -1308,7 +1263,8 @@ who is also a contributor to the open-source speech recognition software
             VERSION:'1.0.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
         };
     </script>
       <script type="text/javascript" src="_static/jquery.js"></script>
