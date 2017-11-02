@@ -1,0 +1,390 @@
+.. _kik:
+
+=================
+Kik Bot Tutorials
+=================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+
+In this tutorial, we start with creating a simple echo bot for kik. We also
+create a bot that shows you different cat images. In addition, we explain the
+input and output of the kik In and kik Out nodes.
+
+Here is an example of the bot in action:
+
+.. raw:: html
+
+   <video height="640" style="display:block; margin: 0 auto;" controls>
+     <source src="_static/img/kik/KikCatBotDemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+
+By the end of this tutorial, you will be able to:
+  * Connect a chatflow application to kik
+  * Understand the input and outputs of the kik In and kik Out nodes
+  * Create a custom keyboard for your bot
+  * Set global variables
+
+A simple echo bot
+=================
+
+Let's first create a simple echo bot using ChatFlow.
+
+kik Echo Bot Video Tutorial
+___________________________
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/XrQSL7zFjsE"
+       frameborder="0" allowfullscreen></iframe>
+
+    <br><br><br>
+
+.. _create_kik_bot:
+
+1. Create a Kik Bot
+___________________
+
+On the Browser
+..............
+
+1. Install Kik onto your mobile device.
+
+2. Go to `dev.kik.com <https://dev.kik.com/#/home>`_ to build your bot.
+
+On the Mobile App
+.................
+
+3. Using the Kik app, touch the following image in the upper right corner:
+
+.. image:: _static/img/kik/tip.png
+   :align: center
+
+4. Click on the following image to scan the code on the web browser, which
+   registers a bot for you:
+
+.. image:: _static/img/kik/scan.png
+   :align: center
+
+5. A chat with Botsworth will open.
+
+.. image:: _static/img/kik/botsworthchat.png
+   :align: center
+   :scale: 50%
+
+6. Give your bot a unique name. Answer Botsworth's questions. Tap "Yes" and
+   "Create a Bot".
+
+.. image:: _static/img/kik/botsworthchat2.png
+   :align: center
+   :scale: 50%
+
+On the Browser
+..............
+
+7. After bot creation, click "Configuration" on top of `dev.kik.com <https://dev.kik.com/#/home>`_ page.
+
+.. image:: _static/img/kik/dev-kik-config.png
+   :align: center
+
+8. Copy the "Bot Name" and "API Key" to your clipboard.
+
+.. image:: _static/img/kik/uniqueBot.png
+   :align: center
+
+.. _create_chatflow_app:
+
+2. Create a ChatFlow application
+________________________________
+
+1. Go to the `applications <https://chatflow.kitt.ai/apps>`_ and create a new
+   application.
+
+.. image:: _static/img/kik/kik-new-app.png
+   :align: center
+
+2. Drag the **kik In** and **kik Out** nodes onto the canvas. Connect them together
+   like the image below:
+
+.. image:: _static/img/kik/echoBot.png
+   :align: center
+
+3. Double click the **kik In** node, select "Add new kikbot-controller..."
+   and click "Edit" button.
+
+4. Copy and paste "kik bot name" and "API Key" and click Add.
+
+.. image:: _static/img/kik/pasteCredentials.png
+   :align: center
+
+5. Double click the **kik Out**  node and select the same controller.
+
+.. image:: _static/img/kik/kik-ouputnode.png
+   :align: center
+
+6. Deploy the application.
+
+.. image:: _static/img/kik/kik-deploy.png
+   :align: center
+
+When you write to your bot, it answers you with the same message.
+
+kik In and kik Out Nodes
+========================
+
+In this section, we will explain the input and output of the **kik In** and
+**kik Out** nodes.
+
+.. _kik_in_node:
+
+kik In
+______
+
+The kik In node receives messages from kik. It has the following output:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          kik: {
+                message: "Message",
+                user: "User Name",
+                chatId: "User chatId",
+                type: "message type"
+                }
+          payload: payload
+          kitt: {
+                 _session_id: message.chatId,
+                 _user_id: message.from,
+                 _timeout: 120
+                }
+          }
+
+
++---------------------+------------------+-------------------------------------------------------------------------------+
+| Variable            | Type             | Description                                                                   |
++=====================+==================+===============================================================================+
+| ``payload``         | String           | Contains the message body (i.e. text, image, URL)                             |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.message``     | String           | The original message from the kik server                                      |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.user``        | String           | kik username                                                                  |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.chatId``      | String           | The chat ID where the message will be sent (determined by kik)                |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.type``        | String           |  Message type                                                                 |
++---------------------+------------------+-------------------------------------------------------------------------------+
+
+.. hint:: For more info on types of kik messages,  check out
+    `kik message formats <https://dev.kik.com/#/docs/messaging#message-formats>`_
+    for more details.
+
+.. _kik_out_node:
+
+kik Out
+_______
+
+The kik Out node sends messages back to kik. It accepts input in the following
+format:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          kik: {
+                user: username,
+                chatId: chatId,
+                type: type,
+                suggestions: suggestions
+          }
+          payload: payload
+   }
+
+
++---------------------+------------------+-------------------------------------------------------------------------------+
+| Variable            | Type             | Description                                                                   |
++=====================+==================+===============================================================================+
+| ``payload``         | String           | Contains the message body (i.e. text, image, URL)                             |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.user``        | String           | kik username                                                                  |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.chatId``      | String           | The chat ID where the message will be sent (determined by kik)                |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.type``        | String           |  Message type                                                                 |
++---------------------+------------------+-------------------------------------------------------------------------------+
+| ``kik.suggestions`` | Array of Strings | Array of suggested answers to the bot.  Sets the custom keyboard in kik app.  |
++---------------------+------------------+-------------------------------------------------------------------------------+
+
+.. hint:: For more on custon keyboards, see `kik keyboards <https://dev.kik.com/#/docs/messaging#keyboards>`_
+      for more details.
+
+Advanced: attachments and custom keyboards
+==========================================
+
+In this part of the tutorial, we will create a bot that shows you cat images of
+different color.
+
+.. _sending_attachments:
+
+Sending attachments
+___________________
+
+Attachments can be sent by setting the corresponding ``kik`` variable to a URL
+link to the attachment. For example, to send a picture attachment, use the following
+code:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg = {
+          kik: {
+                user: username,
+                chatId: chatId,
+                type: type,
+                picture: picture.url
+          }
+          payload: payload
+   }
+
+The following is a list of attachment variables and the corresponding attachment
+type.
+
++-----------------+-----------------------------------------------------------+
+| Variable        | Description                                               |
++=================+===========================================================+
+| ``kik.link``    | a URL to a web address                                    |
++-----------------+-----------------------------------------------------------+
+| ``kik.picture`` | a URL to an image                                         |
++-----------------+-----------------------------------------------------------+
+| ``kik.video``   | a URL to a video, as well as some playback configurations |
++-----------------+-----------------------------------------------------------+
+| ``kik.sticker`` | information required to display a sticker.                |
++-----------------+-----------------------------------------------------------+
+
+.. _custom_keyboard:
+
+Creating a custom keyboard
+__________________________
+
+The portion of the tutorial will explain how to create a custom keyboard for
+your kik Bot.
+
+1. Drag a function node onto the canvas and connect it to the kik Out Node.
+
+.. image:: _static/img/kik/CustomKeyBoard.png
+   :align: center
+
+2. Double click the function and edit the body of the function to set
+   ``msg.kik.suggestions`` as an array of options. You can use the following
+   template:
+
+.. code-block:: javascript
+   :linenos:
+
+   msg.kik.suggestions=[
+                        'Option 1',
+                        'Option 2'
+                        ];
+   return msg;
+
+Final result should look something like this:
+
+.. image:: _static/img/kik/keyboardsample.png
+   :align: center
+   :scale: 50%
+
+.. _import_colored_cats_app:
+
+Attachments and Custom Keyboard Demo
+____________________________________
+
+1. Importing the "Colored Cats" Application
+...........................................
+
+1. Import the application to ChatFlow. You can either:
+
+* Download :download:`json <_static/json/KikColoredCats.json>` of our application and import the project on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page, or,
+* Use the "kik - Cat Choose" sample application when clicking "CREATE NEW APP" on the
+  `applications <https://chatflow.kitt.ai/apps>`_ page.
+
+.. image:: _static/img/kik/coloredCats.png
+   :align: center
+
+kik Color Cat Bot Video Walkthrough
+...................................
+
+In addition, here is a walkthrough video explaining the process of making the
+Colored Cats Application:
+
+.. _colored_cats_tutorial:
+
+.. raw:: html
+
+  <iframe width="640" height="360" src="https://www.youtube.com/embed/WBsbTw9S96g"
+      frameborder="0" allowfullscreen></iframe>
+
+   <br><br><br>
+
+2. NLU Setup
+............
+
+1. Download :download:`NLU json <_static/json/KikColoredCats-nlu.json>` to
+   import it as `an NLU application <https://nlu.kitt.ai>`_.
+
+2. Go to NLU_  and import the NLU json.
+
+.. image:: _static/img/kik/import_JSON.png
+   :align: center
+
+3. Copy the deploymnet URL in the "Deployment Information" section. Don't forget
+   to deploy your NLU app!
+
+.. image:: _static/img/kik/Deployment_URL.png
+   :align: center
+
+4. In ChatFlow, open the **KITT.AI NLU** node and paste the Deployment URL.
+
+.. image:: _static/img/kik/kitt.png
+   :align: center
+
+5. Add ``{{{payload}}}``, so your final string would look like:::
+  
+    http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+.. image:: _static/img/kik/nluNode.png
+   :align: center
+
+3. Set up "Colored Cats" application
+....................................
+
+1. Register the kik bot, as described in :ref:`create_kik_bot` section.
+
+2. Copy and paste bot name and bot API key, as described in :ref:`create_chatflow_app` section.
+
+3. Deploy the application!
+
+After deploying your application, you can write to your bot and tell him to show
+you a specific color cat.
+

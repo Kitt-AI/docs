@@ -1,0 +1,131 @@
+.. _quickstart:
+
+====================
+ChatFlow Quick Start
+====================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _KITT.AI: https://kitt.ai
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+This ChatFlow_ tutorial provides a quick overview on how to access and navigate
+KITT.AI_'s ChatFlow_ platform.
+
+By the end of this tutorial, you will be able to:
+  * access ChatFlow
+  * create a Project
+  * orient yourself in the ChatFlow editor
+
+Accessing ChatFlow
+==================
+
+ChatFlow is hosted by KITT.AI and can be accessed using any web browser.
+
+**To Access:**
+
+1. Go to `<http://chatflow.kitt.ai>`_
+
+2. Log in with your Google, Facebook, Twitter or Github account.
+
+.. image:: _static/img/quickstart/Login.png
+   :align: center
+
+Create a New App from a Sample Project
+======================================
+
+1. Click on "Create new app" to start creating a new **app**. Each *app* or *project*
+   corresponds to a **bot**.
+
+.. image:: _static/img/quickstart/CreateNewApp.png
+   :align: center
+
+
+2. In the pop-up, under the **Use a sample project** section, Look for the
+   *"Hello Goodbye!"* sample project. Click on it. When the page refreshes, you will
+   be in the ChatFlow **Editor**.
+
+.. image:: _static/img/quickstart/Editor.png
+   :align: center
+
+
+* The **Node Library** is on the left side of the *Editor* and contains various types
+  of nodes.
+
+  .. image:: _static/img/quickstart/EditorLibrary.png
+    :align: center
+
+
+* The main area of the *Editor* is the **Canvas**. The nodes in your canvas will
+  become the content of our project.
+
+  .. note:: When you select a sample project, the canvas will be already populated by
+    several nodes. If you start with a "clean project", the canvas will be
+    empty.
+
+  .. image:: _static/img/quickstart/EditorCanvas.png
+    :align: center
+
+
+* The **Info Tab** on the right side of the *Editor* provides information about
+  the current node.
+
+  .. tip:: This is a great resource to learn more about each type of node.
+
+  .. image:: _static/img/quickstart/EditorInfo.png
+    :align: center
+
+  .. warning:: The Info Tab may be hidden. Click on "≡" in the upper right hand
+        corner of the Canvas to toggle the Info Tab.
+
+        .. image:: _static/img/quickstart/triplebar.png
+            :align: center
+            :scale: 50%
+
+  .. note:: You can switch between the Info Tab and the **Debug Tag**. Check out
+        the :ref:`Debug Tutorial <debug>` for more info!
+
+        .. image:: _static/img/quickstart/debugtab.png
+            :align: center
+            :scale: 50%
+
+3. Click **Deploy** to deploy your bot allowing for you and your user to
+   interact with it.
+
+.. image:: _static/img/quickstart/deploy.png
+   :align: center
+
+4. Click the **Chat Tab** on the left side of the *Editor*. This is where you
+   can talk directly with the bot.
+
+.. image:: _static/img/quickstart/EditorChat.png
+   :align: center
+
+5. Test your bot. Try saying “hi”, “hello”,"howdy" ,“goodbye”, "bye", "bye bye" to the bot. The bot
+   respond will respond with the appropriate message. If you try to say anything else, it
+   will not understand you.
+
+.. image:: _static/img/quickstart/convo_sample.png
+   :align: center
+
+You are now officially oriented with the ChatFlow Editor! A world of bots is
+waiting to be created! Are you up to the task?

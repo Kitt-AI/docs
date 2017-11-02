@@ -1,0 +1,57 @@
+.. ChatFlow documentation master file, created by
+   sphinx-quickstart on Thu Jan 21 16:29:20 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+Welcome to ChatFlow
+===================
+
+ChatFlow_ is a platform that provides a simple way to
+create conversational agents, or smart bots, using a visual interface.
+ChatFlow bots understand natural language, keep track of
+context in conversations, connect to a number of APIs
+to access external services and resources, and communicate
+with users through various text and speech platforms, such
+as Facebook Messenger, Slack, Kik, Telegram, SMS, and
+Amazon's Alexa platform (Amazon Echo).
+
+ChatFlow can be used in conjunction with NLU_, our intuitive and interactive
+natural language understanding engine.
+
+Here's a brief video explaining ChatFlow:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/NbvPPEKgvjI"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+Contents
+========
+
+This documentation is still under construction. We are still working on the
+few more bells and whistles, but otherwise, it is complete!
+
+.. toctree::
+   :maxdepth: 2
+
+   self
+   quickstart
+   build_a_bot
+   dialogue_nodes
+   debug
+   extended_example
+   telegram
+   facebook
+   slack
+   twilio
+   kik
+   skype
+   alexa
+   alexa_advanced
+   alexa_nlu
+   alexa_show
+   oauth2

@@ -1,0 +1,309 @@
+.. _dialogue_nodes:
+
+==============
+Dialogue Nodes
+==============
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+
+Nodes in ChatFlow
+==================
+
+.. ChatFlow is built on top of `Node-RED <http://nodered.org>`_ inheriting much of Node-RED's basic message flow paradigm.
+
+ChatFlow conversational content is represented as nodes in a network or **Flow**. The nodes
+have **inputs** where they receive messages and **outputs** where they send messages.
+Execution of the Flow (running the conversation) happens through
+the flow of messages among the nodes in the network.
+
+Basic Flow, Input and Output
+----------------------------
+
+In a ChatFlow conversation, messages typically originate from an **Input Node**
+from the **bots** section of the node library. For example,
+*Twilio In*, *Alexa In*, and *Cortana In* nodes are available to
+create and send messages based on user input coming from
+SMS, Amazon Echo, or Microsoft Cortana. These input nodes do not
+receive messages from other nodes, so they do not accept incoming wires.
+
+.. image:: _static/img/dialoguenodes/In-Nodes.png
+   :align: center
+
+Once an input node receives user input, it sends out a message through its
+output. The message created by an input node will contain
+a ``payload`` property that holds a string corresponding to the
+user natural language input. Through the **connection wire**,
+this message typically goes to a **Natural Language Understanding (NLU)**
+Node, which maps the natural language input into symbols that drive
+the ChatFlow interaction. The NLU results are added to the message as
+a property called ``NLU``. The message is then sent through a connection wire
+to the **Router** Node.
+
+.. image:: _static/img/dialoguenodes/NLU-router.png
+   :align: center
+
+The Router Node then directs the message through a network of **Enter** Nodes
+and **State** Nodes (which are not connected to the router by wires).
+This process, described in the more detail under the router_ section of
+the documentation, generates a system utterance, which the router
+places in its outgoing message as a string in the ``payload`` property. The
+router then sends the message out through a wire, which is typically connected
+to an output node matching the input node used (Twilio In to Twilio Out, Amazon In
+to Amazon Out).
+
+.. image:: _static/img/dialoguenodes/enter-state.png
+   :align: center
+
+Router
+======
+
+The Router Node is of central importance in ChatFlow; it is responsible
+for choosing what system of actions to perform during each conversational turn.
+The choices presented to the router are the enter nodes in the flow. The router
+will only consider enter nodes with entrance conditions that are satisfied at
+that point in the conversation. Of these viable enter nodes, the router will
+choose one based on the following criteria:
+
+1. An enter node marked as an initial state will be chosen when the router
+   receives its first message in the current conversation. More than one node
+   may be marked as an initial state, and these will be ranked according the
+   rest of the criteria.
+
+2. Enter nodes that satisfy an explicit ordering preference will be chosen if
+   possible. See the section on enter nodes below for more on specific ordering
+   constraints for enter nodes.
+
+3. Enter nodes with entrance conditions based on ``msg.NLU`` have priority over
+   enter nodes, to ensure that the system is responsive to user input.
+
+4. Enter nodes with precise conditions such as checking for equality are
+   preferred over nodes with other conditions such as greater than, is not null,
+   and regex matching. When multiple entrance conditions are present, nodes with
+   a greater number of precise conditions (equality) are preferred.
+
+Once a router receives a message, it selects an enter node. If none are
+eligible, the router sends out a message via an output wire. If an enter node
+receives a message from the router, it will pass that message through its own
+output wire. If the message reaches a **state** node with *no output wires*,
+the state node sends its message back to the router. In other words, **enter**
+nodes and **state** nodes are the entry and exit points that the router has
+to and from the author-defined conversational content. This conversational
+content consists of enter nodes, state nodes, and any other nodes
+available. For example, it may include a Yelp node, which is a wrapper to the
+Yelp developer API, as in the example provided later in this documentation.
+
+In each conversational turn, the system may use several enter nodes to build a system response.
+Once the router receives user input and the corresponding labeling from an NLU node, the router
+will prefer to choose an enter containing one or more entrance conditions involving ``msg.NLU``,
+with the goal of being responsive to user input.
+
+The router also remembers enter nodes it has evaluated in this dialogue turn. So an enter node is
+visited only once during each turn. This prevents the router from going to infinite loops.
+
+.. note:: You can only add *one router per application*.
+
+Enter Nodes
+===========
+
+Enter nodes are the router's entry point into conversational content, which is
+typically a collection of networks, each bookended by an enter node (the entry
+point) and a state node (the exit point for the network). In between the enter
+node and the state node, there may be other state nodes and other Node-RED nodes,
+such as function nodes. All of the inter-node communication that happens between
+the enter node, which receives messages from the router, and the last state node,
+which sends messages back to the router, happen through wires, following
+Node-RED's usual message flow.
+
+Ordering Preferences
+--------------------
+
+Note that the output of a state node can be wired to the input of an
+enter node. Once that connection is made, the resulting connection is not a
+wire in the Node-RED sense and is shown on the screen as a dashed line unlike
+wires that are shown as solid lines. This dashed line does not represent a wire
+over which messages can be sent but rather an *ordering preference* stating
+that the enter node should be preferred by the router immediately after the
+router receives a message from the state node. In other words, a sequence of
+state node and enter node (in that order) connected by a dashed line is not
+an outgoing wire. The connect is a *direct link*. The state node will still send
+its message to the router which in turn will send its message to the enter node.
+The dashed line simply means that, once that state node is executed and sends its
+message to the router, the router will choose the enter node provided that the
+enter node's entrance conditions are satisfied.
+
+An example of a dashed line representing an ordering preference for an enter
+node following a state node is shown in the image below.
+
+.. image:: _static/img/dialoguenodes/order-preference.png
+   :align: center
+
+In this example, after receiving a message from state node *confirm choice*,
+the router will choose between the enter nodes *U: accept* or
+*U: reject*. For example, if the entrance conditions of
+*U: accept* are met, it will be chosen by the router even if another node with
+identical entrance conditions exist or more precise entrance conditions.
+
+Enter only from Direct link
+---------------------------
+
+Each enter node includes a checkbox that says *Enter only from direct link*. If
+that box is checked, the enter node will only be chosen by the
+router **immediately after** the *directly link* state node is executed
+(*Confirm Choice* state node in above picture). This is
+useful for state nodes that only make sense in a specific context.
+
+
+State Nodes
+===========
+
+State nodes update the conversational context and define the actions of the agent
+including what it says to the user. Each state node includes a code editor where
+arbitrary JavaScript code can be added. This code will run any time the state
+node receives a message. The entire message object can be accessed within the
+state node through the object ``msg``.
+In addition, state nodes include a field where a system utterance can be added. Whenever
+the state node receives a message, its utterance is added to the system's output
+to the user in the current conversational turn.
+
+The two most basic uses of state nodes are:
+
+1. Adding system utterances to define what the system will say.
+2. Updating user variables.
+
+.. note:: For instance, in our :ref:`build_a_bot`, the variable ``msg.kitt.count`` was an user
+   variable defined and updated in state nodes.
+
+User variables exist in a property of the message called ``kitt``. Unlike other
+properties of the message ``msg``, all of the user variables in ``kitt`` persist
+throughout the entire interaction. This is a key difference between user
+variables and other properties of ``msg``.  Whenever an enter node receives a
+message, all of the user variables are available in ``msg.kitt``, and these
+variables can be used in entrance conditions.
+
+Final state
+-----------
+
+State nodes include a checkbox that says *Dialogue ends here*. If that box is
+checked in a specific state node, whenever that state node is executed, the
+conversation ends. The state of the router is reset and all user variables are
+deleted.
+
+NLU
+===
+
+Natural Language Understanding nodes are designed to map user utterances to a
+finite vocabulary of symbols. Two sets of symbols comprise the output of the NLU:
+*intents* and *entities*. Intents are utterance categories that capture the main
+communicative intent of the input utterance. For example, the intent *agreeing*
+captures the communicative intent of many  utterances, such as "I agree", "yes",
+"of course", "yes, I agree", and "I think so too". The intent vocabulary or
+sample utterance used by the NLU is defined by the content author and consists
+of an arbitrary number of arbitrary strings. These intents can be thought of as
+buckets in which each incoming input utterance will be placed by the NLU node.
+
+In addition to one *intent*, each utterance may contain zero or more *entities*,
+which are sequences of words in the input utterance that correspond to a
+category defined by the content author. These categories, like intents, are of
+arbitrary number and labels. Common examples include *locations*,
+*names of organizations*, and *prices*. Consider, the following utterance:
+"Please make me a reservation for six people at Matsuhisa at 7 pm." The intent
+here may be *make_restaurant_reservation*, and the entities may be *party_size*
+(corresponding to the word "six"), *restaurant_name* (corresponding to the word
+"Matsuhisa") and *time* (corresponding to "7 pm"). Note that these assignments
+are made in the context of the current utterance. The word "six" could be a time
+in a different utterance ("I need a reservation at six"). It is the job of the
+NLU to assign the right entities and intents in each utterance.
+
+The internal mechanisms of NLU nodes may vary, but each NLU node must accept
+input in the form of ``msg.payload`` and produce output that is placed in its
+outgoing message in ``msg.NLU``. The NLU output should contain a property
+called ``intent``, which contains a string value corresponding to the input's
+intent and a property called ``entities`` which is an object with ``{entity:value}``
+pairs.(``{"restaurant_name": "Matsuhisa", "party_size": "six", "time": "7 pm"}``).
+In cases where multiple occurrences of the same entity type exist in an
+utterance, the entity value will be a list
+(``{"participant_name": ["Sue", "Bob", "Mary"], "meeting_location": "room 245"}``).
+
+Configure NLU Node
+------------------
+
+To configure the NLU node, one can create an app on ChatFlow's companion platform NLU_.
+Once the app is created, the intents and entities added, and the app deployed,
+copy the deployment URL in the Deployment Information sections of the App. Paste
+the URL into the NLU node and add ``{{{payload}}}`` at the end::
+
+  http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+When configured
+in this way, the NLU node will run a query with ``{{{payload}}}`` to the NLU app.
+It will then receive the object ``msg.NLU`` containing all the corresponding
+``intent`` and ``entities``.
+
+
+API Nodes
+=========
+
+It is often useful for ChatFlow agents to interact with the external world. This
+can be accomplished easily in ChatFlow through the use of nodes that wrap
+existing developer APIs for services such as Uber, Yelp, Movies,
+Google, and Amazon. The options are almost limitless. ChatFlow includes
+a few such nodes pre-built, with more to be added based in part by community
+demand.
+
+Additionally, the **http request** node can perform arbitrary http requests, so
+the opportunities to connect with the external world are endless!
+
+Summary
+=======
+
+The basic node types used in most ChatFlow conversations are:
+
+**Input Nodes**
+  Nodes that generate a message based on external user input,
+  (usually a natural language utterance)
+
+**Output Nodes**
+  Nodes that send what the system wants to say to the user out to the
+  appropriate output channel
+
+**Enter Nodes**
+  Nodes that acts as an entry point to a specific **branch** of the Flow by
+  setting of *entrance conditions*
+
+**State Nodes**
+  Nodes that define what the bot does, says, and how the conversational
+  context is updated
+
+**NLU Node**
+  Nodes that map natural language input utterances into a set of symbols that
+  can be manipulated by the rest of the conversational flow
+
+**Router Node**
+  Nodes that is responsible for choosing what system of actions to perform
+  during each conversational turn
+
+**API Nodes & HTTP Request Nodes**
+  Nodes that interact with APIs and web links allowing your bot to interact with
+  the outside world
+
+.. tip:: There are many other types of nodes in ChatFlow! Check out the **Info Tab** to
+    learn more about how they work!

@@ -1,0 +1,379 @@
+.. _oauth2:
+
+=====================
+OAuth2/Uber Tutorials
+=====================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+In this tutorial, we use OAuth2 Request node to make HTTP(S) requests requiring OAuth2
+app authentication with user authorization. OAuth2 authorization is helpful when your bot
+needs to take actions on behalf of the user.
+
+This tutorial assumes:
+  - you know how to create applications
+  - you know how to add nodes
+  - you have an Uber account
+
+
+By the end of this tutorial, you will be able to:
+  * Configure Oauth2 Nodes
+  * Test the Oauth2 authorization
+  * Reuse Access Tokens
+
+.. note::
+    The OAuth2 request node is only usable in scenarios when a user has an access to a browser and can
+    open links provided by an application. For example: using it in an app that communicates with
+    SMS messages may not be a good idea, because some old feature phones don't have any web browsers or
+    users don't want to or can't use their data connection.
+
+Uber Oauth2 Video Tutorial
+--------------------------
+
+Here is a video tutorial walking you through the Uber Oauth2 configuration process:
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/ElKDTwMxKnU"
+      frameborder="0" allowfullscreen></iframe>
+   <br><br><br>
+
+Simple Descripton of OAuth2 Flow
+================================
+
+1. The application asks the service to provide access credentials for user account and given scope of data/resources,
+   by asking the user to open a specially crafted link in a browser. The link opens a page provided by the service.
+2. If the user accepts, then the service redirects the browser to a predefined application page,
+   passing a special one-use token.
+3. The application exchanges the received one-use token for a multi-use access token (using the service, via server-to-server request).
+4. The application can use the access token to make requests that retrieve user-related resources.
+
+The access token can be used many times, but can expire. The expiration time can be as short as one
+hour or as long as one month (there is no rule, you have to check the service documentation).
+
+The service can provide a special refresh token that can be used to get a new access token without user interaction.
+This token can expire too (it's service-dependent).
+
+The OAuth2 Request node manages token acqusition and refreshing automatically.
+
+Creating an Uber Access Bot
+===========================
+
+Registering an application in Uber service
+------------------------------------------
+
+Go to `Uber Developer Dashboard <https://developer.uber.com/dashboard>`_. Press the "+New App" button.
+Select "Rides API", enter your app name, description, read the terms and if you agree with them,
+fill the corresponding checkbox, press the "Create" button. That's all (for now), we'll be back here later.
+
+1. Creating the bot
+-------------------
+
+1. Create a new application.
+
+2. Add the following nodes to the flow:
+   - Chat In
+   - Chat Out
+   - router
+   - 3x enter
+   - function
+   - OAuth2 Request
+   - 4x state (yes, one more than enter states)
+
+3. Connect the nodes in the following manner:
+
+.. image:: _static/img/oauth2/oauth2-connected.png
+   :align: center
+
+4. Edit the first enter node, name it "start", remove the existing (empty) condition and check the "Initial state" option.
+   Skip the first state node.
+
+.. image:: _static/img/oauth2/oauth2-start.png
+   :align: center
+
+
+5. Edit the second enter node, name it "get profile", let it check the payload for ``profile``.
+
+.. image:: _static/img/oauth2/oauth2-enter-get-profile.png
+  :align: center
+
+6. Edit the function node, name it "clear payload" and enter the following code in the function body:
+
+.. code-block:: javascript
+
+   msg.payload = null;
+
+   return msg;
+
+.. image:: _static/img/oauth2/oauth2-func-clear-payload.png
+   :align: center
+
+2. Configuring the OAuth2 Node
+------------------------------
+
+Now comes the fun part, we'll set up the OAuth2 Request node, so double click it to open the editor.
+
+1.  Name the Oauth 2 "uber profile"
+2.  Enter ``profile history places`` in the "Scopes" field.
+3.  Set method to ``GET``.
+4.  Enter ``https://api.uber.com/v1/me`` in the URL field.
+
+.. image:: _static/img/oauth2/oauth2-uber-req.png
+         :align: center
+
+Upon user authorization, the URL field will immediately make a request to ``https://api.uber.com/v1/me``
+and fetch your profile information.  You can optionally leave this field empty, then upon user authorization
+the OAuth2 node will just output obtained credentials specificed in the next step (by default to ``msg.kitt.oauth2``).
+
+.. note::
+    Credentials are stored by assigning them to defined scopes. If you have many OAuth2 Request nodes in the same app
+    (or even in many apps if they share OAuth2 credentials),
+    you may want to use the biggest common set of scopes, so user will have to authorize your app only once
+    (and give access every piece of data you want at once).
+
+5. Click on the pencil icon in the "Configuration" line to add a new configuration:
+6. Name it "uber".
+7. Go to the `Uber Developer Dashboard`_,
+   open your application details, copy "Client ID" and "Client secret" to OAuth2 Configuration in ChatFlow,
+
+.. image:: _static/img/oauth2/oauth2-uber-creds.png
+   :align: center
+
+.. warning:: Don't try to copy those values from this tutorial, data shown here is fake.
+
+8. Enter ``https://login.uber.com`` in the "Authorization host" field.
+9. Enter ``/oauth/v2/authorize`` in the "Authorization endpoint" field.
+10. Enter ``/oauth/v2/token`` in the "Token exchange endpoint" field.
+11. Change the "Where credentials are kept" value to ``kitt.oauth2``
+12. Click on the gray "Redirect URL" field to copy its value to your clipboard.
+13. You can save settings in both dialog windows now.
+
+.. image:: _static/img/oauth2/oauth2-uber-config.png
+   :align: center
+
+.. note::
+  OAuth2 request node tries to reuse credentials it obtained in the past, so the user isn't bothered
+  with clicking on links on each request. The acquired credentials are kept in the specified property
+  of a message. By using the value ``kitt.oauth2``, we can keep those credentials in the "dialogue" (session) storage.
+  You can use the data saved in this property to keep credentials in some more persistent storage (like a database).
+
+14. Go to your application in "Uber Developer Dashboard", switch to "Authorizations" tab and paste the address you copied
+    into the "Redirect URL" field. You also have to enter any valid http address in the "Privacy policy url" (it's a required field).
+
+.. image:: _static/img/oauth2/oauth2-uber-redirect.png
+   :align: center
+
+15. Enable ``profile``, ``places`` and ``history`` in the General Scopes section. Don't forget to save those settings.
+
+.. image:: _static/img/oauth2/oauth2-uber-scopes.png
+   :align: center
+
+16. Edit the second state node (the one connected to the upper OAuth2 output), name it "authorize app"
+    and enter the following code in the function body:
+
+.. code-block:: javascript
+
+ msg.kitt._responses = ['Please authorize this app: ' + msg.oauth2.url];
+
+ return msg;
+
+.. image:: _static/img/oauth2/oauth2-state-authorize.png
+   :align: center
+
+.. note::
+  The first (upper) output of this node is used to ask the user for authorization to access his/her data.
+  If the OAuth2 node can use credentials (access token plus other data) that it acquired previously,
+  this node can proceed without asking the user to accept the access again so long
+  as those credentials are still valid.
+
+  Only when the user authorizes the access, the OAuth2 request node will proceed.
+
+
+17. Edit the third state node (the one connected to the lower OAuth2 output), name it "greet"
+    and enter the following code in the function body:
+
+.. code-block:: javascript
+
+   msg.kitt._responses = ['Hello, ' + msg.payload.first_name + '!'];
+
+   return msg;
+
+.. image:: _static/img/oauth2/oauth2-state-greet.png
+   :align: center
+
+.. note::
+   The second output of the OAuth2 Request node is used to pass the data received from the server.
+   It's mostly compatible with the HTTP Request node output.
+
+18. Edit the third enter node, name it "end conversation", let it check the payload for ``bye``.
+
+.. image:: _static/img/oauth2/oauth2-enter-end.png
+   :align: center
+
+19. Edit the fourth state node, name it "end", you can leave the function body unchanged, set the
+    "Output text" to ``Good bye!`` and enable the "Dialogue ends here" option.
+
+.. image:: _static/img/oauth2/oauth2-state-end.png
+   :align: center
+
+The complete application flow should look like this:
+
+    .. image:: _static/img/oauth2/oauth2-complete.png
+       :align: center
+
+If you have had any problems, you can `download an example application <_static/json/oauth2-uber-chat.json>`_,
+all you have to do is fill in the "Client ID" and "Client Secret" fields.
+
+3. Testing the Application
+--------------------------
+
+Now you can test your application. Open the Chat panel and send a ``profile`` message.
+The application should ask you to authorize its access to your data. Click on the provided link
+and press "Accept" on the Uber page. After that, the application should greet you with your first name (read from your Uber profile).
+
+If you send a ``profile`` message again, then the application will make a request again, but because it has
+obtained valid credentials (access token) previously, it can do it without asking you to authorize it again.
+
+When you send a ``bye`` message, then the dialogue (session) will end and those credentials will be forgotten.
+
+.. image:: _static/img/oauth2/oauth2-chat.png
+   :align: center
+
+4. Reusing Access Tokens
+------------------------
+
+Now let's assume that credentials are kept in some persistent storage and use two requests to access different resources.
+For simplicity of this tutorial we won't use any "real" storage yet.
+
+1. Open the configuration editor in OAuth2 Request node and change the field named "Where credentials are kept" to ``uber_oauth2``.
+Data stored in ``msg.kitt.*`` is persisted in the dialog (session) storage by the router node, but data stored in other properties of ``msg`` is not.
+Leave the rest of the fields unchanged.
+If you deploy and test the application now, you will see that the user is asked for authorization every time we want to access his/her profile.
+
+.. image:: _static/img/oauth2/oauth2_adv_credentials.png
+   :align: center
+
+
+2. Now add two function nodes. Connect one between the "Chat In" and the router, and another between the router and the "Chat out" node, so it will look like this:
+
+.. note::
+    If you drop a node from the palette on an existing connection, the connection will "split" and the new node will be automatically connected.
+
+.. image:: _static/img/oauth2/oauth2_adv_storage.png
+   :align: center
+
+3. Edit the function node placed before the router, name it "restore credentials" and enter the following code in the function body:
+
+.. code-block:: javascript
+
+ msg.uber_oauth2 = global.get('mockDatabase');
+
+ return msg;
+
+.. image:: _static/img/oauth2/oauth2_adv_restore_credentials.png
+   :align: center
+
+.. note::
+    We're using the global application storage as a mock database. As you're the only possible user of the application,
+    you don't have to know which user the credentials object belong to.
+    In a real-world scenario you'd have to store credentials in some collection/table where the user
+    identifier is the (primary) key.
+
+    This is very important, because if you do it the "wrong" way (like in this simplified example),
+    you will give access to protected resources to users not "owning" these resources.
+
+
+4. Edit the function node placed after the router, name it "save credentials" and enter the following code in the function body:
+
+.. code-block:: javascript
+
+ if (msg.uber_oauth2) {
+     global.set('mockDatabase', msg.uber_oauth2);
+ }
+
+.. image:: _static/img/oauth2/oauth2_adv_save_credentials.png
+   :align: center
+
+5. Now the application will ask for credentials **only once**, but let's not stop here and let's
+add a second "command" that will access another Uber resource. Do this by adding following nodes to the flow:
+
+    - enter
+    - function
+    - OAuth2 Request
+    - state
+
+6. Connect the new nodes like in the example below. Don't forget to link the first output of the new OAuth2 Request node to
+the existing state node called "authorize app". Existing nodes and connections were "faded out" in the image below.
+
+.. image:: _static/img/oauth2/oauth2_adv_new_nodes.png
+   :align: center
+
+7. Edit the added enter node, name it "get history" and let check the payload for ``history``.
+
+.. image:: _static/img/oauth2/oauth2_adv_enter_history.png
+   :align: center
+
+8. Copy the contents of the existing "clear payload" function node to the new function node (so after this step there are two "clear payload" function nodes).
+
+9. Edit the second OAuth2 Request node like you did before:
+
+    i. Name it "uber history"
+    ii. Use the existing configration called ``uber``.
+    iii. Enter ``profile history places`` in the "Scopes" field (the same as those used by the first request node, this is important).
+    iv. Set method to ``GET``.
+    v. Enter ``https://api.uber.com/v1.2/history`` in the URL field.
+
+.. image:: _static/img/oauth2/oauth2_adv_request.png
+   :align: center
+
+
+10. Edit the last added state node, name it "print places", and enter the following code in the function body:
+
+.. code-block:: javascript
+
+ var response = 'You ordered ' + msg.payload.count + ' rides.';
+
+ if (msg.payload.history.length > 0) {
+    response += ' The first one started in ' + msg.payload.history[0].start_city.display_name + '.';
+ }
+
+ msg.kitt._responses = [response];
+
+ return msg;
+
+.. image:: _static/img/oauth2/oauth2_adv_print_places.png
+   :align: center
+
+
+11. Now you can test your application again. If you authorized it after setting up the "save credentials" node, you will see that it won't ask for authorization.
+    Once more - if you end the dialogue session by sending "bye", and use commands accessing Uber resources, you will see that the app will reuse the
+    credentials it obtained and stored in the mock "database" (``global`` object).
+
+.. image:: _static/img/oauth2/oauth2_adv_chat_test.png
+   :align: center
+
+The completed application after this part should look like the one below:
+
+.. image:: _static/img/oauth2/oauth2_adv_complete.png
+   :align: center
+
+You can download the source code of this application :download:`here <_static/json/oauth2-uber-chat-adv.json>`.

@@ -1,0 +1,167 @@
+.. _debug:
+
+==================
+Debug ChatFlow
+==================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+Introduction
+============
+
+In this tutorial, we will demonstrate how to use the debug function in ChatFlow.
+
+By the end of this tutorial you will be able to
+  * Enter Debug Mode in ChatFlow
+  * Check the output of a node
+  * Set a breakpoint in your app
+  * Walk through your app breakpoint by breakpoint
+  * Walk through your app step by step
+
+Getting Started
+===============
+
+1. Download the :download:`Line By Line Sample Application JSON <_static/json/YelpTelegramBot.json>`
+   and import it using the import it to ChatFlow.
+
+.. image:: _static/img/buildabot/import.png
+    :align: center
+
+Openning the Debug Tab
+______________________
+
+2. To toggle the **Info & Debug Tabs**, click on Click on "≡" in the upper right hand
+   corner of the Canvas to toggle.
+
+   .. image:: _static/img/quickstart/triplebar.png
+        :align: center
+        :scale: 50%
+
+3. To open the Debug Tab, click on **Debug** on the right hand corner of the tab.
+
+   .. image:: _static/img/quickstart/debugtab.png
+        :align: center
+        :scale: 50%
+
+.. hint:: You can clear the content of the debug tab by clicking on the red
+      trashcan.
+
+The Debug Node
+______________
+
+The Debug outputs the output of the connected node to the Debug Tab.
+
+.. hint:: This is a great tool to figure out what a node is outputting. Simply
+      connect and watch the node's output populate the debug node.
+
+.. image:: _static/img/debug/debug.png
+    :align: center
+
+4. Add a debug and connect it to the "4" state.
+
+.. image:: _static/img/debug/addDebug.png
+    :align: center
+    :scale: 50%
+
+Adding in Breakpoints
+_____________________
+
+Breakpoints and the Stepping functionality can be found in the **Debug Toolbar**
+at the bottom of the Canvas.
+
+.. image:: _static/img/debug/DebugToolbar.png
+    :align: center
+    :scale: 50%
+
+5. Click on the red break point in the debug toolbar and drag it to the output
+   of the "1" enter node and to the input of the "2" enter node.
+
+.. image:: _static/img/debug/breakpoint.png
+    :align: center
+    :scale: 50%
+
+Moving Line by Line
+===================
+
+Deploying in Debug mode
+_______________________
+
+1. Click on "Deploy".
+
+.. image:: _static/img/quickstart/deploy.png
+    :align: center
+
+2. Once the application has deployed, open the Deploy drop down menu and click
+   on **Switch to Debug**.
+
+.. image:: _static/img/debug/switch.png
+    :align: center
+    :scale: 50%
+
+Moving Step by Step
+___________________
+
+3. Open the Chat Tab and send the string "1" to your application.
+
+4. The app should shop at the first breakpoint. Click on the continue button in
+   the debug toolbar to continue onto the next breakpoint.
+
+.. image:: _static/img/debug/continue.png
+    :align: center
+
+.. note:: As you progress through the flow, the debug node you added will
+      send its output to the Debug Tab.
+
+The process should look something like this:
+
+.. raw:: html
+
+  <video width="640"  controls>
+    <source src="_static/img/debug/Continue.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br> <br> <br>
+
+5. In the Chat Tab, send the string "1" again.
+
+6. In the debug toolbar, click on the step button to move step by step to move
+   node by node.
+
+.. image:: _static/img/debug/step.png
+    :align: center
+
+The process should look something like this:
+
+.. raw:: html
+
+ <video width="640"  controls>
+   <source src="_static/img/debug/Step.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+ </video>
+ <br> <br> <br>
+
+Feel free to play around with the debug tools in you application!
+
+Print inside your code
+======================
+
+The debug toolbar gives you freedom to pause among nodes, but not from *inside* nodes.
+You can use the ``node.log()`` function in both the *function* and *state* nodes to
+print a message to the debug panel.

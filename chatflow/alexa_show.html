@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Alexa Echo Show Skill Tutorials &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="OAuth2/Uber Tutorials" href="oauth2.html"/>
+        <link rel="prev" title="Advanced Alexa Skill NLU Tutorial" href="alexa_nlu.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://chatflow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/chatflow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">Debug ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A Conversational Yelp Bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skype.html">Skype Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Alexa Echo Show Skill Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-a-meow-alexa-skill">Create a Meow Alexa skill</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-the-echo-show-simple-application-chatflow-app">1. Create the Echo Show simple application chatflow app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-alexa-interaction-model">2. Create Alexa Interaction Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intent-schema">Intent Schema</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sample-utterances">Sample Utterances</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#create-an-alexa-skill">3. Create an Alexa skill</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#skill-information">Skill Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ssl-certificate">SSL Certificate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#test">Test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finishing-up">Finishing up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#picture-and-video-display-explained">Picture and video display explained</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-msg-alexa-directives-variable">The <code class="docutils literal"><span class="pre">msg.alexa.directives</span></code> variable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Alexa Echo Show Skill Tutorials</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/alexa_show.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="alexa-echo-show-skill-tutorials">
+<h1><a class="toc-backref" href="#id2">Alexa Echo Show Skill Tutorials</a><a class="headerlink" href="#alexa-echo-show-skill-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#alexa-echo-show-skill-tutorials" id="id2">Alexa Echo Show Skill Tutorials</a><ul>
+<li><a class="reference internal" href="#introduction" id="id3">Introduction</a></li>
+<li><a class="reference internal" href="#create-a-meow-alexa-skill" id="id4">Create a Meow Alexa skill</a><ul>
+<li><a class="reference internal" href="#create-the-echo-show-simple-application-chatflow-app" id="id5">1. Create the Echo Show simple application chatflow app</a></li>
+<li><a class="reference internal" href="#create-alexa-interaction-model" id="id6">2. Create Alexa Interaction Model</a><ul>
+<li><a class="reference internal" href="#intent-schema" id="id7">Intent Schema</a></li>
+<li><a class="reference internal" href="#sample-utterances" id="id8">Sample Utterances</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-an-alexa-skill" id="id9">3. Create an Alexa skill</a><ul>
+<li><a class="reference internal" href="#skill-information" id="id10">Skill Information</a></li>
+<li><a class="reference internal" href="#configuration" id="id11">Configuration</a></li>
+<li><a class="reference internal" href="#ssl-certificate" id="id12">SSL Certificate</a></li>
+<li><a class="reference internal" href="#test" id="id13">Test</a></li>
+<li><a class="reference internal" href="#finishing-up" id="id14">Finishing up</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#picture-and-video-display-explained" id="id15">Picture and video display explained</a><ul>
+<li><a class="reference internal" href="#the-msg-alexa-directives-variable" id="id16">The <code class="docutils literal"><span class="pre">msg.alexa.directives</span></code> variable</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial, we will introduce how to configure a ChatFlow app to create a simple Alexa skill that shows a cat picture or a cat video.</p>
+<p>By the end of this tutorial, you will be able to display a cat picture or video on the Echo Show.</p>
+<p>Here is an example of the skill in action:</p>
+<video width="640" style="display:block; margin: 0 auto;" controls>
+  <source src="_static/img/alexa/AlexaEchoShowDemo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<br> <br></div>
+<div class="section" id="create-a-meow-alexa-skill">
+<h2><a class="toc-backref" href="#id4">Create a Meow Alexa skill</a><a class="headerlink" href="#create-a-meow-alexa-skill" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-the-echo-show-simple-application-chatflow-app">
+<h3><a class="toc-backref" href="#id5">1. Create the Echo Show simple application chatflow app</a><a class="headerlink" href="#create-the-echo-show-simple-application-chatflow-app" title="Permalink to this headline">¶</a></h3>
+<p>Go to <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> and create a new application using the sample application “Echo Show simple application”:</p>
+<img alt="_images/alexa-display-chatflow.jpeg" class="align-center" src="_images/alexa-display-chatflow.jpeg" />
+<p>This app listens on incoming message sent from your Echo device through the
+<strong>Alexa In</strong> node and replies it with the <strong>Alexa Out</strong> node, and the reply messages
+will display a cat on Echo Show.</p>
+</div>
+<div class="section" id="create-alexa-interaction-model">
+<h3><a class="toc-backref" href="#id6">2. Create Alexa Interaction Model</a><a class="headerlink" href="#create-alexa-interaction-model" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="intent-schema">
+<h4><a class="toc-backref" href="#id7">Intent Schema</a><a class="headerlink" href="#intent-schema" title="Permalink to this headline">¶</a></h4>
+<p>The Intent Schema will contain only user-defined intent and slot. If you need any Amazon default intent, please manually add them.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;AnotherCatIntent&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;ShowCatPictureIntent&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;ShowCatVideoIntent&quot;</span>
+        <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sample-utterances">
+<h4><a class="toc-backref" href="#id8">Sample Utterances</a><a class="headerlink" href="#sample-utterances" title="Permalink to this headline">¶</a></h4>
+<p>Sample utterances are all utterances in the project, with intents marked within utterances. It follows the old verbose style, and you can migrate to new improved interfaces.</p>
+<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">ShowCatPictureIntent</span> <span class="n">show</span> <span class="n">me</span> <span class="n">a</span> <span class="n">cat</span>
+<span class="n">ShowCatPictureIntent</span> <span class="n">I</span> <span class="n">want</span> <span class="n">a</span> <span class="n">cat</span> <span class="n">picture</span>
+<span class="n">ShowCatPictureIntent</span> <span class="n">could</span> <span class="n">you</span> <span class="n">please</span> <span class="n">give</span> <span class="n">me</span> <span class="n">a</span> <span class="n">cat</span> <span class="n">picture</span>
+<span class="n">ShowCatPictureIntent</span> <span class="n">a</span> <span class="n">cat</span> <span class="n">picture</span> <span class="n">please</span>
+<span class="n">AnotherCatIntent</span> <span class="n">next</span>
+<span class="n">AnotherCatIntent</span> <span class="n">I</span> <span class="n">want</span> <span class="n">another</span> <span class="n">one</span>
+<span class="n">AnotherCatIntent</span> <span class="n">next</span> <span class="n">one</span> <span class="n">please</span>
+<span class="n">AnotherCatIntent</span> <span class="n">can</span> <span class="n">you</span> <span class="n">give</span> <span class="n">me</span> <span class="n">another</span> <span class="n">one</span>
+<span class="n">AnotherCatIntent</span> <span class="k">continue</span>
+<span class="n">AnotherCatIntent</span> <span class="n">I</span> <span class="n">want</span> <span class="n">another</span> <span class="n">one</span>
+<span class="n">ShowCatPictureIntent</span> <span class="n">give</span> <span class="n">me</span> <span class="n">a</span> <span class="n">cat</span>
+<span class="n">ShowCatVideoIntent</span> <span class="n">show</span> <span class="n">me</span> <span class="n">a</span> <span class="n">cat</span> <span class="n">video</span>
+<span class="n">ShowCatVideoIntent</span> <span class="n">can</span> <span class="n">you</span> <span class="n">give</span> <span class="n">me</span> <span class="n">a</span> <span class="n">cat</span> <span class="n">video</span>
+<span class="n">ShowCatVideoIntent</span> <span class="n">play</span> <span class="n">a</span> <span class="n">cat</span> <span class="n">show</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="create-an-alexa-skill">
+<h3><a class="toc-backref" href="#id9">3. Create an Alexa skill</a><a class="headerlink" href="#create-an-alexa-skill" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Log in to Amazon <a class="reference external" href="https://developer.amazon.com/edw/home.html">developer console</a>
+and click “ALEXA” to get started with the <strong>Alexa Skills Kit</strong>:</li>
+</ol>
+<img alt="_images/alexa-get-started.png" class="align-center" src="_images/alexa-get-started.png" />
+<div class="section" id="skill-information">
+<h4><a class="toc-backref" href="#id10">Skill Information</a><a class="headerlink" href="#skill-information" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="2">
+<li>In <strong>Skill Information</strong>, pick a skill name and invocation name, and select <strong>Yes</strong> on <strong>Audio Player</strong>, <strong>Yes</strong> on <strong>Video App</strong> and <strong>Yes</strong> on <strong>Render Template</strong>:</li>
+</ol>
+<img alt="_images/meow-skill-information.jpeg" class="align-center" src="_images/meow-skill-information.jpeg" />
+<ol class="arabic simple" start="3">
+<li>In <strong>Interaction Model</strong>, input <strong>Intent Schema</strong> you got, and then click <strong>add missing intents</strong> button and <strong>Add Pause/Resume intents</strong> button:</li>
+</ol>
+<img alt="_images/meow-skill-Intent.jpeg" class="align-center" src="_images/meow-skill-Intent.jpeg" />
+<ol class="arabic simple" start="4">
+<li>In <strong>Sample Utterances</strong>, input <strong>Sample Utterances</strong> you got.</li>
+</ol>
+</div>
+<div class="section" id="configuration">
+<h4><a class="toc-backref" href="#id11">Configuration</a><a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="5">
+<li>Paste the “Final URL” from <strong>Alexa In</strong> node and choose the <strong>North America</strong> region:</li>
+</ol>
+<img alt="_images/skill-config.png" class="align-center" src="_images/skill-config.png" />
+</div>
+<div class="section" id="ssl-certificate">
+<h4><a class="toc-backref" href="#id12">SSL Certificate</a><a class="headerlink" href="#ssl-certificate" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="6">
+<li>Select the wildcard SSL certificate option (the second option):</li>
+</ol>
+<img alt="_images/skill-ssl.png" class="align-center" src="_images/skill-ssl.png" />
+</div>
+<div class="section" id="test">
+<h4><a class="toc-backref" href="#id13">Test</a><a class="headerlink" href="#test" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="7">
+<li>Test your application before deployment. Simply input “show me a cat” to
+inspect the output from your Chatflow app.</li>
+</ol>
+<img alt="_images/meow-skill-test.png" class="align-center" src="_images/meow-skill-test.png" />
+</div>
+<div class="section" id="finishing-up">
+<h4><a class="toc-backref" href="#id14">Finishing up</a><a class="headerlink" href="#finishing-up" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple" start="8">
+<li>Fill in the forms from <strong>Publishing Information</strong> and <strong>Privacy &amp; Compliance*</strong>.</li>
+</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last"><em>Do not</em> click “Submit for Certification”.</p>
+</div>
+<ol class="arabic simple" start="9">
+<li>Open up your Alexa companion app from cellphone. Under “Your skills”, you should
+see your Copy Cat skill.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Unpublished skills are only available to you!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="picture-and-video-display-explained">
+<h2><a class="toc-backref" href="#id15">Picture and video display explained</a><a class="headerlink" href="#picture-and-video-display-explained" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-msg-alexa-directives-variable">
+<h3><a class="toc-backref" href="#id16">The <code class="docutils literal"><span class="pre">msg.alexa.directives</span></code> variable</a><a class="headerlink" href="#the-msg-alexa-directives-variable" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal"><span class="pre">msg.alexa.directives</span></code>, if present, holds an array of directives, which is the directive used to display content or play audio and video on Echo Show.</p>
+<ol class="arabic simple">
+<li>To display image, text on screen of Echo Show, you can use <a class="reference external" href="https://developer.amazon.com/docs/custom-skills/display-interface-reference.html">Display.RenderTemplate</a> directive.</li>
+<li>To play video on the screen on Echo Show, you can use <a class="reference external" href="https://developer.amazon.com/docs/custom-skills/videoapp-interface-reference.html">VideoApp.Launch</a> directive.</li>
+<li>To play audio on the screen on Echo Show, you can use <a class="reference external" href="https://developer.amazon.com/docs/custom-skills/audioplayer-interface-reference.html">AudioPlayer.Play</a>, etc. directive.</li>
+</ol>
+<p>For example, to display a picture, we set <code class="docutils literal"><span class="pre">msg.alexa.directives</span></code> with the following code.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">alexa</span><span class="p">.</span><span class="nx">directives</span> <span class="o">=</span> <span class="p">[</span>
+<span class="p">{</span>
+    <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;Display.RenderTemplate&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;template&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;BodyTemplate1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;token&quot;</span><span class="o">:</span> <span class="s2">&quot;cat&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;A cat.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;backgroundImage&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;sources&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;url&quot;</span><span class="o">:</span> <span class="s2">&quot;https://random.cat/i/pimgpsh_thumbnail_win_distr.jpg&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;size&quot;</span><span class="o">:</span> <span class="s2">&quot;X_LARGE&quot;</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;textContent&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;primaryText&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;RichText&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;text&quot;</span><span class="o">:</span> <span class="s1">&#39;Here is a cat.&#39;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">]</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span> <span class="o">=</span> <span class="s1">&#39;Here is a cat.&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To display a video, we set <code class="docutils literal"><span class="pre">msg.alexa.directives</span></code> with the following code.</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">alexa</span><span class="p">.</span><span class="nx">directives</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;VideoApp.Launch&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;videoItem&quot;</span><span class="o">:</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;source&quot;</span><span class="o">:</span> <span class="s1">&#39;https://zufang.bj.bcebos.com/v1/%E8%BF%90%E8%90%A5%E7%B4%A0%E6%9D%90/cat3-1506654465115.mp4&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;metadata&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;title&quot;</span><span class="o">:</span> <span class="s2">&quot;Here is a cat video&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;subtitle&quot;</span><span class="o">:</span> <span class="s2">&quot;Here is a cat video&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">];</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">alexa</span><span class="p">.</span><span class="nx">shouldEndSessionDisallowed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">we set <code class="docutils literal"><span class="pre">msg.alexa.shouldEndSessionDisallowed</span> <span class="pre">=</span> <span class="pre">true;</span></code>, because the response to display a video on a echo show shouldn’t include a <code class="docutils literal"><span class="pre">shouldEndSession</span></code> key.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">for now, we only support <code class="docutils literal"><span class="pre">Display</span> <span class="pre">directives</span></code>, <code class="docutils literal"><span class="pre">Video</span> <span class="pre">directives</span></code> and <code class="docutils literal"><span class="pre">Audio</span> <span class="pre">directives</span></code>. So if you use <code class="docutils literal"><span class="pre">Dialog</span> <span class="pre">Directives</span></code> or <code class="docutils literal"><span class="pre">Delegate</span> <span class="pre">Directives</span></code>, something may go wrong.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="oauth2.html" class="btn btn-neutral float-right" title="OAuth2/Uber Tutorials" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="alexa_nlu.html" class="btn btn-neutral" title="Advanced Alexa Skill NLU Tutorial" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Nov 02, 2017.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

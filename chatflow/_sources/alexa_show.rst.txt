@@ -1,0 +1,228 @@
+.. _alexa_show:
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+
+====================================
+Alexa Echo Show Skill Tutorials
+====================================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+
+Introduction
+============
+
+In this tutorial, we will introduce how to configure a ChatFlow app to create a simple Alexa skill that shows a cat picture or a cat video.
+
+By the end of this tutorial, you will be able to display a cat picture or video on the Echo Show.
+
+Here is an example of the skill in action:
+
+.. raw:: html
+
+   <video width="640" style="display:block; margin: 0 auto;" controls>
+     <source src="_static/img/alexa/AlexaEchoShowDemo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br>
+
+Create a Meow Alexa skill
+=========================
+
+1. Create the Echo Show simple application chatflow app
+-------------------------------------------------------
+Go to ChatFlow_ and create a new application using the sample application "Echo Show simple application":
+
+.. image:: _static/img/alexa/alexa-display-chatflow.jpeg
+   :align: center
+
+This app listens on incoming message sent from your Echo device through the
+**Alexa In** node and replies it with the **Alexa Out** node, and the reply messages
+will display a cat on Echo Show.
+
+2. Create Alexa Interaction Model
+---------------------------------
+Intent Schema
+*************
+
+The Intent Schema will contain only user-defined intent and slot. If you need any Amazon default intent, please manually add them.
+
+.. code-block:: javascript
+
+    {
+        "intents": [
+            {
+                "intent": "AnotherCatIntent"
+            }, 
+            {
+                "intent": "ShowCatPictureIntent"
+            }, 
+            {
+                "intent": "ShowCatVideoIntent"
+            }
+        ]
+    }
+
+Sample Utterances
+*****************
+
+Sample utterances are all utterances in the project, with intents marked within utterances. It follows the old verbose style, and you can migrate to new improved interfaces.
+
+.. code-block:: java
+
+    ShowCatPictureIntent show me a cat
+    ShowCatPictureIntent I want a cat picture
+    ShowCatPictureIntent could you please give me a cat picture
+    ShowCatPictureIntent a cat picture please
+    AnotherCatIntent next
+    AnotherCatIntent I want another one
+    AnotherCatIntent next one please
+    AnotherCatIntent can you give me another one
+    AnotherCatIntent continue
+    AnotherCatIntent I want another one
+    ShowCatPictureIntent give me a cat
+    ShowCatVideoIntent show me a cat video
+    ShowCatVideoIntent can you give me a cat video
+    ShowCatVideoIntent play a cat show
+
+3. Create an Alexa skill
+----------------------------
+1. Log in to Amazon `developer console <https://developer.amazon.com/edw/home.html>`_
+   and click "ALEXA" to get started with the **Alexa Skills Kit**:
+
+.. image:: _static/img/alexa/alexa-get-started.png
+   :align: center
+
+Skill Information
+*****************
+2. In **Skill Information**, pick a skill name and invocation name, and select **Yes** on **Audio Player**, **Yes** on **Video App** and **Yes** on **Render Template**:
+
+.. image:: _static/img/alexa/meow-skill-information.jpeg
+   :align: center
+
+3. In **Interaction Model**, input **Intent Schema** you got, and then click **add missing intents** button and **Add Pause/Resume intents** button:
+
+.. image:: _static/img/alexa/meow-skill-Intent.jpeg
+   :align: center
+
+4. In **Sample Utterances**, input **Sample Utterances** you got.
+
+Configuration
+*************
+
+5. Paste the "Final URL" from **Alexa In** node and choose the **North America** region:
+
+.. image:: _static/img/alexa/skill-config.png
+   :align: center
+
+SSL Certificate
+***************
+
+6. Select the wildcard SSL certificate option (the second option):
+
+.. image:: _static/img/alexa/skill-ssl.png
+   :align: center
+
+Test
+****
+
+7. Test your application before deployment. Simply input "show me a cat" to
+   inspect the output from your Chatflow app.
+
+.. image:: _static/img/alexa/meow-skill-test.png
+   :align: center
+
+Finishing up
+************
+
+8. Fill in the forms from **Publishing Information** and **Privacy & Compliance***.
+
+.. warning:: *Do not* click "Submit for Certification".
+
+9. Open up your Alexa companion app from cellphone. Under "Your skills", you should
+   see your Copy Cat skill.
+
+.. note:: Unpublished skills are only available to you!
+
+
+Picture and video display explained
+=======================================
+The ``msg.alexa.directives`` variable
+---------------------------------------
+``msg.alexa.directives``, if present, holds an array of directives, which is the directive used to display content or play audio and video on Echo Show. 
+
+1. To display image, text on screen of Echo Show, you can use `Display.RenderTemplate <https://developer.amazon.com/docs/custom-skills/display-interface-reference.html>`_ directive.
+2. To play video on the screen on Echo Show, you can use `VideoApp.Launch <https://developer.amazon.com/docs/custom-skills/videoapp-interface-reference.html>`_ directive.
+3. To play audio on the screen on Echo Show, you can use `AudioPlayer.Play <https://developer.amazon.com/docs/custom-skills/audioplayer-interface-reference.html>`_, etc. directive.
+
+For example, to display a picture, we set ``msg.alexa.directives`` with the following code.
+
+.. code-block:: javascript
+
+    msg.alexa.directives = [
+    {
+        "type": "Display.RenderTemplate",
+        "template": {
+            "type": "BodyTemplate1",
+            "token": "cat",
+            "title": "A cat.",
+            "backgroundImage": {
+                "sources": [
+                    {
+                        "url": "https://random.cat/i/pimgpsh_thumbnail_win_distr.jpg",
+                        "size": "X_LARGE"
+                    }
+                ]
+            },
+            "textContent": {
+                "primaryText": {
+                    "type": "RichText",
+                    "text": 'Here is a cat.'
+                }
+            }
+        }
+    }
+    ]
+    msg.payload = 'Here is a cat.';
+
+    
+
+To display a video, we set ``msg.alexa.directives`` with the following code.
+
+.. code-block:: javascript
+
+    msg.alexa.directives = [
+        {
+            "type": "VideoApp.Launch",
+            "videoItem":
+            {
+                "source": 'https://zufang.bj.bcebos.com/v1/%E8%BF%90%E8%90%A5%E7%B4%A0%E6%9D%90/cat3-1506654465115.mp4',
+                "metadata": {
+                    "title": "Here is a cat video",
+                    "subtitle": "Here is a cat video"
+                }
+            }
+        }
+    ];
+    msg.alexa.shouldEndSessionDisallowed = true;
+
+.. note:: we set ``msg.alexa.shouldEndSessionDisallowed = true;``, because the response to display a video on a echo show shouldn't include a ``shouldEndSession`` key.
+.. note:: for now, we only support ``Display directives``, ``Video directives`` and ``Audio directives``. So if you use ``Dialog Directives`` or ``Delegate Directives``, something may go wrong.

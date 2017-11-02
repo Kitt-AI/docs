@@ -1,0 +1,619 @@
+.. _skype:
+
+===================
+Skype Bot Tutorials
+===================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+
+In this ChatFlow_ tutorial, we start by creating a simple Skype bot that echos
+your message. In addition, we will also show you how to build a more advanced
+Amazon Book Bot for Skype. Here is an example of the bots function:
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/skype/Demo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+By the end of this tutorial, you will be able to:
+  * Connect a ChatFlow app to Skype.
+  * Understand the Inputs and Outputs of the Skype In and Skype Out Nodes.
+  * Configure an Amazon Product Advertising Node
+  * Integrate a Split Node
+
+A Simple Echo Bot
+=================
+
+Skype Echo Bot Video Tutorial
+_____________________________
+
+Here is a video tutorial demonstrating how to configure an Echo Bot to Skype.
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/1sA-qoqlf2Y"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+1. Create a New Bot for Skype
+_____________________________
+
+1. Visit Microsoft's `New Bot Framework <https://dev.botframework.com/bots/new>`_
+   page and sign in with your Microsoft Account.
+
+  .. image:: _static/img/skype/microsoft_log_in.png
+     :align: center
+
+2. Once you have logged in, under the **Bot Profile** section, name your bot,
+   enter in your Bot's Handle, and write a short description.
+
+  .. image:: _static/img/skype/bot_profile.png
+     :align: center
+
+3. In the configriation section, click on the
+   **Create Microsoft App ID and Password**.
+
+  .. image:: _static/img/skype/create_app_id.png
+     :align: center
+
+4. In the Microsoft App ID page, enter in your apps Name.
+
+  .. image:: _static/img/skype/create_app_id.png
+     :align: center
+
+  Click 'Next' to receive your Microsoft App ID.
+
+  .. image:: _static/img/skype/Next.png
+     :align: center
+
+  Click 'Generate an App Secrete to Continue' to receive your Microsoft App
+  Secret.
+
+  .. image:: _static/img/skype/GenerateAppSecret.png
+     :align: center
+
+  .. warning:: Copy you App Secret onto your clipboard. It is the **only time** you
+      will be able to see it.
+
+  When finished, click on "Finish and Go back to Bot Framework"
+
+5. Under the Publisher Profile, enter in the Publisher Name, Publisher Email,
+   Privacy Statement, and Terms of Use.
+
+  .. image:: _static/img/skype/PublisherProfile.png
+     :align: center
+
+.. warning:: Privacy Statement and Terms of Use must be a weblink.
+
+2. Create a New ChatFlow App
+____________________________
+
+1. Go to the `apps <https://chatflow.kitt.ai/apps>`_ page.
+
+2. Click on "CREATE NEW APP" button.
+
+  .. image:: _static/img/skype/new-app.png
+     :align: center
+
+3. Under "Start with a clean project", enter your project's name and click on
+   create. To edit, click on the newly created app's name in the App List.
+
+   .. image:: _static/img/skype/create_echobot.png
+      :align: center
+
+4. In the Node Library, search for "skype" to filter skype nodes. Drag
+   **Skype In** and **Skype Out** into the workspace and connect them.
+
+   .. image:: _static/img/skype/theflow.png
+      :align: center
+      :scale: 50 %
+
+   .. note:: If the **Skype In** and **Skype Out** nodes are not in your
+       Node Library, click on Settings in the right hand corner. A drop down will
+       open. Click on Node Installer:
+
+       .. image:: _static/img/skype/settings_install_node.png
+          :align: center
+
+       In the Node Installer, search for **Skype**. Click on the blue arrow to
+       the right of **Skype** to add the nodes into your palette:
+
+       .. image:: _static/img/skype/addSkypeNodes.png
+          :align: center
+
+5. Double click the **Skype In** node. Select "Add new skype-controller..."
+   and click the "edit" button.
+
+   .. image:: _static/img/skype/editCredentials.png
+      :align: center
+
+6. In the App Password Section, paste in your App's secret from your clipboard.
+
+  .. image:: _static/img/skype/AppPassword.png
+     :align: center
+
+7. In the App ID section, copy your App's Microsoft App ID.
+
+  .. image:: _static/img/skype/AppID.png
+     :align: center
+
+8. Copy the Message Endpoint URL onto your clipboard.
+
+  .. image:: _static/img/skype/MessagingEndPoint.png
+     :align: center
+
+3. Registering Your App
+_______________________
+
+1. Back in the New Bot Framework Page, paste the Message Endpoint URL from your
+   clipboard to the Message Endpoint URL section.
+
+  .. image:: _static/img/skype/messaging_endpoint.png
+     :align: center
+
+2. When you are finished creating your bot, check the dialogue box and click
+   register.
+
+  .. image:: _static/img/skype/RegisterApp.png
+     :align: center
+
+4. Finishing Up
+_______________
+
+1. Double click on the **Skype Out** node to edit and select your newly created
+   skype configuration.
+
+2. Click deploy and your Application is ready to go!
+
+  .. image:: _static/img/skype/deploy.png
+     :align: center
+
+5. Testing
+__________
+
+Microsoft provides great tools to test your app. We encourage you to use them.
+
+1. On the Preview Publishing Page, click on the **Add to Skype** to test your
+   ChatFlow App.
+
+  .. image:: _static/img/skype/AddToSkype.png
+     :align: center
+
+2. In the new pop window, click on the **Add to Contacts**. Follow the instruction
+   that will rediriect you to your Skype App.
+
+  .. image:: _static/img/skype/AddToContacts.png
+     :align: center
+
+3. In your Skype App, search for your new bot under your Contacts.
+
+  .. image:: _static/img/skype/SkypeContact.png
+     :align: center
+     :scale: 50 %
+
+4. Open an message window and send it a message. It should echo back to you.
+
+  .. image:: _static/img/skype/EchoDemo.png
+     :align: center
+
+
+Skype In and Out Nodes
+======================
+
+This section of the tutorial explains the output of the **Skype In** node
+and the required formats for the **Skype Out** node input.
+
+Skype In
+________
+
+The Skype In node receives input from Skype and outputs the following msg:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+            payload: message.text,
+            skype: {
+                    message: message,
+                    id: message.id,
+                    type: message.type,
+                    timestamp: message.timestamp,
+                    user: message.from.id,
+                    user_name: message.from.name,
+                    conversation: message.conversation.id,
+                    attachments: array (message.attachments)
+                  },
+          kitt: {
+                  _session_id: message.conversation.id,
+                  _user_id: message.from.id
+                }
+          }
+
+
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| Variable               | Type   | Description                                                                                      |
++========================+========+==================================================================================================+
+| ``payload``            | String | Text content of the message                                                                      |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.message``      | Object | the original raw incoming message                                                                |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.id``           | String | the Skype Message ID                                                                             |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.type``         | String | Refers to message type. Either *'message/text'*, *'message/image'*, or *'message/card.carousel'* |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.user``         | String | the Skype User ID (determined by Skype)                                                          |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.user_name``    | String | the User's Skype User Name                                                                       |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.conversation`` | String | the Skype conversation ID (determined by Skype)                                                  |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.attachments``  | Array  | Array of attachments attached on the message                                                     |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``kitt``               | Object | used by the Router node for session management                                                   |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+
+.. hint:: For more information check out the `Skype Chat Api Reference <https://docs.botframework.com/en-us/skype/chat>`_
+    page.
+
+Skype Out
+_________
+
+The Skype Out node sends the message back to Skype. It expects message with the
+following properties:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+            payload: message_text,
+            skype: {
+                    type: message_type,
+                    user: user_id,
+                    conversation: conversation_id,
+                    attachments: array
+                  }
+          }
+
+
+
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| Variable               | Type   | Description                                                                                      |
++========================+========+==================================================================================================+
+| ``payload``            | String | Text content of the message                                                                      |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.type``         | String | Refers to message type. Either *'message/text'*, *'message/image'*, or *'message/card.carousel'* |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.attachments``  | Array  | Array of attachments attached on the message                                                     |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.conversation`` | String | the Skype conversation ID (determined by Skype)                                                  |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.user``         | String | the Skype User ID (determined by Skype)                                                          |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+
+.. warning:: You **MUST** have either ``skype.conversation`` or ``skype.user``
+          in order to send a message back to Skype to your user.
+
+.. note:: Depending on the message type, certain components of the ``msg`` are required.
+      Below is a table highlighting which components are required for the different
+      message types:
+
+      +---------------------------+---------------------------------------+
+      | Message Type              | Required Fields                       |
+      +===========================+=======================================+
+      | *'message/text'*          | ``payload``, ``skype.type``,          |
+      +---------------------------+---------------------------------------+
+      |  *'message/image'*        | ``skype.type``, ``skype.attachments`` |
+      +---------------------------+---------------------------------------+
+      | *'message/card.carousel'* | ``skype.type``, ``skype.attachments`` |
+      +---------------------------+---------------------------------------+
+
+.. hint:: For more information check out the
+      `Skype Chat Api Reference <https://docs.botframework.com/en-us/skype/chat>`_ page.
+
+An Advanced Bot: Amazon Books
+=============================
+
+In this section of the tutorial, we will walk you through the process of building
+a Skype Amazon Books Bot which will be able to look up books according to the
+User's specifications.
+
+Amazon Books Walkthrough
+________________________
+
+Here is a video walkthrough transforming a Skype Echo Bot into an Amazon Books Bot.
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/apM20fQczjY"
+       frameborder="0" allowfullscreen></iframe>
+    <br><br><br>
+
+1. Getting Started
+__________________
+
+1. Create a new app in ChatFlow. Click on your new app in the app list.
+
+2. Once the editor has loaded, drag in a **Skype In**, **Router**, **Skype Out** nodes.
+   Connect them like so:
+
+  .. image:: _static/img/skype/Flow1.png
+     :align: center
+
+3. Next, drag in an **Enter Node** and **State Node**. Connect them.
+
+  * Set the Enter Node's entrances condition to ``msg.payload matches regex hello|hi``
+  * Select **Ignore Case**
+  * Set the State nodes output text to *"Hello. I can search books on Amazon for you. Just name a book and I'll search it for you"*
+
+4. Drag in another **Enter Node** and **State Node**. Connect them.
+
+  * Set the Enter Node's entrance condition to ``msg.payload matches regex bye|see\syou``
+  * Select **Ignore Case**
+  * Set the State nodes output text to *"See Ya"*
+  * Check the **Dialogue Ends** here option
+
+Your flow should now look like this:
+
+.. image:: _static/img/skype/Flow2.png
+   :align: center
+
+2. Searching for a Book
+_______________________
+
+1. Drag in an **Enter Node** and **State Node**.
+
+  * Set the Enter Node's entrance condition to ``msg.payload matches regex ^((?!bye|see\syou|hi|hello).)*$``
+  * Select **Ignore Case**
+  * Set the State Node's output text to *"OK. Searching..."*
+
+2. Drag in a Function node. Connect it to the previous Enter Node.
+
+  * Name it *Search Books*
+  * Add the following code into the body function:
+
+.. code-block:: javascript
+    :linenos:
+
+    var book=msg.payload;
+    msg.payload={
+        command:"ItemSearch",
+        request:{
+              "SearchIndex": "Books",
+              "Keywords": book,
+              "ResponseGroup": "ItemAttributes,Offers"
+        }}
+
+    return msg;
+
+.. note:: This function will prepare our payload by formatting into a format
+      accepted by the Amazon Product Advertizing Node.
+
+3. Drag in a Amazon **Product Advertizing Node**. Connect it to the *Search Books*
+   Function node.
+
+.. note:: To configure the Amazon Product Advertizing node. You must create a
+      Amazon account `here <https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html>`_.
+
+      .. image:: _static/img/skype/aws-1.png
+         :align: center
+
+      Once you have signed up, click on **Manage Account**.
+
+      .. image:: _static/img/skype/aws-2.png
+         :align: center
+
+      Follow the instructions on the Manage Account Page to access you AWS Key
+      and AWS Secret.
+
+      .. image:: _static/img/skype/aws-3.png
+         :align: center
+
+      In addition you must become an associate to get your associates tag. For
+      more information about becoming an associate, go to the
+      `Becoming an Associate <http://docs.aws.amazon.com/AWSECommerceService/latest/DG/becomingAssociate.html>`_.
+
+.. hint:: If the Product Advertizing Node is not in your Node Library, install it using the
+    **node installer**.
+
+4. To configure the **Product Advertizing Node**, click on edit next to "Add new
+   AWS Credentials...".
+
+   .. image:: _static/img/skype/product-node-edit.png
+      :align: center
+
+   Input the following:
+
+  * AWS ID
+  * AWS Secret
+  * Associate Tag
+
+  .. image:: _static/img/skype/add-aws.png
+     :align: center
+
+.. hint:: You can input anything in the **Associate Tag** field to make it work. But getting it
+   right makes sure you get paid by Amazon correctly.
+
+5. Next drag in a **Switch Node**.
+
+  * Name it *Is item found?*
+  * Set the property to ``msg.payload.ItemSearchResponse.Items.Item``.
+  * Set the first rule to ``is null``
+  * Set the second rule to ``is not null``
+
+6. Drag in a **State Node**. Connect it to the first output of the Switch Node.
+
+  * Name it *Item not found*
+  * Set the output text to *"Nothing found. Please try again"*
+
+Your follow should look like this:
+
+.. image:: _static/img/skype/Flow3.png
+   :align: center
+
+7. Drag in a **Function Node**. Connect it to the Second Output of the *Is item found?* Switch Node.
+
+  * Name it *Search book images*
+  * Add the following code into the body function:
+
+.. code-block:: javascript
+      :linenos:
+
+      var items = msg.payload.ItemSearchResponse.Items.Item;
+
+      var itemID = []
+      var newItems = [];
+
+      items.forEach(function(item){
+          itemID.push(item.ASIN);
+          var links=[{
+              "type":"openUrl",
+              "title":"Details",
+              "value": item.DetailPageURL
+          }];
+
+          if(item.ItemLinks && item.ItemLinks.ItemLink){
+              item.ItemLinks.ItemLink.forEach(function(link){
+                  if(link.Description=="Add To Wishlist" ||
+                      link.Description=="All Offers"){
+                  links.push({
+                      "type":"openUrl",
+                      "title":link.Description.replace("All Offers","Buy"),
+                      "value": link.URL
+                  });}
+              })
+          }
+
+          newItems.push({
+              id: item.ASIN,
+              name: item.ItemAttributes.Title,
+              author: item.ItemAttributes.Author ? ((typeof item.ItemAttributes.Author === 'string') ? item.ItemAttributes.Author : item.ItemAttributes.Author.join(', ')) : null,
+              price: item.ItemAttributes.ListPrice ?
+                  item.ItemAttributes.ListPrice.FormattedPrice : null,
+              buttons:links
+          });
+      });
+
+
+      global.set('items',newItems)
+
+      msg.payload={
+          command:"ItemLookup",
+          request:{
+              ItemId:itemID,
+              ResponseGroup:"Images"
+          }
+      }
+      return msg;
+
+7. Drag in a Amazon **Product Advertizing Node**. Connect it to the Function node.
+
+8. Next drag in a **Switch Node**.
+
+  * Name it *Are images found?*
+  * Set the property to ``msg.payload.payload.ItemLookupResponse``.
+  * Set the first rule to ``is null``
+  * Set the second rule to ``is not null``
+
+9. Connect the first output of the Switch Node to the *Item not found* State node.
+
+Your flow should look like this:
+
+.. image:: _static/img/skype/Flow4.png
+   :align: center
+
+10. Drag in a **Function Node**. Connect it to the Second Output of the *Are images found?* Switch Node.
+
+  * Name it *Search book images*
+  * Add the following code into the body function:
+
+.. code-block:: javascript
+      :linenos:
+
+      var items = msg.payload.ItemLookupResponse.Items.Item;
+      var oldItems = global.get('items');
+
+      var newItems = [];
+      i=0;
+      oldItems.forEach(function(item){
+          if(items[i].MediumImage)
+              item.image = items[i].MediumImage.URL
+          newItems.push(item);
+          i++;
+      });
+
+      msg.payload = newItems;
+
+      var elements = [];
+      var messages = [];
+      msg.payload.forEach(function(item){
+          msg.skype.type = "message/card.carousel";
+          msg.skype.attachments = [{
+              "contentType":"application/vnd.microsoft.card.hero",
+              "content":{
+                  "title":item.name,
+                  "images": [{"url": item.image}],
+                  "subtitle": "by "+item.author+(item.price?(", from "+item.price):''),
+                  "buttons": item.buttons
+              }
+          }];
+
+          msg.payload=null;
+
+          messages.push(JSON.stringify(msg));
+      });
+
+      return {payload:messages.join('>>>>>')};
+
+11. Add a **Split Node**. Connect it to the *Search book images* Function Node.
+    Set the split to ``>>>>>``.
+
+.. note:: A Split Node will split the payload by specified character(s).
+
+.. hint:: If the Split Node is not in your Node Library, install it using the
+    **node installer**.
+
+12. Add a **State Node**. Add the following code to the body of the function:
+
+.. code-block:: javascript
+      :linenos:
+
+      msg = JSON.parse(msg.payload);
+      return msg;
+
+13. When you are finished, click deploy!
+
+Your final flow should look like this:
+
+.. image:: _static/img/skype/FinalFlow.png
+   :align: center
+
+Feel free to play with the application by importing it to ChatFlow by either:
+
+* Downloading the :download:`json <_static/json/SkypeAmazonBooks.json>` for the
+  application and importing the project on the `applications <https://chatflow.kitt.ai/apps>`_
+  page
+* Using the "Skype - Amazon Books" sample application under "Use a Sample Project"
+  when clicking "CREATE NEW APP" on the `applications <https://chatflow.kitt.ai/apps>`_
+  page.
