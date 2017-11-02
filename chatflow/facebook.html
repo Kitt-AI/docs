@@ -36,6 +36,9 @@
   
 
   
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
         <link rel="next" title="Slack Bot Tutorials" href="slack.html"/>
         <link rel="prev" title="Telegram Bot Tutorials" href="telegram.html"/> 
@@ -108,7 +111,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#advanced-templates-and-buttons">Advanced: templates and buttons</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#importing-the-weather-forecast-application">1. Importing the &#8220;Weather forecast&#8221; application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-the-weather-forecast-application">1. Importing the “Weather forecast” application</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#nlu-setup">2. NLU setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setup-weather-forecast-application">3. Setup Weather forecast application</a></li>
 </ul>
@@ -122,6 +125,7 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 </ul>
 
@@ -173,7 +177,7 @@
         
         
             
-            <a href="_sources/facebook.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/facebook.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -203,7 +207,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#advanced-templates-and-buttons" id="id11">Advanced: templates and buttons</a><ul>
-<li><a class="reference internal" href="#importing-the-weather-forecast-application" id="id12">1. Importing the &#8220;Weather forecast&#8221; application</a></li>
+<li><a class="reference internal" href="#importing-the-weather-forecast-application" id="id12">1. Importing the “Weather forecast” application</a></li>
 <li><a class="reference internal" href="#nlu-setup" id="id13">2. NLU setup</a></li>
 <li><a class="reference internal" href="#setup-weather-forecast-application" id="id14">3. Setup Weather forecast application</a></li>
 </ul>
@@ -237,7 +241,7 @@ templates and buttons).</p>
 <h3><a class="toc-backref" href="#id5">1. Create a new facebook page</a><a class="headerlink" href="#create-a-new-facebook-page" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Go to <a class="reference external" href="https://www.facebook.com/pages/create/">Create a Page</a>.</li>
-<li>Choose a category, name your organization, and click on &#8220;Get Started&#8221;.</li>
+<li>Choose a category, name your organization, and click on “Get Started”.</li>
 </ol>
 <img alt="_images/createPage.png" class="align-center" src="_images/createPage.png" />
 <div class="admonition note">
@@ -249,23 +253,23 @@ templates and buttons).</p>
 <span id="create-facebook-app"></span><h3><a class="toc-backref" href="#id6">2. Create the facebook application</a><a class="headerlink" href="#create-the-facebook-application" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Go to the <a class="reference external" href="https://developers.facebook.com/quickstarts/?platform=web">Create Facebook Application</a> page.</li>
-<li>Enter your application&#8217;s name (ex. &#8220;ChatFlow app&#8221;) and click &#8220;Create New
-Facebook App ID&#8221;.</li>
+<li>Enter your application’s name (ex. “ChatFlow app”) and click “Create New
+Facebook App ID”.</li>
 </ol>
 <img alt="_images/createApp.png" class="align-center" src="_images/createApp.png" />
 <ol class="arabic" start="3">
 <li><p class="first">Enter your email into the email field, choose a category, and click
-&#8220;Create App ID&#8221;. You can skip all other steps on that page by clicking &#8220;Skip
-Quick Start&#8221; button.</p>
+“Create App ID”. You can skip all other steps on that page by clicking “Skip
+Quick Start” button.</p>
 </li>
 <li><p class="first">Now you are on the dashboard page. This is where you can setup your new
 Facebook application by follow these steps:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Click on &#8220;+ Add Product&#8221;</li>
-<li>Click on &#8220;Get Started&#8221; button in the &#8220;Messenger&#8221; section. A new page will
+<li>Click on “+ Add Product”</li>
+<li>Click on “Get Started” button in the “Messenger” section. A new page will
 load.</li>
-<li>Click on &#8220;Get Started&#8221;</li>
+<li>Click on “Get Started”</li>
 </ol>
 </div></blockquote>
 </li>
@@ -279,17 +283,17 @@ you create your ChatFlow application.</p>
 <h3><a class="toc-backref" href="#id7">3. Create the ChatFlow application</a><a class="headerlink" href="#create-the-chatflow-application" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Go to the <a class="reference external" href="https://chatflow.kitt.ai/apps">apps</a> page.</li>
-<li>Click on &#8220;CREATE NEW APP&#8221; button.</li>
+<li>Click on “CREATE NEW APP” button.</li>
 </ol>
 <img alt="_images/new-app.png" class="align-center" src="_images/new-app.png" />
 <ol class="arabic simple" start="3">
-<li>Under &#8220;Start with a clean project&#8221;, enter your project&#8217;s name and click on
+<li>Under “Start with a clean project”, enter your project’s name and click on
 create. You see the app under your appliactions list. To edit, click on the
-newly created app&#8217;s name.</li>
+newly created app’s name.</li>
 </ol>
 <img alt="_images/echobot_applist.png" class="align-center" src="_images/echobot_applist.png" />
 <ol class="arabic" start="4">
-<li><p class="first">In the Node Library, search for &#8220;facebook&#8221; to filter facebook nodes. Drag
+<li><p class="first">In the Node Library, search for “facebook” to filter facebook nodes. Drag
 <strong>Facebook In</strong> and <strong>Facebook Out</strong> into the workspace and connect them.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -302,35 +306,35 @@ the right of <strong>Facebook</strong> to add the nodes into your palette:</p>
 <img alt="_images/install_nodes_pop_up.png" class="last align-center" src="_images/install_nodes_pop_up.png" />
 </div>
 </li>
-<li><p class="first">Double click the <strong>Facebook In</strong> node. Select &#8220;Add new facebook-controller...&#8221;
-and click the &#8220;edit&#8221; button.</p>
+<li><p class="first">Double click the <strong>Facebook In</strong> node. Select “Add new facebook-controller…”
+and click the “edit” button.</p>
 </li>
-<li><p class="first">Click &#8220;Start Verification Process&#8221;.</p>
+<li><p class="first">Click “Start Verification Process”.</p>
 </li>
 </ol>
 <img alt="_images/startVerification.png" class="align-center" src="_images/startVerification.png" />
 <ol class="arabic simple" start="7">
-<li>Click the &#8220;Webhook URL&#8221; input field to copy URL onto your clipboard.</li>
-<li>On &#8220;Messenger Settings&#8221; page from the <a class="reference internal" href="#create-facebook-app"><span class="std std-ref">2. Create the facebook application</span></a>, click on
-&#8220;Setup Webhooks&#8221;. Paste the Webhook URL stored on your clipboard.</li>
-<li>In ChatFlow, click on the &#8220;Random&#8221; button near the &#8220;Verify Token&#8221; field.
-Then click on &#8220;Copy&#8221;. It will copy the &#8220;Verify Token&#8221; to your clipboard.</li>
-<li>Paste the Token on the &#8220;Messenger Settings&#8221; page.</li>
-<li>Check all options under the &#8220;Subscriptions&#8221; section.</li>
-<li>Click &#8220;Verify and Save&#8221;.</li>
+<li>Click the “Webhook URL” input field to copy URL onto your clipboard.</li>
+<li>On “Messenger Settings” page from the <a class="reference internal" href="#create-facebook-app"><span class="std std-ref">2. Create the facebook application</span></a>, click on
+“Setup Webhooks”. Paste the Webhook URL stored on your clipboard.</li>
+<li>In ChatFlow, click on the “Random” button near the “Verify Token” field.
+Then click on “Copy”. It will copy the “Verify Token” to your clipboard.</li>
+<li>Paste the Token on the “Messenger Settings” page.</li>
+<li>Check all options under the “Subscriptions” section.</li>
+<li>Click “Verify and Save”.</li>
 </ol>
 <img alt="_images/pasteVerify.png" class="align-center" src="_images/pasteVerify.png" />
 <ol class="arabic simple" start="13">
-<li>Under the &#8220;Token Generation&#8221; section, select the page you created.</li>
+<li>Under the “Token Generation” section, select the page you created.</li>
 <li>Click on the access token to copy it onto the clipboard.</li>
-<li>Under webhooks select your page and click &#8220;Subscribe&#8221;.</li>
-<li>In ChatFlow, paste your token into the &#8220;Access Token&#8221; field. In the
-&#8220;Config Name&#8221; Fields, name your config (ex. &#8220;Facebook&#8221;). Click the &#8220;Add&#8221; button.</li>
+<li>Under webhooks select your page and click “Subscribe”.</li>
+<li>In ChatFlow, paste your token into the “Access Token” field. In the
+“Config Name” Fields, name your config (ex. “Facebook”). Click the “Add” button.</li>
 </ol>
 <img alt="_images/pasteToken.png" class="align-center" src="_images/pasteToken.png" />
 <ol class="arabic simple" start="17">
-<li>Double click the <strong>Facebook Out</strong> node. Under the &#8220;Facebook&#8221; token field,
-select &#8220;Faebook&#8221; configuration.</li>
+<li>Double click the <strong>Facebook Out</strong> node. Under the “Facebook” token field,
+select “Faebook” configuration.</li>
 <li>Click on deploy button in the upper right hand corner to deploy your
 application.</li>
 </ol>
@@ -406,7 +410,7 @@ Facebook Nodes.</p>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal"><span class="pre">facebook.timestamp</span></code></td>
 <td>String</td>
-<td>Facebook&#8217;s timestamp</td>
+<td>Facebook’s timestamp</td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">facebook.seq</span></code></td>
 <td>String</td>
@@ -496,7 +500,7 @@ However,  only <strong>one</strong> can be set otherwise you will not receive a 
 <p>In this part of the tutorial, we will import an application that use advanced
 features, such as generic template and buttons.</p>
 <div class="section" id="importing-the-weather-forecast-application">
-<span id="import-weather-app"></span><h3><a class="toc-backref" href="#id12">1. Importing the &#8220;Weather forecast&#8221; application</a><a class="headerlink" href="#importing-the-weather-forecast-application" title="Permalink to this headline">¶</a></h3>
+<span id="import-weather-app"></span><h3><a class="toc-backref" href="#id12">1. Importing the “Weather forecast” application</a><a class="headerlink" href="#importing-the-weather-forecast-application" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Import the application to ChatFlow by either:</li>
 </ol>
@@ -504,7 +508,7 @@ features, such as generic template and buttons.</p>
 <li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast.json" download=""><code class="xref download docutils literal"><span class="pre">json</span></code></a> our application and import the project on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page,
 or,</li>
-<li>Use the &#8220;Facebook - Weather forecast&#8221; sample application under &#8220;Use a Sample Project&#8221; when clicking &#8220;CREATE NEW APP&#8221;
+<li>Use the “Facebook - Weather forecast” sample application under “Use a Sample Project” when clicking “CREATE NEW APP”
 on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
 </ul>
 <img alt="_images/weather.png" class="align-center" src="_images/weather.png" />
@@ -514,11 +518,11 @@ on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applic
 <ol class="arabic simple">
 <li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast-nlu.json" download=""><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> and import it as
 <a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</li>
-<li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json you downloaded from <a class="reference internal" href="#import-weather-app"><span class="std std-ref">1. Importing the &#8220;Weather forecast&#8221; application</span></a>.</li>
+<li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json you downloaded from <a class="reference internal" href="#import-weather-app"><span class="std std-ref">1. Importing the “Weather forecast” application</span></a>.</li>
 </ol>
 <img alt="_images/import_JSON.png" class="align-center" src="_images/import_JSON.png" />
 <ol class="arabic simple" start="3">
-<li>Under &#8220;Deployment Information&#8221;, copy the Deployment URL.</li>
+<li>Under “Deployment Information”, copy the Deployment URL.</li>
 </ol>
 <img alt="_images/deployment_url.png" class="align-center" src="_images/deployment_url.png" />
 <ol class="arabic" start="4">
@@ -538,9 +542,9 @@ Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>
 to the Facebook page.</li>
 </ol>
 <p>After deploying your applciation, You may ask about the weather in any city. Example requests:
-* &#8220;Hello&#8221; - the bot will answer with the greeting
-* &#8220;Is it Raining in Cambridge?&#8221; - will show you the weather for current day in Cambridge.
-* &#8220;Show the weather forecast for Cleveland&#8221; - shows you 7 days weather forecast for Cleveland.</p>
+* “Hello” - the bot will answer with the greeting
+* “Is it Raining in Cambridge?” - will show you the weather for current day in Cambridge.
+* “Show the weather forecast for Cleveland” - shows you 7 days weather forecast for Cleveland.</p>
 </div>
 </div>
 </div>
@@ -565,7 +569,7 @@ to the Facebook page.</li>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Mar 22, 2017.
+      Last updated on Oct 26, 2017.
 
     </p>
   </div> 
