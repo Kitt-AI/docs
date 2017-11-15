@@ -1,0 +1,973 @@
+.. Snowboy documentation master file, created by
+   sphinx-quickstart on Thu Mar 10 10:54:02 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. |WEBSITE| replace:: https://snowboy.kitt.ai
+
+################################################
+Snowboy, a Customizable Hotword Detection Engine
+################################################
+
+:Contact: snowboy@kitt.ai
+:Website: https://snowboy.kitt.ai
+:Github: https://github.com/kitt-ai/snowboy
+:Version: 1.1.1 (2017-03-24)
+
+.. important:: **New!**
+
+    Snowboy now offers **Hotword as a Service**.  You can
+    programmatically use our :ref:`restful_api` to train a hotword model in
+    **3 Easy Steps**.
+
+      1.  First pick a hotword.
+      2.  Record it 3 times on your device
+      3.  Submit the audio files through our :ref:`restful_api` and a model will
+          be trained and returned.
+
+    Upon completion, the device can immediately perform hotword detection.
+
+    The following video demonstrates how it's done using different customized
+    hotwords in both English and Mandarin Chinese.
+
+    .. raw:: html
+
+        <video controls src="_static/snowboy-pi.web.mp4" align="middle"></video>
+
+
+Introduction
+============
+
+**Snowboy** is an highly customizable hotword detection engine that is embedded
+real-time and is always listening (even when off-line) compatible with
+Raspberry Pi, (Ubuntu) Linux, and Mac OS X.
+
+A **hotword** (also known as **wake word** or **trigger word**) is a keyword
+or phrase that the computer constantly listens for as a signal to trigger other
+actions.
+
+Some examples of hotword include *"Alexa"* on Amazon Echo, *"OK Google"* on some
+Android devices and *"Hey Siri"* on iPhones. These hotwords are used to initiate
+a full-fledged speech interaction interface. However, hotwords can be used in other
+ways too like performing simple *command & control* actions.
+
+In one hacky solution, one can run a full ASR (Automatic Speech Recognition) to
+perform hotword detection. In this scenario, the device would watch for
+specific trigger words in the ASR transcriptions. However, ASR consumes a
+lot of device and bandwidth resources. In addition, it does not protect your
+privacy when one uses a cloud-based solution. Luckily, **Snowboy** was created
+to solve these problems!
+
+Snowboy is:
+
+* **highly customizable** allowing you to freely define your own magic hotword
+  such as (but not limited to) "open sesame", "garage door open", or
+  "hello dreamhouse". If you can think it, you can hotword it!
+* **always listening but protects your privacy** because Snowboy does not connect
+  to the Internet or stream your voice anywhere.
+* **light-weight and embedded** allowing you to runs it on Raspberry Pi's
+  consuming less than 10% CPU on the smallest Pi's (single-core 700M Hz ARMv6).
+* **Apache licensed**!
+
+Currently, Snowboy supports:
+
+* all versions of Raspberry Pi (with Raspbian based on Debian Jessie 8.0)
+* 64bit Mac OS X
+* 64bit Ubuntu (12.04 and 14.04)
+* iOS
+* Android with ARMv7 CPUs
+* Pine 64 with Debian Jessie 8.5 (3.10.102)
+* Intel Edison with Ubilinux (Debian Wheezy 7.8)
+
+.. tip:: For iOS/Android, please check out Snowboy's `GitHub <https://github.com/kitt-ai/snowboy>`_ page.
+
+.. note:: If you get it to work with more devices, OS, or programming languages,
+    feel free to send a pull request to the `GitHub`_ repository.
+
+
+Downloads
+=========
+
+You can download pre-packaged Snowboy binaries and their Python wrappers for:
+
+* 64 bit Ubuntu `12.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1204-x86_64-1.1.1.tar.bz2>`_
+  / `14.04 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/ubuntu1404-x86_64-1.1.1.tar.bz2>`_
+* `MacOS X <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/osx-x86_64-1.1.1.tar.bz2>`_
+* Raspberry Pi with Raspbian 8.0, all versions
+  (`1/2/3/Zero <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/rpi-arm-raspbian-8.0-1.1.1.tar.bz2>`_)
+* Pine 64 with Debian Jessie 8.5 (3.10.102) (`Pine64 <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/pine64-debian-jessie-1.1.1.tar.bz2>`_)
+* Intel Edison with Ubilinux (Debian Wheezy 7.8) (`Edison <https://s3-us-west-2.amazonaws.com/snowboy/snowboy-releases/edison-ubilinux-1.1.1.tar.bz2>`_)
+
+Or you can check out `GitHub <https://github.com/kitt-ai/snowboy>`_ to compile
+a version yourself.
+
+.. Note:: RPi3 has an ARMv8 CPU but Raspbian recognizes it as ARMv7:
+    The Cortex-A53 can run ARMv7 code just fine (in fact, substantially better
+    than Pi 2 due to architectural improvements). This is where we are
+    staying in terms of supported userspace and kernel for the time being.
+    If you want to roll your own OS/kernel, you can add arm_control=0x200
+    to /boot/config.txt to boot the cores in ARMv8 state.
+
+Quick Start
+===========
+
+To use Snowboy, you'll need:
+
+1. A supported device with a **microphone** (or a microphone input)
+2. The corresponding decoder (downloaded above)
+3. A trained model(s) from |WEBSITE|.
+
+.. _Access_Microphone:
+
+Access Microphone
+-----------------
+
+We use `PortAudio <http://portaudio.com/>`_ as a cross-platform support for
+audio in/out. We also use `sox` as a quick utility to check whether the
+microphone setup is correctly.
+
+1. Install Sox.
+
+  On Linux systems, run::
+
+      sudo apt-get install python-pyaudio python3-pyaudio sox
+
+  On Mac, run::
+
+      brew install portaudio sox
+
+.. note:: If you don't have Homebrew, install it `here <http://brew.sh/>`_
+
+2. Install PortAudio's Python bindings::
+
+    pip install pyaudio
+
+.. note:: If you don't have ``pip``, you can install it
+   `here <https://pip.pypa.io/en/stable/installing/>`_
+
+.. tip:: If you have a `Permission Error` from ``pip``, you can either use
+   ``sudo pip install pyaudio`` or change the folder owner to yourself:
+   ``sudo chown $USER -R /usr/local``
+
+3. To check whether you can record via your microphone, open a terminal and
+   run::
+
+     rec temp.wav
+
+.. tip:: If you see an error on Raspberry Pi's, please refer to the `Running_on_Pi`_ section.
+
+
+Decoder Structures
+------------------
+
+The decoder tarball contains the following files::
+
+    ├── README.md
+    ├── _snowboydetect.so
+    ├── demo.py
+    ├── demo2.py
+    ├── light.py
+    ├── requirements.txt
+    ├── resources
+    │   ├── ding.wav
+    │   ├── dong.wav
+    │   ├── common.res
+    │   └── snowboy.umdl
+    ├── snowboydecoder.py
+    ├── snowboydetect.py
+    └── version
+
+``_snowboydetect.so`` is a dynamically linked library compiled with SWIG. It has
+dependencies on your system's Python2 library. All snowboy-related
+libraries are *statically* linked in this file.
+
+``snowboydetect.py`` is a Python wrapper file generated by SWIG. Because it is
+not very easy to read, we created the other high-level wrapper: ``snowboydecoder.py``.
+
+You should already have a trained model file from |WEBSITE| (for example
+``snowboy.pmdl``), or you can simply use the universal model in
+``resources/snowboy.umdl``.
+
+.. _Running_a_Demo:
+
+Running a Demo
+--------------
+
+.. tip:: This demo runs on any devices. But we suggest you run it on a laptop/desktop
+    with speaker output because the demo plays a *Ding* sound when your hotword is
+    triggered.
+
+1. To access the simple demo in  ``__main__`` code of ``snowboydecoder.py``, run
+   the following command in your Terminal::
+
+     python demo.py snowboy.pmdl
+
+   Here ``snowboy.pmdl`` is your trained model downloaded from |WEBSITE|.
+
+.. note:: The ``.pmdl`` suffix indicates a *personal* model and a ``.umdl``
+    suffix indicates a *universal* model.
+
+2. When prompt, speak into your microphone to see whether snowboy detects your magic phrase.
+
+The demo is fairly straight-forward. The following is the demo's code::
+
+    import snowboydecoder
+    import sys
+    import signal
+
+    interrupted = False
+
+    def signal_handler(signal, frame):
+        global interrupted
+        interrupted = True
+
+    def interrupt_callback():
+        global interrupted
+        return interrupted
+
+    if len(sys.argv) == 1:
+        print("Error: need to specify model name")
+        print("Usage: python demo.py your.model")
+        sys.exit(-1)
+
+    model = sys.argv[1]
+
+    signal.signal(signal.SIGINT, signal_handler)
+
+    detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
+    print('Listening... Press Ctrl+C to exit')
+
+    detector.start(detected_callback=snowboydecoder.ding_callback,
+                   interrupt_check=interrupt_callback,
+                   sleep_time=0.03)
+
+    detector.terminate()
+
+The main program loops at ``detector.start()``. Every ``sleep_time=0.03``
+second, the function:
+
+1. checks a ring buffer filled with microphone data to see whether a hotword is
+   detected. If yes, call the ``detected_callback`` function.
+
+2. calls the ``interrupt_check`` function: if it returns True, then break
+   the main loop and return.
+
+Here, we assigned ``detected_callback`` with a default
+``snowboydecoder.ding_callback`` so that every time your hotword is heard the
+computer will play a *ding* sound.
+
+.. warning:: Do not append ``()`` to your callback function: the correct way is to
+   assign ``detected_callback=your_func`` instead of ``detected_callback=your_func()``.
+   However, what if you have parameters to assign in your callback functions?
+   Use a ``lambda`` function! So your callback would look like:
+   ``callback=lambda: callback_function(parameters)``.
+
+.. _Running_on_Pi:
+
+Running on Raspberry Pi
+=======================
+
+Raspberry Pi's are excellent hardware for running Snowboy. We support all
+versions of Raspberry Pi (1, 2, 3 and Zero). Supported OS is Raspbian 8.0.
+
+Set up Audio
+------------
+
+.. warning:: You'll need a USB microphone for audio input. The on-board 3.5mm audio jack
+    only has audio `out` but no audio `in` thus a microphone with a 3.5mm audio
+    jack will not work.
+
+.. tip:: We have successfully used both generic USB microphones and the PlayStation 3 Eye webcam.
+   You can buy a PS 3 Eye for $5 on `Amazon <http://www.amazon.com/PlayStation-Eye-3/dp/B000VTQ3LU/>`_.
+   Linux has builtin kernel modules for it but Windows PCs do not have free
+   drivers for the Eye.
+
+Before beginning, please follow `Access_Microphone`_ to install `portaudio` to
+test whether your microphone can be accessed with `rec`::
+
+   rec t.wav
+
+.. warning:: even though USB webcams should be "plug-n-play", we experienced that
+   for some of them you have to **reboot** the Pi after plugging in the webcam.
+
+If you see errors, check whether your alsa/pulseaudio is configured
+properly. First list the *playback* device::
+
+     $ aplay -l
+      **** List of PLAYBACK Hardware Devices ****
+      card 0: ALSA [bcm2835 ALSA], device 0: bcm2835 ALSA [bcm2835 ALSA]
+        Subdevices: 8/8
+        Subdevice #0: subdevice #0
+        Subdevice #1: subdevice #1
+        Subdevice #2: subdevice #2
+        Subdevice #3: subdevice #3
+        Subdevice #4: subdevice #4
+        Subdevice #5: subdevice #5
+        Subdevice #6: subdevice #6
+        Subdevice #7: subdevice #7
+      card 0: ALSA [bcm2835 ALSA], device 1: bcm2835 ALSA [bcm2835 IEC958/HDMI]
+        Subdevices: 1/1
+        Subdevice #0: subdevice #0
+
+Here the playback device is card 0, device 0, or ``hw:0,0`` (``hw:0,1`` is HDMI audio out).
+
+List your recording device::
+
+    $ arecord -l
+    **** List of CAPTURE Hardware Devices ****
+    card 1: Camera [Vimicro USB2.0 UVC Camera], device 0: USB Audio [USB Audio]
+      Subdevices: 1/1
+      Subdevice #0: subdevice #0
+
+Here the recording device is card 1, device 0, or ``hw1:0``.
+
+Change your ``~/.asoundrc`` file to::
+
+      pcm.!default {
+        type asym
+         playback.pcm {
+           type plug
+           slave.pcm "hw:0,0"
+         }
+         capture.pcm {
+           type plug
+           slave.pcm "hw:1,0"
+         }
+      }
+
+Try ``rec temp.wav`` again. Your microphone in should be set up properly now.
+
+Go back to :ref:`Running_a_Demo` and run the demo.
+
+If the demo runs is successful, try to :ref:`Blink_an_LED_light` and :ref:`Toggle_an_AC_Powerd_Lamp` with your Pi.
+
+.. warning:: If you see the following error::
+
+      ImportError: /usr/lib/arm-linux-gnueabihf/libstdc++.so.6:
+      version `GLIBCXX_3.4.20' not found (required by rpi-arm-raspbian-8.0-1.0.1/_snowboy.so)`
+
+    It means that your g++ library is not up-to-date. You are probably still using
+    *Debian Wheezy 7.5* (check with ``lsb_release -a``). However we compiled the snowboy
+    library under Raspbian based on Debian Jessie 8.0 that comes with g++-4.9.
+    You can either upgrade your Raspbian version to Jessie, or follow
+    `this post <https://solarianprogrammer.com/2015/01/13/raspberry-pi-raspbian-install-gcc-compile-cpp-14-programs/>`_
+    to install g++-4.9 on your Wheezy, or compile a version youself from
+    `GitHub <https://github.com/kitt-ai/snowboy>`_.
+
+.. tip:: If you cannot hear any audio from the 3.5mm audio jack, the audio may
+   be streamed to the HDMI port. Follow this `config <https://www.raspberrypi.org/documentation/configuration/audio-config.md>`_
+   to change the audio output to the 3.5mm audio jack.
+
+
+.. _Blink_an_LED_light:
+
+Blink an LED light
+------------------
+
+Wire an LED
+^^^^^^^^^^^
+
+Wiring an LED onto Pi's GPIO ports is very easy. However, note that the LED has
+a shorter leg and a longer leg. The shorter leg is usually connected to ground
+(GND). The following demonstrates how to wire your LED to your Pi's GPIO:
+
+.. image:: _static/led-wiring.png
+    :align: center
+
+A few hundred Ohms would be enough for the resistor.
+
+Control an LED with Python
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We use the `RPi.GPIO` Python module to control and LED::
+
+    import RPi.GPIO as GPIO
+    import time
+
+    class Light(object):
+        def __init__(self, port):
+            self.port = port
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(self.port, GPIO.OUT)
+            self.on_state = GPIO.HIGH
+            self.off_state = not self.on_state
+
+        def set_on(self):
+            GPIO.output(self.port, self.on_state)
+
+        def set_off(self):
+            GPIO.output(self.port, self.off_state)
+
+        def is_on(self):
+            return GPIO.input(self.port) == self.on_state
+
+        def is_off(self):
+            return GPIO.input(self.port) == self.off_state
+
+        def toggle(self):
+            if self.is_on():
+                self.set_off()
+            else:
+                self.set_on()
+
+        def blink(self, t=0.3):
+            self.set_off()
+            self.set_on()
+            time.sleep(t)
+            self.set_off()
+
+    if __name__ == "__main__":
+        light = Light(17)
+        while True:
+            light.blink()
+            time.sleep(0.7)
+
+Save the file as `light.py`, then run::
+
+    sudo python light.py
+
+The LED light will blink approximately once per second.
+
+
+Blink an LED with Snowboy
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Replace Snowboy's callback function with LED's `blink()` function::
+
+    import snowboydecoder
+    import sys
+    import signal
+    from light import Light
+
+    interrupted = False
+
+    def signal_handler(signal, frame):
+        global interrupted
+        interrupted = True
+
+    def interrupt_callback():
+        global interrupted
+        return interrupted
+
+    if len(sys.argv) == 1:
+        print("Error: need to specify model name")
+        print("Usage: python demo.py your.model")
+        sys.exit(-1)
+
+    model = sys.argv[1]
+
+    signal.signal(signal.SIGINT, signal_handler)
+
+    detector = snowboydecoder.HotwordDetector(model, sensitivity=0.5)
+    print('Listening... Press Ctrl+C to exit')
+
+    led = Light(17)
+    detector.start(detected_callback=led.blink,
+                   interrupt_check=interrupt_callback,
+                   sleep_time=0.03)
+
+    detector.terminate()
+
+
+The only place that changes is::
+
+    led = Light(17)
+    detector.start(detected_callback=led.blink,
+                   interrupt_check=interrupt_callback,
+                   sleep_time=0.03)
+
+which will blink the LED connected to GPIO pin 17 when your hotword is detected::
+
+    sudo python demo.py your.pmdl
+
+
+.. _Toggle_an_AC_Powerd_Lamp:
+
+Toggle an AC-powered Lamp
+-------------------------
+
+Controlling an LED light is pretty simple so let's go bigger and control some
+real home appliances!
+
+In this example, we will use Raspberry Pi's GPIO output to connect and
+break a higher voltage AC circuit.
+
+This can be done with help of a `bipolar transistor <https://en.wikipedia.org/wiki/Bipolar_junction_transistor>`_.
+Luckily, one has already been built thanks to a successful kickstarter
+`campaign <https://www.kickstarter.com/projects/323002773/revenge-of-the-iot-relay>`_.
+You can purchase the IoT relay on Amazon for
+`$15 <http://www.amazon.com/Iot-Relay-Enclosed-High-power-Raspberry/dp/B00WV7GMA2>`_
+(as of April 2016).
+
+.. image:: _static/iot-relay.jpg
+    :align: center
+
+The mechanism of the IoT Relay is very simple:
+
+* When red wire has high DC voltage (say, 3.3V or 12V), the top two "normally ON"
+  outlets will turn off and the bottom two "normally OFF" outlets will turn on
+* When red wire has no DC voltage, the top two "normally ON"
+  outlets will turn on and the bottom two "normally OFF" outlets will turn off
+.. note:: The top two and bottom two outlets can only be controlled in two groups. There
+    is no way to control each of them individually.
+
+To connect the IoT Relay to your Raspberry Pi, connect the red wire of the IoT
+Relay to Pin 17 of a Raspberry Pi. You can simply reuse ``light.py`` or ``demo.py``
+above to control any home appliances that are plugged into the IoT Relay!
+
+
+The following is demonstrates Snowboy on a Raspberry Pi controlling three small
+LED lights on the right and a lamp on the left through the IoT relay:
+
+
+.. raw:: html
+
+   <video controls src="_static/toggle-light-relay.m4v"></video>
+
+.. _restful_api:
+
+RESTful API Calls
+=================
+
+Snowboy provides the following HTTP endpoints for you to train 
+a model *without* using the website:
+
+* ``/api/v1/train``: train a model with 3 .wav files
+.. * ``/api/v1/improve``: contribute .wav sample files to an existing model, for
+  instance, false alarmed sound
+
+All uploaded .wav files will not be visible on the Snowboy library, so your
+privacy is protected. However, we do not provide an API to retrieve these
+files either.
+
+/api/v1/train
+-------------
+
+The ``/api/v1/train`` endpoint provides an opportunity to:
+
+1. programmatically train a model without using the web interface
+2. achieve better acoustic consistency
+
+.. note:: Since the training and test voice samples will be collected
+    off the *same* microphone, there will be no distortions that result from
+    the usage of different microphones
+
+You can define truly customized hotword for **each** of your end customer.
+Just ask them to say the hotword 3 times and a model will be trained on the fly!
+
+* **Endpoint**: ``https://snowboy.kitt.ai/api/v1/train/``
+* **Type**: ``POST``
+* **Return**: a binary personal model (.pmdl), or error
+
++---------------+------------+------------------------------------------------+
+| Parameter     | Required   | Value                                          |
++===============+============+================================================+
+| voice_samples |     Y      | A list of 3 voice samples in .wav format.      |
++---------------+------------+------------------------------------------------+
+| token         |     Y      | Secret user token                              |
++---------------+------------+------------------------------------------------+
+| name          |     Y      | String, or “unknown” if we don’t know hotword  |
+|               |            | name                                           |
++---------------+------------+------------------------------------------------+
+| language      |     N      | ar (Arabic), zh (Chinese), nl (Dutch), en      |
+|               |            | (English), fr (French), dt (German), hi        |
+|               |            | (Hindi), it (Italian), jp (Japanese), ko       |
+|               |            | (Korean), fa (Persian), pl (Polish), pt        |
+|               |            | (Portuguese), ru (Russian), es (Spanish), ot   |
+|               |            | (Other)                                        |
++---------------+------------+------------------------------------------------+
+| age_group     |     N      | 0_9, 10_19, 20_29, 30_39, 40_49, 50_59, 60+    |
++---------------+------------+------------------------------------------------+
+| gender        |     N      | F/M                                            |
++---------------+------------+------------------------------------------------+
+| microphone    |     N      | String, your microphone type                   |
++---------------+------------+------------------------------------------------+
+
+.. note:: API token can be obtained by logging into |WEBSITE|, click on "Profile settings":
+
+    .. image:: _static/profile_token.png
+        :align: center
+
+The following is a sample call script using Python. Save the file as
+``training_service.py``:
+
+  .. code-block:: python
+      :linenos:
+
+      import sys
+      import base64
+      import requests
+
+
+      def get_wave(fname):
+          with open(fname) as infile:
+              return base64.b64encode(infile.read())
+
+
+      endpoint = "https://snowboy.kitt.ai/api/v1/train/"
+
+
+      ############# MODIFY THE FOLLOWING #############
+      token = ""
+      hotword_name = "???"
+      language = "en"
+      age_group = "20_29"
+      gender = "M"
+      microphone = "macbook microphone"
+      ############### END OF MODIFY ##################
+
+      if __name__ == "__main__":
+          try:
+              [_, wav1, wav2, wav3, out] = sys.argv
+          except ValueError:
+              print "Usage: %s wave_file1 wave_file2 wave_file3 out_model_name" % sys.argv[0]
+              sys.exit()
+
+          data = {
+              "name": hotword_name,
+              "language": language,
+              "age_group": age_group,
+              "gender": gender,
+              "microphone": microphone,
+              "token": token,
+              "voice_samples": [
+                  {"wave": get_wave(wav1)},
+                  {"wave": get_wave(wav2)},
+                  {"wave": get_wave(wav3)}
+              ]
+          }
+
+          response = requests.post(endpoint, json=data)
+          if response.ok:
+              with open(out, "w") as outfile:
+                  outfile.write(response.content)
+              print "Saved model to '%s'." % out
+          else:
+              print "Request failed."
+              print response.text
+
+To execute, run the following command::
+
+    python training_service.py 1.wav 2.wav 3.wav saved_model.pmdl
+
+..note:: You can use the ``rec`` command to record a .wav file on terminal::
+
+    rec -r 16000 -c 1 -b 16 -e signed-integer 1.wav
+
+
+The following is a sample call script in ``bash`` with ``curl``:
+
+  .. code-block:: shell
+    :linenos:
+
+        #! /usr/bin/env bash
+        ENDPOINT="https://snowboy.kitt.ai/api/v1/train/"
+
+        ############# MODIFY THE FOLLOWING #############
+        TOKEN="??"
+        NAME="??"
+        LANGUAGE="en"
+        AGE_GROUP="20_29"
+        GENDER="M"
+        MICROPHONE="PS3 Eye"
+        ############### END OF MODIFY ##################
+
+        if [[ "$#" != 4 ]]; then
+            printf "Usage: %s wave_file1 wave_file2 wave_file3 out_model_name" $0
+            exit
+        fi
+
+        WAV1=`base64 $1`
+        WAV2=`base64 $2`
+        WAV3=`base64 $3`
+        OUTFILE="$4"
+
+        cat <<EOF >data.json
+        {
+            "name": "$NAME",
+            "language": "$LANGUAGE",
+            "age_group": "$AGE_GROUP",
+            "token": "$TOKEN",
+            "gender": "$GENDER",
+            "microphone": "$MICROPHONE",
+            "voice_samples": [
+                {"wave": "$WAV1"},
+                {"wave": "$WAV2"},
+                {"wave": "$WAV3"}
+            ]
+        }
+        EOF
+
+        curl -H "Content-Type: application/json" -X POST -d @data.json $ENDPOINT > $OUTFILE
+
+
+.. /api/v1/improve
+.. --------------------
+.. 
+.. The ``/api/v1/improve`` service can be used to collect
+.. voice samples for opportunities that in the future we can improve the model.
+.. This is especially useful when you get **false alarms** for a model and we can
+.. later add these false alarms to negative set of training data.
+.. 
+.. * **Endpoint**: ``https://snowboy.kitt.ai/api/v1/improve/``
+.. * **Type**: ``POST``
+.. * **Return**: 200 OK HTTP Response or errors
+.. 
+.. +-----------------+------------+------------------------------------------------+
+.. |   Parameter     | Required   | Value                                          |
+.. +=================+============+================================================+
+.. | voice_samples   |     Y      | A list of *up to* 3 samples in .wav format.    |
+.. +-----------------+------------+------------------------------------------------+
+.. |  token          |     Y      | Secret user token                              |
+.. +-----------------+------------+------------------------------------------------+
+.. |  name           |     Y      | String, or “unknown” if we don’t know hotword  |
+.. |                 |            | name                                           |
+.. +-----------------+------------+------------------------------------------------+
+.. |  language       |     N      | ar (Arabic), zh (Chinese), nl (Dutch), en      |
+.. |                 |            | (English), fr (French), dt (German), hi        |
+.. |                 |            | (Hindi), it (Italian), jp (Japanese), ko       |
+.. |                 |            | (Korean), fa (Persian), pl (Polish), pt        |
+.. |                 |            | (Portuguese), ru (Russian), es (Spanish), ot   |
+.. |                 |            | (Other)                                        |
+.. +-----------------+------------+------------------------------------------------+
+.. |  age_group      |     N      | 0_9, 10_19, 20_29, 30_39, 40_49, 50_59, 60+    |
+.. +-----------------+------------+------------------------------------------------+
+.. |  gender         |     N      | F/M                                            |
+.. +-----------------+------------+------------------------------------------------+
+.. |  microphone     |     N      | String, your microphone type                   |
+.. +-----------------+------------+------------------------------------------------+
+.. | detection_score |     N      | Float, decoding score on this voice sample.    |
+.. |                 |            | Helps to roughly identify true positives, false|
+.. |                 |            | positives and false negatives                  |
+.. +-----------------+------------+------------------------------------------------+
+.. 
+.. .. note:: The only difference to the ``/api/v1/train`` endpoint is that it includes
+..     an optional ``detection_score`` field. You can upload up to three voice samples
+..     in the ``voice_samples`` list.
+
+Quota and Rate Limit
+--------------------
+
+Each user gets 1000 free API calls for each end point every 30 days with a rate
+limited of 1 call per second.
+
+If you'd like to purchase more, please send us an email at snowboy@kitt.ai
+
+.. _Advanced_Usage:
+
+Advanced Usage
+==============
+
+Multiple Models and Callbacks
+------------------------------
+
+So far we have worked with only one model that can dictate a *binary* state.
+Wouldn't it nice to listen to multiple models at the same time?
+
+`demo2.py` demonstrates how to listen to multiple models at the same time::
+
+    import snowboydecoder
+    import sys
+    import signal
+
+    interrupted = False
+
+
+    def signal_handler(signal, frame):
+        global interrupted
+        interrupted = True
+
+
+    def interrupt_callback():
+        global interrupted
+        return interrupted
+
+    if len(sys.argv) != 3:
+        print("Error: need to specify 2 model names")
+        print("Usage: python demo.py 1st.model 2nd.model")
+        sys.exit(-1)
+
+    models = sys.argv[1:]
+
+    # capture SIGINT signal, e.g., Ctrl+C
+    signal.signal(signal.SIGINT, signal_handler)
+
+    sensitivity = [0.5]*len(models)
+    detector = snowboydecoder.HotwordDetector(models, sensitivity=sensitivity)
+    callbacks = [lambda: snowboydecoder.play_audio_file(snowboydecoder.DETECT_DING),
+                 lambda: snowboydecoder.play_audio_file(snowboydecoder.DETECT_DONG)]
+    print('Listening... Press Ctrl+C to exit')
+
+    # main loop
+    # make sure you have the same numbers of callbacks and models
+    detector.start(detected_callback=callbacks,
+                   interrupt_check=interrupt_callback,
+                   sleep_time=0.03)
+
+    detector.terminate()
+
+In this example, we used two models for the decoder and provided two callback
+functions. If the first hotword is detected, it'll play a *Ding* sound. If the
+second hotword is detected, it'll play a *Dong* sound.
+
+.. note:: You are not limited to just using only two models nor are you limited
+    to using only the personal or the universal models. You can give `HotwordDetector`
+    a mixture of multiple personal and universal models so long as your CPU is
+    powerful enough to process them all.
+
+FAQ
+============
+
+What's the CPU/RAM usage?
+-------------------------------
+
+.. On single-core 700MHz ARMv6 (first gen Raspberry Pi), the Python-based demo
+.. takes less than 10% of CPU and about 15MB of RAM.
+
+.. On quad-core 900MHz ARMv7 (second gen Raspberry Pi), the Python-based demo
+.. takes less than 5% of CPU and less than 15MB of RAM.
+
+.. .. todo:: On quad-core 1.2GHz ARMv8 (third gen Raspberry Pi), the Python-based demo
+.. takes less than 10% of CPU and less than 15MB of RAM.
+
+.. On modern Mac Books, the Python-based demo
+.. takes about 1% of CPU and 15MB of RAM
+
+Snowboy takes minimal CPU on modern computers. On a Raspberry Pi's with decade-old
+CPU chips, it takes less than 5% ~ 10% of CPU. In terms of memory usage,
+the `PortAudio` Python wrapper usually uses about 10MB of RAM while the
+standalone C binary uses less than 2MB.
+
++------------+-----------------------------+-----------+------------------+
+| Name       | CPU                         |CPU Usage  | RAM Usage        |
++============+=============================+===========+==================+
+| RPi 1      | single-core 700MHz ARMv6    | <10%      | - Python: < 15MB |
+|            |                             |           | - C: < 2MB       |
++------------+-----------------------------+-----------+                  |
+| RPi 2      | quad-core 900MHz ARMv7      | <5%       |                  |
+|            |                             |           |                  |
++------------+-----------------------------+-----------+                  |
+| RPi 3      | quad-core 1.2GHz ARMv8      | <5%       |                  |
+|            |                             |           |                  |
++------------+-----------------------------+-----------+                  |
+| RPi Zero   | single-core 1GHz ARMv6      | <5%       |                  |
+|            |                             |           |                  |
++------------+-----------------------------+-----------+                  |
+| Macbooks   | Intel Core i3/5/7           | <1%       |                  |
+|            |                             |           |                  |
++------------+-----------------------------+-----------+------------------+
+
+What is detection sensitivity
+--------------------------------------------------------------
+
+Detection sensitivity controls how sensitive the detection is. It is a value
+between 0 and 1. Increasing the sensitivity value lead to better detection
+rate, but also higher false alarm rate. It is an important parameter that you
+should play with in your actual application.
+
+What Audio format does Snowboy support?
+--------------------------------------------------------------
+
+Snowboy supports WAVE files (with linear PCM, 8-bits unsigned integer,
+16-bits signed integer or 32-bits signed integer). See SampleRate(),
+NumChannels() and BitsPerSample() for the required sampling rate, number of
+channels and bits per sample values.
+
+To convert your .wav file to Snowboy supported format, you can use ``sox``:
+
+``sox -t wav YOUR_ORIGINAL.wav -t wav -r 16000 -b 16 -e signed-integer -c 1 YOUR_PROCESSED.wav``
+
+My pmdl model works well for me, but does not work well for others
+-------------------------------------------------------------------
+
+Models with suffix pmdl are personal models thus they are supposed to only work
+well for the person who provides the audio samples. If you are looking for a
+model that works well for everyone, you should use the universal model (with suffix
+umdl).
+
+My trained model works well on laptops but not on Pi's
+--------------------------------------------------------------
+
+This is due to the *acoustic distortion* that results from the different
+microphones. If you record your voice with two different microphones (one on
+your laptop and the other on your Pi) and then play them (``play t.wav``), you will
+hear that they sound very differently (even though it is the same voice)!
+
+The best solution is to use the same recording to both train your
+model and test your voice. If you want to use Snowboy on a Raspberry Pi, first
+record your voice with ``rec t.wav`` (make sure to ``apt-get install sox``) and
+then upload the 3 recordings to the Snowboy website using uploading button:
+
+.. image:: _static/upload.png
+  :align: center
+
+Once the training has completed, you can download the trained model.
+
+Alternatively, you can also use the :ref:`restful_api` to do this directly without
+using the web interface.
+
+.. tip:: Another trick is to play with the audio gain (see the answer regarding
+  ``audio_gain`` below). We have noted that the USB microphones on a
+  Raspberry Pi usually have low volume, thus increasing the audio gain may help.
+
+The volume of my recording is too low/high
+--------------------------------------------------------------
+
+When you construct a ``HotwordDetector`` from ``snowboydecoder``, there is an
+``audio_gain`` parameter::
+
+    HotwordDetector(decoder_model,
+                    resource=RESOURCE_FILE,
+                    sensitivity=[],
+                    audio_gain=1)
+
+Set ``audio_gain`` to be larger than 1 if your test recording's volume is too low, or smaller
+than 1 if too high.
+
+.. What is VAD and what does it do?
+Does Snowboy come with VAD?
+--------------------------------------------------------------
+
+Yes it does! VAD is Voice Activity Detection which usually detects whether there's human
+voice in the audio. It needs much less resources than hotword detection. Thus,
+Snowboy uses VAD as a filtering layer before hotword detection to reduce CPU usage.
+
+How to use Snowboy's VAD to detect voice and silence?
+--------------------------------------------------------------
+
+The return value of ``SnowboyDetect.RunDetection()`` function indicates silence,
+voice, error, and triggered words:
+
+========  =================
+ return      meaning
+========  =================
+  -2       silence
+  -1       error
+  0        voice
+ 1,..      triggered index
+========  =================
+
+Check out ``snowboydecoder.py`` for usages.
+
+Who wrote Snowboy?
+--------------------------------------------------------------
+
+The KITT.AI co-founders. Core modules of Snowboy are created by
+`Guoguo Chen <http://kitt.ai/guoguo>`_,
+who is also a contributor to the open-source speech recognition software
+`Kaldi <http://kaldi-asr.org/>`_ and Microsoft Cognitive Toolkit
+`CNTK <http://www.cntk.ai/>`_.

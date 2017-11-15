@@ -54,4 +54,5 @@ few more bells and whistles, but otherwise, it is complete!
    alexa_advanced
    alexa_nlu
    alexa_show
+   dueros
    oauth2
