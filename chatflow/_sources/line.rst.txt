@@ -1,0 +1,654 @@
+.. _line:
+
+======================
+Line Bot Tutorials
+======================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+In this ChatFlow_ tutorial, we start by creating a simple echo for Line.
+We also program a simple text bot for Line using the Google Translation API. 
+In addition, we explain the input and output for the Line In and Line
+out nodes.
+
+By the end of this tutorial, you will be able to:
+
+  * Connect a ChatFlow app to Line.
+  * Understand the input and output of the Line In and Line Out nodes
+
+.. _line_echo_bot:
+
+A Simple Echo Bot
+=================
+
+Before we build a Line Translate Bot, let's create a simple Echo bot to
+demonstrate how the Line connection works.
+
+.. _line_echo_bot_tutorial:
+
+Line Echo Bot Tutorial
+________________________________
+
+
+1. Create a New Bot and Token in Line
+_________________________________________
+
+1. Go to `Line Developer Console <https://developers.line.me/console/>`_
+
+.. image:: _static/img/line/line-me_console.png
+   :align: center
+   :scale: 50%
+
+
+2. Create new provider
+
+.. image:: _static/img/line/line-me_provider.png
+   :align: center
+   :scale: 50%
+
+
+3. Create new channel
+
+.. image:: _static/img/line/line-me_channel.png
+   :align: center
+   :scale: 50%
+
+
+4. You will need channel secret for your ChatFlow application.
+
+.. image:: _static/img/line/line-me_secret.png
+   :align: center
+   :scale: 50%
+
+
+5. Issue channel access token. (long lived is strongly recommended)
+
+.. image:: _static/img/line/line-me_token.png
+   :align: center
+   :scale: 50%
+
+.. note:: Scan QR code with your Line Mobile Application to add your bot to friends.
+
+    .. image:: _static/img/line/line-me_qr.png
+       :align: center
+
+
+
+2. Create a New ChatFlow Application with Line Nodes
+____________________________________________________
+
+1. Click on "Create new project" and create a new project from scratch.
+
+.. image:: _static/img/telegram/telegram-new-app.png
+   :align: center
+
+2. Enter a name and press "Create".
+
+.. image:: _static/img/telegram/create_echobot.png
+   :align: center
+
+3. Your new app should appear in your apps list.  Click on the app's name to
+   enter the Chatflow editor.
+
+.. image:: _static/img/telegram/echobot_applist.png
+   :align: center
+
+4. To make your app nice and tidy, you can enable grid in the Settings/view menu.
+          .. image:: _static/img/twilio/twilio-snap-grid.png
+                     :align: center
+
+5. Drag the **Line In** and **Line Out** nodes from the Node Library to
+   your bot's ChatFlow canvas and then connect them with a wire:
+
+.. image:: _static/img/line/echo_bot.png
+   :align: center
+   :width: 400
+
+.. note:: If the **Line In** and **Line Out** nodes are not in your Node
+    Library, click on Settings in the right hand corner. A drop down will
+    open. Click on Node Installer:
+
+    .. image:: _static/img/telegram/settings_install_node.png
+       :align: center
+
+    In the Node Installer, search for **Line**. Click on the blue arrow to
+    the right of **Line** to add the nodes into your palette:
+
+    .. image:: _static/img/line/install_nodes_pop_up.png
+       :align: center
+
+3. Configure The Bot
+____________________
+
+1. Double click the Line In Node, select "Add new line-controller...",
+   and click the "Edit" button.
+
+.. image:: _static/img/line/line-in_popup.png
+   :align: center
+
+2. Enter your "Line Bot" name under the "Name" field (ex. Echo Bot).
+   Name your "Line Bot Controller" to save it. This will allow that configuration
+   to be used by other nodes.
+
+3. Paste the Token and Secret you copied from Line Developer Console into the Token and Secret fields.
+
+.. image:: _static/img/line/line-controller_popup.png
+   :align: center
+
+4. Copy the value of "Webhook URL" field and paste it in Channel Settings of Line Developer Console.
+   Webhooks should be enabled.
+
+.. image:: _static/img/line/line-me_webhook.png
+   :align: center
+
+5. Go back to ChatFLow and click the "Add" button.
+
+
+6. Double click on the Line Out Node and select the "Echo Bot" Token. Click
+   okay.
+
+.. image:: _static/img/line/line-out_popup.png
+   :align: center
+
+
+4. Deploy the Application
+_________________________
+
+1. Click on deploy button in the upper right hand corner to deploy your
+   application.
+
+.. image:: _static/img/telegram/telegram-deploy.png
+   :align: center
+
+After the application is deployed, your bot should be online. It will echo the
+message you sent to it.
+
+Line Translator Sample Application
+==================================
+
+This section of the tutorial shows you how to create and configure Line Translator sample application
+
+Line Translator Application Video Tutorial
+__________________________________________
+
+.. raw:: html
+
+    <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/1-QlXYCSYzc"
+        frameborder="0" gesture="media"
+        allow="encrypted-media" allowfullscreen
+    ></iframe>
+    <br><br><br>
+
+Line Nodes Description
+======================
+
+This section of the tutorial explains available options for **Line Controller**, the output of the **Line In** node and
+the required formats for the **Line Out** node input.
+
+.. _line_controller_node:
+
+Line Controller
+_______________
+
+The Line Controller node organizes connection between Line In/Out Nodes and your Line Channel.
+
+There are several settings for Line Controller Node:
+
++----------------------+---------------------------------------------------------+
+| Option               | Description                                             |
++======================+=========================================================+
+| ``Name``             | Name you config node to use it in multiple In/Out nodes |
++----------------------+---------------------------------------------------------+
+| ``Secret``           | Your Line Channel secret                                |
++----------------------+---------------------------------------------------------+
+| ``Acess Token``      | Your Line Channel access token                          |
++----------------------+---------------------------------------------------------+
+| ``Webhook URL``      | Copy this value and paste in your Line Channel settings |
++----------------------+---------------------------------------------------------+
+| ``Autoload Content`` | If checked, image, video, audio and File messages are   |
+|                      | loaded from Line and paylaod is set to its Binary,      |
+|                      | otherwise payload is set to content url.                |
++----------------------+---------------------------------------------------------+
+
+.. _line_in_node:
+
+Line In
+___________
+
+The Line In node receives input from line and outputs the following msg:
+
+.. code-block:: javascript
+   :linenos:
+
+   {payload: payload,
+    line: {
+                source: event.source,
+                event: event.type,
+                replyToken: event.replyToken,
+                // optional fields:
+                message: event.message,
+                type: event.message.type
+              },
+    kitt: {
+            _session_id: message.source.userId,
+            _user_id: message.source.userId,
+            _timeout: 120
+          }
+    }
+
+
+
++-----------------------+---------+-------------------------------------------------------------------------+
+| Variable              | Type    | Description                                                             |
++=======================+=========+=========================================================================+
+| ``payload``           | Various | contains information regarding text, sticker, location, video,          |
+|                       |         | audio, image or file messages or follow, unfollow,                      |
+|                       |         | join, leave, postback or beacon events                                  |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``line.message``      | Object  | Contains original line message for *message* events                     |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``line.source``       | Object  | Contains information about who the message is from                      |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``line.event``        | String  | The type of event                                                       |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``line.type``         | String  | The type of message for *message* events                                |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``line.replyToken``   | String  | Reply token is used to reply to messages & events                       |
++-----------------------+---------+-------------------------------------------------------------------------+
+| ``kitt``              | Object  | Used by the Router node for session management and timeout              |
++-----------------------+---------+-------------------------------------------------------------------------+
+
+.. note:: Message is optional field and will be populated if
+    the line event is *message*.
+
+.. note:: Becaons are currently supported only in Japan, Taiwan, and Thailand.
+   Visit `Line Site <https://developers.line.me/en/docs/messaging-api/using-beacons/>`_ to check if beacons are available for you.
+.. _line_out_node:
+
+Event filter
+------------
+
+To have your Line In node receive only specific event types, set Event Type option to any specific type
+Other events will be ignored by this particular Line In node.
+
+Message filter
+--------------
+
+To have your Line In node receive only specific message types, set Message Type option to any specific message type.
+Other messages will be ignored by this particular Line In node.
+
+.. note:: Messages filter is only available when Event Type is set to either "All" or "Message"
+
+You can use several Line In nodes with different filters settings to keep your application clean
+
+Session Key
+-----------
+
+By default ``msg.kitt._session_id`` is set to ``msg.line.source.userId``.
+To have your Line In node set another session id, select any other Session Key in Line In settings.
+
+.. note:: Session Key option is used only if chosen key (ex. RoomId) exists in message object.
+    If ``msg.line.source.roomId`` is null or not assigned, ``msg.kitt._session_id`` is set to ``msg.line.source.userId``,
+    which always exists in messages from Line.
+
+Line Out
+____________
+
+This node receives message by wires and sends to line bot. It expects
+message with the following properties:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: payload,
+        line: {
+            replyToken: token,
+            type: type
+        }
+     }
+
+.. note:: Type can be set either in line.type or payload.type
+
+Text
+----
+
+To have your bot send a **text message** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: "Hello there",
+        line: {
+            replyToken: "reply-token",
+            type: "text"
+        }
+    }
+
+    // or
+
+    msg = {
+        payload: {
+            text: "Hello there",
+            type: "text"
+        },
+        line: {
+            replyToken: "reply-token",
+        }
+    }
+
+.. note:: You can also set line.type (or payload.type) to either "text" or *null*
+
+Sticker
+-------
+
+To have your bot send a **sticker** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            packageId: 1,
+            stickerId: 1
+        },
+        line: {
+            replyToken: "reply-token"
+            type: "sticker"
+        }
+    }
+
+Location
+--------
+
+To have your bot send a **location** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            title: "Some location",
+            address: "Some address",
+            latitude: 1.1111,
+            longitude: 1.1111
+        },
+        line: {
+            replyToken: "reply-token",
+            type: "location"
+        }
+    }
+
+Images
+------
+
+To have your bot send an **image** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            originalContentUrl: "https://domain.com/image.png",
+            previewImageUrl: "https://domain.com/preview.png"
+        },
+        line: {
+            replyToken: "reply-token",
+            type: "image"
+        }
+    }
+
+.. note:: Pay attention that only specific images are supported.
+    Have a look at image requirements at `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#image>`__
+
+Video
+-----
+
+To have your bot send a **video** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            originalContentUrl: "https://domain.com/video.mp4",
+            previewImageUrl: "https://domain.com/preview.png"
+        },
+        line: {
+            replyToken: "reply-token",
+            type: "video"
+        }
+    }
+
+.. note:: Pay attention that only specific video & preview images are supported.
+    Have a look at video requirements at `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#video>`__
+
+Audio
+-----
+
+To have your bot send an **audio** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            originalContentUrl: "https://domain.com/audio.m4a",
+            duration: 60
+        },
+        line: {
+            replyToken: "reply-token",
+            type: "image"
+        }
+    }
+
+.. note:: Pay attention that only specific audio files are supported.
+    Have a look at audio requirements at `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#audio>`__
+
+
+ImageMap
+--------
+
+To have your bot send an **imagemap** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            baseUrl: "https://example.com/bot/images/rm001",
+            altText: "this is an imagemap",
+            baseSize: {
+                height: 1040,
+                width: 1040
+            },
+            actions: [{
+                type: "uri",
+                linkUri: "https://example.com/",
+                area: {
+                    x: 0,
+                    y: 0,
+                    width: 520,
+                    height: 1040
+                }
+            }, {
+                type: "message",
+                text: "hello",
+                area: {
+                    x: 520,
+                    y: 0,
+                    width: 520,
+                    height: 1040
+                }
+            }]
+        },
+        line: {
+            replyToken: "reply-token",
+            type: "imagemap"
+        }
+    }
+
+.. note:: For more details check `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#imagemap-message>`__
+
+Template
+--------
+
+To have your bot send a **template** in Line, format your msg in the
+following manner:
+
+.. code-block:: javascript
+   :linenos:
+
+    msg = {
+        payload: {
+            altText: "this is a buttons template",
+            template: {
+                type": "buttons",
+                thumbnailImageUrl: "https://example.com/bot/images/image.jpg",
+                title: "Menu",
+                text: "Please select",
+                actions: [{
+                    type: "postback",
+                    label: "Buy",
+                    data: "action=buy&itemid=123"
+                }, {
+                    type: "postback",
+                    label: "Add to cart",
+                    data: "action=add&itemid=123"
+                }, {
+                    type: "uri",
+                    label: "View detail",
+                    uri: "http://example.com/page/123"
+                }]
+            }
+        },
+        line: {
+            replyToken: "reply-token",
+            type: "template"
+        }
+    }
+
+.. note:: For more details check `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#template-messages>`__
+
+Multiple Messages
+-----------------
+
+You can send multiple messages with different types. To do it you need to set *message.payload* to array of messages.
+To have your bot send text and sticker at once, format your msg in the following manner:
+
+.. code-block:: javascript
+    :linenos:
+
+    msg = {
+        payload: [{
+            "Hello there!"
+        }, {
+            type: "sticker",
+            packageId: 1,
+            stickerId: 1
+        }],
+        line: {
+            replyToken: "reply-token"
+        }
+    }
+
+Push Message
+------------
+
+To have your bot send a push message, format your msg in the following manner:
+
+.. code-block:: javascript
+    :linenos:
+
+    msg = {
+        payload: "Hello there!",
+        line: {
+            to: "user-id"
+            replyToken: null
+        }
+    }
+
+.. note:: Pay attention that line.replyToken shouldn't be assigned or should be assigned to *null* (*false*, *undefined*)
+
+.. note:: Push messages are available not for all Line Channels.
+    Check `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#send-push-message>`__ for more information
+
+Multicast Message
+-----------------
+
+To have your bot send a multicast message (message to multiple users), format your msg in the following manner:
+
+.. code-block:: javascript
+    :linenos:
+
+    msg = {
+        payload: "Hello there!",
+        line: {
+            to: ["user1-id", "user2-id"]
+            replyToken: null
+        }
+    }
+
+.. note:: Pay attention that line.replyToken shouldn't be assigned or should be assigned to *null* (*false*, *undefined*)
+
+.. note:: Read more about multicast messages at
+    `Line Docs <https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages>`__
+
+Leave Group
+-----------
+
+To have your bot leave group, format yout msg in following manner:
+
+.. code-block:: javascript
+    :linenos:
+
+    msg = {
+        payload: "group-id",
+        line: {
+            action: "leaveGroup",
+            type: "action"
+        }
+    }
+
+Leave Room
+----------
+
+To have your bot leave room, format yout msg in following manner:
+
+.. code-block:: javascript
+    :linenos:
+
+    msg = {
+        payload: "room-id",
+        line: {
+            action: "leaveRoom",
+            type: "action"
+        }
+    }
+

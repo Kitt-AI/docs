@@ -1,7 +1,5 @@
 .. _alexa:
 
-.. _ChatFlow: https://chatflow.kitt.ai/
-
 =====================
 Alexa Skill Tutorials
 =====================

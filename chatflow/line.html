@@ -1,0 +1,1116 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Line Bot Tutorials &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="OAuth2/Uber Tutorials" href="oauth2.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://chatflow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/chatflow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Dialogue Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">Debug ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extended_example.html">Extended Example: A Conversational Yelp Bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="telegram.html">Telegram Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="facebook.html">Facebook Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slack.html">Slack Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="twilio.html">Twilio Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kik.html">Kik Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="skype.html">Skype Bot Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa.html">Alexa Skill Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Line Bot Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a-simple-echo-bot">A Simple Echo Bot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#line-echo-bot-tutorial">Line Echo Bot Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-bot-and-token-in-line">1. Create a New Bot and Token in Line</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-a-new-chatflow-application-with-line-nodes">2. Create a New ChatFlow Application with Line Nodes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configure-the-bot">3. Configure The Bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deploy-the-application">4. Deploy the Application</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#line-translator-sample-application">Line Translator Sample Application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#line-translator-application-video-tutorial">Line Translator Application Video Tutorial</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#line-nodes-description">Line Nodes Description</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#line-controller">Line Controller</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#line-in">Line In</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#event-filter">Event filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-filter">Message filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#session-key">Session Key</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#line-out">Line Out</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#text">Text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sticker">Sticker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#location">Location</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#images">Images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#video">Video</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#audio">Audio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#imagemap">ImageMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#template">Template</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multiple-messages">Multiple Messages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#push-message">Push Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#multicast-message">Multicast Message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#leave-group">Leave Group</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#leave-room">Leave Room</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Line Bot Tutorials</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/line.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="line-bot-tutorials">
+<span id="line"></span><h1><a class="toc-backref" href="#id2">Line Bot Tutorials</a><a class="headerlink" href="#line-bot-tutorials" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#line-bot-tutorials" id="id2">Line Bot Tutorials</a><ul>
+<li><a class="reference internal" href="#a-simple-echo-bot" id="id3">A Simple Echo Bot</a><ul>
+<li><a class="reference internal" href="#line-echo-bot-tutorial" id="id4">Line Echo Bot Tutorial</a></li>
+<li><a class="reference internal" href="#create-a-new-bot-and-token-in-line" id="id5">1. Create a New Bot and Token in Line</a></li>
+<li><a class="reference internal" href="#create-a-new-chatflow-application-with-line-nodes" id="id6">2. Create a New ChatFlow Application with Line Nodes</a></li>
+<li><a class="reference internal" href="#configure-the-bot" id="id7">3. Configure The Bot</a></li>
+<li><a class="reference internal" href="#deploy-the-application" id="id8">4. Deploy the Application</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-translator-sample-application" id="id9">Line Translator Sample Application</a><ul>
+<li><a class="reference internal" href="#line-translator-application-video-tutorial" id="id10">Line Translator Application Video Tutorial</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-nodes-description" id="id11">Line Nodes Description</a><ul>
+<li><a class="reference internal" href="#line-controller" id="id12">Line Controller</a></li>
+<li><a class="reference internal" href="#line-in" id="id13">Line In</a><ul>
+<li><a class="reference internal" href="#event-filter" id="id14">Event filter</a></li>
+<li><a class="reference internal" href="#message-filter" id="id15">Message filter</a></li>
+<li><a class="reference internal" href="#session-key" id="id16">Session Key</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#line-out" id="id17">Line Out</a><ul>
+<li><a class="reference internal" href="#text" id="id18">Text</a></li>
+<li><a class="reference internal" href="#sticker" id="id19">Sticker</a></li>
+<li><a class="reference internal" href="#location" id="id20">Location</a></li>
+<li><a class="reference internal" href="#images" id="id21">Images</a></li>
+<li><a class="reference internal" href="#video" id="id22">Video</a></li>
+<li><a class="reference internal" href="#audio" id="id23">Audio</a></li>
+<li><a class="reference internal" href="#imagemap" id="id24">ImageMap</a></li>
+<li><a class="reference internal" href="#template" id="id25">Template</a></li>
+<li><a class="reference internal" href="#multiple-messages" id="id26">Multiple Messages</a></li>
+<li><a class="reference internal" href="#push-message" id="id27">Push Message</a></li>
+<li><a class="reference internal" href="#multicast-message" id="id28">Multicast Message</a></li>
+<li><a class="reference internal" href="#leave-group" id="id29">Leave Group</a></li>
+<li><a class="reference internal" href="#leave-room" id="id30">Leave Room</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<p>In this <a class="reference external" href="https://chatflow.kitt.ai/">ChatFlow</a> tutorial, we start by creating a simple echo for Line.
+We also program a simple text bot for Line using the Google Translation API.
+In addition, we explain the input and output for the Line In and Line
+out nodes.</p>
+<p>By the end of this tutorial, you will be able to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Connect a ChatFlow app to Line.</li>
+<li>Understand the input and output of the Line In and Line Out nodes</li>
+</ul>
+</div></blockquote>
+<div class="section" id="a-simple-echo-bot">
+<span id="line-echo-bot"></span><h2><a class="toc-backref" href="#id3">A Simple Echo Bot</a><a class="headerlink" href="#a-simple-echo-bot" title="Permalink to this headline">¶</a></h2>
+<p>Before we build a Line Translate Bot, let’s create a simple Echo bot to
+demonstrate how the Line connection works.</p>
+<div class="section" id="line-echo-bot-tutorial">
+<span id="id1"></span><h3><a class="toc-backref" href="#id4">Line Echo Bot Tutorial</a><a class="headerlink" href="#line-echo-bot-tutorial" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="create-a-new-bot-and-token-in-line">
+<h3><a class="toc-backref" href="#id5">1. Create a New Bot and Token in Line</a><a class="headerlink" href="#create-a-new-bot-and-token-in-line" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to <a class="reference external" href="https://developers.line.me/console/">Line Developer Console</a></li>
+</ol>
+<a class="reference internal image-reference" href="_images/line-me_console.png"><img alt="_images/line-me_console.png" class="align-center" src="_images/line-me_console.png" style="width: 479.5px; height: 260.0px;" /></a>
+<ol class="arabic simple" start="2">
+<li>Create new provider</li>
+</ol>
+<a class="reference internal image-reference" href="_images/line-me_provider.png"><img alt="_images/line-me_provider.png" class="align-center" src="_images/line-me_provider.png" style="width: 480.0px; height: 259.5px;" /></a>
+<ol class="arabic simple" start="3">
+<li>Create new channel</li>
+</ol>
+<a class="reference internal image-reference" href="_images/line-me_channel.png"><img alt="_images/line-me_channel.png" class="align-center" src="_images/line-me_channel.png" style="width: 480.0px; height: 260.0px;" /></a>
+<ol class="arabic simple" start="4">
+<li>You will need channel secret for your ChatFlow application.</li>
+</ol>
+<a class="reference internal image-reference" href="_images/line-me_secret.png"><img alt="_images/line-me_secret.png" class="align-center" src="_images/line-me_secret.png" style="width: 261.0px; height: 132.0px;" /></a>
+<ol class="arabic simple" start="5">
+<li>Issue channel access token. (long lived is strongly recommended)</li>
+</ol>
+<a class="reference internal image-reference" href="_images/line-me_token.png"><img alt="_images/line-me_token.png" class="align-center" src="_images/line-me_token.png" style="width: 420.5px; height: 109.0px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Scan QR code with your Line Mobile Application to add your bot to friends.</p>
+<img alt="_images/line-me_qr.png" class="last align-center" src="_images/line-me_qr.png" />
+</div>
+</div>
+<div class="section" id="create-a-new-chatflow-application-with-line-nodes">
+<h3><a class="toc-backref" href="#id6">2. Create a New ChatFlow Application with Line Nodes</a><a class="headerlink" href="#create-a-new-chatflow-application-with-line-nodes" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Click on “Create new project” and create a new project from scratch.</li>
+</ol>
+<img alt="_images/telegram-new-app.png" class="align-center" src="_images/telegram-new-app.png" />
+<ol class="arabic simple" start="2">
+<li>Enter a name and press “Create”.</li>
+</ol>
+<img alt="_images/create_echobot.png" class="align-center" src="_images/create_echobot.png" />
+<ol class="arabic simple" start="3">
+<li>Your new app should appear in your apps list.  Click on the app’s name to
+enter the Chatflow editor.</li>
+</ol>
+<img alt="_images/echobot_applist1.png" class="align-center" src="_images/echobot_applist1.png" />
+<ol class="arabic" start="4">
+<li><dl class="first docutils">
+<dt>To make your app nice and tidy, you can enable grid in the Settings/view menu.</dt>
+<dd><img alt="_images/twilio-snap-grid.png" class="first last align-center" src="_images/twilio-snap-grid.png" />
+</dd>
+</dl>
+</li>
+<li><p class="first">Drag the <strong>Line In</strong> and <strong>Line Out</strong> nodes from the Node Library to
+your bot’s ChatFlow canvas and then connect them with a wire:</p>
+</li>
+</ol>
+<a class="reference internal image-reference" href="_images/echo_bot.png"><img alt="_images/echo_bot.png" class="align-center" src="_images/echo_bot.png" style="width: 400px;" /></a>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If the <strong>Line In</strong> and <strong>Line Out</strong> nodes are not in your Node
+Library, click on Settings in the right hand corner. A drop down will
+open. Click on Node Installer:</p>
+<img alt="_images/settings_install_node1.png" class="align-center" src="_images/settings_install_node1.png" />
+<p>In the Node Installer, search for <strong>Line</strong>. Click on the blue arrow to
+the right of <strong>Line</strong> to add the nodes into your palette:</p>
+<img alt="_images/install_nodes_pop_up1.png" class="last align-center" src="_images/install_nodes_pop_up1.png" />
+</div>
+</div>
+<div class="section" id="configure-the-bot">
+<h3><a class="toc-backref" href="#id7">3. Configure The Bot</a><a class="headerlink" href="#configure-the-bot" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Double click the Line In Node, select “Add new line-controller…”,
+and click the “Edit” button.</li>
+</ol>
+<img alt="_images/line-in_popup.png" class="align-center" src="_images/line-in_popup.png" />
+<ol class="arabic simple" start="2">
+<li>Enter your “Line Bot” name under the “Name” field (ex. Echo Bot).
+Name your “Line Bot Controller” to save it. This will allow that configuration
+to be used by other nodes.</li>
+<li>Paste the Token and Secret you copied from Line Developer Console into the Token and Secret fields.</li>
+</ol>
+<img alt="_images/line-controller_popup.png" class="align-center" src="_images/line-controller_popup.png" />
+<ol class="arabic simple" start="4">
+<li>Copy the value of “Webhook URL” field and paste it in Channel Settings of Line Developer Console.
+Webhooks should be enabled.</li>
+</ol>
+<img alt="_images/line-me_webhook.png" class="align-center" src="_images/line-me_webhook.png" />
+<ol class="arabic simple" start="5">
+<li>Go back to ChatFLow and click the “Add” button.</li>
+<li>Double click on the Line Out Node and select the “Echo Bot” Token. Click
+okay.</li>
+</ol>
+<img alt="_images/line-out_popup.png" class="align-center" src="_images/line-out_popup.png" />
+</div>
+<div class="section" id="deploy-the-application">
+<h3><a class="toc-backref" href="#id8">4. Deploy the Application</a><a class="headerlink" href="#deploy-the-application" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Click on deploy button in the upper right hand corner to deploy your
+application.</li>
+</ol>
+<img alt="_images/telegram-deploy.png" class="align-center" src="_images/telegram-deploy.png" />
+<p>After the application is deployed, your bot should be online. It will echo the
+message you sent to it.</p>
+</div>
+</div>
+<div class="section" id="line-translator-sample-application">
+<h2><a class="toc-backref" href="#id9">Line Translator Sample Application</a><a class="headerlink" href="#line-translator-sample-application" title="Permalink to this headline">¶</a></h2>
+<p>This section of the tutorial shows you how to create and configure Line Translator sample application</p>
+<div class="section" id="line-translator-application-video-tutorial">
+<h3><a class="toc-backref" href="#id10">Line Translator Application Video Tutorial</a><a class="headerlink" href="#line-translator-application-video-tutorial" title="Permalink to this headline">¶</a></h3>
+<iframe width="560" height="315"
+    src="https://www.youtube.com/embed/1-QlXYCSYzc"
+    frameborder="0" gesture="media"
+    allow="encrypted-media" allowfullscreen
+></iframe>
+<br><br><br></div>
+</div>
+<div class="section" id="line-nodes-description">
+<h2><a class="toc-backref" href="#id11">Line Nodes Description</a><a class="headerlink" href="#line-nodes-description" title="Permalink to this headline">¶</a></h2>
+<p>This section of the tutorial explains available options for <strong>Line Controller</strong>, the output of the <strong>Line In</strong> node and
+the required formats for the <strong>Line Out</strong> node input.</p>
+<div class="section" id="line-controller">
+<span id="line-controller-node"></span><h3><a class="toc-backref" href="#id12">Line Controller</a><a class="headerlink" href="#line-controller" title="Permalink to this headline">¶</a></h3>
+<p>The Line Controller node organizes connection between Line In/Out Nodes and your Line Channel.</p>
+<p>There are several settings for Line Controller Node:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Option</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Name</span></code></td>
+<td>Name you config node to use it in multiple In/Out nodes</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Secret</span></code></td>
+<td>Your Line Channel secret</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Acess</span> <span class="pre">Token</span></code></td>
+<td>Your Line Channel access token</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">Webhook</span> <span class="pre">URL</span></code></td>
+<td>Copy this value and paste in your Line Channel settings</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">Autoload</span> <span class="pre">Content</span></code></td>
+<td>If checked, image, video, audio and File messages are
+loaded from Line and paylaod is set to its Binary,
+otherwise payload is set to content url.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="line-in">
+<span id="line-in-node"></span><h3><a class="toc-backref" href="#id13">Line In</a><a class="headerlink" href="#line-in" title="Permalink to this headline">¶</a></h3>
+<p>The Line In node receives input from line and outputs the following msg:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">payload</span><span class="o">:</span> <span class="nx">payload</span><span class="p">,</span>
+ <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">source</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">source</span><span class="p">,</span>
+             <span class="nx">event</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span>
+             <span class="nx">replyToken</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">replyToken</span><span class="p">,</span>
+             <span class="c1">// optional fields:</span>
+             <span class="nx">message</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="nx">event</span><span class="p">.</span><span class="nx">message</span><span class="p">.</span><span class="nx">type</span>
+           <span class="p">},</span>
+ <span class="nx">kitt</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">_session_id</span><span class="o">:</span> <span class="nx">message</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+         <span class="nx">_user_id</span><span class="o">:</span> <span class="nx">message</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">userId</span><span class="p">,</span>
+         <span class="nx">_timeout</span><span class="o">:</span> <span class="mi">120</span>
+       <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="9%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Variable</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<td>Various</td>
+<td>contains information regarding text, sticker, location, video,
+audio, image or file messages or follow, unfollow,
+join, leave, postback or beacon events</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">line.message</span></code></td>
+<td>Object</td>
+<td>Contains original line message for <em>message</em> events</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">line.source</span></code></td>
+<td>Object</td>
+<td>Contains information about who the message is from</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">line.event</span></code></td>
+<td>String</td>
+<td>The type of event</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">line.type</span></code></td>
+<td>String</td>
+<td>The type of message for <em>message</em> events</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">line.replyToken</span></code></td>
+<td>String</td>
+<td>Reply token is used to reply to messages &amp; events</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">kitt</span></code></td>
+<td>Object</td>
+<td>Used by the Router node for session management and timeout</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Message is optional field and will be populated if
+the line event is <em>message</em>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Becaons are currently supported only in Japan, Taiwan, and Thailand.
+Visit <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/using-beacons/">Line Site</a> to check if beacons are available for you.</p>
+</div>
+<div class="section" id="event-filter">
+<span id="line-out-node"></span><h4><a class="toc-backref" href="#id14">Event filter</a><a class="headerlink" href="#event-filter" title="Permalink to this headline">¶</a></h4>
+<p>To have your Line In node receive only specific event types, set Event Type option to any specific type
+Other events will be ignored by this particular Line In node.</p>
+</div>
+<div class="section" id="message-filter">
+<h4><a class="toc-backref" href="#id15">Message filter</a><a class="headerlink" href="#message-filter" title="Permalink to this headline">¶</a></h4>
+<p>To have your Line In node receive only specific message types, set Message Type option to any specific message type.
+Other messages will be ignored by this particular Line In node.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Messages filter is only available when Event Type is set to either “All” or “Message”</p>
+</div>
+<p>You can use several Line In nodes with different filters settings to keep your application clean</p>
+</div>
+<div class="section" id="session-key">
+<h4><a class="toc-backref" href="#id16">Session Key</a><a class="headerlink" href="#session-key" title="Permalink to this headline">¶</a></h4>
+<p>By default <code class="docutils literal"><span class="pre">msg.kitt._session_id</span></code> is set to <code class="docutils literal"><span class="pre">msg.line.source.userId</span></code>.
+To have your Line In node set another session id, select any other Session Key in Line In settings.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Session Key option is used only if chosen key (ex. RoomId) exists in message object.
+If <code class="docutils literal"><span class="pre">msg.line.source.roomId</span></code> is null or not assigned, <code class="docutils literal"><span class="pre">msg.kitt._session_id</span></code> is set to <code class="docutils literal"><span class="pre">msg.line.source.userId</span></code>,
+which always exists in messages from Line.</p>
+</div>
+</div>
+</div>
+<div class="section" id="line-out">
+<h3><a class="toc-backref" href="#id17">Line Out</a><a class="headerlink" href="#line-out" title="Permalink to this headline">¶</a></h3>
+<p>This node receives message by wires and sends to line bot. It expects
+message with the following properties:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="nx">payload</span><span class="p">,</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="nx">token</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="nx">type</span>
+     <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Type can be set either in line.type or payload.type</p>
+</div>
+<div class="section" id="text">
+<h4><a class="toc-backref" href="#id18">Text</a><a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a <strong>text message</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="s2">&quot;Hello there&quot;</span><span class="p">,</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+
+ <span class="c1">// or</span>
+
+ <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Hello there&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;text&quot;</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You can also set line.type (or payload.type) to either “text” or <em>null</em></p>
+</div>
+</div>
+<div class="section" id="sticker">
+<h4><a class="toc-backref" href="#id19">Sticker</a><a class="headerlink" href="#sticker" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a <strong>sticker</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">packageId</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+         <span class="nx">stickerId</span><span class="o">:</span> <span class="mi">1</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;sticker&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="location">
+<h4><a class="toc-backref" href="#id20">Location</a><a class="headerlink" href="#location" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a <strong>location</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Some location&quot;</span><span class="p">,</span>
+         <span class="nx">address</span><span class="o">:</span> <span class="s2">&quot;Some address&quot;</span><span class="p">,</span>
+         <span class="nx">latitude</span><span class="o">:</span> <span class="mf">1.1111</span><span class="p">,</span>
+         <span class="nx">longitude</span><span class="o">:</span> <span class="mf">1.1111</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;location&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="images">
+<h4><a class="toc-backref" href="#id21">Images</a><a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send an <strong>image</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">originalContentUrl</span><span class="o">:</span> <span class="s2">&quot;https://domain.com/image.png&quot;</span><span class="p">,</span>
+         <span class="nx">previewImageUrl</span><span class="o">:</span> <span class="s2">&quot;https://domain.com/preview.png&quot;</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;image&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pay attention that only specific images are supported.
+Have a look at image requirements at <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#image">Line Docs</a></p>
+</div>
+</div>
+<div class="section" id="video">
+<h4><a class="toc-backref" href="#id22">Video</a><a class="headerlink" href="#video" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a <strong>video</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">originalContentUrl</span><span class="o">:</span> <span class="s2">&quot;https://domain.com/video.mp4&quot;</span><span class="p">,</span>
+         <span class="nx">previewImageUrl</span><span class="o">:</span> <span class="s2">&quot;https://domain.com/preview.png&quot;</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;video&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pay attention that only specific video &amp; preview images are supported.
+Have a look at video requirements at <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#video">Line Docs</a></p>
+</div>
+</div>
+<div class="section" id="audio">
+<h4><a class="toc-backref" href="#id23">Audio</a><a class="headerlink" href="#audio" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send an <strong>audio</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">originalContentUrl</span><span class="o">:</span> <span class="s2">&quot;https://domain.com/audio.m4a&quot;</span><span class="p">,</span>
+         <span class="nx">duration</span><span class="o">:</span> <span class="mi">60</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;image&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pay attention that only specific audio files are supported.
+Have a look at audio requirements at <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#audio">Line Docs</a></p>
+</div>
+</div>
+<div class="section" id="imagemap">
+<h4><a class="toc-backref" href="#id24">ImageMap</a><a class="headerlink" href="#imagemap" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send an <strong>imagemap</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">baseUrl</span><span class="o">:</span> <span class="s2">&quot;https://example.com/bot/images/rm001&quot;</span><span class="p">,</span>
+         <span class="nx">altText</span><span class="o">:</span> <span class="s2">&quot;this is an imagemap&quot;</span><span class="p">,</span>
+         <span class="nx">baseSize</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">height</span><span class="o">:</span> <span class="mi">1040</span><span class="p">,</span>
+             <span class="nx">width</span><span class="o">:</span> <span class="mi">1040</span>
+         <span class="p">},</span>
+         <span class="nx">actions</span><span class="o">:</span> <span class="p">[{</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;uri&quot;</span><span class="p">,</span>
+             <span class="nx">linkUri</span><span class="o">:</span> <span class="s2">&quot;https://example.com/&quot;</span><span class="p">,</span>
+             <span class="nx">area</span><span class="o">:</span> <span class="p">{</span>
+                 <span class="nx">x</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+                 <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+                 <span class="nx">width</span><span class="o">:</span> <span class="mi">520</span><span class="p">,</span>
+                 <span class="nx">height</span><span class="o">:</span> <span class="mi">1040</span>
+             <span class="p">}</span>
+         <span class="p">},</span> <span class="p">{</span>
+             <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span>
+             <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;hello&quot;</span><span class="p">,</span>
+             <span class="nx">area</span><span class="o">:</span> <span class="p">{</span>
+                 <span class="nx">x</span><span class="o">:</span> <span class="mi">520</span><span class="p">,</span>
+                 <span class="nx">y</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+                 <span class="nx">width</span><span class="o">:</span> <span class="mi">520</span><span class="p">,</span>
+                 <span class="nx">height</span><span class="o">:</span> <span class="mi">1040</span>
+             <span class="p">}</span>
+         <span class="p">}]</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;imagemap&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more details check <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#imagemap-message">Line Docs</a></p>
+</div>
+</div>
+<div class="section" id="template">
+<h4><a class="toc-backref" href="#id25">Template</a><a class="headerlink" href="#template" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a <strong>template</strong> in Line, format your msg in the
+following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28</pre></div></td><td class="code"><div class="highlight"><pre><span></span> <span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">payload</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">altText</span><span class="o">:</span> <span class="s2">&quot;this is a buttons template&quot;</span><span class="p">,</span>
+         <span class="nx">template</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">type</span><span class="s2">&quot;: &quot;</span><span class="nx">buttons</span><span class="s2">&quot;,</span>
+<span class="s2">             thumbnailImageUrl: &quot;</span><span class="nx">https</span><span class="o">:</span><span class="c1">//example.com/bot/images/image.jpg&quot;,</span>
+             <span class="nx">title</span><span class="o">:</span> <span class="s2">&quot;Menu&quot;</span><span class="p">,</span>
+             <span class="nx">text</span><span class="o">:</span> <span class="s2">&quot;Please select&quot;</span><span class="p">,</span>
+             <span class="nx">actions</span><span class="o">:</span> <span class="p">[{</span>
+                 <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;postback&quot;</span><span class="p">,</span>
+                 <span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;Buy&quot;</span><span class="p">,</span>
+                 <span class="nx">data</span><span class="o">:</span> <span class="s2">&quot;action=buy&amp;itemid=123&quot;</span>
+             <span class="p">},</span> <span class="p">{</span>
+                 <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;postback&quot;</span><span class="p">,</span>
+                 <span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;Add to cart&quot;</span><span class="p">,</span>
+                 <span class="nx">data</span><span class="o">:</span> <span class="s2">&quot;action=add&amp;itemid=123&quot;</span>
+             <span class="p">},</span> <span class="p">{</span>
+                 <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;uri&quot;</span><span class="p">,</span>
+                 <span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;View detail&quot;</span><span class="p">,</span>
+                 <span class="nx">uri</span><span class="o">:</span> <span class="s2">&quot;http://example.com/page/123&quot;</span>
+             <span class="p">}]</span>
+         <span class="p">}</span>
+     <span class="p">},</span>
+     <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+         <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span><span class="p">,</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;template&quot;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For more details check <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#template-messages">Line Docs</a></p>
+</div>
+</div>
+<div class="section" id="multiple-messages">
+<h4><a class="toc-backref" href="#id26">Multiple Messages</a><a class="headerlink" href="#multiple-messages" title="Permalink to this headline">¶</a></h4>
+<p>You can send multiple messages with different types. To do it you need to set <em>message.payload</em> to array of messages.
+To have your bot send text and sticker at once, format your msg in the following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">payload</span><span class="o">:</span> <span class="p">[{</span>
+        <span class="s2">&quot;Hello there!&quot;</span>
+    <span class="p">},</span> <span class="p">{</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;sticker&quot;</span><span class="p">,</span>
+        <span class="nx">packageId</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nx">stickerId</span><span class="o">:</span> <span class="mi">1</span>
+    <span class="p">}],</span>
+    <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">replyToken</span><span class="o">:</span> <span class="s2">&quot;reply-token&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="push-message">
+<h4><a class="toc-backref" href="#id27">Push Message</a><a class="headerlink" href="#push-message" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a push message, format your msg in the following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">payload</span><span class="o">:</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span>
+    <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">to</span><span class="o">:</span> <span class="s2">&quot;user-id&quot;</span>
+        <span class="nx">replyToken</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pay attention that line.replyToken shouldn’t be assigned or should be assigned to <em>null</em> (<em>false</em>, <em>undefined</em>)</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Push messages are available not for all Line Channels.
+Check <a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#send-push-message">Line Docs</a> for more information</p>
+</div>
+</div>
+<div class="section" id="multicast-message">
+<h4><a class="toc-backref" href="#id28">Multicast Message</a><a class="headerlink" href="#multicast-message" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot send a multicast message (message to multiple users), format your msg in the following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">payload</span><span class="o">:</span> <span class="s2">&quot;Hello there!&quot;</span><span class="p">,</span>
+    <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">to</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;user1-id&quot;</span><span class="p">,</span> <span class="s2">&quot;user2-id&quot;</span><span class="p">]</span>
+        <span class="nx">replyToken</span><span class="o">:</span> <span class="kc">null</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pay attention that line.replyToken shouldn’t be assigned or should be assigned to <em>null</em> (<em>false</em>, <em>undefined</em>)</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Read more about multicast messages at
+<a class="reference external" href="https://developers.line.me/en/docs/messaging-api/reference/#send-multicast-messages">Line Docs</a></p>
+</div>
+</div>
+<div class="section" id="leave-group">
+<h4><a class="toc-backref" href="#id29">Leave Group</a><a class="headerlink" href="#leave-group" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot leave group, format yout msg in following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">payload</span><span class="o">:</span> <span class="s2">&quot;group-id&quot;</span><span class="p">,</span>
+    <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">action</span><span class="o">:</span> <span class="s2">&quot;leaveGroup&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;action&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="leave-room">
+<h4><a class="toc-backref" href="#id30">Leave Room</a><a class="headerlink" href="#leave-room" title="Permalink to this headline">¶</a></h4>
+<p>To have your bot leave room, format yout msg in following manner:</p>
+<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">payload</span><span class="o">:</span> <span class="s2">&quot;room-id&quot;</span><span class="p">,</span>
+    <span class="nx">line</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">action</span><span class="o">:</span> <span class="s2">&quot;leaveRoom&quot;</span><span class="p">,</span>
+        <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;action&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="oauth2.html" class="btn btn-neutral" title="OAuth2/Uber Tutorials" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Dec 07, 2017.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
