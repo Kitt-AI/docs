@@ -519,7 +519,7 @@ Feel free to play with the bots template. You can either:
   `applications <https://chatflow.kitt.ai/apps>`_ page.
 
 * Use the "Free Lunch" sample application when clicking "CREATE NEW APP" on the
-  `applications <https://chatflow.kitt.ai/apps>`_ page.
+  main page.
 
 In addition, download the :download:`NLU json <_static/json/TheFreeLunchBot-nlu.json>`
 Use the NLU's import JSON feature to import it as `an NLU application <https://nlu.kitt.ai>`_
