@@ -38,7 +38,7 @@ By the end of this tutorial you will be able to
 Getting Started
 ===============
 
-1. Download the :download:`Line By Line Sample Application JSON <_static/json/YelpTelegramBot.json>`
+1. Download the :download:`Line By Line Sample Application JSON <_static/json/line_by_line.json>`
    and import it using the import it to ChatFlow.
 
 .. image:: _static/img/buildabot/import.png
