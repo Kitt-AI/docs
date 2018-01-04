@@ -306,9 +306,10 @@ other input strings.
 1. Add an Enter Node and a State Node to the Canvas. Connect them together.
 
 2. Edit the Enter Node, name is "U: default", and set it's entrance conditions to:
-   * ``Property msg.payload is not null``
-   * ``Property msg.payload != yes``
-   * ``Property msg.payload != no``
+
+   * Property ``msg.payload is not null``
+   * Property ``msg.NLU.sentence != yes``
+   * Property ``msg.NLU.sentence != no``
 
 .. image:: _static/img/buildabot/u-default.png
    :align: center

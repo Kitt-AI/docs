@@ -256,7 +256,7 @@
                 "e361fb1f.f38a58"
             ]
         ],
-        "url": "https://api-nlu-test.kitt.ai/v1/api/baacc81b-1866-40ad-aad4-f2da51698e64?token=ayNtxrRiNMMnoGk6TUDFbA6RWR7K0dui&q={{{payload}}}N:",
+        "url": "",
         "ret": "obj",
         "method": "GET"
     }
