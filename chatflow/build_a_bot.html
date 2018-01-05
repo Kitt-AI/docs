@@ -418,10 +418,13 @@ else to say. Let’s now give our bot the ability to handle <em>yes</em> and
 <blockquote>
 <div><ul class="simple">
 <li>Name it <em>“U: no”</em></li>
-<li>Set its condition to <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code>
-.. note:: This simply checks if the user input to the Router coming from the <em>Chat In</em> node is “no”</li>
+<li>Set its condition to <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code></li>
 </ul>
 </div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This simply checks if the user input to the Router coming from the <em>Chat In</em> node is “no”</p>
+</div>
 <img alt="_images/u-no.png" class="align-center" src="_images/u-no.png" />
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -495,8 +498,8 @@ other input strings.</p>
 <li>Add an Enter Node and a State Node to the Canvas. Connect them together.</li>
 <li>Edit the Enter Node, name is “U: default”, and set it’s entrance conditions to:<ul>
 <li>Property <code class="docutils literal"><span class="pre">msg.payload</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li>Property <code class="docutils literal"><span class="pre">msg.NLU.sentence</span> <span class="pre">!=</span> <span class="pre">yes</span></code></li>
-<li>Property <code class="docutils literal"><span class="pre">msg.NLU.sentence</span> <span class="pre">!=</span> <span class="pre">no</span></code></li>
+<li>Property <code class="docutils literal"><span class="pre">msg.NLU.intent</span> <span class="pre">!=</span> <span class="pre">positive_response</span></code></li>
+<li>Property <code class="docutils literal"><span class="pre">msg.NLU.intent</span> <span class="pre">!=</span> <span class="pre">negative_response</span></code></li>
 </ul>
 </li>
 </ol>
@@ -711,7 +714,7 @@ and configure it to your ChatFlow App.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Jan 03, 2018.
+      Last updated on Jan 04, 2018.
 
     </p>
   </div> 

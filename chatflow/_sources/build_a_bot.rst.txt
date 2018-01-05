@@ -232,7 +232,8 @@ else to say. Let's now give our bot the ability to handle *yes* and
 
   * Name it *"U: no"*
   * Set its condition to ``Property msg.payload == no``
-    .. note:: This simply checks if the user input to the Router coming from the *Chat In* node is "no"
+
+.. note:: This simply checks if the user input to the Router coming from the *Chat In* node is "no"
 
 .. image:: _static/img/buildabot/u-no.png
    :align: center
@@ -308,8 +309,8 @@ other input strings.
 2. Edit the Enter Node, name is "U: default", and set it's entrance conditions to:
 
    * Property ``msg.payload is not null``
-   * Property ``msg.NLU.sentence != yes``
-   * Property ``msg.NLU.sentence != no``
+   * Property ``msg.NLU.intent != positive_response``
+   * Property ``msg.NLU.intent != negative_response``
 
 .. image:: _static/img/buildabot/u-default.png
    :align: center
