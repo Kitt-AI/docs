@@ -1,6 +1,6 @@
 [
     {
-        "id": "f0db284d.3ba7c8",
+        "id": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "type": "tab",
         "label": "Flow 1",
         "in": [],
@@ -8,55 +8,55 @@
         "wires": []
     },
     {
-        "id": "668fb76b.278408",
+        "id": "5889a5439bf455a489cf.a8b8c23a22e2",
         "type": "chat-server",
         "name": "",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "wires": []
     },
     {
-        "id": "9c04825a.8ce82",
+        "id": "50f157f646b44b619521.7cbb9af50b42",
         "type": "chat-in",
         "name": "",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 170,
         "y": 280,
         "wires": [
             [
-                "cc2eaff.531105"
+                "92d8bb09b1596546eb8f.0308afb09df5"
             ]
         ],
         "sessionField": "_sessionId",
-        "server": "668fb76b.278408"
+        "server": "5889a5439bf455a489cf.a8b8c23a22e2"
     },
     {
-        "id": "da3cec1b.ad034",
+        "id": "3df1404006d6c63303bf.e240c2b4c6cc",
         "type": "chat-out",
         "name": "",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 790,
         "y": 280,
         "wires": [],
-        "server": "668fb76b.278408"
+        "server": "5889a5439bf455a489cf.a8b8c23a22e2"
     },
     {
-        "id": "e361fb1f.f38a58",
+        "id": "2c735368bec1d64914dd.dd00acf9234d",
         "type": "router",
         "name": "",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 550,
         "y": 280,
         "wires": [
             [
-                "da3cec1b.ad034"
+                "3df1404006d6c63303bf.e240c2b4c6cc"
             ]
         ],
         "sessionprop": "kitt._session_id",
@@ -64,17 +64,17 @@
         "timeout": "1800"
     },
     {
-        "id": "170c0c63.ff8194",
+        "id": "a0b38724c82cc9d5a388.92ea868b4e9e",
         "type": "enter",
         "name": "Initial State",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 230,
         "y": 380,
         "wires": [
             [
-                "c41cbd1c.745b9"
+                "e8ebbe42386cff951ed7.dd5e719f2b00"
             ]
         ],
         "outputs": 1,
@@ -83,10 +83,10 @@
         "initialstate": true
     },
     {
-        "id": "c41cbd1c.745b9",
+        "id": "e8ebbe42386cff951ed7.dd5e719f2b00",
         "type": "state",
         "name": "Initialize state",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 500,
@@ -102,17 +102,17 @@
         "requestUserInput": true
     },
     {
-        "id": "a886ac2a.88863",
+        "id": "8aab3e329205b29de20f.b20605f6c931",
         "type": "enter",
         "name": "U: no",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 230,
         "y": 460,
         "wires": [
             [
-                "84f9c538.7e6e08"
+                "f1f48567fd48a1fa9a95.548731582c55"
             ]
         ],
         "outputs": 1,
@@ -120,17 +120,17 @@
         "directlink": false,
         "rules": [
             {
-                "v": "negative_response",
+                "t": "eq",
                 "p": "NLU.intent",
-                "t": "eq"
+                "v": "negative_response"
             }
         ]
     },
     {
-        "id": "84f9c538.7e6e08",
+        "id": "f1f48567fd48a1fa9a95.548731582c55",
         "type": "state",
         "name": "Ask again",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 490,
@@ -146,17 +146,17 @@
         "response": "I must insist. Will you reconsider?"
     },
     {
-        "id": "8de088a1.befc58",
+        "id": "7333f9c1e8c47cd08b5f.1505f05c959a",
         "type": "enter",
         "name": "U: yes",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 230,
         "y": 540,
         "wires": [
             [
-                "92878512.b075d8"
+                "f56fc45fc51ef9b39e3b.5346f76b3de3"
             ]
         ],
         "outputs": 1,
@@ -164,17 +164,17 @@
         "directlink": false,
         "rules": [
             {
-                "v": "positive_response",
+                "t": "eq",
                 "p": "NLU.intent",
-                "t": "eq"
+                "v": "positive_response"
             }
         ]
     },
     {
-        "id": "92878512.b075d8",
+        "id": "f56fc45fc51ef9b39e3b.5346f76b3de3",
         "type": "state",
         "name": "thank user",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 490,
@@ -190,17 +190,17 @@
         "response": "Thank you! Number of times I asked: {{kitt.count}}"
     },
     {
-        "id": "6d7e416e.35679",
+        "id": "5dbf54176b0ce79e8107.58eb4b78a84e",
         "type": "enter",
         "name": "U: default",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 230,
         "y": 620,
         "wires": [
             [
-                "fa3dba3c.0c46e8"
+                "590e4a3dbbe8473d8ae9.c1de77652032"
             ]
         ],
         "outputs": 1,
@@ -210,13 +210,13 @@
                 "t": "nnull"
             },
             {
-                "v": "no",
-                "p": "payload",
+                "v": "positive_response",
+                "p": "NLU.intent",
                 "t": "neq"
             },
             {
-                "v": "yes",
-                "p": "payload",
+                "v": "negative_response",
+                "p": "NLU.intent",
                 "t": "neq"
             }
         ],
@@ -224,10 +224,10 @@
         "initialstate": false
     },
     {
-        "id": "fa3dba3c.0c46e8",
+        "id": "590e4a3dbbe8473d8ae9.c1de77652032",
         "type": "state",
         "name": "not understanding",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 510,
@@ -243,21 +243,36 @@
         "requestUserInput": false
     },
     {
-        "id": "cc2eaff.531105",
+        "id": "92d8bb09b1596546eb8f.0308afb09df5",
         "type": "KITT.AI",
         "name": "",
-        "z": "f0db284d.3ba7c8",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
         "in": [],
         "out": [],
         "x": 350,
         "y": 280,
         "wires": [
             [
-                "e361fb1f.f38a58"
+                "1b59aed5.3763b1",
+                "2c735368bec1d64914dd.dd00acf9234d"
             ]
         ],
         "url": "",
         "ret": "obj",
         "method": "GET"
+    },
+    {
+        "id": "1b59aed5.3763b1",
+        "type": "debug",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 567.390625,
+        "y": 203,
+        "wires": []
     }
 ]
