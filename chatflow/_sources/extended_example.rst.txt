@@ -382,11 +382,10 @@ is already conveniently packaged as a ChatFlow node.
 .. image:: _static/img/extendedexample/yelp-node.png
    :align: center
 
-2. In the node into put your *Consumer key*, a *Consumer secret*, a *Token* and
-   a *Token secret*.
+2. In the node info put your *Api Key*.
 
-  .. WARNING:: You must provide these values to configure your Yelp node. You can
-      obtain these by signing up for the `Yelp developer API <http://www.yelp.com/developers/v2>`_.
+  .. WARNING:: You must provide this value to configure your Yelp node. You can
+      obtain this by signing up for the `Yelp developer API <http://www.yelp.com/fusion>`_.
 
   The Yelp node builds a query by using a term in ``msg.yelp.term`` and a location in
   ``msg.yelp.location``. ``msg.yelp.limit`` limits the number of candidates in the
