@@ -111,6 +111,7 @@ Starting your conversational project
 | ``closing``                |User ends the conversation            | Goodbye, See ya!, Good night                                                                                                                    |
 +----------------------------+--------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------+
 
+.. note:: Intent classifier is case-insensitive.
 
 3. Next, click on "set-up entities" and add the following *entities*:
 

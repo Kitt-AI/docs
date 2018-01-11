@@ -28,7 +28,6 @@ Dialogue Nodes
 Nodes in ChatFlow
 ==================
 
-.. ChatFlow is built on top of `Node-RED <http://nodered.org>`_ inheriting much of Node-RED's basic message flow paradigm.
 
 ChatFlow conversational content is represented as nodes in a network or **Flow**. The nodes
 have **inputs** where they receive messages and **outputs** where they send messages.
@@ -127,18 +126,18 @@ Enter Nodes
 Enter nodes are the router's entry point into conversational content, which is
 typically a collection of networks, each bookended by an enter node (the entry
 point) and a state node (the exit point for the network). In between the enter
-node and the state node, there may be other state nodes and other Node-RED nodes,
+node and the state node, there may be other state nodes and other nodes,
 such as function nodes. All of the inter-node communication that happens between
 the enter node, which receives messages from the router, and the last state node,
 which sends messages back to the router, happen through wires, following
-Node-RED's usual message flow.
+usual message flow.
 
 Ordering Preferences
 --------------------
 
 Note that the output of a state node can be wired to the input of an
 enter node. Once that connection is made, the resulting connection is not a
-wire in the Node-RED sense and is shown on the screen as a dashed line unlike
+wire and is shown on the screen as a dashed line unlike
 wires that are shown as solid lines. This dashed line does not represent a wire
 over which messages can be sent but rather an *ordering preference* stating
 that the enter node should be preferred by the router immediately after the
