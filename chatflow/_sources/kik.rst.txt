@@ -361,7 +361,7 @@ Colored Cats Application:
 3. Copy the deploymnet URL in the "Deployment Information" section. Don't forget
    to deploy your NLU app!
 
-.. image:: _static/img/kik/Deployment_URL.png
+.. image:: _static/img/kik/Kik_Deployment_URL.png
    :align: center
 
 4. In ChatFlow, open the **KITT.AI NLU** node and paste the Deployment URL.
