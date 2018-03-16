@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>使用ChatFlow部署小度技能 &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="调试 ChatFlow" href="debug.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://ChatFlow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/ChatFlow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">English Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">欢迎使用ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">使用ChatFlow构建第一个bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Node介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_turn_dialogue.html">多轮对话</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superbot.html">Superbot介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">调试 ChatFlow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">使用ChatFlow部署小度技能</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">配置DBP技能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">建立ChatFlow技能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">ChatFlow技能详解</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dueros-in-out">DuerOS In/Out格式</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>使用ChatFlow部署小度技能</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/dueros.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chatflow">
+<span id="dueros"></span><h1><a class="toc-backref" href="#id7">使用ChatFlow部署小度技能</a><a class="headerlink" href="#chatflow" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#chatflow" id="id7">使用ChatFlow部署小度技能</a><ul>
+<li><a class="reference internal" href="#id2" id="id8">介绍</a></li>
+<li><a class="reference internal" href="#id3" id="id9">配置DBP技能</a></li>
+<li><a class="reference internal" href="#id4" id="id10">建立ChatFlow技能</a></li>
+<li><a class="reference internal" href="#id5" id="id11">ChatFlow技能详解</a></li>
+<li><a class="reference internal" href="#dueros-in-out" id="id12">DuerOS In/Out格式</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id8">介绍</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 可以作为小度DuerOS Bot Platform (<a class="reference external" href="https://developer.dueros.baidu.com/dbp">DBP</a>)的一个在线SDK，供开发者制作高级技能。使用DBP自身也可以发布技能，开发者无需编程。
+但是当有开发者需要对技能有更高要求时，可以使用 <a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 快速编辑并部署。</p>
+<p><a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 快速提供webhook回调地址给DBP，这样复杂逻辑和需要编程的工作可以从 <a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 端实现。</p>
+<p>本小节简单介绍如何使用ChatFlow部署一个非常简单的讲笑话的技能，并且说明ChatFlow中如何保存上下文。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">为保证在中国的服务速度，我们在百度云上搭建了ChatFlow的服务器：<a class="reference external" href="https://ChatFlow.dueros.baidu.com/">https://ChatFlow.dueros.baidu.com/</a>。其他bot服务
+可以继续使用 <a class="reference external" href="https://ChatFlow.kitt.ai">https://ChatFlow.kitt.ai</a></p>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id9">配置DBP技能</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>首先以开发者身份登录 <a class="reference external" href="https://developer.dueros.baidu.com/dbp">DBP</a> 创建一个”自定义”技能：</p>
+<img alt="_images/create.png" class="align-center" src="_images/create.png" />
+<p>在”基础信息”栏填入技能名称：</p>
+<img alt="_images/basic-info.png" class="align-center" src="_images/basic-info.png" />
+<p>配置一个简单的”讲笑话”/”tell_a_joke”意图，并且输入一些例句：</p>
+<img alt="_images/intent.png" class="align-center" src="_images/intent.png" />
+<p>注意我们这个技能并不包含多轮对话。我们用了一个非常简单的单意图对话。</p>
+<p>在”配置服务”一栏我们需要填入部署地址，稍等片刻，我们在下一节提供：</p>
+<img alt="_images/webhook.png" class="align-center" src="_images/webhook.png" />
+<p>最后在”发布上线”中填入所有必须项，点击”保存”：</p>
+<img alt="_images/publish.png" class="align-center" src="_images/publish.png" />
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id10">建立ChatFlow技能</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>登陆 <a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 后，点击”CREATE NEW APP”，在”Use a sample project”中选取”DuerOS技能”：</p>
+<img alt="_images/sample-app.png" class="align-center" src="_images/sample-app.png" />
+<p>建立技能后可以看到一个简单的bot和操作界面：</p>
+<img alt="_images/app-overview.png" class="align-center" src="_images/app-overview.png" />
+<p>双击DuerOS In节点，即可看到在”Final URL”栏里的服务器地址：</p>
+<img alt="_images/webhook-url.png" class="align-center" src="_images/webhook-url.png" />
+<p>DuerOS的服务请求都可以发到这个地址来。复制这个地址，回到 <a class="reference external" href="https://developer.dueros.baidu.com/dbp">DBP</a> 粘贴
+到”配置服务”一栏：</p>
+<img alt="_images/webhook.png" class="align-center" src="_images/webhook.png" />
+<p>回到ChatFlow，点击”DEPLOY”，这个笑话技能就部署完毕了。我们可以在DBP的”模拟测试”中测试一下：</p>
+<img alt="_images/simulation.png" class="align-center" src="_images/simulation.png" />
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id11">ChatFlow技能详解</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>在上面的例子里我们通过ChatFlow提供DuerOS技能的接入。当用户对小度说话时，信息会通过DuerOS In节点传到ChatFlow来。
+router节点是对话管理器，负责更负责的对话逻辑。DuerOS Out节点会负责讲信息返回给DBP的发送者。</p>
+<p>我们使用了一个HTTP节点和免费的API，用来获取当天的最新笑话：<a class="reference external" href="http://api.laifudao.com/open/xiaohua.json">http://api.laifudao.com/open/xiaohua.json</a></p>
+<img alt="_images/http-joke.png" class="align-center" src="_images/http-joke.png" />
+<p>解析出来的JSON结构会存在 <cite>msg.payload</cite> 中，通过连线传到后面的节点。在”返回一个笑话”节点中，有一段简单的代码用来获取笑话：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">jokes</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">total</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">jokes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">current</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">jokes</span><span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">current</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]];</span>
+
+<span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">current</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>在这里 <code class="docutils literal notranslate"><span class="pre">msg.kitt.*</span></code> 会在每一轮对话中保持住，所以当用户说”再讲一个”时，技能会抛出一个新笑话，而非重复上一个。</p>
+<p>当用户说”打开讲个笑话”时，<code class="docutils literal notranslate"><span class="pre">msg.kitt._skill_launched</span></code> 会被赋值为 <code class="docutils literal notranslate"><span class="pre">true</span></code>。我们的”打开skill”节点就会匹配：</p>
+<img alt="_images/open-skill.png" class="align-center" src="_images/open-skill.png" />
+<p>这时技能可以说一些介绍的话，而我们直接调用了笑话的web API初始化当天的笑话集，并返回一个笑话。</p>
+<p>当用户说”再来一个”时， <code class="docutils literal notranslate"><span class="pre">msg.dueros.request.intents</span></code> 会包含一个所有可能的意图列表。为了简单起见，我们把最有可能的意图放到
+<code class="docutils literal notranslate"><span class="pre">msg.NLU.intent</span></code> 中：</p>
+<img alt="_images/tell-joke.png" class="align-center" src="_images/tell-joke.png" />
+<p>当我们检测到”tell_a_joke”意图时，就可以匹配此节点，然后再次返回一个新笑话。</p>
+</div>
+<div class="section" id="dueros-in-out">
+<h2><a class="toc-backref" href="#id12">DuerOS In/Out格式</a><a class="headerlink" href="#dueros-in-out" title="Permalink to this headline">¶</a></h2>
+<p>当用户输入”打开讲个笑话”时，DBP会触发这个技能。DuerOS In节点就会输出：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="o">:</span><span class="p">{</span>
+    <span class="s2">&quot;_msgid&quot;</span><span class="o">:</span> <span class="s2">&quot;a842b41b.1d3208&quot;</span><span class="p">,</span>
+     <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+     <span class="s2">&quot;dueros&quot;</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;session&quot;</span><span class="o">:</span> <span class="p">{</span>
+             <span class="s2">&quot;new&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+             <span class="s2">&quot;sessionId&quot;</span><span class="o">:</span> <span class="s2">&quot;43d4279f-b46a-4783-b372-768e6be78ce7&quot;</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;context&quot;</span><span class="o">:</span> <span class="p">{</span>
+             <span class="s2">&quot;System&quot;</span><span class="o">:</span> <span class="p">{</span>
+                 <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
+                     <span class="s2">&quot;userId&quot;</span><span class="o">:</span> <span class="s2">&quot;46583872&quot;</span><span class="p">,</span>
+                     <span class="s2">&quot;userInfo&quot;</span><span class="o">:</span> <span class="p">{}</span>
+                 <span class="p">},</span>
+                 <span class="s2">&quot;application&quot;</span><span class="o">:</span> <span class="p">{</span>
+                     <span class="s2">&quot;applicationId&quot;</span><span class="o">:</span> <span class="s2">&quot;e2627bf4-57cc-b47b-6d36-46a0b37bb8bf&quot;</span>
+                 <span class="p">},</span>
+                 <span class="s2">&quot;device&quot;</span><span class="o">:</span> <span class="p">{</span>
+                     <span class="s2">&quot;deviceId&quot;</span><span class="o">:</span> <span class="s2">&quot;446d1feca5592c74c793ee481f085096&quot;</span>
+                 <span class="p">}</span>
+             <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="p">{</span>
+             <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;LaunchRequest&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;requestId&quot;</span><span class="o">:</span> <span class="s2">&quot;e1936c47aeb2497494ef53f1d5172a3d_1&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="s2">&quot;1510752979&quot;</span>
+         <span class="p">}</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;kitt&quot;</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;_session_started&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+         <span class="s2">&quot;_session_ended&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+         <span class="s2">&quot;_skill_launched&quot;</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+         <span class="s2">&quot;_session_id&quot;</span><span class="o">:</span> <span class="s2">&quot;43d4279f-b46a-4783-b372-768e6be78ce7&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;_user_id&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+         <span class="s2">&quot;_timeout&quot;</span><span class="o">:</span> <span class="mi">30</span>
+     <span class="p">},</span>
+     <span class="s2">&quot;NLU&quot;</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+         <span class="s2">&quot;entities&quot;</span><span class="o">:</span> <span class="p">{}</span>
+     <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>注意 <code class="docutils literal notranslate"><span class="pre">msg.kitt_session_started</span></code> 的值为 <code class="docutils literal notranslate"><span class="pre">true</span></code> ，表明用户对技能新发起了一个对话。</p>
+<p>当用户输入”再来一个”时，DuerOS In输出：</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;_msgid&quot;</span><span class="o">:</span> <span class="s2">&quot;57e1cbf2.108024&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;payload&quot;</span><span class="o">:</span> <span class="s2">&quot;再来一个&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;dueros&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;session&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;new&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="s2">&quot;sessionId&quot;</span><span class="o">:</span> <span class="s2">&quot;43d4279f-b46a-4783-b372-768e6be78ce7&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;attributes&quot;</span><span class="o">:</span> <span class="p">{}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;context&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;System&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;user&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;userId&quot;</span><span class="o">:</span> <span class="s2">&quot;46583872&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;userInfo&quot;</span><span class="o">:</span> <span class="p">{}</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;application&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;applicationId&quot;</span><span class="o">:</span> <span class="s2">&quot;e2627bf4-57cc-b47b-6d36-46a0b37bb8bf&quot;</span>
+                <span class="p">},</span>
+                <span class="s2">&quot;device&quot;</span><span class="o">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;deviceId&quot;</span><span class="o">:</span> <span class="s2">&quot;446d1feca5592c74c793ee481f085096&quot;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;request&quot;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="s2">&quot;query&quot;</span><span class="o">:</span> <span class="p">{</span>
+                <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;TEXT&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;original&quot;</span><span class="o">:</span> <span class="s2">&quot;再来一个&quot;</span>
+            <span class="p">},</span>
+            <span class="s2">&quot;dialogState&quot;</span><span class="o">:</span> <span class="s2">&quot;COMPLETED&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;tell_a_joke&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;confirmationStatus&quot;</span><span class="o">:</span> <span class="s2">&quot;NONE&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;slots&quot;</span><span class="o">:</span> <span class="p">{}</span>
+                <span class="p">}</span>
+            <span class="p">],</span>
+            <span class="s2">&quot;type&quot;</span><span class="o">:</span> <span class="s2">&quot;IntentRequest&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;requestId&quot;</span><span class="o">:</span> <span class="s2">&quot;faf421b71d914cd8b0529f4f37178229_1&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="o">:</span> <span class="s2">&quot;1510752988&quot;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;kitt&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;_session_started&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">&quot;_session_ended&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">&quot;_skill_launched&quot;</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+        <span class="s2">&quot;_session_id&quot;</span><span class="o">:</span> <span class="s2">&quot;43d4279f-b46a-4783-b372-768e6be78ce7&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;_user_id&quot;</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="s2">&quot;_timeout&quot;</span><span class="o">:</span> <span class="mi">30</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;NLU&quot;</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;tell_a_joke&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;entities&quot;</span><span class="o">:</span> <span class="p">{},</span>
+        <span class="s2">&quot;sentence&quot;</span><span class="o">:</span> <span class="s2">&quot;再来一个&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="s2">&quot;[circular]&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>此时 <code class="docutils literal notranslate"><span class="pre">msg.dueros.request.intents</span></code> 是一个只有一个元素的列表， <code class="docutils literal notranslate"><span class="pre">msg.NLU.intent</span></code> 把它提取了出来方便以后访问。而
+<code class="docutils literal notranslate"><span class="pre">msg.kitt._session_started</span></code> 变成了 <code class="docutils literal notranslate"><span class="pre">false</span></code> 表明对话正在进行中。</p>
+<p>用户返回给DuerOS Out的格式也非常简单：只要把 <code class="docutils literal notranslate"><span class="pre">msg.kitt._responses</span></code> 列表赋值即可。如果 <code class="docutils literal notranslate"><span class="pre">msg.kitt._responses</span></code>
+列表有多于一个选项，则DuerOS Out会随机选一个输出。如果需要更加详细地控制输出，则可以设置如下选项：</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">msg.dueros.outputSpeech</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.dueros.reprompt</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.dueros.card</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.dueros.directives</span></code></li>
+</ol>
+<p>有关更多DBP的使用说明，可以查看 <a class="reference external" href="http://developer.dueros.baidu.com/doc/dueros-bot-platform/Introduction_markdown">这里</a> 。</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="debug.html" class="btn btn-neutral" title="调试 ChatFlow" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Mar 16, 2018.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

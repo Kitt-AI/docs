@@ -1,0 +1,123 @@
+.. _superbot:
+
+====================
+Superbot介绍
+====================
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _KITT.AI: https://kitt.ai
+.. _ChatFlow: https://ChatFlow.dueros.baidu.com/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: 目录
+   :depth: 4
+
+介绍
+==============
+
+Superbot是多个bot的中控系统，假如我们有两个bot，一个给用户提供信用卡缴费的功能，一个给用户提供卡片挂失的功能，我们通常会希望把它作为同一个bot
+暴露给用户，即提供信用卡缴费的功能，又提供卡片挂失的功能。
+
+为了让上述的需求实现起来更加方便，我们开发了 **superbot node** ，当前只支持基于 **http in** 和 **http out** 暴露的bot，同时每一个子bot需要
+做对应的修改，才能让不同的bot更好的协作起来，对外表现的更像是同一个bot。下面我们会对如何改造子bot，让他们整合起来做详细的介绍。
+
+在这篇教程结束之后可以：
+  * 创建一个讲笑话的bot和一个缴信用卡的bot
+  * 将两个bot通过superbot整合起来，作为一个统一的bot暴露给用户使用
+
+以下视频将为展示整合后的superbot的功能：
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/superbot/superbot-demo.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+
+
+superbot搭建
+================
+
+搭建两个子bot
+------------------
+
+首先我们需要准备好两个bot:
+
+1. 信用卡缴费的bot：:download:`信用卡缴费 ChatFlow json <../source/_static/json/信用卡缴费-http-ChatFlow.json>` , 
+:download:`信用卡缴费 NLU json <../source/_static/json/信用卡缴费-简体-nlu.json>`
+
+2. 讲笑话的bot：:download:`讲笑话 ChatFlow json <../source/_static/json/笑话-ChatFlow.json>`, 
+:download:`讲笑话 NLU json <../source/_static/json/笑话-简体-nlu.json>`
+
+  .. note:: 你需要把NLU项目的endpoint地址配置到对应的ChatFlow项目中。
+
+现在你对两个ChatFlow中 **http in** 中的API POST数据就可以看到我们bot的输出，只需要将这些API包装进我们的APP或者浏览器中，就可以提供给用户作为bot来使用。
+
+改造成superbot
+---------------------
+首先我们需要双击打开ChatFlow中每一个子bot的 **router** 节点，然后在Dry Run From中填上 ``req.query._dry_run``，如下图
+
+.. image:: ../source/_static/img/superbot/dry_run_settings.png
+
+然后我们需要给每一个子bot添加自己不能处理的情况，具体做法如下：
+
+1. 新拉一个 **enter** 节点，然后勾选上 **fallback** 选项。
+
+.. image:: ../source/_static/img/superbot/fallback.png
+
+2. 在 **enter** 节点后面接上一个 **state** 节点，里面添加上代码：
+
+   .. code:: javascript
+
+       msg.payload = {cannot_answer: true};
+       return msg;
+
+这样我们的子bot就可以对自己不能处理的情况说“不”了。
+
+接下来我们需要创建一个Superbot项目。Superbot项目就是一个普通的ChatFlow项目，只是我们需要
+添加一个 **superbot node**。具体图如下：
+
+.. image:: ../source/_static/img/superbot/superbot.png
+
+.. note:: superbot的 **http in** 节点的请求方法需要和子bot的 **http in** 节点的请求方法一致，在上面的demo中都是POST方法。
+
+然后双击打开 **superbot node** ，在里面添加上子bot的各个flow的 **http in** 节点的API，在 **sorted by key** 处填上我们需要通过子flow的返回值的哪个字段来选择使用哪个
+bot的返回作为superbot的返回值，在当前的例子中是 ``NLU.intent_score`` 。
+
+这样我们就把两个子flow连起来了。 **superbot node** 会选择分数最高的子flow的相应作为输出，它在
+判断选择哪一个bot的时候，并不会真正的去执行enter后面的节点，而只会把router前面的节点生成
+的值和当前消息符合的enter节点的数量一起返回。也就是说你不需要担心superbot会有副作用，他没有选择的bot并不会去执行enter后面的节点，
+但是这也表示你只能使用router节点前生成的数据作为子bot排序选择的依据，在我们的例子中，我们就是通过router节点前面的
+NLU节点的生成值来进行bot的选择的。
+
+你会注意到 **superbot node** 有两个输出节点，像下图这样：
+
+.. image:: ../source/_static/img/superbot/superbot-node-output.png
+
+第一个节点表示有一个子bot处理了当前用户的消息，然后这个子bot的输出会通过这个节点的连线发送出去。
+而第二个节点表示当前没有一个子bot可以处理当前用户的信息，**superbot node** 获取到的信息会原封不动的
+通过当前节点传递下去。很明显这两个节点在同一时间有且仅有一个节点可以输出数据。
+
+你可以直接下载superbot的例子，导入到你的项目中进行测试： :download:`讲笑话 ChatFlow json <../source/_static/json/superbot-demo.json>`
+
+.. note:: 导入上述superbot的文件后，你需要将superbot中配置的API替换成你自己部署的bot的API。
+
+跨子bot共享数据
+-----------------
+
+有时候我们会需要两个bot被整合成同一个superbot后，他们的数据也是共享的，比如有一个信用卡缴费bot和一个卡片挂失的bot，
+我们希望在一个bot中获取用户身份信息之后，在另外一个bot里也能拿到用户的身份信息，而不用在第二个bot里再获取一次。
+
+我们可以把需要共享的数据存储在Superbot的项目中，然后在项目中的 **superbot** 节点前将需要共享的数据添加到  ``msg.payload`` 中，
+这样每个子flow就可以获取到共享的值，拿到这个值之后就可以做对应的处理了。

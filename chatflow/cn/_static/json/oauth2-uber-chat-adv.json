@@ -1,0 +1,374 @@
+[
+    {
+        "id": "a57d89d6.67abf8",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "821c4f03.d5e32",
+        "type": "chat-server",
+        "name": "",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "f1297840.a29488",
+        "type": "chat-in",
+        "name": "",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 250,
+        "y": 120,
+        "wires": [
+            [
+                "c42cfa57.77b598"
+            ]
+        ],
+        "server": "821c4f03.d5e32",
+        "sessionField": "_sessionId"
+    },
+    {
+        "id": "1eeca905.578ca7",
+        "type": "chat-out",
+        "name": "",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 1030,
+        "y": 120,
+        "wires": [],
+        "server": "821c4f03.d5e32"
+    },
+    {
+        "id": "cc6acb92.ec22f8",
+        "type": "enter",
+        "name": "start",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "d0891638.e29418"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": true,
+        "directlink": false,
+        "rules": []
+    },
+    {
+        "id": "2ec3e5d1.ad740a",
+        "type": "enter",
+        "name": "get profile",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 250,
+        "y": 260,
+        "wires": [
+            [
+                "98616477.21ce48"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "payload",
+                "v": "profile"
+            }
+        ]
+    },
+    {
+        "id": "149551f4.a258ce",
+        "type": "enter",
+        "name": "end conversation",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 270,
+        "y": 420,
+        "wires": [
+            [
+                "d4bac22c.111f"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "payload",
+                "v": "bye"
+            }
+        ]
+    },
+    {
+        "id": "d0891638.e29418",
+        "type": "state",
+        "name": "state",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 650,
+        "y": 200,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "a782cbe5.123558",
+        "type": "state",
+        "name": "authorize app",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 940,
+        "y": 240,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt._responses = ['Please authorize this app: ' + msg.oauth2.url];\n \nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "f5b5fb5e.94aab8",
+        "type": "router",
+        "name": "",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 650,
+        "y": 120,
+        "wires": [
+            [
+                "9fc8fb90.0f22a8"
+            ]
+        ],
+        "timeout": "1800",
+        "userprop": "kitt._user_id",
+        "sessionprop": "kitt._session_id",
+        "debugOutput": "console"
+    },
+    {
+        "id": "5973adaf.dedcd4",
+        "type": "state",
+        "name": "greet",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 930,
+        "y": 300,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt._responses = ['Hello, ' + msg.payload.first_name + '!'];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "d4bac22c.111f",
+        "type": "state",
+        "name": "end",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 650,
+        "y": 420,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": true,
+        "response": "Good bye!"
+    },
+    {
+        "id": "58646daa.b82e14",
+        "type": "OAuth2 Request",
+        "name": "uber profile",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 650,
+        "y": 260,
+        "wires": [
+            [
+                "a782cbe5.123558"
+            ],
+            [
+                "5973adaf.dedcd4"
+            ]
+        ],
+        "ret": "obj",
+        "url": "https://api.uber.com/v1/me",
+        "scopes": "profile history places",
+        "method": "GET",
+        "config": "f10865c0.5f6628"
+    },
+    {
+        "id": "98616477.21ce48",
+        "type": "function",
+        "name": "clear payload",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 450,
+        "y": 260,
+        "wires": [
+            [
+                "58646daa.b82e14"
+            ]
+        ],
+        "func": "msg.payload = null;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "c42cfa57.77b598",
+        "type": "function",
+        "name": "restore credentials",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 450,
+        "y": 120,
+        "wires": [
+            [
+                "f5b5fb5e.94aab8"
+            ]
+        ],
+        "func": "msg.uber_oauth2 = global.get('mockDatabase');\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "9fc8fb90.0f22a8",
+        "type": "function",
+        "name": "save credentials",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 840,
+        "y": 120,
+        "wires": [
+            [
+                "1eeca905.578ca7"
+            ]
+        ],
+        "func": "if (msg.uber_oauth2) {\n    global.set('mockDatabase', msg.uber_oauth2);\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "330dd01d.9d7d4",
+        "type": "enter",
+        "name": "get history",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 250,
+        "y": 340,
+        "wires": [
+            [
+                "43c747a3.7fc098"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "v": "history",
+                "p": "payload",
+                "t": "eq"
+            }
+        ]
+    },
+    {
+        "id": "d86f7e71.25567",
+        "type": "state",
+        "name": "print places",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 930,
+        "y": 360,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {\n  \"offset\": 0,\n  \"limit\": 1,\n  \"count\": 5,\n  \"history\": [\n    {\n     \"status\":\"completed\",\n     \"distance\":1.64691465,\n     \"request_time\":1428876188,\n     \"start_time\":1428876374,\n     \"start_city\":{\n        \"display_name\":\"San Francisco\",\n        \"latitude\":37.7749295,\n        \"longitude\":-122.4194155\n     },\n     \"end_time\":1428876927,\n     \"request_id\":\"37d57a99-2647-4114-9dd2-c43bccf4c30b\",\n     \"product_id\":\"a1111c8c-c720-46c3-8534-2fcdd730040d\"\n  },\n  ]\n};\nvar response = 'You ordered ' + msg.payload.count + ' rides.';\n\nif (msg.payload.history.length > 0) {\n    response += ' The first one started in ' + msg.payload.history[0].start_city.display_name + '.';\n}\n\nmsg.kitt._responses = [response];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "43c747a3.7fc098",
+        "type": "function",
+        "name": "clear payload",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 450,
+        "y": 340,
+        "wires": [
+            [
+                "14da27a5.0e88e8"
+            ]
+        ],
+        "func": "msg.payload = null;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "14da27a5.0e88e8",
+        "type": "OAuth2 Request",
+        "name": "uber history",
+        "z": "a57d89d6.67abf8",
+        "in": [],
+        "out": [],
+        "x": 650,
+        "y": 340,
+        "wires": [
+            [
+                "a782cbe5.123558"
+            ],
+            [
+                "d86f7e71.25567"
+            ]
+        ],
+        "ret": "obj",
+        "url": "https://api.uber.com/v1.2/history",
+        "scopes": "profile history places",
+        "method": "GET",
+        "config": "f10865c0.5f6628"
+    }
+]

@@ -1,0 +1,99 @@
+{
+    "kitt_nlu_version": "1.0",
+    "name": "Free Lunch",
+    "intents": [
+        {
+            "name": "negative_response",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "positive_response",
+            "is_builtin": false,
+            "is_enabled": true
+        }
+    ],
+    "entities": [],
+    "utterances": [
+        {
+            "sentence": "Yes",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "yes",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "sure",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "of course",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "you bet!",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "it would be my honor",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "No",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "no",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "nope!",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "no way jose",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "Never",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "I shall not",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "I shall do no such thing",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "we are not assumed",
+            "intent": "negative_response",
+            "annotations": []
+        },
+        {
+            "sentence": "yeah",
+            "intent": "positive_response",
+            "annotations": []
+        },
+        {
+            "sentence": "not in 1000 years",
+            "intent": "negative_response",
+            "annotations": []
+        }
+    ]
+}

@@ -1,0 +1,218 @@
+[
+    {
+        "id": "4144d39c.3d1e1c",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "7700732c.8016ac",
+        "type": "http in",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 192.40625,
+        "y": 139,
+        "wires": [
+            [
+                "42efc001.c032"
+            ]
+        ],
+        "swaggerDoc": "",
+        "method": "post",
+        "url": "/superbot"
+    },
+    {
+        "id": "bd2fe10f.aa56b",
+        "type": "http response",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 593.40625,
+        "y": 138,
+        "wires": []
+    },
+    {
+        "id": "42efc001.c032",
+        "type": "router",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 392.40625,
+        "y": 172,
+        "wires": [
+            [
+                "bd2fe10f.aa56b"
+            ]
+        ],
+        "timeout": "1800",
+        "dryrun": "msg._dry_run",
+        "userprop": "kitt._user_id",
+        "sessionprop": "kitt._session_id"
+    },
+    {
+        "id": "931b1822.56ea48",
+        "type": "enter",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 196.40625,
+        "y": 253,
+        "wires": [
+            [
+                "b48f910c.a0359"
+            ]
+        ],
+        "outputs": 1,
+        "fallback": false,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "nnull",
+                "p": "payload"
+            }
+        ]
+    },
+    {
+        "id": "b48f910c.a0359",
+        "type": "superbot",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 392.40625,
+        "y": 255,
+        "wires": [
+            [
+                "bc00dab9.482f48"
+            ],
+            [
+                "95b840e2.0a03e"
+            ]
+        ],
+        "flowApis": [
+            "http://localhost:1880/users/5aa8ef209c8e7c5f9f1a5c72/apps/36074e8a.a9d772/api/demo?token=at79oBb64a6R8Mkm6M",
+            "http://localhost:1880/users/5aa8ef209c8e7c5f9f1a5c72/apps/df4103a4.73c23/api/demo?token=atRFpBb64aIpT9CDhs"
+        ],
+        "sorted-key": "NLU.intent_score"
+    },
+    {
+        "id": "bc00dab9.482f48",
+        "type": "state",
+        "name": "state",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 610.40625,
+        "y": 228,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "95b840e2.0a03e",
+        "type": "state",
+        "name": "state",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 594.40625,
+        "y": 290,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = \"不能理解\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "f94582d5.5385",
+        "type": "chat-server",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "22f78718.3e5848",
+        "type": "chat-in",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 140.40625,
+        "y": 61,
+        "wires": [
+            [
+                "60cfa04e.c3271"
+            ]
+        ],
+        "server": "f94582d5.5385",
+        "sessionField": "kitt._session_id"
+    },
+    {
+        "id": "834f09fb.88e9e8",
+        "type": "chat-out",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 673.40625,
+        "y": 58,
+        "wires": [],
+        "server": "f94582d5.5385"
+    },
+    {
+        "id": "60cfa04e.c3271",
+        "type": "http request",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 313.40625,
+        "y": 62,
+        "wires": [
+            [
+                "edfd24ef.7d3d08"
+            ]
+        ],
+        "url": "http://localhost:1880/users/5aa8ef209c8e7c5f9f1a5c72/apps/edd4b95.e58f448/api/superbot?token=atjPrCb64aV0iKrOve",
+        "ret": "obj",
+        "method": "POST"
+    },
+    {
+        "id": "edfd24ef.7d3d08",
+        "type": "function",
+        "name": "",
+        "z": "4144d39c.3d1e1c",
+        "in": [],
+        "out": [],
+        "x": 495.40625,
+        "y": 59,
+        "wires": [
+            [
+                "834f09fb.88e9e8"
+            ]
+        ],
+        "func": "// if you need extra debug function,\n// node.log() outputs to the debug panel.\n\nmsg.payload = msg.payload.msg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    }
+]

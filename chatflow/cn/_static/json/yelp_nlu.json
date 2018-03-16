@@ -1,0 +1,2200 @@
+{
+    "kitt_nlu_version": "1.0",
+    "name": "Yelp",
+    "intents": [
+        {
+            "name": "accept",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "closing",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "greeting",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "info_request",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "reject",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "request_address",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "request_hours",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "request_more_options",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "request_rating",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "request_suggestion",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "state_choice",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "state_location",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "thanking",
+            "is_builtin": false,
+            "is_enabled": true
+        }
+    ],
+    "entities": [
+        {
+            "name": "businesstype",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#008c9e"
+        },
+        {
+            "name": "enum_choice",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#ed317f"
+        },
+        {
+            "name": "location",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#8f2d56"
+        }
+    ],
+    "utterances": [
+        {
+            "sentence": "i ' d like a mexican restaurant near gas works park .",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "mexican restaurant",
+                    "start": 5,
+                    "end": 7,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "gas works park",
+                    "start": 8,
+                    "end": 11,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "mexican restaurant",
+                    "start": 5,
+                    "end": 7,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "gas works park",
+                    "start": 8,
+                    "end": 11,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "when does it close ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "is it open today ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "when does it open ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what are the business hours ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what time does it open ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "tacos near 98103",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "tacos",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "98103",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "tacos",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "98103",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "i ' m looking for a chinese place around the space needle .",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "chinese place",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "the space needle",
+                    "start": 9,
+                    "end": 12,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "chinese place",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "what time does it close ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "where is it ?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what is the address ?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "how do i get there ?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what ' s the rating ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "how is it rated ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "how good is it ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "is it good ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "is it bad ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "how many stars does it have ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "how are the reviews ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "are the reviews positive ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "are the reviews negative ?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "the first one",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "the second one",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "second",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "second",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "the third one",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "third",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "third",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "the last one",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "last",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "the first place",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "the second place",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "second",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "second",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "the third place",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "third",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "third",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "tell me more",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what else can you tell me ?",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what can you tell me about this place ?",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "tell me about the first place",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "tell me about the second place",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [
+                {
+                    "text": "second",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "second",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "tell me about the third option",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [
+                {
+                    "text": "third",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "third",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "tell me about option one",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [
+                {
+                    "text": "one",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "one",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "option two",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "two",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "two",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "option three",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "three",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "three",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "last option",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "last",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "last",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "first option",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "i ' m looking for a thai place",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "thai place",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "businesstype"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "thai place",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "thai food",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "thai food",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "thai food",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "i ' m looking for pizza in wallingford",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "pizza",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "wallingford",
+                    "start": 7,
+                    "end": 8,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "wallingford",
+                    "start": 7,
+                    "end": 8,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "i ' m looking for mexican food in redmond",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "mexican food",
+                    "start": 5,
+                    "end": 7,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "redmond",
+                    "start": 8,
+                    "end": 9,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "mexican",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "businesstype"
+                },
+                {
+                    "text": "redmond",
+                    "start": 8,
+                    "end": 9,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "in redmond",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "redmond",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "redmond",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "i ' m looking for a place in redmond",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "redmond",
+                    "start": 8,
+                    "end": 9,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "redmond",
+                    "start": 8,
+                    "end": 9,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "how good is the first one",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "where is the first one",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 3,
+                    "end": 4,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 3,
+                    "end": 4,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what time does the first one open",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "is the first one open how",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what can you tell me about the first one",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 7,
+                    "end": 8,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 7,
+                    "end": 8,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "how far is the first one",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "first",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "list more",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "give me more",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "more",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "more options",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "more choices",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "additional options",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "next option",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "next set of choices",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "more options please",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "give me more options",
+            "intent": "request_more_options",
+            "intent_prediction": "request_more_options",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "goodbye",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "bye",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "byebye",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "later",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "see you later",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "good bye",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "thanks",
+            "intent": "thanking",
+            "intent_prediction": "thanking",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "thank you",
+            "intent": "thanking",
+            "intent_prediction": "thanking",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "much appreciated",
+            "intent": "thanking",
+            "intent_prediction": "thanking",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "i appreciate it",
+            "intent": "thanking",
+            "intent_prediction": "thanking",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "thanks for your help",
+            "intent": "thanking",
+            "intent_prediction": "thanking",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "seattle",
+            "intent": "state_location",
+            "intent_prediction": "state_location",
+            "annotations": [
+                {
+                    "text": "seattle",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "gasworks park",
+            "intent": "state_location",
+            "intent_prediction": "state_location",
+            "annotations": [
+                {
+                    "text": "gasworks park",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "gasworks park",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "greenlake",
+            "intent": "state_location",
+            "intent_prediction": "state_location",
+            "annotations": [
+                {
+                    "text": "greenlake",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "space needle",
+            "intent": "state_location",
+            "intent_prediction": "state_location",
+            "annotations": [
+                {
+                    "text": "space needle",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "near 98103",
+            "intent": "state_location",
+            "intent_prediction": "state_location",
+            "annotations": [
+                {
+                    "text": "98103",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "98103",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "location"
+                }
+            ]
+        },
+        {
+            "sentence": "something italian",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "italian",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "italian",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "an italian place",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "italian",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "italian",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "a chinese place",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "chinese place",
+                    "start": 1,
+                    "end": 3,
+                    "entity": "businesstype"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "chinese place",
+                    "start": 1,
+                    "end": 3,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "something chinese",
+            "intent": "request_suggestion",
+            "intent_prediction": "request_suggestion",
+            "annotations": [
+                {
+                    "text": "chinese",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "chinese",
+                    "start": 1,
+                    "end": 2,
+                    "entity": "businesstype"
+                }
+            ]
+        },
+        {
+            "sentence": "yes",
+            "intent": "accept",
+            "intent_prediction": "accept",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "yep",
+            "intent": "accept",
+            "intent_prediction": "accept",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "yeah",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "sure",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "no",
+            "intent": "reject",
+            "intent_prediction": "reject",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "not really",
+            "intent": "reject",
+            "intent_prediction": "reject",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "nope",
+            "intent": "reject",
+            "intent_prediction": "reject",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "one",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "one",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "two",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "two",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "two",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "three",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "three",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "three",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "last",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "last",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "last",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "second",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "second",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "second",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "third",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "third",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "third",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "1",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "1",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "1",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "2",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "2",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "2",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "3",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "3",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "3",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what 's the rating of 2",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [
+                {
+                    "text": "2",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "2",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what about 1",
+            "intent": "info_request",
+            "intent_prediction": "info_request",
+            "annotations": [
+                {
+                    "text": "1",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "1",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what 's the rating of 3",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [
+                {
+                    "text": "3",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "3",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "1",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "1",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "1",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "2",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "2",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "2",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "3",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "3",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "3",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "one",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "one",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "two",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "two",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "two",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "three",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "three",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "three",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "1 looks good",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "1",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "1",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "let 's do 3",
+            "intent": "state_choice",
+            "intent_prediction": "state_choice",
+            "annotations": [
+                {
+                    "text": "3",
+                    "start": 3,
+                    "end": 4,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "3",
+                    "start": 3,
+                    "end": 4,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "bye",
+            "intent": "closing",
+            "intent_prediction": "closing",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what 's the rating of 3",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [
+                {
+                    "text": "3",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "3",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what 's the working hour of two",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [
+                {
+                    "text": "two",
+                    "start": 6,
+                    "end": 7,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "two",
+                    "start": 6,
+                    "end": 7,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "is three still open ?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [
+                {
+                    "text": "?",
+                    "start": 4,
+                    "end": 5,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what 's the working hour",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what 's the rating of 2",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [
+                {
+                    "text": "2",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "2",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "what 's the rating of 2",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [
+                {
+                    "text": "2",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "2",
+                    "start": 5,
+                    "end": 6,
+                    "entity": "enum_choice"
+                }
+            ]
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "yelp",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "Hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "Hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "Hello",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "What are your hours ?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what are your hours?",
+            "intent": "request_hours",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "When are you open?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "Are you open?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "are you closed?",
+            "intent": "request_hours",
+            "intent_prediction": "request_hours",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "what are your ratings?",
+            "intent": "request_rating",
+            "intent_prediction": "request_rating",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "where are you located?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "where are you at?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "where are you at ?",
+            "intent": "request_address",
+            "intent_prediction": "request_address",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hi",
+            "intent": "greeting",
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "Hello",
+            "intent": null,
+            "intent_prediction": "greeting",
+            "annotations": [],
+            "annotations_prediction": []
+        }
+    ]
+}

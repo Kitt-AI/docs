@@ -1,0 +1,184 @@
+[
+    {
+        "id": "ff72e9c1.5447b8",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "6bff89e5.3d2c78",
+        "type": "Twilio In",
+        "z": "ff72e9c1.5447b8",
+        "name": "",
+        "urlSuffix": "",
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "5e4fb627.276cc8"
+            ]
+        ]
+    },
+    {
+        "id": "36def165.f140be",
+        "type": "Twilio Out",
+        "z": "ff72e9c1.5447b8",
+        "name": "",
+        "from": "",
+        "toField": "",
+        "bodyField": "",
+        "respondMode": true,
+        "x": 590,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "a62bd52e.e9d178",
+        "type": "function",
+        "z": "ff72e9c1.5447b8",
+        "name": "increase counter",
+        "func": "msg.kitt.counter = (msg.kitt.counter || 0) + 1;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 400,
+        "y": 380,
+        "wires": [
+            [
+                "490c3f1.ebf15c"
+            ]
+        ]
+    },
+    {
+        "id": "593dc69.bff5038",
+        "type": "enter",
+        "z": "ff72e9c1.5447b8",
+        "name": "start",
+        "rules": [],
+        "directlink": false,
+        "initialstate": true,
+        "outputs": 1,
+        "x": 210,
+        "y": 320,
+        "wires": [
+            [
+                "72d9b496.78a41c"
+            ]
+        ]
+    },
+    {
+        "id": "2ef4c057.7a047",
+        "type": "enter",
+        "z": "ff72e9c1.5447b8",
+        "name": "add counter",
+        "rules": [
+            {
+                "v": "add",
+                "p": "payload",
+                "t": "eq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "a62bd52e.e9d178"
+            ]
+        ]
+    },
+    {
+        "id": "58e0312b.c6847",
+        "type": "enter",
+        "z": "ff72e9c1.5447b8",
+        "name": "end",
+        "rules": [
+            {
+                "v": "bye",
+                "p": "payload",
+                "t": "eq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "outputs": 1,
+        "x": 210,
+        "y": 440,
+        "wires": [
+            [
+                "bc9886ea.d63ff8"
+            ]
+        ]
+    },
+    {
+        "id": "72d9b496.78a41c",
+        "type": "state",
+        "z": "ff72e9c1.5447b8",
+        "name": "state",
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false,
+        "func": "// update msg.kitt:\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "490c3f1.ebf15c",
+        "type": "state",
+        "z": "ff72e9c1.5447b8",
+        "name": "print counter",
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false,
+        "func": "msg.kitt._responses = [msg.kitt.counter];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bc9886ea.d63ff8",
+        "type": "state",
+        "z": "ff72e9c1.5447b8",
+        "name": "bye",
+        "response": "Bye bye.",
+        "finalstate": true,
+        "requestUserInput": false,
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 590,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5e4fb627.276cc8",
+        "type": "router",
+        "z": "ff72e9c1.5447b8",
+        "name": "",
+        "debugOutput": "console",
+        "sessionprop": "",
+        "userprop": "",
+        "timeout": "1800",
+        "x": 410,
+        "y": 240,
+        "wires": [
+            [
+                "36def165.f140be"
+            ]
+        ]
+    }
+]

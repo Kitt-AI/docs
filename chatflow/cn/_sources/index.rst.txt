@@ -1,0 +1,45 @@
+.. ChatFlow documentation master file, created by
+   sphinx-quickstart on Thu Jan 21 16:29:20 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. _ChatFlow: https://ChatFlow.dueros.baidu.ai/
+.. _NLU: https://nlu.kitt.ai/
+
+欢迎使用ChatFlow
+===================
+
+ChatFlow_ 是一个提供可视化界面来开发智能客服、聊天机器人的平台，让聊天机器人的开发变得更加简单。
+ChatFlow的机器人理解自然语言，可以追踪聊天中的上下文，连接很多外部的API来调用外部的服务和资源
+，通过各种聊天平台，比如Facebook Messenger，Slack， Kik， Telegram， SMS， and Amazon’s 
+Alexa platform (Amazon Echo).等，来和用户进行对话。
+
+ChatFlow_ 可以和 NLU_ 搭配使用，NLU_ 是我们的自然语言理解引擎。
+
+下面是一个简明地介绍ChatFlow的视频，目前只有英文版视频。
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/index/ChatFlow.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+    <br><br><br>
+
+目录
+====
+
+中文文档还在完善中，我们在不断添加新的功能进去。
+
+.. toctree::
+   :maxdepth: 2
+
+   English Version <../index.html#://>
+   self
+   quickstart
+   build_a_bot
+   dialogue_nodes
+   multi_turn_dialogue
+   superbot
+   debug
+   dueros

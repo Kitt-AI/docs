@@ -1,0 +1,520 @@
+{
+    "kitt_nlu_version": "1.0",
+    "name": "笑话-简体",
+    "language": "zh-cn",
+    "intents": [
+        {
+            "name": "ask_joke",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "end",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "fallback",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "next_joke",
+            "is_builtin": false,
+            "is_enabled": true
+        }
+    ],
+    "entities": [],
+    "utterances": [
+        {
+            "sentence": "给 我 讲 一 个 笑 话",
+            "intent": "ask_joke",
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 听 个 笑 话",
+            "intent": "ask_joke",
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": "end",
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "再 见",
+            "intent": "end",
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "下 一 个",
+            "intent": "next_joke",
+            "intent_prediction": "next_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "换 一 个",
+            "intent": "next_joke",
+            "intent_prediction": "next_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "换 一 个 笑 话",
+            "intent": "next_joke",
+            "intent_prediction": "next_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 缴 信 用 卡 费",
+            "intent": "fallback",
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "邮 局 缴 费",
+            "intent": "fallback",
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "线 上 付 款",
+            "intent": "fallback",
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 付 全 款",
+            "intent": "fallback",
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "你 好",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "你 好",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "你 好",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "给 我 讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "哈 哈",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "哈 哈 哈",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "下 一 个",
+            "intent": null,
+            "intent_prediction": "next_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": "ask_joke",
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": "ask_joke",
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" hi \"",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" hi \"",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "ask_joke",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        }
+    ]
+}

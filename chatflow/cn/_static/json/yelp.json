@@ -1,0 +1,1258 @@
+[
+    {
+        "id": "7f9ee0c2.47be5",
+        "type": "router",
+        "name": "Yelp router",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 870,
+        "y": 280,
+        "wires": [
+            [
+                "263264fa.08097c"
+            ]
+        ],
+        "debugOutput": "consoleAndTab",
+        "sessionprop": "kitt._session_id",
+        "timeout": "",
+        "userprop": "kitt._user_id"
+    },
+    {
+        "id": "1521783b.5b83c8",
+        "type": "KITT.AI",
+        "name": "",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 630,
+        "y": 280,
+        "wires": [
+            [
+                "7f9ee0c2.47be5"
+            ]
+        ],
+        "method": "GET",
+        "ret": "obj",
+        "url": ""
+    },
+    {
+        "id": "37dea364.5f35cc",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "3ec9b55b.55277a",
+        "type": "chat-server",
+        "name": "",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "b575857d.007bd8",
+        "type": "chat-in",
+        "name": "",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 390,
+        "y": 280,
+        "wires": [
+            [
+                "1521783b.5b83c8"
+            ]
+        ],
+        "sessionField": "_sessionId",
+        "server": "3ec9b55b.55277a"
+    },
+    {
+        "id": "263264fa.08097c",
+        "type": "chat-out",
+        "name": "",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1130,
+        "y": 280,
+        "wires": [],
+        "server": "3ec9b55b.55277a"
+    },
+    {
+        "id": "b2406602.f90dd8",
+        "type": "enter",
+        "name": "Enter initial state",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 410,
+        "y": 440,
+        "wires": [
+            [
+                "34456c9.2d34494"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [],
+        "directlink": false,
+        "initialstate": true
+    },
+    {
+        "id": "34456c9.2d34494",
+        "type": "state",
+        "name": "Initialize state",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 640,
+        "y": 480,
+        "wires": [
+            [
+                "c8a697f8.ea1c88",
+                "5774b0cb.88aec"
+            ]
+        ],
+        "func": "msg.kitt.address = null;\nmsg.kitt.businesstype = null;\nmsg.kitt.reqready = false;\nmsg.kitt.user_choice = null;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Welcome! I can find restaurants for you in Yelp! What are you looking for?",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "4b61de5f.69f0b",
+        "type": "state",
+        "name": "Save business type and address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1190,
+        "y": 480,
+        "wires": [
+            [
+                "615cefbd.8ed18",
+                "fb3ebebd.f62ea",
+                "3ff2cda4.5e0c32",
+                "a5cedccf.cf4be"
+            ]
+        ],
+        "func": "if(msg.NLU.entities.businesstype) {\n    msg.kitt.businesstype = msg.NLU.entities.businesstype;\n}\nif(msg.NLU.entities.location) {\n    msg.kitt.address = msg.NLU.entities.location;\n}\n\nmsg.NLU.intent = null;\nmsg.NLU.entities = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "9d5ca900.cc41d8",
+        "type": "enter",
+        "name": "state: no business type",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 420,
+        "y": 360,
+        "wires": [
+            [
+                "5bd48e33.4d182"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "null",
+                "p": "kitt.businesstype"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "5bd48e33.4d182",
+        "type": "state",
+        "name": "Ask for business type",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 660,
+        "y": 380,
+        "wires": [
+            [
+                "5774b0cb.88aec"
+            ]
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "What kind of business are you looking for?",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "39689825.9d9ea8",
+        "type": "enter",
+        "name": "state: no address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 410,
+        "y": 600,
+        "wires": [
+            [
+                "c5e6a56c.7cf098"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "null",
+                "p": "kitt.address"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "c5e6a56c.7cf098",
+        "type": "state",
+        "name": "Ask for location",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 640,
+        "y": 580,
+        "wires": [
+            [
+                "c8a697f8.ea1c88"
+            ]
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "What's the desired location?",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "5774b0cb.88aec",
+        "type": "enter",
+        "name": "entity: businesstype",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 900,
+        "y": 420,
+        "wires": [
+            [
+                "4b61de5f.69f0b"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "nnull",
+                "p": "NLU.entities.businesstype"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "c8a697f8.ea1c88",
+        "type": "enter",
+        "name": "entity: location",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 880,
+        "y": 520,
+        "wires": [
+            [
+                "4b61de5f.69f0b"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "nnull",
+                "p": "NLU.entities.location"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "d7497225.a4c63",
+        "type": "enter",
+        "name": "intent: hello",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 390,
+        "y": 520,
+        "wires": [
+            [
+                "34456c9.2d34494"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "openning"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "943751e.5b1d7b",
+        "type": "state",
+        "name": "Say business type back",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1840,
+        "y": 440,
+        "wires": [
+            []
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "Let's see, {{kitt.businesstype}}. I didn't get the location."
+    },
+    {
+        "id": "fb3ebebd.f62ea",
+        "type": "enter",
+        "name": "Got business type but not address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1540,
+        "y": 440,
+        "wires": [
+            [
+                "943751e.5b1d7b"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": true,
+        "rules": [
+            {
+                "t": "null",
+                "p": "kitt.address"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.businesstype"
+            }
+        ]
+    },
+    {
+        "id": "615cefbd.8ed18",
+        "type": "enter",
+        "name": "Got business type and address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1530,
+        "y": 360,
+        "wires": [
+            [
+                "7c3dee91.4aa39"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": true,
+        "rules": [
+            {
+                "t": "nnull",
+                "p": "kitt.address"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.businesstype"
+            }
+        ]
+    },
+    {
+        "id": "3ff2cda4.5e0c32",
+        "type": "enter",
+        "name": "Got location but no business type",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1540,
+        "y": 520,
+        "wires": [
+            [
+                "6cf2fd46.0eb174"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": true,
+        "rules": [
+            {
+                "t": "null",
+                "p": "kitt.businesstype"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.address"
+            }
+        ]
+    },
+    {
+        "id": "7c3dee91.4aa39",
+        "type": "state",
+        "name": "Say location and business type back",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1880,
+        "y": 360,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt.reqready = true;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "Alright, {{kitt.businesstype}} in {{kitt.address}}."
+    },
+    {
+        "id": "6cf2fd46.0eb174",
+        "type": "state",
+        "name": "Say location back",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1830,
+        "y": 520,
+        "wires": [
+            []
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "Ok, I got {{kitt.address}}, but I didn't get the business type."
+    },
+    {
+        "id": "a5cedccf.cf4be",
+        "type": "enter",
+        "name": "No business type or address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1520,
+        "y": 600,
+        "wires": [
+            [
+                "e344bf36.e70a6"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": true,
+        "rules": [
+            {
+                "t": "null",
+                "p": "kitt.businesstype"
+            },
+            {
+                "t": "null",
+                "p": "kitt.address"
+            }
+        ]
+    },
+    {
+        "id": "e344bf36.e70a6",
+        "type": "state",
+        "name": "Say Error",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1810,
+        "y": 600,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "I'm sorry! I did not get location or business type."
+    },
+    {
+        "id": "967063f6.886aa",
+        "type": "enter",
+        "name": "intent: yes",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1450,
+        "y": 680,
+        "wires": [
+            [
+                "5d5694ef.07253c"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "accept"
+            }
+        ],
+        "directlink": true,
+        "initialstate": false
+    },
+    {
+        "id": "37bfe406.2e3f4c",
+        "type": "state",
+        "name": "List choices",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1130,
+        "y": 680,
+        "wires": [
+            [
+                "967063f6.886aa",
+                "3ef21ee1.b80d62"
+            ]
+        ],
+        "func": "msg.kitt.yelp_results = msg.payload.businesses;\nmsg.payload = \"\";\n\nvar numresults = 0;\nif (msg.kitt.yelp_results) {\n    numresults = msg.kitt.yelp_results.length;\n}\n\nif (numresults > 0) {\n    msg.kitt._responses = ['I found ' + numresults + \" places that might work. \"];\n\n    if(numresults > 3) {\n        numresults = 3;\n        msg.kitt._responses[0] += 'The first 3 are:\\n';\n    }\n\n    for(var i = 1; i <= numresults; i++) {\n        msg.kitt._responses[0] += \" \" + i + \". \" + msg.kitt.yelp_results[i-1].name + \"\\n\";\n        if (msg.kitt.yelp_results[i-1].image_url) {\n            msg.kitt._responses[0] += msg.kitt.yelp_results[i-1].image_url + \"\\n\";\n        }\n    }\n\n    msg.kitt._responses[0] += \"Do any of these sound okay?\";\n} else {\n    msg.kitt._responses = [\"Oops I didn't find anything on Yelp. Please update the address and business type. \"];\n    msg.kitt.address = null;\n    msg.kitt.businesstype = null;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "3ef21ee1.b80d62",
+        "type": "enter",
+        "name": "intent: no",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1450,
+        "y": 780,
+        "wires": [
+            [
+                "1c5dc38.da9123d"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "v": "reject",
+                "p": "NLU.intent",
+                "t": "eq"
+            }
+        ],
+        "directlink": true,
+        "initialstate": false
+    },
+    {
+        "id": "c76736a.40417c8",
+        "type": "enter",
+        "name": "intent: list more",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 880,
+        "y": 780,
+        "wires": [
+            [
+                "1c5dc38.da9123d"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "request_more_options"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.yelp_results"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "5d5694ef.07253c",
+        "type": "state",
+        "name": "Request choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1800,
+        "y": 680,
+        "wires": [
+            []
+        ],
+        "func": "msg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Great! Which one?",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "1c5dc38.da9123d",
+        "type": "state",
+        "name": "List more choices",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1150,
+        "y": 780,
+        "wires": [
+            [
+                "967063f6.886aa",
+                "3ef21ee1.b80d62"
+            ]
+        ],
+        "func": "for(var i = 0; i < 3; i++) {\n    msg.kitt.yelp_results.shift();\n}\n\nvar numresults = msg.kitt.yelp_results.length;\n\nif(numresults == 0) {\n    msg.kitt._responses = [\"Sorry, I'm all out of options, but you can try a different search request.\" ];\n    return msg;\n}\n\nmsg.kitt._responses = ['Ok, I have ' + numresults + \" more places. \"];\n\nif(numresults > 3) {\n    numresults = 3;\n    msg.kitt._responses[0] += 'The next 3 are:\\n';\n}\n\nfor(var i = 1; i <= numresults; i++) {\n    msg.kitt._responses[0] += \" \" + i + \". \" + msg.kitt.yelp_results[i-1].name + \"\\n\";\n    if (msg.kitt.yelp_results[i-1].image_url) {\n        msg.kitt._responses[0] += msg.kitt.yelp_results[i-1].image_url + \"\\n\";\n    }\n}\n\nmsg.kitt._responses[0] += \"Do any of these sound okay?\"\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "3681d13d.6a3e3e",
+        "type": "enter",
+        "name": "state: request ready",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "2bde1776.7660b8"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "true",
+                "p": "kitt.reqready"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "2bde1776.7660b8",
+        "type": "state",
+        "name": "Yelp request",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 630,
+        "y": 680,
+        "wires": [
+            [
+                "92cd467b.3fb108"
+            ]
+        ],
+        "func": "// prepare yelp search\nmsg.yelp = {term: msg.kitt.businesstype, \n    location: msg.kitt.address, limit: 10};\n\n// don't request the same search again\nmsg.kitt.reqready = false;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "92cd467b.3fb108",
+        "type": "Yelp",
+        "name": "",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 870,
+        "y": 680,
+        "wires": [
+            [
+                "37bfe406.2e3f4c"
+            ]
+        ],
+        "term": "",
+        "location": "",
+        "ll": "",
+        "limit": 10
+    },
+    {
+        "id": "a483aa44.9b5aa8",
+        "type": "enter",
+        "name": "intent: state choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 410,
+        "y": 860,
+        "wires": [
+            [
+                "ce8a6aaa.e02318"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "state_choice"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.yelp_results"
+            }
+        ]
+    },
+    {
+        "id": "ce8a6aaa.e02318",
+        "type": "state",
+        "name": "Repeat choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 760,
+        "y": 860,
+        "wires": [
+            []
+        ],
+        "func": "var choice = null;\nswitch(msg.NLU.entities.enum_choice) {\n    case \"first\":\n    case \"1\":\n    case \"one\":\n        choice = 1;\n        break;\n    case \"two\":\n    case \"2\":\n    case \"second\":\n        choice = 2;\n        break;\n    case \"three\":\n    case \"last\":\n    case \"3\":\n    case \"third\":\n        choice = 3;\n        break;\n    default:\n        choice = 0;\n}\n\nmsg.kitt._responses = [\"\"];\nif(choice === 0) {\n    msg.kitt._responses[0] = \"Sorry, I didn't get what your choice was. \";\n} else {\n    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;\n    msg.kitt._responses[0] = \"Great, \" + msg.kitt.yelp_results[choice-1].name + \". \";\n    msg.kitt.user_choice = \"\" + (choice - 1);    \n}\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "496e4921.3e4578",
+        "type": "enter",
+        "name": "intent: goodbye",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 400,
+        "y": 940,
+        "wires": [
+            [
+                "c64be33c.2e1de"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "v": "closing",
+                "p": "NLU.intent",
+                "t": "eq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "c64be33c.2e1de",
+        "type": "state",
+        "name": "Say goodbye",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 750,
+        "y": 940,
+        "wires": [
+            []
+        ],
+        "func": "return msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Ok, bye.",
+        "finalstate": true,
+        "requestUserInput": false
+    },
+    {
+        "id": "111157af.e6fab8",
+        "type": "enter",
+        "name": "intent: thanking",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1140,
+        "y": 860,
+        "wires": [
+            [
+                "ed99a2b8.56dd9"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "thanking"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "ed99a2b8.56dd9",
+        "type": "state",
+        "name": "Respond to thanks",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1470,
+        "y": 860,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt._responses = ['No problem. ', 'Sure, any time. ', 'Glad to help. ', 'Any time. ']\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "b0a35c52.dede6",
+        "type": "enter",
+        "name": "intent: request address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 430,
+        "y": 1020,
+        "wires": [
+            [
+                "6a348057.4f81e"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "v": "request_address",
+                "p": "NLU.intent",
+                "t": "eq"
+            },
+            {
+                "p": "kitt.user_choice",
+                "t": "nnull"
+            },
+            {
+                "p": "input.entities.enum_choice",
+                "t": "null"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "a7c31ca6.bd162",
+        "type": "enter",
+        "name": "intent: request address with choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 460,
+        "y": 1100,
+        "wires": [
+            [
+                "220f73a8.54fc2c"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "request_address"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.entities.enum_choice"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.yelp_results"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "220f73a8.54fc2c",
+        "type": "state",
+        "name": "Say address by choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 780,
+        "y": 1100,
+        "wires": [
+            []
+        ],
+        "func": "var choice = null;\nvar status = \"open\";\n\nswitch(msg.NLU.entities.enum_choice) {\n    case \"first\":\n    case \"1\":\n    case \"one\":\n        choice = 1;\n        break;\n    case \"two\":\n    case \"2\":\n    case \"second\":\n        choice = 2;\n        break;\n    case \"three\":\n    case \"last\":\n    case \"3\":\n    case \"third\":\n        choice = 3;\n        break;\n    default:\n        choice = 0;\n}\n\nmsg.kitt._responses = [\"\"];\nif(choice === 0) {\n    msg.kitt._responses[0] = \"Sorry, I didn't get what your choice was. \";\n}\nelse {\n    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;\n    msg.kitt.user_choice = \"\" + (choice - 1);    \n\n    var loc = \"unknown\";\n    if(msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address) {\n        loc = msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address[0] + \", \" +\n            msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address[1];\n    }\n\n    msg.kitt._responses = [\"The address for \" +\n        msg.kitt.yelp_results[msg.kitt.user_choice].name +\n        \" is \" + loc]; \n        \n    var phone = msg.kitt.yelp_results[msg.kitt.user_choice].display_phone || \"unknown\";\n\n    msg.kitt._responses[0] += \", and the phone number is \" + phone + \".\\n\";\n    if((loc === 'unknown') && (phone === 'unknown')) {\n        msg.kitt._responses[0] += \"Sorry, that's what Yelp says. Sigh... \\n\"\n    }\n}\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "6a348057.4f81e",
+        "type": "state",
+        "name": "Say address",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 750,
+        "y": 1020,
+        "wires": [
+            []
+        ],
+        "func": "var loc = \"unknown\";\nif(msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address) {\n    loc =  \n    msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address[0] + \", \" +\n    msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address[1];\n}\n\nmsg.kitt._responses = [\"The address for \" +\n    msg.kitt.yelp_results[msg.kitt.user_choice].name +\n    \" is \" + loc];\n\nvar phone = msg.kitt.yelp_results[msg.kitt.user_choice].display_phone || \"unknown\";\n\nmsg.kitt._responses[0] += \", and the phone number is \" + phone + \".\\n\";\nif((loc === 'unknown') && (phone === 'unknown')) {\n    msg.kitt._responses[0] += \"Sorry, that's what Yelp says. Sigh... \\n\"\n}\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "35dffb72.262e24",
+        "type": "enter",
+        "name": "intent: rating request with choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1200,
+        "y": 1100,
+        "wires": [
+            [
+                "f3f1dda0.2ced5"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "request_rating"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.entities.enum_choice"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "f3f1dda0.2ced5",
+        "type": "state",
+        "name": "Say address by choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1480,
+        "y": 1100,
+        "wires": [
+            []
+        ],
+        "func": "var choice = null;\nvar status = \"open\";\n\nswitch(msg.NLU.entities.enum_choice) {\n    case \"first\":\n    case \"1\":\n    case \"one\":\n        choice = 1;\n        break;\n    case \"two\":\n    case \"2\":\n    case \"second\":\n        choice = 2;\n        break;\n    case \"three\":\n    case \"last\":\n    case \"3\":\n    case \"third\":\n        choice = 3;\n        break;\n    default:\n        choice = 0;\n}\n\nmsg.kitt._responses = [\"\"];\nif(choice === 0) {\n    msg.kitt._responses[0] = \"Sorry, I didn't get what your choice was. \";\n}\nelse {\n    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;\n    msg.kitt.user_choice = \"\" + (choice - 1);    \n\n   msg.kitt._responses = [msg.kitt.yelp_results[msg.kitt.user_choice].name +\n   \" has \" +\n    msg.kitt.yelp_results[msg.kitt.user_choice].review_count + \n    \"reviews on Yelp, and the rating is \" + \n    msg.kitt.yelp_results[msg.kitt.user_choice].rating + \"stars.\"];\n}\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "75fd9844.dc50e8",
+        "type": "enter",
+        "name": "intent: request rating",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1160,
+        "y": 1020,
+        "wires": [
+            [
+                "4c67915f.4ff18"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "request_rating"
+            },
+            {
+                "t": "nnull",
+                "p": "kitt.user_choice"
+            },
+            {
+                "t": "null",
+                "p": "NLU.entities.enum_choice"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "4c67915f.4ff18",
+        "type": "state",
+        "name": "Say rating",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1450,
+        "y": 1020,
+        "wires": [
+            []
+        ],
+        "func": "\nmsg.kitt._responses = [\"It's got \" +\n    msg.kitt.yelp_results[msg.kitt.user_choice].review_count + \n    \" reviews on Yelp, and the rating is \" + \n    msg.kitt.yelp_results[msg.kitt.user_choice].rating + \" stars.\"];\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "33ed3850.8214c8",
+        "type": "enter",
+        "name": "intent: default",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1140,
+        "y": 940,
+        "wires": [
+            [
+                "b4c30787.5c2cb8"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "nnull",
+                "p": "NLU.intent"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "b4c30787.5c2cb8",
+        "type": "state",
+        "name": "Non undersanding",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1470,
+        "y": 940,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt._responses = [\n    \"Sorry, I didn't get what you said. \",\n    \"Oops, I'm not sure I understand. \",\n    \"Hmm, not sure I understand. \"];\n\nif (msg.kitt.address !== null && msg.kitt.businesstype !== null) {\n    var str = \"I should point out that I'm not good at understanding the names of businesses, so when I give you choices, just say first, second, or one, two, and so on. \";\n    for(var i = 0; i < msg.kitt._responses.length; i++) {\n        msg.kitt._responses[i] += str;\n    }\n} else if (msg.kitt.address === null && msg.kitt.businesstype !== null) {\n    var str = \"Zip code might be easier for me. Or try something easy. \";\n    for(var i = 0; i < msg.kitt._responses.length; i++) {\n        msg.kitt._responses[i] += str;\n    }\n} else if (msg.kitt.businesstype === null) {\n    var str = \"I'm not good at business types at this point. Please try something simple. \";\n    for(var i = 0; i < msg.kitt._responses.length; i++) {\n        msg.kitt._responses[i] += str;\n    }\n}\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "c44d8aec.c216b8",
+        "type": "enter",
+        "name": "intent: request hours with choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 460,
+        "y": 1260,
+        "wires": [
+            [
+                "ca59a260.387bc"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "v": "request_hours",
+                "p": "NLU.intent",
+                "t": "eq"
+            },
+            {
+                "p": "NLU.entities.enum_choice",
+                "t": "nnull"
+            }
+        ]
+    },
+    {
+        "id": "ca59a260.387bc",
+        "type": "state",
+        "name": "Say hours by choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 770,
+        "y": 1260,
+        "wires": [
+            []
+        ],
+        "func": "var choice = null;\nvar status = \"open\";\n\nswitch(msg.NLU.entities.enum_choice) {\n    case \"first\":\n    case \"1\":\n    case \"one\":\n        choice = 1;\n        break;\n    case \"two\":\n    case \"2\":\n    case \"second\":\n        choice = 2;\n        break;\n    case \"three\":\n    case \"last\":\n    case \"3\":\n    case \"third\":\n        choice = 3;\n        break;\n    default:\n        choice = 0;\n}\n\nmsg.kitt._responses = [\"\"];\nif(choice === 0) {\n    msg.kitt._responses[0] = \"Sorry, I didn't get what your choice was. \";\n}\nelse {\n    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;\n    msg.kitt.user_choice = \"\" + (choice - 1);    \n\n    if(msg.kitt.yelp_results[msg.kitt.user_choice].is_closed) {\n        status = \"closed\";\n    }\n\n    msg.kitt._responses = [\"Hmm, I'm not sure, but Yelp says \" + msg.kitt.yelp_results[choice-1].name + \" is \" + status + \" now.\"];\n}\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "2b40ece4.96d704",
+        "type": "enter",
+        "name": "intent: request hours",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 420,
+        "y": 1180,
+        "wires": [
+            [
+                "9223a151.0556a"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "v": "request_hours",
+                "p": "NLU.intent",
+                "t": "eq"
+            },
+            {
+                "p": "kitt.user_choice",
+                "t": "nnull"
+            },
+            {
+                "p": "input.entities.enum_choice",
+                "t": "null"
+            }
+        ]
+    },
+    {
+        "id": "9223a151.0556a",
+        "type": "state",
+        "name": "Say hours",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 750,
+        "y": 1180,
+        "wires": [
+            []
+        ],
+        "func": "var status = \"open\";\nif(msg.kitt.yelp_results[msg.kitt.user_choice].is_closed) {\n    status = \"closed\";\n}\nmsg.kitt._responses = [\"Hmm, I'm not sure, but Yelp says it's \" + status + \" now.\"];\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "13bd7a74.551086",
+        "type": "enter",
+        "name": "intent: request info with choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 450,
+        "y": 1340,
+        "wires": [
+            [
+                "d9853b82.9213c8"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "info_request"
+            },
+            {
+                "t": "nnull",
+                "p": "NLU.entities.enum_choice"
+            }
+        ]
+    },
+    {
+        "id": "d9853b82.9213c8",
+        "type": "state",
+        "name": "Say address by choice",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 780,
+        "y": 1340,
+        "wires": [
+            [
+                "a03b79ef.c26d18"
+            ]
+        ],
+        "func": "var choice = null;\nvar status = \"open\";\n\nswitch(msg.NLU.entities.enum_choice) {\n    case \"first\":\n    case \"1\":\n    case \"one\":\n        choice = 1;\n        break;\n    case \"two\":\n    case \"2\":\n    case \"second\":\n        choice = 2;\n        break;\n    case \"three\":\n    case \"last\":\n    case \"3\":\n    case \"third\":\n        choice = 3;\n        break;\n    default:\n        choice = 0;\n}\n\nmsg.kitt._responses = [\"\"];\nif(choice === 0) {\n    msg.kitt._responses[0] = \"Sorry, I didn't get what your choice was. \";\n}\nelse {\n    msg.kitt.choice_name = msg.kitt.yelp_results[choice-1].name;\n    msg.kitt.user_choice = \"\" + (choice - 1);    \n\n    var loc = \"unknown\";\n    if(msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address) {\n        loc = msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address[0] + \", \" +\n            msg.kitt.yelp_results[msg.kitt.user_choice].location.display_address[1];\n    }\n\n    msg.kitt._responses = [\"The address for \" +\n        msg.kitt.yelp_results[msg.kitt.user_choice].name +\n        \" is \" + loc]; \n        \n    var phone = msg.kitt.yelp_results[msg.kitt.user_choice].display_phone || \"unknown\";\n\n    msg.kitt._responses[0] += \", and the phone number is \" + phone + \".\\n\";\n    if((loc === 'unknown') && (phone === 'unknown')) {\n        msg.kitt._responses[0] += \"Sorry, that's what Yelp says. Sigh... \\n\"\n    }\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "finalstate": false,
+        "response": ""
+    },
+    {
+        "id": "a03b79ef.c26d18",
+        "type": "state",
+        "name": "Say rating",
+        "z": "37dea364.5f35cc",
+        "in": [],
+        "out": [],
+        "x": 1130,
+        "y": 1340,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt._responses = [\"It's got \" +\n    msg.kitt.yelp_results[msg.kitt.user_choice].review_count + \n    \" reviews on Yelp, and the rating is \" + \n    msg.kitt.yelp_results[msg.kitt.user_choice].rating + \" stars.\"];\n\nmsg.NLU.intent = null;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    }
+]

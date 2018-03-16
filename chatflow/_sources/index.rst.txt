@@ -38,7 +38,7 @@ few more bells and whistles, but otherwise, it is complete!
 .. toctree::
    :maxdepth: 2
 
-   中文版 <../cn/html/index.html#://>
+   中文版 <cn/index.html#://>
    self
    quickstart
    build_a_bot

@@ -1,0 +1,313 @@
+[
+    {
+        "id": "ed29a3d1.939cd",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "6f6f3f8e.bc13b",
+        "type": "chat-server",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "a7294fd9.c2a28",
+        "type": "chat-in",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 122.40625,
+        "y": 97,
+        "wires": [
+            [
+                "93b4e92a.149398"
+            ]
+        ],
+        "server": "6f6f3f8e.bc13b",
+        "sessionField": "kitt._session_id"
+    },
+    {
+        "id": "4cc8e15a.b5c47",
+        "type": "chat-out",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 719.40625,
+        "y": 97,
+        "wires": [],
+        "server": "6f6f3f8e.bc13b"
+    },
+    {
+        "id": "8e51ced7.431e2",
+        "type": "router",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 542.40625,
+        "y": 97,
+        "wires": [
+            [
+                "4cc8e15a.b5c47"
+            ]
+        ],
+        "timeout": "1800",
+        "dryrun": "msg._dry_run",
+        "userprop": "kitt._user_id",
+        "sessionprop": "kitt._session_id"
+    },
+    {
+        "id": "93b4e92a.149398",
+        "type": "KITT.AI",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 335.40625,
+        "y": 97,
+        "wires": [
+            [
+                "8e51ced7.431e2",
+                "43375db.9cf36a4"
+            ]
+        ],
+        "url": "http://180.76.133.53:30100/v1/api/be7ebb53-298b-46ed-953d-d38b6f1fc144?token=vHbt4per092ivCzrSpv8dq14gcamTS3r&q={{{payload}}}",
+        "ret": "obj",
+        "method": "GET"
+    },
+    {
+        "id": "43375db.9cf36a4",
+        "type": "debug",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "active": true,
+        "console": "false",
+        "complete": "NLU",
+        "x": 518.40625,
+        "y": 166,
+        "wires": []
+    },
+    {
+        "id": "e74b2404.665de8",
+        "type": "enter",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 199.40625,
+        "y": 226,
+        "wires": [
+            [
+                "ed1257c5.e4a8f8"
+            ]
+        ],
+        "outputs": 1,
+        "fallback": false,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "end"
+            }
+        ]
+    },
+    {
+        "id": "b6c5fb8c.3244b8",
+        "type": "enter",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 152.40625,
+        "y": 340,
+        "wires": [
+            [
+                "ca182f0f.45a07"
+            ]
+        ],
+        "outputs": 1,
+        "fallback": false,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "pay_credit_card"
+            }
+        ]
+    },
+    {
+        "id": "ed1257c5.e4a8f8",
+        "type": "state",
+        "name": "state",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 408.40625,
+        "y": 233,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": true,
+        "response": "欢迎下次再来"
+    },
+    {
+        "id": "ca182f0f.45a07",
+        "type": "function",
+        "name": "预处理entity",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 343.40625,
+        "y": 340,
+        "wires": [
+            [
+                "98d5bcb8.0d464"
+            ]
+        ],
+        "func": "// if you need extra debug function,\n// node.log() outputs to the debug panel.\n\nmsg.kitt.payInfo = msg.kitt.payInfo || {};\n\nlet entity = Object.keys(msg.NLU.entities)\n    .map(item=>{\n        if(item==='pay:card') {\n            msg.kitt.payInfo.card = msg.NLU.entities[item];\n        }else{\n            itemArr = item.split(':');\n            msg.kitt.payInfo[itemArr[0]] = itemArr[1];\n        }\n    });\n    \nlet payInfoKeys = Object.keys(msg.kitt.payInfo);\nnode.log(payInfoKeys);\nlet allNeedKeys = ['card', 'method', 'money'];\nmsg.needKey = allNeedKeys.filter(item=>payInfoKeys.indexOf(item)<0)[0];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "98d5bcb8.0d464",
+        "type": "switch",
+        "name": "",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 570.40625,
+        "y": 339,
+        "wires": [
+            [
+                "77d314ce.7d09bc"
+            ],
+            [
+                "c171f79a.276e48"
+            ],
+            [
+                "47387004.49907"
+            ],
+            [
+                "c85f7278.49e98"
+            ]
+        ],
+        "outputs": 4,
+        "checkall": "false",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "method",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "card",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "money",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "propertyType": "msg",
+        "property": "needKey"
+    },
+    {
+        "id": "77d314ce.7d09bc",
+        "type": "state",
+        "name": "付款方式",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 829.40625,
+        "y": 225,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": true,
+        "finalstate": false,
+        "response": "您想怎么付款？邮局，商超还是线上缴款？"
+    },
+    {
+        "id": "c171f79a.276e48",
+        "type": "state",
+        "name": "信用卡号",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 827,
+        "y": 280,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": true,
+        "finalstate": false,
+        "response": "您想为哪张卡付款？"
+    },
+    {
+        "id": "47387004.49907",
+        "type": "state",
+        "name": "付款金额",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 830,
+        "y": 339,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "您想缴纳多少？全款还是最低金额？"
+    },
+    {
+        "id": "c85f7278.49e98",
+        "type": "state",
+        "name": "完成",
+        "z": "ed29a3d1.939cd",
+        "in": [],
+        "out": [],
+        "x": 827,
+        "y": 403,
+        "wires": [
+            []
+        ],
+        "func": "\nmsg.payload = `您的缴款信息如下：\n缴款卡号：${msg.kitt.payInfo.card}；\n缴款方式：${msg.kitt.payInfo.method}；\n缴款金额：${msg.kitt.payInfo.money}。`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    }
+]
