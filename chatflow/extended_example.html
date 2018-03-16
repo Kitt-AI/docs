@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -130,7 +131,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -178,6 +178,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -280,51 +283,51 @@ ChatFlow editor.</li>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">request_suggestion</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">request_suggestion</span></code></td>
 <td>Users asked bot for a suggestion</td>
 <td>I’d like a Chinese restaurant in Seattle, I would like to go eat Mexican food in San Francisco, I want Nachos near the Univeristy of Washington</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">state_choice</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">state_choice</span></code></td>
 <td>Users state the choice</td>
 <td>The first one, please., The second sounds delicious!, Definitely the third one.</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">request_more_options</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">request_more_options</span></code></td>
 <td>User ask for more business choices</td>
 <td>Give me more options., Can you look up more options?, I don’t like any of the choices</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">request_rating</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">request_rating</span></code></td>
 <td>User requests for Yelp ratings</td>
 <td>What’s the rating?, Are the reivew positive?, How good is the first one?</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">request_hours</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">request_hours</span></code></td>
 <td>User requests for hours of operation</td>
 <td>what are the hours?, is the first one open now?, how long is two open for?</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">request_address</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">request_address</span></code></td>
 <td>User requests for business location</td>
 <td>what’s the address?,  how far is the first one?, where is number 2?</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">info_request</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">info_request</span></code></td>
 <td>User asks for more information</td>
 <td>what about 2, tell me about option three, what can you tell me about the first one</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">agree</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">agree</span></code></td>
 <td>User likes a choice</td>
 <td>hello, good morning, how’s it going?</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">reject</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">reject</span></code></td>
 <td>User does not like any choices</td>
 <td>Yes, Yeah, Sure</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">opening</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">opening</span></code></td>
 <td>User greets the bot</td>
 <td>No, Nope, None</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">thanking</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">thanking</span></code></td>
 <td>User thanks the bot</td>
 <td>thanks, thank you, much appreciated</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">closing</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">closing</span></code></td>
 <td>User ends the conversation</td>
 <td>Goodbye, See ya!, Good night</td>
 </tr>
@@ -350,15 +353,15 @@ ChatFlow editor.</li>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">businesstype</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">businesstype</span></code></td>
 <td>Type of Restaurant</td>
 <td>Tacos, Coffee, Chinese Restaurant</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">location</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">location</span></code></td>
 <td>Location of Search</td>
 <td>Seattle, Tokyo, U-district</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">enum_choice</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">enum_choice</span></code></td>
 <td>Number Associated with Users Choice</td>
 <td>First, 2, Three</td>
 </tr>
@@ -373,7 +376,7 @@ ChatFlow editor.</li>
 return to your NLU app list.</li>
 <li>Click on the deployment information and copy the Deployment URL.</li>
 </ol>
-<p>You can download the <a class="reference download internal" href="_downloads/yelp_nlu.json" download=""><code class="xref download docutils literal"><span class="pre">example</span> <span class="pre">Yelp</span> <span class="pre">NLU</span> <span class="pre">app</span></code></a> and
+<p>You can download the <a class="reference download internal" href="_downloads/yelp_nlu.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">example</span> <span class="pre">Yelp</span> <span class="pre">NLU</span> <span class="pre">app</span></code></a> and
 import to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> using the import JSON feature.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -390,8 +393,8 @@ and entity paradigm, see <a class="reference external" href="http://docs.kitt.ai
 <img alt="_images/Initial-Flow.png" class="align-center" src="_images/Initial-Flow.png" />
 <ol class="arabic" start="3">
 <li><p class="first">Double click in NLU node. Paste the Deployment URL into the URL field.  Don’t forget
-to add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code> to the end of the URL. The final URL will look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+to add <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code> to the end of the URL. The final URL will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 </pre></div>
 </div>
 <img alt="_images/NLU-node-payload.png" class="align-center" src="_images/NLU-node-payload.png" />
@@ -411,7 +414,7 @@ the box that says <em>Enter Initial state</em>.</li>
 <li>Add the following code into the body of the state node:</li>
 </ol>
 <blockquote>
-<div><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">address</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">address</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">businesstype</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">req_pending</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">user_choice</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
@@ -419,11 +422,11 @@ the box that says <em>Enter Initial state</em>.</li>
 <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">location</span></code> variable keeps the location where Yelp will look for
-restaurants. The <code class="docutils literal"><span class="pre">businesstype</span></code> variable is the kind of restaurant the agent
-will look for. The <code class="docutils literal"><span class="pre">req_pending</span></code> variable is <code class="docutils literal"><span class="pre">true</span></code> if we have all the
+<p>The <code class="docutils literal notranslate"><span class="pre">location</span></code> variable keeps the location where Yelp will look for
+restaurants. The <code class="docutils literal notranslate"><span class="pre">businesstype</span></code> variable is the kind of restaurant the agent
+will look for. The <code class="docutils literal notranslate"><span class="pre">req_pending</span></code> variable is <code class="docutils literal notranslate"><span class="pre">true</span></code> if we have all the
 information we need for a Yelp query, but have not yet issued the query. The
-<code class="docutils literal"><span class="pre">user_choice</span></code> variable keeps track of which restaurant the user has chosen.</p>
+<code class="docutils literal notranslate"><span class="pre">user_choice</span></code> variable keeps track of which restaurant the user has chosen.</p>
 </div></blockquote>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
@@ -446,7 +449,7 @@ condition to:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">opening</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">opening</span></code></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="9">
@@ -475,7 +478,7 @@ collect information from the user.</p>
 to the input of enter node. The connection will be marked by a dash line.</p>
 </div>
 <ol class="arabic simple" start="2">
-<li>Edit the entrance condition to be <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.businesstype</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
+<li>Edit the entrance condition to be <code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.businesstype</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -486,13 +489,13 @@ NLU.entities dictionary.</p>
 </div>
 <ol class="arabic simple" start="3">
 <li>Add one more enter node. Name it <em>entity: location</em>, edit the entrance
-condition to be <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.location</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
+condition to be <code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.location</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
 <li>Create a <em>direct link</em> from the state node <em>Initialized State</em>.</li>
 <li>Next, add a state node to follow the recently created enter nodes. Call it
 <em>Save business type and address</em>, and add the following code:</li>
 </ol>
 <blockquote>
-<div><div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="s1">&#39;businesstype&#39;</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span> <span class="p">{</span>
+<div><div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="s1">&#39;businesstype&#39;</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">businesstype</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">businesstype</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">if</span><span class="p">(</span><span class="s1">&#39;location&#39;</span> <span class="ow">in</span> <span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="p">)</span> <span class="p">{</span>
@@ -522,8 +525,8 @@ above sets:</p>
 entrance conditions to:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -543,7 +546,7 @@ ensures that, once pervious state node has been executed, any enter nodes
 into the body of the function:</li>
 </ol>
 <blockquote>
-<div><div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">req_pending</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<div><div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">req_pending</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
 <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -553,8 +556,8 @@ into the body of the function:</li>
 conditions to:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 </li>
@@ -572,7 +575,7 @@ output text:</p>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To access user variables in output text, use <code class="docutils literal"><span class="pre">{{kitt.variable}}</span></code>
+<p class="last">To access user variables in output text, use <code class="docutils literal notranslate"><span class="pre">{{kitt.variable}}</span></code>
 where variable is in place of the variable you wish to include.</p>
 </div>
 <ol class="arabic" start="13">
@@ -580,8 +583,8 @@ where variable is in place of the variable you wish to include.</p>
 conditions to:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 </li>
@@ -605,13 +608,13 @@ conditions to:</p>
 to request a restaurant suggestion, determine whether the agent picked up a
 location and restaurant type from the user’s request, and give the user feedback.</p>
 <p>Now let’s see how we add additional nodes that take care of the situations
-where we have either <code class="docutils literal"><span class="pre">businesstype</span></code> or <code class="docutils literal"><span class="pre">location</span></code>.</p>
+where we have either <code class="docutils literal notranslate"><span class="pre">businesstype</span></code> or <code class="docutils literal notranslate"><span class="pre">location</span></code>.</p>
 <ol class="arabic" start="16">
 <li><p class="first">Add an enter node, name it <em>state: no address</em>, and set the entrance
 condition:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.address</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 </li>
@@ -630,7 +633,7 @@ node <em>entity: location</em>.</p>
 entrance condition to:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.businesstype</span> <span class="pre">is</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 </li>
@@ -670,9 +673,9 @@ is already conveniently packaged as a ChatFlow node.</p>
 <p class="last">You must provide this value to configure your Yelp node. You can
 obtain this by signing up for the <a class="reference external" href="http://www.yelp.com/fusion">Yelp developer API</a>.</p>
 </div>
-<p>The Yelp node builds a query by using a term in <code class="docutils literal"><span class="pre">msg.yelp.term</span></code> and a location in
-<code class="docutils literal"><span class="pre">msg.yelp.location</span></code>. <code class="docutils literal"><span class="pre">msg.yelp.limit</span></code> limits the number of candidates in the
-output. The result of the Yelp query will be placed in the <code class="docutils literal"><span class="pre">msg.payload</span></code>.</p>
+<p>The Yelp node builds a query by using a term in <code class="docutils literal notranslate"><span class="pre">msg.yelp.term</span></code> and a location in
+<code class="docutils literal notranslate"><span class="pre">msg.yelp.location</span></code>. <code class="docutils literal notranslate"><span class="pre">msg.yelp.limit</span></code> limits the number of candidates in the
+output. The result of the Yelp query will be placed in the <code class="docutils literal notranslate"><span class="pre">msg.payload</span></code>.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
 <p class="last">For more information about an API nodes input requirements and outputs,
@@ -684,13 +687,13 @@ check out the info tab!</p>
 entrance conditions to the following:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.req_pending</span> <span class="pre">is</span> <span class="pre">true</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.req_pending</span> <span class="pre">is</span> <span class="pre">true</span></code></li>
 </ul>
 </div></blockquote>
 </li>
 <li><p class="first">Connect to this enter node a new state node, name it <em>Yelp request</em>, and add
 the following code:</p>
-<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">prepare</span> <span class="n">yelp</span> <span class="n">search</span>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">prepare</span> <span class="n">yelp</span> <span class="n">search</span>
 <span class="n">msg</span><span class="o">.</span><span class="n">yelp</span> <span class="o">=</span> <span class="p">{</span><span class="n">term</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">businesstype</span><span class="p">,</span>
             <span class="n">location</span><span class="p">:</span> <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">address</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="mi">10</span><span class="p">};</span>
 
@@ -710,7 +713,7 @@ the following code:</p>
 <div class="section" id="presenting-yelp-results-to-the-user">
 <h3><a class="toc-backref" href="#id16">4. Presenting Yelp Results to the User</a><a class="headerlink" href="#presenting-yelp-results-to-the-user" title="Permalink to this headline">¶</a></h3>
 <p>Now the bot can issue queries through the Yelp API. Next, we need to process the
-output of the Yelp node (accessible as  <code class="docutils literal"><span class="pre">msg.payload</span></code>).</p>
+output of the Yelp node (accessible as  <code class="docutils literal notranslate"><span class="pre">msg.payload</span></code>).</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">For details on how the output is formatted, see the <a class="reference external" href="http://www.yelp.com/developers/v2">Yelp API documentation</a>.</p>
@@ -723,7 +726,7 @@ choices at a time and give the user the option to hear further choices.</p>
 process the Yelp API results:</li>
 </ol>
 <blockquote>
-<div><div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">businesses</span><span class="p">;</span>
+<div><div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">businesses</span><span class="p">;</span>
 <span class="n">msg</span><span class="o">.</span><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
 
 <span class="n">var</span> <span class="n">numresults</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -756,13 +759,13 @@ process the Yelp API results:</li>
 <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>First, we are saving the results in a user variable called <code class="docutils literal"><span class="pre">yelp_results</span></code>.
-We can access this variable in other nodes as <code class="docutils literal"><span class="pre">msg.kitt.yelp_results</span></code>.</p>
-<p>Then, we format the bot’s utterance directly in <code class="docutils literal"><span class="pre">msg.kitt._responses</span></code> by
+<p>First, we are saving the results in a user variable called <code class="docutils literal notranslate"><span class="pre">yelp_results</span></code>.
+We can access this variable in other nodes as <code class="docutils literal notranslate"><span class="pre">msg.kitt.yelp_results</span></code>.</p>
+<p>Then, we format the bot’s utterance directly in <code class="docutils literal notranslate"><span class="pre">msg.kitt._responses</span></code> by
 using a loop to add the names of the restaurants to the bot’s utterance.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last"><strong>Output text</strong> field sets <code class="docutils literal"><span class="pre">msg.kitt._responses[0]</span></code> with the content
+<p class="last"><strong>Output text</strong> field sets <code class="docutils literal notranslate"><span class="pre">msg.kitt._responses[0]</span></code> with the content
 of the text field.</p>
 </div>
 <p>The bot will end with the question: <em>Do any of these sound okay?</em></p>
@@ -771,7 +774,7 @@ request for more choices) and respond accordingly.</p>
 </div></blockquote>
 <ol class="arabic simple" start="2">
 <li>Add an enter node, name it <em>intent: Yes</em>, set the entrance condition to
-<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">accept</span></code>.</li>
+<code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">accept</span></code>.</li>
 <li>Check <em>Enter only from direct link</em> and create a <strong>direct link</strong> from the
 <em>list choices</em> state node.</li>
 <li>Add a new state node, name it <em>request choice</em>, and set the Output text field:</li>
@@ -785,7 +788,7 @@ request for more choices) and respond accordingly.</p>
 <li><p class="first">Check the <em>request User Input after this node</em> option.</p>
 </li>
 <li><p class="first">Next, add a new enter node called <em>intent: No</em> with the entrance condition
-<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">reject</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">reject</span></code>.</p>
 </li>
 <li><p class="first">Check <em>Enter only from direct link</em> and create a <strong>direct link</strong> with the
 <em>list choices</em> enter node.</p>
@@ -794,8 +797,8 @@ request for more choices) and respond accordingly.</p>
 entrance conditions:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_more_options</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_more_options</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 </li>
@@ -803,7 +806,7 @@ entrance conditions:</p>
 </li>
 </ol>
 <blockquote>
-<div><div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+<div><div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
 <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="o">.</span><span class="n">shift</span><span class="p">();</span>
 <span class="p">}</span>
 
@@ -863,8 +866,8 @@ to them.</p>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">state_choice</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">state_choice</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.yelp_results</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code>.</li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="2">
@@ -872,7 +875,7 @@ to them.</p>
 <li>Name new state node, name it <em>repeat choice</em> and add the following code:</li>
 </ol>
 <blockquote>
-<div><div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">choice</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<div><div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">choice</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
 <span class="n">switch</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">NLU</span><span class="o">.</span><span class="n">entities</span><span class="o">.</span><span class="n">enum_choice</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">case</span> <span class="s2">&quot;first&quot;</span><span class="p">:</span>
     <span class="n">case</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
@@ -907,9 +910,9 @@ to them.</p>
 <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>In this code, we check for the <code class="docutils literal"><span class="pre">NLU.entities.enum_choice</span></code> entity and set the
-<code class="docutils literal"><span class="pre">choice</span></code> variable appropriately. If a choice is made, we set the user
-variable <code class="docutils literal"><span class="pre">kitt.user_choice</span></code>, which we can access at any time in other nodes.</p>
+<p>In this code, we check for the <code class="docutils literal notranslate"><span class="pre">NLU.entities.enum_choice</span></code> entity and set the
+<code class="docutils literal notranslate"><span class="pre">choice</span></code> variable appropriately. If a choice is made, we set the user
+variable <code class="docutils literal notranslate"><span class="pre">kitt.user_choice</span></code>, which we can access at any time in other nodes.</p>
 </div></blockquote>
 <p>Your flow should now look like the following figure:</p>
 <img alt="_images/Flow-8.png" class="align-center" src="_images/Flow-8.png" />
@@ -924,14 +927,14 @@ about their choice and the other options?</p>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.kitt.user_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.kitt.user_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 <ol class="arabic" start="2">
 <li><p class="first">Create a state node called <em>say rating</em> and input the following code:</p>
-<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;It&#39;s got &quot;</span> <span class="o">+</span>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;It&#39;s got &quot;</span> <span class="o">+</span>
     <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span><span class="p">]</span><span class="o">.</span><span class="n">review_count</span> <span class="o">+</span>
     <span class="s2">&quot; reviews on Yelp, and the rating is &quot;</span> <span class="o">+</span>
     <span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">yelp_results</span><span class="p">[</span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">user_choice</span><span class="p">]</span><span class="o">.</span><span class="n">rating</span> <span class="o">+</span> <span class="s2">&quot; stars.&quot;</span><span class="p">];</span>
@@ -948,15 +951,15 @@ conditions:</p>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code></li>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">request_rating</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.entities.enum_choice</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="4">
 <li>Connect this enter node to a new state node called <em>say rating by choice</em>, with the following code:</li>
 </ol>
 <blockquote>
-<div><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">choice</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">choice</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">status</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span><span class="p">;</span>
 
 <span class="k">switch</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">entities</span><span class="p">.</span><span class="nx">enum_choice</span><span class="p">)</span> <span class="p">{</span>
@@ -1009,13 +1012,13 @@ to generate a function that selects an output on the users input.</p>
 <p>Can we make our bot respond to gratitude? We sure can!</p>
 <ol class="arabic simple" start="6">
 <li>Add an enter node named <em>intent: thanking</em> with the entrance condition:<ul>
-<li><code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">thanking</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">thanking</span></code></li>
 </ul>
 </li>
 <li>Add a state named <em>respond to thanks</em>, add the following code:</li>
 </ol>
 <blockquote>
-<div><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;No problem. &#39;</span><span class="p">,</span> <span class="s1">&#39;Sure, any time. &#39;</span><span class="p">,</span> <span class="s1">&#39;Glad to help. &#39;</span><span class="p">,</span> <span class="s1">&#39;Any time. &#39;</span><span class="p">]</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;No problem. &#39;</span><span class="p">,</span> <span class="s1">&#39;Sure, any time. &#39;</span><span class="p">,</span> <span class="s1">&#39;Glad to help. &#39;</span><span class="p">,</span> <span class="s1">&#39;Any time. &#39;</span><span class="p">]</span>
 
 <span class="nx">msg</span><span class="p">.</span><span class="nx">NLU</span><span class="p">.</span><span class="nx">intent</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
@@ -1027,13 +1030,13 @@ to generate a function that selects an output on the users input.</p>
 handle that!</p>
 <ol class="arabic simple" start="8">
 <li>Add an enter node named <em>intent: default</em> with the entrance condition:<ul>
-<li><code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </li>
 <li>Add a state named <em>Non understanding</em> and add the following code:</li>
 </ol>
 <blockquote>
-<div><div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span>
+<div><div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;Sorry, I didn&#39;t get what you said. &quot;</span><span class="p">,</span>
     <span class="s2">&quot;Oops, I&#39;m not sure I understand. &quot;</span><span class="p">,</span>
     <span class="s2">&quot;Hmm, not sure I understand. &quot;</span><span class="p">];</span>
@@ -1073,7 +1076,7 @@ your flow can account for those mistakes.</p>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">goodbye</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Properties</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">goodbye</span></code></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="11">
@@ -1092,7 +1095,7 @@ you make it better? (Of course you can!)</p>
 <p>In addition, you can import and play with the application by either:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Downloading the <a class="reference download internal" href="_downloads/yelp.json" download=""><code class="xref download docutils literal"><span class="pre">JSON</span></code></a> file for our
+<li>Downloading the <a class="reference download internal" href="_downloads/yelp.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">JSON</span></code></a> file for our
 application and importing the project on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a>
 page</li>
 <li>Creating a new project form the “Yelp Bot” sample application under “Use a
@@ -1123,7 +1126,7 @@ Sample Project” on the <a class="reference external" href="https://chatflow.ki
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Jan 10, 2018.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

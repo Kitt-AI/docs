@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -128,7 +129,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -176,6 +176,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -416,7 +419,7 @@ and the required formats for the <strong>Skype Out</strong> node input.</p>
 <div class="section" id="skype-in">
 <h3><a class="toc-backref" href="#id12">Skype In</a><a class="headerlink" href="#skype-in" title="Permalink to this headline">¶</a></h3>
 <p>The Skype In node receives input from Skype and outputs the following msg:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -464,39 +467,39 @@ and the required formats for the <strong>Skype Out</strong> node input.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Text content of the message</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">skype.message</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">skype.message</span></code></td>
 <td>Object</td>
 <td>the original raw incoming message</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">skype.id</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">skype.id</span></code></td>
 <td>String</td>
 <td>the Skype Message ID</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">skype.type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">skype.type</span></code></td>
 <td>String</td>
 <td>Refers to message type. Either <em>‘message/text’</em>, <em>‘message/image’</em>, or <em>‘message/card.carousel’</em></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">skype.user</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">skype.user</span></code></td>
 <td>String</td>
 <td>the Skype User ID (determined by Skype)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">skype.user_name</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">skype.user_name</span></code></td>
 <td>String</td>
 <td>the User’s Skype User Name</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">skype.conversation</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">skype.conversation</span></code></td>
 <td>String</td>
 <td>the Skype conversation ID (determined by Skype)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">skype.attachments</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">skype.attachments</span></code></td>
 <td>Array</td>
 <td>Array of attachments attached on the message</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kitt</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kitt</span></code></td>
 <td>Object</td>
 <td>used by the Router node for session management</td>
 </tr>
@@ -512,7 +515,7 @@ page.</p>
 <h3><a class="toc-backref" href="#id13">Skype Out</a><a class="headerlink" href="#skype-out" title="Permalink to this headline">¶</a></h3>
 <p>The Skype Out node sends the message back to Skype. It expects message with the
 following properties:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -544,23 +547,23 @@ following properties:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Text content of the message</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">skype.type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">skype.type</span></code></td>
 <td>String</td>
 <td>Refers to message type. Either <em>‘message/text’</em>, <em>‘message/image’</em>, or <em>‘message/card.carousel’</em></td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">skype.attachments</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">skype.attachments</span></code></td>
 <td>Array</td>
 <td>Array of attachments attached on the message</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">skype.conversation</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">skype.conversation</span></code></td>
 <td>String</td>
 <td>the Skype conversation ID (determined by Skype)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">skype.user</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">skype.user</span></code></td>
 <td>String</td>
 <td>the Skype User ID (determined by Skype)</td>
 </tr>
@@ -568,12 +571,12 @@ following properties:</p>
 </table>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">You <strong>MUST</strong> have either <code class="docutils literal"><span class="pre">skype.conversation</span></code> or <code class="docutils literal"><span class="pre">skype.user</span></code>
+<p class="last">You <strong>MUST</strong> have either <code class="docutils literal notranslate"><span class="pre">skype.conversation</span></code> or <code class="docutils literal notranslate"><span class="pre">skype.user</span></code>
 in order to send a message back to Skype to your user.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Depending on the message type, certain components of the <code class="docutils literal"><span class="pre">msg</span></code> are required.
+<p>Depending on the message type, certain components of the <code class="docutils literal notranslate"><span class="pre">msg</span></code> are required.
 Below is a table highlighting which components are required for the different
 message types:</p>
 <table border="1" class="last docutils">
@@ -588,13 +591,13 @@ message types:</p>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td><em>‘message/text’</em></td>
-<td><code class="docutils literal"><span class="pre">payload</span></code>, <code class="docutils literal"><span class="pre">skype.type</span></code>,</td>
+<td><code class="docutils literal notranslate"><span class="pre">payload</span></code>, <code class="docutils literal notranslate"><span class="pre">skype.type</span></code>,</td>
 </tr>
 <tr class="row-odd"><td><em>‘message/image’</em></td>
-<td><code class="docutils literal"><span class="pre">skype.type</span></code>, <code class="docutils literal"><span class="pre">skype.attachments</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">skype.type</span></code>, <code class="docutils literal notranslate"><span class="pre">skype.attachments</span></code></td>
 </tr>
 <tr class="row-even"><td><em>‘message/card.carousel’</em></td>
-<td><code class="docutils literal"><span class="pre">skype.type</span></code>, <code class="docutils literal"><span class="pre">skype.attachments</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">skype.type</span></code>, <code class="docutils literal notranslate"><span class="pre">skype.attachments</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -632,7 +635,7 @@ Connect them like so:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li>Set the Enter Node’s entrances condition to <code class="docutils literal"><span class="pre">msg.payload</span> <span class="pre">matches</span> <span class="pre">regex</span> <span class="pre">hello|hi</span></code></li>
+<li>Set the Enter Node’s entrances condition to <code class="docutils literal notranslate"><span class="pre">msg.payload</span> <span class="pre">matches</span> <span class="pre">regex</span> <span class="pre">hello|hi</span></code></li>
 <li>Select <strong>Ignore Case</strong></li>
 <li>Set the State nodes output text to <em>“Hello. I can search books on Amazon for you. Just name a book and I’ll search it for you”</em></li>
 </ul>
@@ -642,7 +645,7 @@ Connect them like so:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li>Set the Enter Node’s entrance condition to <code class="docutils literal"><span class="pre">msg.payload</span> <span class="pre">matches</span> <span class="pre">regex</span> <span class="pre">bye|see\syou</span></code></li>
+<li>Set the Enter Node’s entrance condition to <code class="docutils literal notranslate"><span class="pre">msg.payload</span> <span class="pre">matches</span> <span class="pre">regex</span> <span class="pre">bye|see\syou</span></code></li>
 <li>Select <strong>Ignore Case</strong></li>
 <li>Set the State nodes output text to <em>“See Ya”</em></li>
 <li>Check the <strong>Dialogue Ends</strong> here option</li>
@@ -658,7 +661,7 @@ Connect them like so:</li>
 </ol>
 <blockquote>
 <div><ul class="simple">
-<li>Set the Enter Node’s entrance condition to <code class="docutils literal"><span class="pre">msg.payload</span> <span class="pre">matches</span> <span class="pre">regex</span> <span class="pre">^((?!bye|see\syou|hi|hello).)*$</span></code></li>
+<li>Set the Enter Node’s entrance condition to <code class="docutils literal notranslate"><span class="pre">msg.payload</span> <span class="pre">matches</span> <span class="pre">regex</span> <span class="pre">^((?!bye|see\syou|hi|hello).)*$</span></code></li>
 <li>Select <strong>Ignore Case</strong></li>
 <li>Set the State Node’s output text to <em>“OK. Searching…”</em></li>
 </ul>
@@ -672,7 +675,7 @@ Connect them like so:</li>
 <li>Add the following code into the body function:</li>
 </ul>
 </div></blockquote>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -747,9 +750,9 @@ right makes sure you get paid by Amazon correctly.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Name it <em>Is item found?</em></li>
-<li>Set the property to <code class="docutils literal"><span class="pre">msg.payload.ItemSearchResponse.Items.Item</span></code>.</li>
-<li>Set the first rule to <code class="docutils literal"><span class="pre">is</span> <span class="pre">null</span></code></li>
-<li>Set the second rule to <code class="docutils literal"><span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li>Set the property to <code class="docutils literal notranslate"><span class="pre">msg.payload.ItemSearchResponse.Items.Item</span></code>.</li>
+<li>Set the first rule to <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">null</span></code></li>
+<li>Set the second rule to <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="6">
@@ -772,7 +775,7 @@ right makes sure you get paid by Amazon correctly.</p>
 <li>Add the following code into the body function:</li>
 </ul>
 </div></blockquote>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -872,9 +875,9 @@ right makes sure you get paid by Amazon correctly.</p>
 <blockquote>
 <div><ul class="simple">
 <li>Name it <em>Are images found?</em></li>
-<li>Set the property to <code class="docutils literal"><span class="pre">msg.payload.payload.ItemLookupResponse</span></code>.</li>
-<li>Set the first rule to <code class="docutils literal"><span class="pre">is</span> <span class="pre">null</span></code></li>
-<li>Set the second rule to <code class="docutils literal"><span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li>Set the property to <code class="docutils literal notranslate"><span class="pre">msg.payload.payload.ItemLookupResponse</span></code>.</li>
+<li>Set the first rule to <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">null</span></code></li>
+<li>Set the second rule to <code class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
 </ul>
 </div></blockquote>
 <ol class="arabic simple" start="9">
@@ -891,7 +894,7 @@ right makes sure you get paid by Amazon correctly.</p>
 <li>Add the following code into the body function:</li>
 </ul>
 </div></blockquote>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -962,7 +965,7 @@ right makes sure you get paid by Amazon correctly.</p>
 </td></tr></table></div>
 <ol class="arabic simple" start="11">
 <li>Add a <strong>Split Node</strong>. Connect it to the <em>Search book images</em> Function Node.
-Set the split to <code class="docutils literal"><span class="pre">&gt;&gt;&gt;&gt;&gt;</span></code>.</li>
+Set the split to <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;&gt;&gt;</span></code>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -976,7 +979,7 @@ Set the split to <code class="docutils literal"><span class="pre">&gt;&gt;&gt;&g
 <ol class="arabic simple" start="12">
 <li>Add a <strong>State Node</strong>. Add the following code to the body of the function:</li>
 </ol>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="nx">msg</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">);</span>
 <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
 </pre></div>
@@ -988,7 +991,7 @@ Set the split to <code class="docutils literal"><span class="pre">&gt;&gt;&gt;&g
 <img alt="_images/FinalFlow.png" class="align-center" src="_images/FinalFlow.png" />
 <p>Feel free to play with the application by importing it to ChatFlow by either:</p>
 <ul class="simple">
-<li>Downloading the <a class="reference download internal" href="_downloads/SkypeAmazonBooks.json" download=""><code class="xref download docutils literal"><span class="pre">json</span></code></a> for the
+<li>Downloading the <a class="reference download internal" href="_downloads/SkypeAmazonBooks.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">json</span></code></a> for the
 application and importing the project on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a>
 page</li>
 <li>Using the “Skype - Amazon Books” sample application under “Use a Sample Project”
@@ -1019,7 +1022,7 @@ page.</li>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Dec 07, 2017.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

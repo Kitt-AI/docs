@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ChatFlow Build A Bot Tutorial</a><ul>
@@ -135,7 +136,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -183,6 +183,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -365,9 +368,9 @@ State Node.</li>
 <li><p class="first">Double click on the new State Node. Name it <em>Initialize state</em>.</p>
 </li>
 <li><p class="first">Below the name field, you will find a <strong>code editor</strong>. In the code editor, create
-a single variable called <code class="docutils literal"><span class="pre">count</span></code> that will keep track of how many times our
+a single variable called <code class="docutils literal notranslate"><span class="pre">count</span></code> that will keep track of how many times our
 bot has asked the user for lunch. The code inside this State Node will be:</p>
-<div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -376,13 +379,13 @@ bot has asked the user for lunch. The code inside this State Node will be:</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">User variables are passed from node to node in the variable
-<code class="docutils literal"><span class="pre">msg</span></code>. In addition, special property <code class="docutils literal"><span class="pre">msg.kitt</span></code> will be persisted
+<code class="docutils literal notranslate"><span class="pre">msg</span></code>. In addition, special property <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code> will be persisted
 over sessions so you can track your context over different dialogue turns.
-Our variable in this case is <code class="docutils literal"><span class="pre">msg.kitt.count</span></code>.</p>
+Our variable in this case is <code class="docutils literal notranslate"><span class="pre">msg.kitt.count</span></code>.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">The code associated with the State Node should end with <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code>.
+<p class="last">The code associated with the State Node should end with <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">msg;</span></code>.
 Otherwise no message will be outputted, thus halting the conversation.</p>
 </div>
 <ol class="arabic simple" start="5">
@@ -418,7 +421,7 @@ else to say. Let’s now give our bot the ability to handle <em>yes</em> and
 <blockquote>
 <div><ul class="simple">
 <li>Name it <em>“U: no”</em></li>
-<li>Set its condition to <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code></li>
+<li>Set its condition to <code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
@@ -428,8 +431,8 @@ else to say. Let’s now give our bot the ability to handle <em>yes</em> and
 <img alt="_images/u-no.png" class="align-center" src="_images/u-no.png" />
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">By convention, the main output of nodes is placed into <code class="docutils literal"><span class="pre">payload</span></code>.
-The user input coming from <em>Chat In</em> is stored in <code class="docutils literal"><span class="pre">msg.payload</span></code>.</p>
+<p class="last">By convention, the main output of nodes is placed into <code class="docutils literal notranslate"><span class="pre">payload</span></code>.
+The user input coming from <em>Chat In</em> is stored in <code class="docutils literal notranslate"><span class="pre">msg.payload</span></code>.</p>
 </div>
 <ol class="arabic" start="3">
 <li><p class="first">Edit the new State Node.</p>
@@ -438,7 +441,7 @@ The user input coming from <em>Chat In</em> is stored in <code class="docutils l
 <li>Add the following code into its body:</li>
 </ul>
 <blockquote>
-<div><div class="code javascript highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<div><div class="code javascript highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="k">return</span> <span class="n">msg</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -457,23 +460,23 @@ another State Node to handle <em>yes</em>.</p>
 <ol class="arabic simple">
 <li>Add another pair of Enter and State Nodes. Connect them as before.</li>
 <li>Name the Enter Node <em>U:yes</em> and add the entrance condition:<ul>
-<li><code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">yes</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">yes</span></code></li>
 </ul>
 </li>
-<li>Name the new State Node <em>thank user</em>, and leave the code as <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code></li>
+<li>Name the new State Node <em>thank user</em>, and leave the code as <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">msg;</span></code></li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Since we don’t need the bot to do anything else when it reaches this
-node, <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code> will simply dump out the raw output of the node.</p>
+node, <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">msg;</span></code> will simply dump out the raw output of the node.</p>
 </div>
 <ol class="arabic simple" start="4">
 <li>In the <em>Output text</em> field, enter <em>Thank you! Number of times I asked: {{kitt.count}}</em>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In the <em>Output text</em> field, we can access variables stored in <code class="docutils literal"><span class="pre">msg.kitt</span></code>
-without the <code class="docutils literal"><span class="pre">msg</span></code> prefix.</p>
+<p class="last">In the <em>Output text</em> field, we can access variables stored in <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code>
+without the <code class="docutils literal notranslate"><span class="pre">msg</span></code> prefix.</p>
 </div>
 <ol class="arabic simple" start="5">
 <li>Check the box that says <em>Dialogue ends here</em> to tell the system that the
@@ -497,16 +500,16 @@ other input strings.</p>
 <ol class="arabic simple">
 <li>Add an Enter Node and a State Node to the Canvas. Connect them together.</li>
 <li>Edit the Enter Node, name is “U: default”, and set it’s entrance conditions to:<ul>
-<li>Property <code class="docutils literal"><span class="pre">msg.payload</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
-<li>Property <code class="docutils literal"><span class="pre">msg.NLU.intent</span> <span class="pre">!=</span> <span class="pre">positive_response</span></code></li>
-<li>Property <code class="docutils literal"><span class="pre">msg.NLU.intent</span> <span class="pre">!=</span> <span class="pre">negative_response</span></code></li>
+<li>Property <code class="docutils literal notranslate"><span class="pre">msg.payload</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">null</span></code></li>
+<li>Property <code class="docutils literal notranslate"><span class="pre">msg.NLU.intent</span> <span class="pre">!=</span> <span class="pre">positive_response</span></code></li>
+<li>Property <code class="docutils literal notranslate"><span class="pre">msg.NLU.intent</span> <span class="pre">!=</span> <span class="pre">negative_response</span></code></li>
 </ul>
 </li>
 </ol>
 <img alt="_images/u-default.png" class="align-center" src="_images/u-default.png" />
 <ol class="arabic simple" start="3">
 <li>In the new State Node, change the name to <em>not understanding</em>, leave the code
-as <code class="docutils literal"><span class="pre">return</span> <span class="pre">msg;</span></code>, and add the following text to the <em>Output field</em>:
+as <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">msg;</span></code>, and add the following text to the <em>Output field</em>:
 * <em>Sorry, I didn’t understand what you said. I only understand “yes” and “no”.</em></li>
 </ol>
 <img alt="_images/not-understanding.png" class="align-center" src="_images/not-understanding.png" />
@@ -541,7 +544,7 @@ entities, which we can then use in our Enter Nodes as the basis for our <em>entr
 <img alt="_images/setup-intents.png" class="align-center" src="_images/setup-intents.png" />
 <ol class="arabic simple" start="4">
 <li>Click on add intent.</li>
-<li>Name the new intent <code class="docutils literal"><span class="pre">positive_response</span></code> and click create.</li>
+<li>Name the new intent <code class="docutils literal notranslate"><span class="pre">positive_response</span></code> and click create.</li>
 </ol>
 <img alt="_images/positive_response.png" class="align-center" src="_images/positive_response.png" />
 <ol class="arabic simple" start="6">
@@ -559,7 +562,7 @@ free to include more:<ul>
 </ol>
 <img alt="_images/positive-utterance.png" class="align-center" src="_images/positive-utterance.png" />
 <ol class="arabic" start="8">
-<li><p class="first">Click on add intent. Name the new intent <code class="docutils literal"><span class="pre">negative_response</span></code> and click create.
+<li><p class="first">Click on add intent. Name the new intent <code class="docutils literal notranslate"><span class="pre">negative_response</span></code> and click create.
 Under Example of Use, add the following natural language input strings. Feel
 free to include more:</p>
 <blockquote>
@@ -576,7 +579,7 @@ free to include more:</p>
 </ol>
 <img alt="_images/negative-response.png" class="align-center" src="_images/negative-response.png" />
 <ol class="arabic simple" start="9">
-<li>Once finished adding the <code class="docutils literal"><span class="pre">positive_response</span></code> and <code class="docutils literal"><span class="pre">negative_response</span></code> intents,
+<li>Once finished adding the <code class="docutils literal notranslate"><span class="pre">positive_response</span></code> and <code class="docutils literal notranslate"><span class="pre">negative_response</span></code> intents,
 click <strong>TRAIN APPLICATION</strong>, and then <strong>DEPLOY</strong>.</li>
 </ol>
 <img alt="_images/deploy-nlu.png" class="align-center" src="_images/deploy-nlu.png" />
@@ -624,12 +627,12 @@ app list.</li>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The NLU node with store all NLU information in <cite>msg.NLU</cite>. Intents,
-entities and the original utterance will be stored in <code class="docutils literal"><span class="pre">msg.NLU.intent</span></code>,
-<code class="docutils literal"><span class="pre">msg.NLU.entities</span></code>, and <code class="docutils literal"><span class="pre">msg.NLU.sentence</span></code>, respectively.</p>
+entities and the original utterance will be stored in <code class="docutils literal notranslate"><span class="pre">msg.NLU.intent</span></code>,
+<code class="docutils literal notranslate"><span class="pre">msg.NLU.entities</span></code>, and <code class="docutils literal notranslate"><span class="pre">msg.NLU.sentence</span></code>, respectively.</p>
 </div>
 <ol class="arabic" start="16">
-<li><p class="first">Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code> to the end of the URL. The final URL will look like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code> to the end of the URL. The final URL will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 </pre></div>
 </div>
 </li>
@@ -644,14 +647,14 @@ information within our bot. In order to do so, we must reconfigure the <em>U: Ye
 and <em>U: No</em> Enter Nodes.</p>
 <ol class="arabic simple">
 <li>Edit the <em>U: Yes</em> node. Under the entrance conditions section, remove the
-<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">yes</span></code> condition.</li>
-<li>Add a new condition, <code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">positive_response</span></code>.</li>
+<code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">yes</span></code> condition.</li>
+<li>Add a new condition, <code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">positive_response</span></code>.</li>
 </ol>
 <img alt="_images/u-yes-2.png" class="align-center" src="_images/u-yes-2.png" />
 <ol class="arabic simple" start="3">
 <li>Edit the <em>U: No</em> node. Under the entrance conditions section, remove the
-<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code> condition. Add a new condition,
-<code class="docutils literal"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">negative_response</span></code>.</li>
+<code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.payload</span> <span class="pre">==</span> <span class="pre">no</span></code> condition. Add a new condition,
+<code class="docutils literal notranslate"><span class="pre">Property</span> <span class="pre">msg.NLU.intent</span> <span class="pre">==</span> <span class="pre">negative_response</span></code>.</li>
 </ol>
 <img alt="_images/u-no-2.png" class="align-center" src="_images/u-no-2.png" />
 <ol class="arabic simple" start="4">
@@ -682,13 +685,13 @@ apps cannot be imported in NLU and NLU apps cannot be imported into ChatFlow.</p
 </div>
 <p>Feel free to play with the bots template. You can either:</p>
 <ul class="simple">
-<li>Download the <a class="reference download internal" href="_downloads/TheFreeLunchBot.json" download=""><code class="xref download docutils literal"><span class="pre">ChatFlow</span> <span class="pre">json</span></code></a> of our
+<li>Download the <a class="reference download internal" href="_downloads/TheFreeLunchBot.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">ChatFlow</span> <span class="pre">json</span></code></a> of our
 application and import the project using the Import JSON feature on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
 <li>Use the “Free Lunch” sample application when clicking “CREATE NEW APP” on the
 main page.</li>
 </ul>
-<p>In addition, download the <a class="reference download internal" href="_downloads/TheFreeLunchBot-nlu.json" download=""><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a>
+<p>In addition, download the <a class="reference download internal" href="_downloads/TheFreeLunchBot-nlu.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">NLU</span> <span class="pre">json</span></code></a>
 Use the NLU’s import JSON feature to import it as <a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>
 and configure it to your ChatFlow App.</p>
 </div>
@@ -714,7 +717,7 @@ and configure it to your ChatFlow App.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Jan 04, 2018.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

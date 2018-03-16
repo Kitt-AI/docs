@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -126,7 +127,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -174,6 +174,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -352,7 +355,7 @@ Facebook Nodes.</p>
 <div class="section" id="facebook-in">
 <h3><a class="toc-backref" href="#id9">Facebook In</a><a class="headerlink" href="#facebook-in" title="Permalink to this headline">¶</a></h3>
 <p>The Facebook In receives input from Facebook and outputs the following msg:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -398,35 +401,35 @@ Facebook Nodes.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Contains the message text</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facebook.message</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">facebook.message</span></code></td>
 <td>Object</td>
 <td>Original message object received from Facebook</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facebook.user</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">facebook.user</span></code></td>
 <td>String</td>
 <td>Facebook user ID</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facebook.timestamp</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">facebook.timestamp</span></code></td>
 <td>String</td>
 <td>Facebook’s timestamp</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facebook.seq</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">facebook.seq</span></code></td>
 <td>String</td>
 <td>Facebook sequence counter</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facebook.mid</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">facebook.mid</span></code></td>
 <td>String</td>
 <td>Facebook message ID</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facebook.attachments</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">facebook.attachments</span></code></td>
 <td>Array</td>
 <td>Array of attachments</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kitt</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kitt</span></code></td>
 <td>Object</td>
 <td>used by the Router for session management and timeout</td>
 </tr>
@@ -434,14 +437,14 @@ Facebook Nodes.</p>
 </table>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Both <code class="docutils literal"><span class="pre">payload</span></code> and <code class="docutils literal"><span class="pre">attachments</span></code> are optional. But one is required!</p>
+<p class="last">Both <code class="docutils literal notranslate"><span class="pre">payload</span></code> and <code class="docutils literal notranslate"><span class="pre">attachments</span></code> are optional. But one is required!</p>
 </div>
 </div>
 <div class="section" id="facebook-out">
 <h3><a class="toc-backref" href="#id10">Facebook Out</a><a class="headerlink" href="#facebook-out" title="Permalink to this headline">¶</a></h3>
 <p>The Facebook Out Node sends its output back to Facebook and must receive input
 in the following format:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -471,19 +474,19 @@ in the following format:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Contains the message text</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facebook.user</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">facebook.user</span></code></td>
 <td>String</td>
 <td>Facebook user ID</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">facebook.attachments</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">facebook.attachments</span></code></td>
 <td>Array</td>
 <td>Array of attachments</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">facebook.attachment</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">facebook.attachment</span></code></td>
 <td>String</td>
 <td>An attachment object (Ex. written documentation)</td>
 </tr>
@@ -507,7 +510,7 @@ features, such as generic template and buttons.</p>
 <li>Import the application to ChatFlow by either:</li>
 </ol>
 <ul class="simple">
-<li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast.json" download=""><code class="xref download docutils literal"><span class="pre">json</span></code></a> our application and import the project on the
+<li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">json</span></code></a> our application and import the project on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page,
 or,</li>
 <li>Use the “Facebook - Weather forecast” sample application under “Use a Sample Project” when clicking “CREATE NEW APP”
@@ -518,7 +521,7 @@ on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applic
 <div class="section" id="nlu-setup">
 <h3><a class="toc-backref" href="#id13">2. NLU setup</a><a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast-nlu.json" download=""><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> and import it as
+<li>Download <a class="reference download internal" href="_downloads/FacebookWeatherForecast-nlu.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">NLU</span> <span class="pre">json</span></code></a> and import it as
 <a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</li>
 <li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json you downloaded from <a class="reference internal" href="#import-weather-app"><span class="std std-ref">1. Importing the “Weather forecast” application</span></a>.</li>
 </ol>
@@ -529,8 +532,8 @@ on the <a class="reference external" href="https://chatflow.kitt.ai/apps">applic
 <img alt="_images/deployment_url.png" class="align-center" src="_images/deployment_url.png" />
 <ol class="arabic" start="4">
 <li><p class="first">Go back to ChatFlow. Open the <strong>KITT.AI NLU</strong> node and paste the Deployment URL.
-Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>, so your final string would look like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+Add <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code>, so your final string would look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 </pre></div>
 </div>
 </li>
@@ -571,7 +574,7 @@ to the Facebook page.</li>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Dec 07, 2017.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

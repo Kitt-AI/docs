@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -112,7 +113,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -161,6 +161,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
+        
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
         
@@ -206,7 +209,7 @@ It’s 6 minutes long and we hope you enjoy Kevin MacLeod’s Firebrand as backg
 music.</p>
 <iframe width="640" height="480" src="https://www.youtube.com/embed/Wi4vXT92UWo"
     frameborder="0" allowfullscreen></iframe>
- <br><br><br><p>You can also quickly reproduce this project by importing this <a class="reference download internal" href="_downloads/Wise_Guy_Skill_NLU.json" download=""><code class="xref download docutils literal"><span class="pre">JSON</span> <span class="pre">file</span></code></a>
+ <br><br><br><p>You can also quickly reproduce this project by importing this <a class="reference download internal" href="_downloads/Wise_Guy_Skill_NLU.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">JSON</span> <span class="pre">file</span></code></a>
 in <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>.</p>
 </div>
 <div class="section" id="exporting-to-alexa-format">
@@ -227,7 +230,7 @@ feature.</p>
 <p><strong>Intent Schema</strong></p>
 <p>The Intent Schema will contain only user-defined intent and slot. If you need
 any Amazon default intent, please manually add them.</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="s2">&quot;intents&quot;</span><span class="o">:</span> <span class="p">[</span>
         <span class="p">{</span>
             <span class="s2">&quot;intent&quot;</span><span class="o">:</span> <span class="s2">&quot;SetupNameWhoIntent&quot;</span><span class="p">,</span>
@@ -251,7 +254,7 @@ any Amazon default intent, please manually add them.</p>
 <p><strong>Custom Slots</strong></p>
 <p>Custom Slots are list of phrases for slots (entities). NLU also supports list of
 regular expressions to match entities. The Alexa console does not support it.</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="nl">LIST_OF_SetupName:</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nl">LIST_OF_SetupName:</span>
 <span class="n">to</span>
 <span class="n">beets</span>
 <span class="n">little</span> <span class="n">Old</span> <span class="n">Lady</span>
@@ -270,7 +273,7 @@ regular expressions to match entities. The Alexa console does not support it.</p
 marked within utterances. It follows the old verbose style, and you can
 <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/migrating-to-the-improved-built-in-and-custom-slot-types">migrate</a>
 to new improved interfaces.</p>
-<div class="highlight-java"><div class="highlight"><pre><span></span><span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">is</span> <span class="n">there</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">is</span> <span class="n">there</span>
 <span class="n">WhosThereIntent</span> <span class="n">whos</span> <span class="n">there</span>
 <span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">there</span>
 <span class="n">WhosThereIntent</span> <span class="n">who</span> <span class="n">is</span> <span class="k">this</span>
@@ -349,7 +352,7 @@ skill.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Dec 07, 2017.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

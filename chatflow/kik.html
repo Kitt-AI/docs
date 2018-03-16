@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -136,7 +137,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -184,6 +184,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -343,7 +346,7 @@ and click “Edit” button.</li>
 <div class="section" id="kik-in">
 <span id="kik-in-node"></span><h3><a class="toc-backref" href="#id15">kik In</a><a class="headerlink" href="#kik-in" title="Permalink to this headline">¶</a></h3>
 <p>The kik In node receives messages from kik. It has the following output:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -385,23 +388,23 @@ and click “Edit” button.</li>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Contains the message body (i.e. text, image, URL)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.message</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kik.message</span></code></td>
 <td>String</td>
 <td>The original message from the kik server</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.user</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kik.user</span></code></td>
 <td>String</td>
 <td>kik username</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.chatId</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kik.chatId</span></code></td>
 <td>String</td>
 <td>The chat ID where the message will be sent (determined by kik)</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.type</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kik.type</span></code></td>
 <td>String</td>
 <td>Message type</td>
 </tr>
@@ -418,7 +421,7 @@ for more details.</p>
 <span id="kik-out-node"></span><h3><a class="toc-backref" href="#id16">kik Out</a><a class="headerlink" href="#kik-out" title="Permalink to this headline">¶</a></h3>
 <p>The kik Out node sends messages back to kik. It accepts input in the following
 format:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -450,23 +453,23 @@ format:</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Contains the message body (i.e. text, image, URL)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.user</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kik.user</span></code></td>
 <td>String</td>
 <td>kik username</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.chatId</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kik.chatId</span></code></td>
 <td>String</td>
 <td>The chat ID where the message will be sent (determined by kik)</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.type</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kik.type</span></code></td>
 <td>String</td>
 <td>Message type</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.suggestions</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kik.suggestions</span></code></td>
 <td>Array of Strings</td>
 <td>Array of suggested answers to the bot.  Sets the custom keyboard in kik app.</td>
 </tr>
@@ -485,10 +488,10 @@ for more details.</p>
 different color.</p>
 <div class="section" id="sending-attachments">
 <span id="id3"></span><h3><a class="toc-backref" href="#id18">Sending attachments</a><a class="headerlink" href="#sending-attachments" title="Permalink to this headline">¶</a></h3>
-<p>Attachments can be sent by setting the corresponding <code class="docutils literal"><span class="pre">kik</span></code> variable to a URL
+<p>Attachments can be sent by setting the corresponding <code class="docutils literal notranslate"><span class="pre">kik</span></code> variable to a URL
 link to the attachment. For example, to send a picture attachment, use the following
 code:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -520,16 +523,16 @@ type.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.link</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kik.link</span></code></td>
 <td>a URL to a web address</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.picture</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kik.picture</span></code></td>
 <td>a URL to an image</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">kik.video</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">kik.video</span></code></td>
 <td>a URL to a video, as well as some playback configurations</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">kik.sticker</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">kik.sticker</span></code></td>
 <td>information required to display a sticker.</td>
 </tr>
 </tbody>
@@ -545,10 +548,10 @@ your kik Bot.</p>
 <img alt="_images/CustomKeyBoard.png" class="align-center" src="_images/CustomKeyBoard.png" />
 <ol class="arabic simple" start="2">
 <li>Double click the function and edit the body of the function to set
-<code class="docutils literal"><span class="pre">msg.kik.suggestions</span></code> as an array of options. You can use the following
+<code class="docutils literal notranslate"><span class="pre">msg.kik.suggestions</span></code> as an array of options. You can use the following
 template:</li>
 </ol>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -570,7 +573,7 @@ template:</li>
 <li>Import the application to ChatFlow. You can either:</li>
 </ol>
 <ul class="simple">
-<li>Download <a class="reference download internal" href="_downloads/KikColoredCats.json" download=""><code class="xref download docutils literal"><span class="pre">json</span></code></a> of our application and import the project on the
+<li>Download <a class="reference download internal" href="_downloads/KikColoredCats.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">json</span></code></a> of our application and import the project on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page, or,</li>
 <li>Use the “kik - Cat Choose” sample application when clicking “CREATE NEW APP” on the
 <a class="reference external" href="https://chatflow.kitt.ai/apps">applications</a> page.</li>
@@ -588,7 +591,7 @@ Colored Cats Application:</p>
 <div class="section" id="nlu-setup">
 <h4><a class="toc-backref" href="#id23">2. NLU Setup</a><a class="headerlink" href="#nlu-setup" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li>Download <a class="reference download internal" href="_downloads/KikColoredCats-nlu.json" download=""><code class="xref download docutils literal"><span class="pre">NLU</span> <span class="pre">json</span></code></a> to
+<li>Download <a class="reference download internal" href="_downloads/KikColoredCats-nlu.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">NLU</span> <span class="pre">json</span></code></a> to
 import it as <a class="reference external" href="https://nlu.kitt.ai">an NLU application</a>.</li>
 <li>Go to <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>  and import the NLU json.</li>
 </ol>
@@ -603,8 +606,8 @@ to deploy your NLU app!</li>
 </ol>
 <img alt="_images/kitt1.png" class="align-center" src="_images/kitt1.png" />
 <ol class="arabic" start="5">
-<li><p class="first">Add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code>, so your final string would look like::</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code>, so your final string would look like::</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 </pre></div>
 </div>
 </li>
@@ -645,7 +648,7 @@ you a specific color cat.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Jan 15, 2018.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

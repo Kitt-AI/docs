@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -132,7 +133,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -180,6 +180,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -364,10 +367,10 @@ Token from Twilio dashboard to this form.</li>
 <p class="first admonition-title">Note</p>
 <p class="last">“Respond mode” is a quick way to enable your app to respond to incoming
 SMS messages (received by a Twilio In node) without having to write any
-extra code. When it’s enabled and you don’t redefine <code class="docutils literal"><span class="pre">msg.twilio.from</span></code>/<code class="docutils literal"><span class="pre">to</span></code>
+extra code. When it’s enabled and you don’t redefine <code class="docutils literal notranslate"><span class="pre">msg.twilio.from</span></code>/<code class="docutils literal notranslate"><span class="pre">to</span></code>
 values, then those values are used in reverse, so when you use a Twilio Out
-node, the recipient phone number will be read from <code class="docutils literal"><span class="pre">msg.twilio.in</span></code> (and
-sender phone number will be read from <code class="docutils literal"><span class="pre">msg.twilio.from</span></code> accordingly). This
+node, the recipient phone number will be read from <code class="docutils literal notranslate"><span class="pre">msg.twilio.in</span></code> (and
+sender phone number will be read from <code class="docutils literal notranslate"><span class="pre">msg.twilio.from</span></code> accordingly). This
 feature also allows you to use one “Twilio Out” node with multiple
 “Twilio In” nodes.</p>
 </div>
@@ -377,7 +380,7 @@ feature also allows you to use one “Twilio Out” node with multiple
 <ol class="arabic simple">
 <li>Double click on the function node. Fill it like in the example below:</li>
 </ol>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
 
 <span class="k">return</span> <span class="nx">msg</span><span class="p">;</span>
 </pre></div>
@@ -422,7 +425,7 @@ You only have to setup Twilio In/Out nodes manually.</p>
 <div class="section" id="twilio-in">
 <span id="twilio-in-node"></span><h3><a class="toc-backref" href="#id14">Twilio In</a><a class="headerlink" href="#twilio-in" title="Permalink to this headline">¶</a></h3>
 <p>The following fields are set in the output message:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -452,21 +455,21 @@ You only have to setup Twilio In/Out nodes manually.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">twilio.from</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">twilio.from</span></code></td>
 <td>String</td>
 <td>Sender phone number in E.164 format</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">twilio.to</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">twilio.to</span></code></td>
 <td>String</td>
 <td>Recipient phone number in E.164 format</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">twilio.body</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">twilio.body</span></code></td>
 <td>String</td>
 <td>Message Body</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
-<td>Message Body (duplicate of <code class="docutils literal"><span class="pre">twilio.body</span></code>)</td>
+<td>Message Body (duplicate of <code class="docutils literal notranslate"><span class="pre">twilio.body</span></code>)</td>
 </tr>
 </tbody>
 </table>
@@ -480,7 +483,7 @@ for details (property names are always “camelCased” in this node output).</p
 <div class="section" id="twilio-out">
 <span id="twilio-out-node"></span><h3><a class="toc-backref" href="#id15">Twilio Out</a><a class="headerlink" href="#twilio-out" title="Permalink to this headline">¶</a></h3>
 <p>The following is an acceptable input for Twilio Out:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
 4
@@ -508,15 +511,15 @@ for details (property names are always “camelCased” in this node output).</p
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">twilio.from</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">twilio.from</span></code></td>
 <td>String</td>
 <td>Sender phone number. Must be in E.164 format or an Alphanumeric Sender ID</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">twilio.to</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">twilio.to</span></code></td>
 <td>String</td>
 <td>Recipient phone number. Must be in E.164 format</td>
 </tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">payload</span></code></td>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">payload</span></code></td>
 <td>String</td>
 <td>Message Body</td>
 </tr>
@@ -561,14 +564,14 @@ remove the condition:</li>
 <p>You can leave the first state node unchanged.</p>
 <ol class="arabic simple" start="5">
 <li>Edit the second “enter” node, name it “add counter”, and set it up to accept
-<code class="docutils literal"><span class="pre">add</span></code> in the payload property.</li>
+<code class="docutils literal notranslate"><span class="pre">add</span></code> in the payload property.</li>
 </ol>
 <img alt="_images/twilio2-add-counter.png" class="align-center" src="_images/twilio2-add-counter.png" />
 <ol class="arabic simple" start="6">
 <li>Edit the function node connected to the “add counter” node, name it “increase
 counter” and add the following code to the function body</li>
 </ol>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">counter</span> <span class="o">=</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">counter</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">counter</span> <span class="o">=</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">counter</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 <img alt="_images/twilio2-inc-counter.png" class="align-center" src="_images/twilio2-inc-counter.png" />
@@ -577,17 +580,17 @@ counter” and add the following code to the function body</li>
 edited), name it “print counter” and replace the commented out code with the
 following code:</li>
 </ol>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">counter</span><span class="p">];</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">_responses</span> <span class="o">=</span> <span class="p">[</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">counter</span><span class="p">];</span>
 </pre></div>
 </div>
 <img alt="_images/twilio2-print-counter.png" class="align-center" src="_images/twilio2-print-counter.png" />
 <ol class="arabic simple" start="8">
-<li>Edit the third enter node, name it “end”, and set it up to accept <code class="docutils literal"><span class="pre">bye</span></code> in
+<li>Edit the third enter node, name it “end”, and set it up to accept <code class="docutils literal notranslate"><span class="pre">bye</span></code> in
 the payload property.</li>
 </ol>
 <img alt="_images/twilio2-state-end.png" class="align-center" src="_images/twilio2-state-end.png" />
 <ol class="arabic simple" start="9">
-<li>Edit the third state node, name it “bye”, set “Output text” to <code class="docutils literal"><span class="pre">Bye</span> <span class="pre">bye.</span></code>,
+<li>Edit the third state node, name it “bye”, set “Output text” to <code class="docutils literal notranslate"><span class="pre">Bye</span> <span class="pre">bye.</span></code>,
 leave the code as is. Make sure you check the “Dialogue ends here” option.</li>
 </ol>
 <img alt="_images/twilio2-state-bye.png" class="align-center" src="_images/twilio2-state-bye.png" />
@@ -633,7 +636,7 @@ Twilio In/Out nodes manually.</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Dec 07, 2017.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

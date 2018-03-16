@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -113,7 +114,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#multi-turn-and-state-tracking-explained">Multi turn and state tracking explained</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#the-global-variable">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-global-variable">The <code class="docutils literal notranslate"><span class="pre">global</span></code> variable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#state-tracking">State tracking</a></li>
 </ul>
 </li>
@@ -121,7 +122,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -170,6 +170,9 @@
     
       <li class="wy-breadcrumbs-aside">
         
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
+        
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
         
@@ -200,7 +203,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#multi-turn-and-state-tracking-explained" id="id9">Multi turn and state tracking explained</a><ul>
-<li><a class="reference internal" href="#the-global-variable" id="id10">The <code class="docutils literal"><span class="pre">global</span></code> variable</a></li>
+<li><a class="reference internal" href="#the-global-variable" id="id10">The <code class="docutils literal notranslate"><span class="pre">global</span></code> variable</a></li>
 <li><a class="reference internal" href="#state-tracking" id="id11">State tracking</a></li>
 </ul>
 </li>
@@ -265,7 +268,7 @@ for Wise Guy.</p>
 <a class="reference external" href="https://github.com/amzn/alexa-skills-kit-js/tree/master/samples/wiseGuy/speechAssets">Speech Assets</a>.</li>
 </ol>
 <p><strong>Intent Schema</strong>:</p>
-<div class="highlight-javascript"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+<div class="highlight-javascript notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -323,7 +326,7 @@ for Wise Guy.</p>
 </pre></div>
 </td></tr></table></div>
 <p><strong>LIST_OF_SETUP_NAMES</strong></p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">to</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">to</span>
 <span class="nx">beets</span>
 <span class="nx">little</span> <span class="nx">Old</span> <span class="nx">Lady</span>
 <span class="nx">a</span> <span class="nx">broken</span> <span class="nx">pencil</span>
@@ -337,7 +340,7 @@ for Wise Guy.</p>
 </pre></div>
 </div>
 <p><strong>Sample Utterances</strong>:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="nx">TellMeAJokeIntent</span> <span class="nx">tell</span> <span class="nx">me</span> <span class="nx">a</span> <span class="nx">joke</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">TellMeAJokeIntent</span> <span class="nx">tell</span> <span class="nx">me</span> <span class="nx">a</span> <span class="nx">joke</span>
 <span class="nx">TellMeAJokeIntent</span> <span class="nx">tell</span> <span class="nx">a</span> <span class="nx">joke</span>
 <span class="nx">TellMeAJokeIntent</span> <span class="nx">say</span> <span class="nx">a</span> <span class="nx">joke</span>
 <span class="nx">TellMeAJokeIntent</span> <span class="nx">make</span> <span class="nx">a</span> <span class="nx">joke</span>
@@ -379,11 +382,11 @@ for Wise Guy.</p>
 <div class="section" id="multi-turn-and-state-tracking-explained">
 <span id="multiturn-and-state-tracking-explained"></span><h2><a class="toc-backref" href="#id9">Multi turn and state tracking explained</a><a class="headerlink" href="#multi-turn-and-state-tracking-explained" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="the-global-variable">
-<h3><a class="toc-backref" href="#id10">The <code class="docutils literal"><span class="pre">global</span></code> variable</a><a class="headerlink" href="#the-global-variable" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">The <code class="docutils literal notranslate"><span class="pre">global</span></code> variable</a><a class="headerlink" href="#the-global-variable" title="Permalink to this headline">¶</a></h3>
 <p>Take a look at the <strong>init JOKE_LIST</strong> state node. In it, we have created a
-global variable that can be used across the dialogue. It is called <code class="docutils literal"><span class="pre">JOKE_LIST</span></code>
+global variable that can be used across the dialogue. It is called <code class="docutils literal notranslate"><span class="pre">JOKE_LIST</span></code>
 and was set in with the following code:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">JOKE_LIST</span> <span class="o">=</span> <span class="p">[</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">JOKE_LIST</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span><span class="nx">setup</span><span class="o">:</span> <span class="s2">&quot;To&quot;</span><span class="p">,</span> <span class="nx">speechPunchline</span><span class="o">:</span> <span class="s2">&quot;Correct grammar is &lt;break time=\&quot;0.2s\&quot; /&gt; to whom.&quot;</span><span class="p">,</span>
     <span class="nx">cardPunchline</span><span class="o">:</span> <span class="s2">&quot;Correct grammar is &#39;to whom&#39;.&quot;</span><span class="p">},</span>
     <span class="p">...</span>
@@ -392,13 +395,13 @@ and was set in with the following code:</p>
 </pre></div>
 </div>
 <p>Then it can be retrieved later in any function or state node by using:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">JOKE_LIST</span> <span class="o">=</span> <span class="k">global</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JOKE_LIST&quot;</span><span class="p">);</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">JOKE_LIST</span> <span class="o">=</span> <span class="k">global</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;JOKE_LIST&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal"><span class="pre">global</span></code> environment is limited to the current application. One
-application cannot access another application’s <code class="docutils literal"><span class="pre">global</span></code> environment.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">global</span></code> environment is limited to the current application. One
+application cannot access another application’s <code class="docutils literal notranslate"><span class="pre">global</span></code> environment.</p>
 <p>In addition, in the <strong>init JOKE_LIST</strong> state node, we initialized the dialogue stage:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">msg</span><span class="o">.</span><span class="n">kitt</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">null</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -412,7 +415,7 @@ application cannot access another application’s <code class="docutils literal"
 the router to send message out at this state node <em>right away</em> without
 attempting to visit another enter/state node.</p>
 </div>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="c1">//Select a random joke and store it in the session variables.</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">//Select a random joke and store it in the session variables.</span>
 <span class="kd">var</span> <span class="nx">jokeID</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">JOKE_LIST</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
 
 <span class="c1">//The stage variable tracks the phase of the dialogue.</span>
@@ -423,18 +426,18 @@ attempting to visit another enter/state node.</p>
 <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">cardPunchline</span> <span class="o">=</span> <span class="nx">JOKE_LIST</span><span class="p">[</span><span class="nx">jokeID</span><span class="p">].</span><span class="nx">cardPunchline</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Remember that everything in <code class="docutils literal"><span class="pre">msg.kitt</span></code> is maintained by the dialogue router,
+<p>Remember that everything in <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code> is maintained by the dialogue router,
 persisting over the whole dialogue session. Thus, whenever a new utterance within
-the <em>same</em> dialogue session comes in, previous turn’s <code class="docutils literal"><span class="pre">msg.kitt</span></code> can still be
-accessed. <code class="docutils literal"><span class="pre">msg.kitt</span></code> is also assigned to <code class="docutils literal"><span class="pre">sessionAttributes</span></code> <em>outputted</em>
+the <em>same</em> dialogue session comes in, previous turn’s <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code> can still be
+accessed. <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code> is also assigned to <code class="docutils literal notranslate"><span class="pre">sessionAttributes</span></code> <em>outputted</em>
 through <strong>Alexa Out</strong> and persisted by the Alexa service. So next time an Alexa
 <a class="reference external" href="https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#request-format">Request</a>
-comes in, the same session attributes can be accessed via <code class="docutils literal"><span class="pre">msg.alexa.session.attributes</span></code>
-(maintained by Alexa), or <code class="docutils literal"><span class="pre">msg.kitt</span></code> (maintained by ChatFlow).</p>
+comes in, the same session attributes can be accessed via <code class="docutils literal notranslate"><span class="pre">msg.alexa.session.attributes</span></code>
+(maintained by Alexa), or <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code> (maintained by ChatFlow).</p>
 <p>The <strong>Who’s There</strong> state node then advances the dialogue stage by 1 if previous
-<code class="docutils literal"><span class="pre">msg.kitt.stage</span> <span class="pre">==</span> <span class="pre">1</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">msg.kitt.stage</span> <span class="pre">==</span> <span class="pre">1</span></code>:</p>
 <a class="reference internal image-reference" href="_images/whos-there.png"><img alt="_images/whos-there.png" class="align-center" src="_images/whos-there.png" style="width: 400px;" /></a>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">stage</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">stage</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//Retrieve the joke&#39;s setup text.</span>
     <span class="nx">speechText</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">setup</span><span class="p">;</span>
 
@@ -446,9 +449,9 @@ comes in, the same session attributes can be accessed via <code class="docutils 
 </pre></div>
 </div>
 <p>Similarly, the <strong>Setup Name Who</strong> state node advances the dialogue stage by 1 if previous
-<code class="docutils literal"><span class="pre">msg.kitt.stage</span> <span class="pre">==</span> <span class="pre">2</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">msg.kitt.stage</span> <span class="pre">==</span> <span class="pre">2</span></code>:</p>
 <a class="reference internal image-reference" href="_images/setup-name-who.png"><img alt="_images/setup-name-who.png" class="align-center" src="_images/setup-name-who.png" style="width: 400px;" /></a>
-<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">stage</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">stage</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">speechText</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">speechPunchline</span><span class="p">;</span>
     <span class="nx">cardOutput</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">.</span><span class="nx">kitt</span><span class="p">.</span><span class="nx">cardPunchline</span><span class="p">;</span>
     <span class="nx">msg</span><span class="p">.</span><span class="nx">alexa</span><span class="p">.</span><span class="nx">outputSpeech</span> <span class="o">=</span> <span class="p">{</span>
@@ -461,7 +464,7 @@ comes in, the same session attributes can be accessed via <code class="docutils 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In addition, it sets <code class="docutils literal"><span class="pre">msg.kitt._session_ended</span> <span class="pre">=</span> <span class="pre">true;</span></code> because that’s end of
+<p>In addition, it sets <code class="docutils literal notranslate"><span class="pre">msg.kitt._session_ended</span> <span class="pre">=</span> <span class="pre">true;</span></code> because that’s end of
 the <em>knock knock</em> joke!</p>
 </div>
 </div>
@@ -487,7 +490,7 @@ the <em>knock knock</em> joke!</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Dec 07, 2017.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 

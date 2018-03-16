@@ -90,6 +90,7 @@
             
             
                 <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../cn/html/index.html#://">中文版</a></li>
 <li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to ChatFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">ChatFlow Quick Start</a></li>
 <li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">ChatFlow Build A Bot Tutorial</a></li>
@@ -128,7 +129,6 @@
 <li class="toctree-l1"><a class="reference internal" href="alexa_advanced.html">Advanced Alexa Skill Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_nlu.html">Advanced Alexa Skill NLU Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alexa_show.html">Alexa Echo Show Skill Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
 <li class="toctree-l1"><a class="reference internal" href="oauth2.html">OAuth2/Uber Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="line.html">Line Bot Tutorials</a></li>
 </ul>
@@ -176,6 +176,9 @@
     
     
       <li class="wy-breadcrumbs-aside">
+        
+          <a href="../cn/html/index.html" class="fa fa-book" style="color:#55507c" target="_blank"> 中文版</a>
+        
         
           <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
         
@@ -239,19 +242,19 @@ receive messages from other nodes, so they do not accept incoming wires.</p>
 <img alt="_images/In-Nodes.png" class="align-center" src="_images/In-Nodes.png" />
 <p>Once an input node receives user input, it sends out a message through its
 output. The message created by an input node will contain
-a <code class="docutils literal"><span class="pre">payload</span></code> property that holds a string corresponding to the
+a <code class="docutils literal notranslate"><span class="pre">payload</span></code> property that holds a string corresponding to the
 user natural language input. Through the <strong>connection wire</strong>,
 this message typically goes to a <strong>Natural Language Understanding (NLU)</strong>
 Node, which maps the natural language input into symbols that drive
 the ChatFlow interaction. The NLU results are added to the message as
-a property called <code class="docutils literal"><span class="pre">NLU</span></code>. The message is then sent through a connection wire
+a property called <code class="docutils literal notranslate"><span class="pre">NLU</span></code>. The message is then sent through a connection wire
 to the <strong>Router</strong> Node.</p>
 <img alt="_images/NLU-router.png" class="align-center" src="_images/NLU-router.png" />
 <p>The Router Node then directs the message through a network of <strong>Enter</strong> Nodes
 and <strong>State</strong> Nodes (which are not connected to the router by wires).
 This process, described in the more detail under the <a class="reference internal" href="#router">router</a> section of
 the documentation, generates a system utterance, which the router
-places in its outgoing message as a string in the <code class="docutils literal"><span class="pre">payload</span></code> property. The
+places in its outgoing message as a string in the <code class="docutils literal notranslate"><span class="pre">payload</span></code> property. The
 router then sends the message out through a wire, which is typically connected
 to an output node matching the input node used (Twilio In to Twilio Out, Amazon In
 to Amazon Out).</p>
@@ -274,7 +277,7 @@ rest of the criteria.</li>
 <li>Enter nodes that satisfy an explicit ordering preference will be chosen if
 possible. See the section on enter nodes below for more on specific ordering
 constraints for enter nodes.</li>
-<li>Enter nodes with entrance conditions based on <code class="docutils literal"><span class="pre">msg.NLU</span></code> have priority over
+<li>Enter nodes with entrance conditions based on <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code> have priority over
 enter nodes, to ensure that the system is responsive to user input.</li>
 <li>Enter nodes with precise conditions such as checking for equality are
 preferred over nodes with other conditions such as greater than, is not null,
@@ -293,7 +296,7 @@ available. For example, it may include a Yelp node, which is a wrapper to the
 Yelp developer API, as in the example provided later in this documentation.</p>
 <p>In each conversational turn, the system may use several enter nodes to build a system response.
 Once the router receives user input and the corresponding labeling from an NLU node, the router
-will prefer to choose an enter containing one or more entrance conditions involving <code class="docutils literal"><span class="pre">msg.NLU</span></code>,
+will prefer to choose an enter containing one or more entrance conditions involving <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code>,
 with the goal of being responsive to user input.</p>
 <p>The router also remembers enter nodes it has evaluated in this dialogue turn. So an enter node is
 visited only once during each turn. This prevents the router from going to infinite loops.</p>
@@ -351,7 +354,7 @@ useful for state nodes that only make sense in a specific context.</p>
 including what it says to the user. Each state node includes a code editor where
 arbitrary JavaScript code can be added. This code will run any time the state
 node receives a message. The entire message object can be accessed within the
-state node through the object <code class="docutils literal"><span class="pre">msg</span></code>.
+state node through the object <code class="docutils literal notranslate"><span class="pre">msg</span></code>.
 In addition, state nodes include a field where a system utterance can be added. Whenever
 the state node receives a message, its utterance is added to the system’s output
 to the user in the current conversational turn.</p>
@@ -362,14 +365,14 @@ to the user in the current conversational turn.</p>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">For instance, in our <a class="reference internal" href="build_a_bot.html#build-a-bot"><span class="std std-ref">ChatFlow Build A Bot Tutorial</span></a>, the variable <code class="docutils literal"><span class="pre">msg.kitt.count</span></code> was an user
+<p class="last">For instance, in our <a class="reference internal" href="build_a_bot.html#build-a-bot"><span class="std std-ref">ChatFlow Build A Bot Tutorial</span></a>, the variable <code class="docutils literal notranslate"><span class="pre">msg.kitt.count</span></code> was an user
 variable defined and updated in state nodes.</p>
 </div>
-<p>User variables exist in a property of the message called <code class="docutils literal"><span class="pre">kitt</span></code>. Unlike other
-properties of the message <code class="docutils literal"><span class="pre">msg</span></code>, all of the user variables in <code class="docutils literal"><span class="pre">kitt</span></code> persist
+<p>User variables exist in a property of the message called <code class="docutils literal notranslate"><span class="pre">kitt</span></code>. Unlike other
+properties of the message <code class="docutils literal notranslate"><span class="pre">msg</span></code>, all of the user variables in <code class="docutils literal notranslate"><span class="pre">kitt</span></code> persist
 throughout the entire interaction. This is a key difference between user
-variables and other properties of <code class="docutils literal"><span class="pre">msg</span></code>.  Whenever an enter node receives a
-message, all of the user variables are available in <code class="docutils literal"><span class="pre">msg.kitt</span></code>, and these
+variables and other properties of <code class="docutils literal notranslate"><span class="pre">msg</span></code>.  Whenever an enter node receives a
+message, all of the user variables are available in <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code>, and these
 variables can be used in entrance conditions.</p>
 <div class="section" id="final-state">
 <h3><a class="toc-backref" href="#id11">Final state</a><a class="headerlink" href="#final-state" title="Permalink to this headline">¶</a></h3>
@@ -403,27 +406,27 @@ are made in the context of the current utterance. The word “six” could be a 
 in a different utterance (“I need a reservation at six”). It is the job of the
 NLU to assign the right entities and intents in each utterance.</p>
 <p>The internal mechanisms of NLU nodes may vary, but each NLU node must accept
-input in the form of <code class="docutils literal"><span class="pre">msg.payload</span></code> and produce output that is placed in its
-outgoing message in <code class="docutils literal"><span class="pre">msg.NLU</span></code>. The NLU output should contain a property
-called <code class="docutils literal"><span class="pre">intent</span></code>, which contains a string value corresponding to the input’s
-intent and a property called <code class="docutils literal"><span class="pre">entities</span></code> which is an object with <code class="docutils literal"><span class="pre">{entity:value}</span></code>
-pairs.(<code class="docutils literal"><span class="pre">{&quot;restaurant_name&quot;:</span> <span class="pre">&quot;Matsuhisa&quot;,</span> <span class="pre">&quot;party_size&quot;:</span> <span class="pre">&quot;six&quot;,</span> <span class="pre">&quot;time&quot;:</span> <span class="pre">&quot;7</span> <span class="pre">pm&quot;}</span></code>).
+input in the form of <code class="docutils literal notranslate"><span class="pre">msg.payload</span></code> and produce output that is placed in its
+outgoing message in <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code>. The NLU output should contain a property
+called <code class="docutils literal notranslate"><span class="pre">intent</span></code>, which contains a string value corresponding to the input’s
+intent and a property called <code class="docutils literal notranslate"><span class="pre">entities</span></code> which is an object with <code class="docutils literal notranslate"><span class="pre">{entity:value}</span></code>
+pairs.(<code class="docutils literal notranslate"><span class="pre">{&quot;restaurant_name&quot;:</span> <span class="pre">&quot;Matsuhisa&quot;,</span> <span class="pre">&quot;party_size&quot;:</span> <span class="pre">&quot;six&quot;,</span> <span class="pre">&quot;time&quot;:</span> <span class="pre">&quot;7</span> <span class="pre">pm&quot;}</span></code>).
 In cases where multiple occurrences of the same entity type exist in an
 utterance, the entity value will be a list
-(<code class="docutils literal"><span class="pre">{&quot;participant_name&quot;:</span> <span class="pre">[&quot;Sue&quot;,</span> <span class="pre">&quot;Bob&quot;,</span> <span class="pre">&quot;Mary&quot;],</span> <span class="pre">&quot;meeting_location&quot;:</span> <span class="pre">&quot;room</span> <span class="pre">245&quot;}</span></code>).</p>
+(<code class="docutils literal notranslate"><span class="pre">{&quot;participant_name&quot;:</span> <span class="pre">[&quot;Sue&quot;,</span> <span class="pre">&quot;Bob&quot;,</span> <span class="pre">&quot;Mary&quot;],</span> <span class="pre">&quot;meeting_location&quot;:</span> <span class="pre">&quot;room</span> <span class="pre">245&quot;}</span></code>).</p>
 <div class="section" id="configure-nlu-node">
 <h3><a class="toc-backref" href="#id13">Configure NLU Node</a><a class="headerlink" href="#configure-nlu-node" title="Permalink to this headline">¶</a></h3>
 <p>To configure the NLU node, one can create an app on ChatFlow’s companion platform <a class="reference external" href="https://nlu.kitt.ai/">NLU</a>.
 Once the app is created, the intents and entities added, and the app deployed,
 copy the deployment URL in the Deployment Information sections of the App. Paste
-the URL into the NLU node and add <code class="docutils literal"><span class="pre">{{{payload}}}</span></code> at the end:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+the URL into the NLU node and add <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code> at the end:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
 </pre></div>
 </div>
 <p>When configured
-in this way, the NLU node will run a query with <code class="docutils literal"><span class="pre">{{{payload}}}</span></code> to the NLU app.
-It will then receive the object <code class="docutils literal"><span class="pre">msg.NLU</span></code> containing all the corresponding
-<code class="docutils literal"><span class="pre">intent</span></code> and <code class="docutils literal"><span class="pre">entities</span></code>.</p>
+in this way, the NLU node will run a query with <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code> to the NLU app.
+It will then receive the object <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code> containing all the corresponding
+<code class="docutils literal notranslate"><span class="pre">intent</span></code> and <code class="docutils literal notranslate"><span class="pre">entities</span></code>.</p>
 </div>
 </div>
 <div class="section" id="api-nodes">
@@ -491,7 +494,7 @@ learn more about how they work!</p>
   <div role="contentinfo">
     <p  style="color:#999;">
         &copy; Copyright 2016, KITT.AI.
-      Last updated on Jan 10, 2018.
+      Last updated on Mar 16, 2018.
 
     </p>
   </div> 
