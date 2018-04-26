@@ -1,0 +1,159 @@
+.. _debug:
+
+==================
+调试 ChatFlow
+==================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://chatflow.dueros.baidu.com/
+
+.. contents:: 目录
+   :depth: 4
+
+介绍
+============
+
+在此教程中，我们将介绍如何使用ChatFlow中的调试功能
+
+在教程结束之时，你将可以：
+  * 进入ChatFlow的调试模式
+  * 检查节点的输出
+  * 在app中设置一个断点
+  * 通过断点单步调试你的app中所有的断点
+  * 逐步的调试你的app
+
+
+开始
+===============
+
+1. 下载 :download:`Line By Line Sample Application JSON <../source/_static/json/line_by_line.json>`
+   ，并将其导入到ChatFlow中。
+
+.. image:: ../source/_static/img/buildabot/import.png
+    :align: center
+
+打开调试选项卡
+______________________
+
+2. 切换至 **Info & Debug Tabs**，点击画布右上方的 "≡" 进行切换。
+
+
+   .. image:: ../source/_static/img/quickstart/triplebar.png
+        :align: center
+        :scale: 50%
+
+3. 打开调试选项卡，点击选项卡右侧的 **Debug** 。
+
+   .. image:: ../source/_static/img/quickstart/debugtab.png
+        :align: center
+        :scale: 50%
+
+.. hint::  点击红色的垃圾桶就可以清除掉debug tab里的内容。
+
+Debug节点
+______________
+
+Debug区域所输出的内容是连接至Debug Tab上的节点的输出内容。
+
+.. hint:: 这是一个可以找出节点输出内容的好工具，只需要简单的连接起来，然后观察填充在debug节点的内容。
+
+.. image:: ../source/_static/img/debug/debug.png
+    :align: center
+
+4. 增加一个debug节点并将其连接至 "4" 。
+
+.. image:: ../source/_static/img/debug/addDebug.png
+    :align: center
+    :scale: 50%
+
+增加断点
+_____________________
+
+画布下方的 **Debug Toolbar** 中可以找到断点和单步调试按钮。
+
+.. image:: ../source/_static/img/debug/DebugToolbar.png
+    :align: center
+    :scale: 50%
+
+5. 点击debug toolbar中红色的断点，并将其拖拽至名为"1"节点的输出和名为"2"节点的输入处。
+
+.. image:: ../source/_static/img/debug/breakpoint.png
+    :align: center
+    :scale: 50%
+
+逐行移动
+===================
+
+以调试模式部署
+_______________________
+
+1. 点击 "Deploy"。
+
+.. image:: ../source/_static/img/quickstart/deploy.png
+    :align: center
+
+2. 应用程序被部署后，打开Deploy的下拉菜单并选择 **Switch to Debug** 。
+
+.. image:: ../source/_static/img/debug/switch.png
+    :align: center
+    :scale: 50%
+
+逐步移动
+___________________
+
+3. 打开Chat Tab，并给你的应用发送字符串“1”。
+
+4. 应用程序会在第一个断点处停下，点击 debug toolbar 里面的继续按钮，可以继续至下一个断点处。
+
+.. image:: ../source/_static/img/debug/continue.png
+    :align: center
+
+.. note:: 在你的Flow前进时，添加的调试节点将把它的输出发送给Debug Tab
+
+此过程将如下面所示：
+
+.. raw:: html
+
+  <video width="640"  controls>
+    <source src="_static/img/debug/Continue.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <br> <br> <br>
+
+5. 在Chat Tab里，再次发送字符串“1”。
+
+6. 在 debug toolbar中,点击step button来逐步移动，从而逐个节点前进。
+
+.. image:: ../source/_static/img/debug/step.png
+    :align: center
+
+此过程将如下面所示：
+
+.. raw:: html
+
+ <video width="640"  controls>
+   <source src="_static/img/debug/Step.mp4" type="video/mp4">
+   Your browser does not support the video tag.
+ </video>
+ <br> <br> <br>
+
+在你的应用中，请随意使用，尝试探索更多功能。
+
+在代码中打印
+======================
+
+debug toolbar可以让您在节点之间暂停，但无法从节点 *内部* 暂停。
+为此你可以在 *function* 节点和 *state* 节点中使用 ``node.log()`` 来实现在调试面板中打印消息的功能。

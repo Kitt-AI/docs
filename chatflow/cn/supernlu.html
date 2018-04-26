@@ -1,0 +1,656 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>多bot大规模应用实操 &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="使用ChatFlow部署小度技能" href="dueros.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://ChatFlow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/ChatFlow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">English Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">欢迎使用ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">使用ChatFlow构建第一个bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Node介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_turn_dialogue.html">多轮对话</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superbot.html">Superbot介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">调试 ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">多bot大规模应用实操</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nlu-vs-nlu">对话中控：多个NLU vs. 单一NLU</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#super-nlu">单一Super NLU训练</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">触发意图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq-vs-nlu-bot">FAQ vs. NLU, 根据分数选择bot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">全局参数调优</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#balanced-vs-imbalanced">采样：平衡和不平衡(balanced vs. imbalanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#vs">开发+评估流程：上线前 vs. 上线后</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">未来补充</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">回归测试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">版本控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>多bot大规模应用实操</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/supernlu.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bot">
+<span id="supernlu"></span><h1><a class="toc-backref" href="#id10">多bot大规模应用实操</a><a class="headerlink" href="#bot" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id1">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><a class="reference internal" href="#bot" id="id10">多bot大规模应用实操</a><ul>
+<li><a class="reference internal" href="#nlu-vs-nlu" id="id11">对话中控：多个NLU vs. 单一NLU</a></li>
+<li><a class="reference internal" href="#super-nlu" id="id12">单一Super NLU训练</a><ul>
+<li><a class="reference internal" href="#id2" id="id13">触发意图</a></li>
+<li><a class="reference internal" href="#faq-vs-nlu-bot" id="id14">FAQ vs. NLU, 根据分数选择bot</a></li>
+<li><a class="reference internal" href="#id3" id="id15">全局参数调优</a></li>
+<li><a class="reference internal" href="#balanced-vs-imbalanced" id="id16">采样：平衡和不平衡(balanced vs. imbalanced)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#vs" id="id17">开发+评估流程：上线前 vs. 上线后</a></li>
+<li><a class="reference internal" href="#id4" id="id18">未来补充</a><ul>
+<li><a class="reference internal" href="#id5" id="id19">回归测试</a></li>
+<li><a class="reference internal" href="#id6" id="id20">版本控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="nlu-vs-nlu">
+<h2><a class="toc-backref" href="#id11">对话中控：多个NLU vs. 单一NLU</a><a class="headerlink" href="#nlu-vs-nlu" title="Permalink to this headline">¶</a></h2>
+<p>这一节我们介绍chatbot商用的一个实际例子。我们有一个Super Bot，它有如下子bot：</p>
+<ol class="arabic simple">
+<li>四个Intent NLU bot，每一个bot都可以进行**多轮**对话</li>
+<li>一个FAQ bot，这个bot负责**单轮**的一问一答</li>
+</ol>
+<p>大多数商用系统都遵循这种结构，例如酒店系统：</p>
+<ol class="arabic">
+<li><p class="first">有一个FAQ bot，负责回答”one shot”常用问题，如”早餐几点？”，”WiFi密码是什么？”</p>
+</li>
+<li><p class="first">有若干Intent bot，负责子领域的多轮对话，如：</p>
+<blockquote>
+<div><ul class="simple">
+<li>订餐bot （”给307房间送两瓶啤酒”，需要解析意图和实体）</li>
+<li>天气查询bot（”明天天气怎么样”）</li>
+<li>智能客控bot（”把床头灯调暗一半”）</li>
+<li>定时bot（”明早6点叫我起床”）</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>当一个对话系统出现多个子bot时，可以有两种中控系统决定消息应该如何转发：</p>
+<ol class="arabic simple">
+<li><strong>Multi NLU</strong>: 使用多个子bot和它们各自的NLU, 消息轮询转发入各个子bot (dry run)，然后中控系统根据子bot的返回信息决定使用哪个bot：</li>
+</ol>
+<div class="figure align-center" id="id7">
+<img alt="Multi NLU" src="_images/superbot-multi-nlu.png" />
+<p class="caption"><span class="caption-text">SuperBot: Multi NLU</span></p>
+</div>
+<ol class="arabic simple" start="2">
+<li><strong>Super NLU</strong>: 使用一个单一NLU（SuperNLU），来直接决定消息直接进入到哪个bot：</li>
+</ol>
+<div class="figure align-center" id="id8">
+<img alt="Super NLU" src="_images/superbot-super-nlu.png" />
+<p class="caption"><span class="caption-text">SuperBot: Super NLU</span></p>
+</div>
+<p>Multi NLU的优点是可以直接复用既有bot的NLU系统，</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="42%" />
+<col width="44%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">比较</th>
+<th class="head">Multi NLU</th>
+<th class="head">Super NLU</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>NLU配置</td>
+<td>每个bot一个NLU，需要轮询</td>
+<td>所有bot训练一个共同NLU</td>
+</tr>
+<tr class="row-odd"><td>查询速度</td>
+<td>轮询机制在多bot时会较慢</td>
+<td>只查询一个Super NLU，较快</td>
+</tr>
+<tr class="row-even"><td>训练速度</td>
+<td>每个子bot单独NLU，没有重复训练</td>
+<td>除了子bot有NLU，还需训练SuperNLU</td>
+</tr>
+<tr class="row-odd"><td>bot选择</td>
+<td>每个子NLU无法直接比较分数，较难选择</td>
+<td>每个子NLU可以直接比较分数，分数高胜出</td>
+</tr>
+</tbody>
+</table>
+<p>在实际商用中，我们发现，简单系统(子bot少，逻辑简单)使用Multi NLU可以快速部署；复杂系统(子bot多，多轮情况多)
+使用Super NLU系统性能更好：一方面选择速度快，另一方面因为联合训练可以更精准选择bot。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">对于第一种情况，<a class="reference internal" href="superbot.html#superbot"><span class="std std-ref">Superbot介绍</span></a> 一节介绍了如何使用 <code class="docutils literal notranslate"><span class="pre">superbot</span></code> 节点简化连接多个子bot的情况。</p>
+</div>
+</div>
+<div class="section" id="super-nlu">
+<h2><a class="toc-backref" href="#id12">单一Super NLU训练</a><a class="headerlink" href="#super-nlu" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id13">触发意图</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>假设每个bot的NLU都有四个意图，这其中应该有一些意图可以”触发”此bot，例如如下客控对话：</p>
+<ol class="arabic simple">
+<li>“把床头灯打开” –&gt; 意图: 开灯, 实体:{灯}</li>
+<li>“把窗帘拉起来” –&gt; 意图: 开窗帘，实体:{窗帘}</li>
+<li>“调暗一点”    –&gt;  意图: 调暗，实体：{}（需要根据上下文判断调暗什么）</li>
+<li>“关闭”    –&gt; 意图：关闭，实体：{} （需要根据上下文判断关闭什么）</li>
+</ol>
+<p>如果单独说3（调暗一点）或4（关闭），无法以大概率判断到底是哪个bot应该响应。但是如果说出了1和2，那应该可以判断
+需要有客控bot响应。我们把能正确调起某个bot的意图 <em>集合</em> 定义为 <strong>触发意图</strong> 。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">触发意图不一定是单一意图，它的语料可能包含了很多不同意图的语料集合</p>
+</div>
+<p>Super NLU的训练，也就是将每个bot的触发意图作为一个个单独的意图，合在一起进行训练。</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="17%" />
+<col width="40%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">bot 1 NLU</th>
+<th class="head">bot 2 NLU</th>
+<th class="head">bot 3 NLU</th>
+<th class="head">bot 4 NLU</th>
+<th class="head">Super NLU</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>触发意图</td>
+<td>触发意图</td>
+<td>触发意图</td>
+<td>触发意图</td>
+<td>bot 1 触发意图</td>
+</tr>
+<tr class="row-odd"><td>意图2</td>
+<td>意图2</td>
+<td>意图2</td>
+<td>意图2</td>
+<td>bot 2 触发意图</td>
+</tr>
+<tr class="row-even"><td>意图3</td>
+<td>意图3</td>
+<td>意图3</td>
+<td>意图3</td>
+<td>bot 3 触发意图</td>
+</tr>
+<tr class="row-odd"><td>意图4</td>
+<td>意图4</td>
+<td>意图4</td>
+<td>意图4</td>
+<td>bot 4 触发意图</td>
+</tr>
+</tbody>
+</table>
+<p>因为是合在一起训练，所以意图输出的分数具备直接可比性。</p>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">因为Super NLU引用了子bot中的触发意图，所以在训练子botNLU和Super NLU时，一份触发意图的
+语聊要加 <strong>两份</strong>： 一份加到子bot的NLU，一份加到Super NLU。</p>
+</div>
+</div>
+<div class="section" id="faq-vs-nlu-bot">
+<h3><a class="toc-backref" href="#id14">FAQ vs. NLU, 根据分数选择bot</a><a class="headerlink" href="#faq-vs-nlu-bot" title="Permalink to this headline">¶</a></h3>
+<p>一般来说，意图Intent NLU对应的bot是 <strong>执行bot</strong> ，而FAQ对应的bot是 <strong>查询bot</strong> 。在实际应用中，FAQ查询bot会比
+意图执行bot调起多很多。</p>
+<p>Intent NLU bot和FAQ bot之间如何比较选取？一个简单方法是把FAQ的语料也放入Super NLU进行训练：</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="15%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">FAQ bot</th>
+<th class="head">bot 1 NLU</th>
+<th class="head">bot 2 NLU</th>
+<th class="head">bot 3 NLU</th>
+<th class="head">bot 4 NLU</th>
+<th class="head">Super NLU</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>问答对1</td>
+<td>触发意图</td>
+<td>触发意图</td>
+<td>触发意图</td>
+<td>触发意图</td>
+<td>FAQ意图</td>
+</tr>
+<tr class="row-odd"><td>问答对2</td>
+<td>意图2</td>
+<td>意图2</td>
+<td>意图2</td>
+<td>意图2</td>
+<td>bot 1 触发意图</td>
+</tr>
+<tr class="row-even"><td>…..</td>
+<td>意图3</td>
+<td>意图3</td>
+<td>意图3</td>
+<td>意图3</td>
+<td>bot 2 触发意图</td>
+</tr>
+<tr class="row-odd"><td>问答对788</td>
+<td>意图4</td>
+<td>意图4</td>
+<td>意图4</td>
+<td>意图4</td>
+<td>bot 3 触发意图</td>
+</tr>
+<tr class="row-even"><td>问答对789</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>&#160;</td>
+<td>bot 4 触发意图</td>
+</tr>
+</tbody>
+</table>
+<p>但是这带来了两个问题：</p>
+<ol class="arabic simple">
+<li>Super NLU对FAQ意图会判断不准（输出分数不会很高）。FAQ和NLU内部用的是完全不同算法。不能用NLU的算法去解决FAQ问题。</li>
+<li>FAQ一般语料会有很多，加入Super NLU训练后，会因为数据不平衡问题而影响分数输出（下节详述）</li>
+</ol>
+<p>所以在实际应用中，我们采取了如下策略：</p>
+<div class="figure align-center" id="id9">
+<img alt="Super NLU" src="_images/superbot-super-nlu.png" />
+<p class="caption"><span class="caption-text">SuperBot: Super NLU, 注意和SuperNLU并行还有一个FAQ Bot</span></p>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">faq_threshold</span>  <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">nlu_threshold</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bot1&quot;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="s2">&quot;bot2&quot;</span><span class="p">:</span> <span class="mf">0.55</span><span class="p">,</span> <span class="s2">&quot;bot3&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;bot4&quot;</span><span class="p">:</span><span class="mf">0.6</span><span class="p">}</span>
+
+<span class="n">nlu_bot</span> <span class="o">=</span> <span class="n">bot</span> <span class="k">with</span> <span class="n">highest</span> <span class="n">score</span> <span class="kn">from</span> <span class="nn">SuperNLU</span>
+<span class="n">nlu_score</span> <span class="o">=</span> <span class="n">highest</span> <span class="n">score</span> <span class="kn">from</span> <span class="nn">SuperNLU</span>
+
+<span class="n">faq_score</span> <span class="o">=</span> <span class="n">score</span> <span class="kn">from</span> <span class="nn">FAQ</span> <span class="nn">bot</span>
+
+<span class="k">if</span> <span class="n">faq_score</span> <span class="o">&gt;=</span> <span class="n">faq_threshold</span><span class="p">:</span>
+    <span class="n">select</span> <span class="n">FAQ</span> <span class="n">bot</span>
+<span class="k">else</span> <span class="k">if</span> <span class="n">nlu_score</span> <span class="o">&gt;=</span> <span class="n">nlu_threshold</span><span class="p">[</span><span class="n">nlu_bot</span><span class="p">]:</span>
+    <span class="n">select</span> <span class="n">nlu_bot</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">default</span> <span class="n">to</span> <span class="n">FAQ</span> <span class="n">bot</span> <span class="ow">or</span> <span class="s2">&quot;我没有听懂&quot;</span>
+</pre></div>
+</div>
+<p>在这里，当FAQ Bot的分数输出大于0.9时，我们优先选择FAQ Bot。否则会看Super NLU输出的bot是不是有足够高的分数。如果都
+没有的话，可以仍旧返回给FAQ Bot输出一些次佳答案，或干脆回答没有听懂。</p>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id15">全局参数调优</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>在上一节中，我们判断bot采用了一些阈值：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">faq_threshold</span>  <span class="o">=</span> <span class="mf">0.9</span>
+<span class="n">nlu_threshold</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;bot1&quot;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="s2">&quot;bot2&quot;</span><span class="p">:</span> <span class="mf">0.55</span><span class="p">,</span> <span class="s2">&quot;bot3&quot;</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;bot4&quot;</span><span class="p">:</span><span class="mf">0.6</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>这些阈值应该在一个标准数据集上进行测试优化选出。</p>
+</div>
+<div class="section" id="balanced-vs-imbalanced">
+<h3><a class="toc-backref" href="#id16">采样：平衡和不平衡(balanced vs. imbalanced)</a><a class="headerlink" href="#balanced-vs-imbalanced" title="Permalink to this headline">¶</a></h3>
+<p>Bot开发分两个阶段：</p>
+<ol class="arabic simple">
+<li>Bot上线前，没有真实数据，训练数据来自开发者的”创造”，此时为了调试方便可以采用平衡采样。</li>
+<li>Bot上线后，有真实数据，也可以评估真实数据的分布，此时为了最佳性能可以采用不平衡采样。</li>
+</ol>
+<p>比如，一个bot上线后，我们发现80%的对话都是跟FAQ相关。而在剩余20%对话中4个NLU的子bot中，
+60%的对话跟bot1有关，30%的对话跟bot2有关。这样在训练Super NLU时，可以采取不平衡采样。</p>
+</div>
+</div>
+<div class="section" id="vs">
+<h2><a class="toc-backref" href="#id17">开发+评估流程：上线前 vs. 上线后</a><a class="headerlink" href="#vs" title="Permalink to this headline">¶</a></h2>
+<p>Bot部署最关键的是训练好FAQ和NLU。但是在系统上线前，bot性能好坏完全取决于开发者自己准备的语料。</p>
+<p>开发bot的过程完全可以采用软件工程中的敏捷方法：快速试错，持续优化。以下举例一个是我们在实际商用中采用的步骤：</p>
+<ol class="arabic simple">
+<li>按照Super NLU配置训练好NLU+FAQ系统</li>
+<li>系统小规模上线，有规则抽取了3天的实际数据（例如某一周的周一周二周三，或者某连续三个月的每个月第一个周一的数据）</li>
+<li>评估既有系统准确率：</li>
+</ol>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="23%" />
+<col width="26%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">比率</th>
+<th class="head">第一天</th>
+<th class="head">第二天</th>
+<th class="head">第三天</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FAQ占比</td>
+<td>90%</td>
+<td>91%</td>
+<td>88%</td>
+</tr>
+<tr class="row-odd"><td>NLU占比</td>
+<td>10%</td>
+<td>9%</td>
+<td>12%</td>
+</tr>
+<tr class="row-even"><td>FAQ准确率</td>
+<td>85%</td>
+<td>86%</td>
+<td>85%</td>
+</tr>
+<tr class="row-odd"><td>NLU准确率</td>
+<td>68%</td>
+<td>70%</td>
+<td>69%</td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li>将第一天识别错误的数据加入FAQ/NLU/Super NLU进行重新训练，再次测试：</li>
+</ol>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="25%" />
+<col width="27%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">比率</th>
+<th class="head">第一天(训练)</th>
+<th class="head">第二天</th>
+<th class="head">第三天</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FAQ准确率</td>
+<td>98%</td>
+<td>88%</td>
+<td>87%</td>
+</tr>
+<tr class="row-odd"><td>NLU准确率</td>
+<td>95%</td>
+<td>75%</td>
+<td>74%</td>
+</tr>
+</tbody>
+</table>
+<p>经过一次训练后，在第二天和第三天的未知数据上，我们达到了88%/87%的FAQ准确率，75%/74%的NLU准确率。</p>
+<ol class="arabic simple" start="5">
+<li>将第二天识别错误的数据加入FAQ/NLU/Super NLU进行重新训练，再次测试：</li>
+</ol>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="25%" />
+<col width="27%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">比率</th>
+<th class="head">第一天(训练)</th>
+<th class="head">第二天(训练)</th>
+<th class="head">第三天</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>FAQ准确率</td>
+<td>98%</td>
+<td>98%</td>
+<td>90%</td>
+</tr>
+<tr class="row-odd"><td>NLU准确率</td>
+<td>95%</td>
+<td>96%</td>
+<td>85%</td>
+</tr>
+</tbody>
+</table>
+<p>经过两次训练后，在第三天的未知数据上，我们达到了90%的FAQ准确率，85%的NLU准确率。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id18">未来补充</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id19">回归测试</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id20">版本控制</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="dueros.html" class="btn btn-neutral" title="使用ChatFlow部署小度技能" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Apr 27, 2018.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

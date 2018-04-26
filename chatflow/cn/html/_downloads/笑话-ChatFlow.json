@@ -1,0 +1,301 @@
+[
+    {
+        "id": "46e578eb.3cd9c8",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "3aa818fe.d93ae8",
+        "type": "enter",
+        "name": "结束",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 245,
+        "y": 358,
+        "wires": [
+            [
+                "2fe1b272.39e8ee"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "end"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "fallback": false
+    },
+    {
+        "id": "50e2204f.7859c",
+        "type": "http in",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 123.40625,
+        "y": 157,
+        "wires": [
+            [
+                "f59b1b4f.758868"
+            ]
+        ],
+        "url": "/demo",
+        "method": "post",
+        "swaggerDoc": ""
+    },
+    {
+        "id": "bf88cb28.1d75f8",
+        "type": "http response",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 732.40625,
+        "y": 158,
+        "wires": []
+    },
+    {
+        "id": "772e2d8d.eb0e94",
+        "type": "router",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 478.40625,
+        "y": 155,
+        "wires": [
+            [
+                "bf88cb28.1d75f8"
+            ]
+        ],
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "dryrun": "req.query._dry_run",
+        "timeout": "1800"
+    },
+    {
+        "id": "f59b1b4f.758868",
+        "type": "KITT.AI",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 302.40625,
+        "y": 155,
+        "wires": [
+            [
+                "772e2d8d.eb0e94"
+            ]
+        ],
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://aisapi.n.shifen.com:8200/beta/nlu/api/v1/cd839958-6967-4e3a-b035-b5232b2ff34b?token=DRiE0DCeA5MQhhTyB5UAR6hnHnrkoq4S&q={{{payload}}}"
+    },
+    {
+        "id": "e2eef13d.93bd7",
+        "type": "enter",
+        "name": "讲笑话",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 148.40625,
+        "y": 227,
+        "wires": [
+            [
+                "c817baa5.7f5738"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "ask_joke"
+            },
+            {
+                "t": "gt",
+                "p": "NLU.intent_score",
+                "v": "0.6"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "fallback": false
+    },
+    {
+        "id": "3b2115f2.1f1e2a",
+        "type": "state",
+        "name": "state",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 805.40625,
+        "y": 243,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "2fe1b272.39e8ee",
+        "type": "state",
+        "name": "state",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 564,
+        "y": 355,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {msg: \"拜拜\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "b441037a.82e91",
+        "type": "enter",
+        "name": "下一个",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 154,
+        "y": 275,
+        "wires": [
+            [
+                "c817baa5.7f5738"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "next_joke"
+            },
+            {
+                "t": "gt",
+                "p": "NLU.intent_score",
+                "v": "0.6"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "fallback": false
+    },
+    {
+        "id": "f1d618cc.f62a38",
+        "type": "function",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 622.40625,
+        "y": 233,
+        "wires": [
+            [
+                "3b2115f2.1f1e2a"
+            ]
+        ],
+        "func": "// if you need extra debug function,\n// node.log() outputs to the debug panel.\nmsg.payload = {msg: msg.payload.d[0].content};\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "c817baa5.7f5738",
+        "type": "http request",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 400.40625,
+        "y": 253,
+        "wires": [
+            [
+                "f1d618cc.f62a38",
+                "418fd065.072d3"
+            ]
+        ],
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://api.chenjiehua.me/joke?query=joke"
+    },
+    {
+        "id": "3b6401d1.a6e58e",
+        "type": "chat-server",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "418fd065.072d3",
+        "type": "debug",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 623.40625,
+        "y": 293,
+        "wires": []
+    },
+    {
+        "id": "799a5327.38e5ec",
+        "type": "enter",
+        "name": "",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 226.40625,
+        "y": 433,
+        "wires": [
+            [
+                "4cc5e9f9.65c138"
+            ]
+        ],
+        "outputs": 1,
+        "fallback": true,
+        "initialstate": false,
+        "directlink": false,
+        "rules": []
+    },
+    {
+        "id": "4cc5e9f9.65c138",
+        "type": "state",
+        "name": "state",
+        "z": "46e578eb.3cd9c8",
+        "in": [],
+        "out": [],
+        "x": 451.40625,
+        "y": 443,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {cannot_answer: true};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    }
+]

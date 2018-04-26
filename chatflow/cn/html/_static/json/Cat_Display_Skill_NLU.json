@@ -1,0 +1,122 @@
+{
+    "kitt_nlu_version": "1.0",
+    "name": "meow",
+    "intents": [
+        {
+            "name": "AnotherCatIntent",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "ShowCatPictureIntent",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "ShowCatVideoIntent",
+            "is_builtin": false,
+            "is_enabled": true
+        }
+    ],
+    "entities": [],
+    "utterances": [
+        {
+            "sentence": "show me a cat",
+            "intent": "ShowCatPictureIntent",
+            "intent_prediction": "ShowCatPictureIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "I want a cat picture",
+            "intent": "ShowCatPictureIntent",
+            "intent_prediction": "ShowCatPictureIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "could you please give me a cat picture",
+            "intent": "ShowCatPictureIntent",
+            "intent_prediction": "ShowCatPictureIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "a cat picture please",
+            "intent": "ShowCatPictureIntent",
+            "intent_prediction": "ShowCatPictureIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "next",
+            "intent": "AnotherCatIntent",
+            "intent_prediction": "AnotherCatIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "I want another one",
+            "intent": "AnotherCatIntent",
+            "intent_prediction": "AnotherCatIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "next one please",
+            "intent": "AnotherCatIntent",
+            "intent_prediction": "AnotherCatIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "can you give me another one?",
+            "intent": "AnotherCatIntent",
+            "intent_prediction": "AnotherCatIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "continue",
+            "intent": "AnotherCatIntent",
+            "intent_prediction": "AnotherCatIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "I want another one",
+            "intent": "AnotherCatIntent",
+            "intent_prediction": "AnotherCatIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "give me a cat",
+            "intent": "ShowCatPictureIntent",
+            "intent_prediction": "ShowCatPictureIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "show me a cat video",
+            "intent": "ShowCatVideoIntent",
+            "intent_prediction": "ShowCatVideoIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "can you give me a cat video",
+            "intent": "ShowCatVideoIntent",
+            "intent_prediction": "ShowCatVideoIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "play a cat show",
+            "intent": "ShowCatVideoIntent",
+            "intent_prediction": "ShowCatVideoIntent",
+            "annotations": [],
+            "annotations_prediction": []
+        }
+    ]
+}

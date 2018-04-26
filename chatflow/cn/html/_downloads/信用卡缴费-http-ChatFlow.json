@@ -1,0 +1,357 @@
+[
+    {
+        "id": "a3f1cd08.d5691",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "683248a3.4c5818",
+        "type": "chat-server",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "a49b3bc4.005378",
+        "type": "router",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 542.40625,
+        "y": 97,
+        "wires": [
+            [
+                "48865ecb.c5373"
+            ]
+        ],
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "dryrun": "req.query._dry_run",
+        "timeout": "1800"
+    },
+    {
+        "id": "c3f26cf1.79299",
+        "type": "KITT.AI",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 335.40625,
+        "y": 97,
+        "wires": [
+            [
+                "a49b3bc4.005378",
+                "c155031.4653d"
+            ]
+        ],
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://aisapi.n.shifen.com:8200/beta/nlu/api/v1/20eb89ac-bf25-4d31-9916-1522000ed532?token=YGg7BWD1ninvbPD416IUgOuVy5kCyrI0&q={{{payload}}}"
+    },
+    {
+        "id": "c155031.4653d",
+        "type": "debug",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "active": true,
+        "console": "false",
+        "complete": "NLU",
+        "x": 518.40625,
+        "y": 166,
+        "wires": []
+    },
+    {
+        "id": "467026f.6a076d8",
+        "type": "enter",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 199.40625,
+        "y": 226,
+        "wires": [
+            [
+                "8abc2cda.f9c74"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "end"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "fallback": false
+    },
+    {
+        "id": "fd78d9f3.8e91e8",
+        "type": "enter",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 152.40625,
+        "y": 340,
+        "wires": [
+            [
+                "8d1469fb.4097e8"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "pay_credit_card"
+            },
+            {
+                "t": "gt",
+                "p": "NLU.intent_score",
+                "v": "0.6"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false,
+        "fallback": false
+    },
+    {
+        "id": "8abc2cda.f9c74",
+        "type": "state",
+        "name": "state",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 408.40625,
+        "y": 233,
+        "wires": [
+            []
+        ],
+        "func": "\nmsg.payload = {msg: \"欢迎下次再来\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": true,
+        "requestUserInput": false
+    },
+    {
+        "id": "8d1469fb.4097e8",
+        "type": "function",
+        "name": "预处理entity",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 343.40625,
+        "y": 340,
+        "wires": [
+            [
+                "1960f816.87ca38"
+            ]
+        ],
+        "func": "// if you need extra debug function,\n// node.log() outputs to the debug panel.\n\nmsg.kitt.payInfo = msg.kitt.payInfo || {};\n\nlet entity = Object.keys(msg.NLU.entities)\n    .map(item=>{\n        if(item==='pay:card') {\n            msg.kitt.payInfo.card = msg.NLU.entities[item];\n        }else{\n            itemArr = item.split(':');\n            msg.kitt.payInfo[itemArr[0]] = itemArr[1];\n        }\n    });\n    \nlet payInfoKeys = Object.keys(msg.kitt.payInfo);\nnode.log(payInfoKeys);\nlet allNeedKeys = ['card', 'method', 'money'];\nmsg.needKey = allNeedKeys.filter(item=>payInfoKeys.indexOf(item)<0)[0];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0
+    },
+    {
+        "id": "1960f816.87ca38",
+        "type": "switch",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 570.40625,
+        "y": 339,
+        "wires": [
+            [
+                "c2cc8b72.07be98"
+            ],
+            [
+                "f2b058.f79bafa8"
+            ],
+            [
+                "24a1ea47.204776"
+            ],
+            [
+                "5ede118e.da708"
+            ]
+        ],
+        "outputs": 4,
+        "property": "needKey",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "method",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "card",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "money",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "false"
+    },
+    {
+        "id": "c2cc8b72.07be98",
+        "type": "state",
+        "name": "付款方式",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 829.40625,
+        "y": 225,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {msg: \"您想怎么付款？邮局，商超还是线上缴款？\"};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "f2b058.f79bafa8",
+        "type": "state",
+        "name": "信用卡号",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 827,
+        "y": 280,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {msg: \"您想为哪张卡付款？\"};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "24a1ea47.204776",
+        "type": "state",
+        "name": "付款金额",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 830,
+        "y": 339,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {msg: \"您想缴纳多少？全款还是最低金额？\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "5ede118e.da708",
+        "type": "state",
+        "name": "完成",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 827,
+        "y": 403,
+        "wires": [
+            []
+        ],
+        "func": "\nmsg.payload = {msg: `您的缴款信息如下：\n缴款卡号：${msg.kitt.payInfo.card}；\n缴款方式：${msg.kitt.payInfo.method}；\n缴款金额：${msg.kitt.payInfo.money}。`};\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "58631c3b.80d284",
+        "type": "http in",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 149.40625,
+        "y": 102,
+        "wires": [
+            [
+                "c3f26cf1.79299"
+            ]
+        ],
+        "url": "/demo",
+        "method": "post",
+        "swaggerDoc": ""
+    },
+    {
+        "id": "48865ecb.c5373",
+        "type": "http response",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 780.40625,
+        "y": 97,
+        "wires": []
+    },
+    {
+        "id": "c677e83.8244918",
+        "type": "enter",
+        "name": "",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 163.40625,
+        "y": 410,
+        "wires": [
+            [
+                "32659a82.c97916"
+            ]
+        ],
+        "outputs": 1,
+        "fallback": true,
+        "initialstate": false,
+        "directlink": false,
+        "rules": []
+    },
+    {
+        "id": "32659a82.c97916",
+        "type": "state",
+        "name": "state",
+        "z": "a3f1cd08.d5691",
+        "in": [],
+        "out": [],
+        "x": 365.40625,
+        "y": 412,
+        "wires": [
+            []
+        ],
+        "func": "msg.payload = {cannot_answer: true};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": ""
+    }
+]

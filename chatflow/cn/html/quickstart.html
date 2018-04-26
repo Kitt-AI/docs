@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>快速入门 &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="使用ChatFlow构建第一个bot" href="build_a_bot.html"/>
+        <link rel="prev" title="欢迎使用ChatFlow" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://ChatFlow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/ChatFlow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">English Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">欢迎使用ChatFlow</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">快速入门</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">介绍ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">登录ChatFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#app">从范例中创建一个新的APP</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">使用ChatFlow构建第一个bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Node介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_turn_dialogue.html">多轮对话</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superbot.html">Superbot介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">调试 ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>快速入门</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickstart">
+<span id="id1"></span><h1><a class="toc-backref" href="#id6">快速入门</a><a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><a class="reference internal" href="#quickstart" id="id6">快速入门</a><ul>
+<li><a class="reference internal" href="#id3" id="id7">介绍ChatFlow</a></li>
+<li><a class="reference internal" href="#id4" id="id8">登录ChatFlow</a></li>
+<li><a class="reference internal" href="#app" id="id9">从范例中创建一个新的APP</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7">介绍ChatFlow</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>这篇 <a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 教程概述了如何使用 <a class="reference external" href="https://ChatFlow.dueros.baidu.com/">ChatFlow</a> 平台。</p>
+<dl class="docutils">
+<dt>在这边教程结束后，你可以：</dt>
+<dd><ul class="first last simple">
+<li>登录ChatFlow</li>
+<li>创建一个项目</li>
+<li>熟悉ChatFlow的编辑器</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8">登录ChatFlow</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>ChatFlow部署在 <a class="reference external" href="http://ChatFlow.dueros.baidu.com">http://ChatFlow.dueros.baidu.com</a> 域名下，目前我们兼容Chrome浏览器和Firefox浏览器。</p>
+<p><strong>如何登录：</strong></p>
+<ol class="arabic simple">
+<li>打开 <a class="reference external" href="http://ChatFlow.dueros.baidu.com">http://ChatFlow.dueros.baidu.com</a></li>
+<li>使用Github账户或者Baidu账户登录。</li>
+</ol>
+<img alt="_images/LogIn-cn.png" class="align-center" src="_images/LogIn-cn.png" />
+</div>
+<div class="section" id="app">
+<h2><a class="toc-backref" href="#id9">从范例中创建一个新的APP</a><a class="headerlink" href="#app" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>点击”Create new app”按钮来创建一个新的 <strong>app</strong> ，每一个app都对应着一个 <strong>bot</strong> 。</li>
+</ol>
+<img alt="_images/CreateNewApp.png" class="align-center" src="_images/CreateNewApp.png" />
+<p>2. 在浮层中，<strong>Use a sample project</strong> 标题下，点击 <em>“Hello Goodbye!”</em> 范例项目。
+页面会自动刷新，然后你就会看到ChatFlow的编辑器。</p>
+<img alt="_images/Editor.png" class="align-center" src="_images/Editor.png" />
+<ul>
+<li><p class="first">编辑器左侧是 <strong>Node列表</strong>，它包含了各种类型的node。</p>
+<img alt="_images/EditorLibrary.png" class="align-center" src="_images/EditorLibrary.png" />
+</li>
+<li><p class="first">编辑器的主要部分是一张 <strong>画布</strong>。画布中的node会组成这个项目。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">当你选择示例项目的时候，画布上会自动生成一些node，如果你点击”clean project”，画布上会是空的。</p>
+</div>
+<img alt="_images/EditorCanvas.png" class="align-center" src="_images/EditorCanvas.png" />
+</li>
+<li><p class="first">编辑器右侧的 <strong>信息选项卡</strong> 提供了当前node的信息。</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">这里有每一种node的详细信息。</p>
+</div>
+<img alt="_images/EditorInfo.png" class="align-center" src="_images/EditorInfo.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>信息选项卡可能被隐藏了，点击右上角的”=”可以显示信息选项卡。</p>
+<a class="last reference internal image-reference" href="_images/triplebar.png"><img alt="_images/triplebar.png" class="align-center" src="_images/triplebar.png" style="width: 249.0px; height: 149.0px;" /></a>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>你可以在信息选项卡和 <strong>调试选项卡</strong> 中进行切换。你可以从 <a class="reference internal" href="debug.html#debug"><span class="std std-ref">Debug Tutorial</span></a> 获取更多关于调试选项卡的信息。</p>
+<a class="last reference internal image-reference" href="_images/debugtab.png"><img alt="_images/debugtab.png" class="align-center" src="_images/debugtab.png" style="width: 261.0px; height: 375.5px;" /></a>
+</div>
+</li>
+</ul>
+<ol class="arabic simple" start="3">
+<li>点击 <strong>Deploy</strong> 按钮来部署你的应用，然后你和你的用户就可以和这个bot进行交互了。</li>
+</ol>
+<img alt="_images/deploy.png" class="align-center" src="_images/deploy.png" />
+<ol class="arabic simple" start="4">
+<li>点击编辑器左侧的 <strong>Chat Tab</strong>，在这里你可以直接和你的bot进行对话。</li>
+</ol>
+<img alt="_images/EditorChat.png" class="align-center" src="_images/EditorChat.png" />
+<p>5. 测试你的bot。你可以和它说“hi”, “hello”,”howdy” ,“goodbye”, “bye”, “bye bye”。它会给你回复合理的消息。
+如果你说了其他的内容，它就会表示无法理解。</p>
+<img alt="_images/convo_sample.png" class="align-center" src="_images/convo_sample.png" />
+<p>现在你可以正式使用ChatFlow的编辑器了！无数的bot在等待着被制作！你准备好了吗？</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="build_a_bot.html" class="btn btn-neutral float-right" title="使用ChatFlow构建第一个bot" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="欢迎使用ChatFlow" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Apr 27, 2018.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+.wy-nav-side {
+  background-color: #34314c;
+}
+
+.wy-side-nav-search {
+  background: #34314c;
+}
+
+.wy-form input {
+  height: 2rem;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: .5rem !important;
+  box-shadow: 0 0 20px 0 rgba(40,43,55,.2);
+}
+
+.wy-menu-vertical li>a span.toctree-expand {
+  color: #75d701;
+}
+
+.wy-nav-top {
+  background: #34314c;
+}
+
+body {
+  font-family: "Lato", "proxima-nova", "Helvetica Neue", Arial, sans-serif;
+}
+
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Lato Regular"), local("Lato-Regular"), url(../fonts/Lato-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Lato Bold"), local("Lato-Bold"), url(../fonts/Lato-Bold.ttf) format("truetype");
+}

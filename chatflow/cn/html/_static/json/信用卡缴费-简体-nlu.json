@@ -1,0 +1,2095 @@
+{
+    "kitt_nlu_version": "1.0",
+    "name": "信用卡缴费-简体",
+    "language": "zh-cn",
+    "intents": [
+        {
+            "name": "end",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "fallback",
+            "is_builtin": false,
+            "is_enabled": true
+        },
+        {
+            "name": "pay_credit_card",
+            "is_builtin": false,
+            "is_enabled": true
+        }
+    ],
+    "entities": [
+        {
+            "name": "method:market",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "商超缴款\n商超\n通过商超缴款\n超市缴款\n便利店缴款",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#3ac569"
+        },
+        {
+            "name": "method:office",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "邮局缴款\n邮局",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#2ec4b6"
+        },
+        {
+            "name": "method:online",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "在线缴纳\n在线缴款\n在线\n线上\n线上缴纳",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#f17f42"
+        },
+        {
+            "name": "money:all",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "缴纳全款\n全款缴纳\n全款\n全缴",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#008c9e"
+        },
+        {
+            "name": "money:min",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "缴纳最低\n最低\n最低缴纳\n最小值",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#80d4f6"
+        },
+        {
+            "name": "pay:card",
+            "is_builtin": false,
+            "is_enabled": true,
+            "phrases": "A卡\nB卡",
+            "swappable": true,
+            "case_sensitive": false,
+            "regexes": "",
+            "regex_case_sensitive": false,
+            "color": "#6a60a9"
+        }
+    ],
+    "utterances": [
+        {
+            "sentence": "我 想 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 在 线 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 商 超 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 信 用 卡 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 不 想 办 理 了",
+            "intent": "end",
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": "end",
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 不 想 缴 费 了",
+            "intent": "end",
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 信 用 卡 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 线 上 缴 费",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 邮 局 缴 费",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 商 超 缴 费",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "商 超",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:market"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 全 缴",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "全 缴",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "全 缴",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 最 低 额",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "最 低",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:min"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "最 低",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:min"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "全 款",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "缴 纳 全 款",
+                    "start": 2,
+                    "end": 6,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": "end",
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 缴 纳 最 低",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "最 低",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:min"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "最 低",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:min"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 给 A 卡 付 账 单",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "A 卡",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "pay:card"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 通 过 邮 局 给 A 卡 付 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮 局",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "A 卡",
+                    "start": 7,
+                    "end": 9,
+                    "entity": "pay:card"
+                },
+                {
+                    "text": "全 款",
+                    "start": 10,
+                    "end": 12,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "A 卡",
+                    "start": 7,
+                    "end": 9,
+                    "entity": "pay:card"
+                },
+                {
+                    "text": "全 款",
+                    "start": 10,
+                    "end": 12,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 商 超 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "商 超",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:market"
+                }
+            ],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 信 用 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 信 用 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮",
+                    "start": 2,
+                    "end": 3,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 邮 局 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "邮局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 给 A 卡 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 给 A 卡 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "全 款",
+                    "start": 6,
+                    "end": 8,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 给 A 卡 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 给 A 卡 缴 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                },
+                {
+                    "text": "A 卡",
+                    "start": 5,
+                    "end": 7,
+                    "entity": "pay:card"
+                },
+                {
+                    "text": "全 款",
+                    "start": 8,
+                    "end": 10,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 嘎 嘎",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 商 超 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 线 上 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "A 卡",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "全 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "全 款",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:all"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "最 低 金 额",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "最 低",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:min"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "最 低",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:min"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 通 过 邮 局 为 A 卡 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "A 卡",
+                    "start": 7,
+                    "end": 9,
+                    "entity": "pay:card"
+                },
+                {
+                    "text": "全 款",
+                    "start": 11,
+                    "end": 13,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "A 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "A 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 2,
+                    "end": 4,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 缴 费",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "A 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "A 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": "pay_credit_card",
+            "intent_prediction": "pay_credit_card",
+            "annotations": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "最 低 金 额",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "最 低",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:min"
+                }
+            ]
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "A 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "线 上 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "最 低 金 额",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "最 低",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:min"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "A 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "邮 局 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "最 低 金 额",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "最 低",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:min"
+                }
+            ]
+        },
+        {
+            "sentence": "我 想 缴 纳 信 用 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "B 卡",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "B",
+                    "start": 0,
+                    "end": 1,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "商 超 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "拜 拜",
+            "intent": null,
+            "intent_prediction": "end",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "我 想 通 过 邮 局 为 A 卡 缴 纳 全 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 4,
+                    "end": 6,
+                    "entity": "method:office"
+                },
+                {
+                    "text": "A 卡",
+                    "start": 7,
+                    "end": 9,
+                    "entity": "pay:card"
+                },
+                {
+                    "text": "全 款",
+                    "start": 11,
+                    "end": 13,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "邮 局 缴 款",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "邮 局",
+                    "start": 0,
+                    "end": 2,
+                    "entity": "method:office"
+                }
+            ]
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "讲 个 笑 话",
+            "intent": "fallback",
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "无 法 理 解",
+            "intent": "fallback",
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "\" 我 想 线 上 缴 款 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "线 上",
+                    "start": 3,
+                    "end": 5,
+                    "entity": "method:online"
+                }
+            ]
+        },
+        {
+            "sentence": "\" hi \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" a 卡 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" a 卡 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" A 卡 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 1,
+                    "end": 3,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "\" 全 款 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "全 款",
+                    "start": 1,
+                    "end": 3,
+                    "entity": "money:all"
+                }
+            ]
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 讲 个 笑 话 \"",
+            "intent": null,
+            "intent_prediction": "fallback",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" A 卡 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": [
+                {
+                    "text": "A 卡",
+                    "start": 1,
+                    "end": 3,
+                    "entity": "pay:card"
+                }
+            ]
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        },
+        {
+            "sentence": "\" 我 想 缴 费 \"",
+            "intent": null,
+            "intent_prediction": "pay_credit_card",
+            "annotations": [],
+            "annotations_prediction": []
+        }
+    ]
+}

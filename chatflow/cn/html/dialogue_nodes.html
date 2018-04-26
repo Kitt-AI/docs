@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Node介绍 &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="多轮对话" href="multi_turn_dialogue.html"/>
+        <link rel="prev" title="使用ChatFlow构建第一个bot" href="build_a_bot.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://ChatFlow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/ChatFlow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">English Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">欢迎使用ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">使用ChatFlow构建第一个bot</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Node介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ChatFlow中的节点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flow">基础的flow，输入和输出</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">路由节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enter">Enter节点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id3">排序优先级</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#direct-linkenter">只接受Direct link的Enter节点</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#state">State节点</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">结束状态</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">NLU</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">配置NLU节点</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API 节点</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">总结</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multi_turn_dialogue.html">多轮对话</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superbot.html">Superbot介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">调试 ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Node介绍</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/dialogue_nodes.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="node">
+<span id="dialogue-nodes"></span><h1><a class="toc-backref" href="#id8">Node介绍</a><a class="headerlink" href="#node" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#node" id="id8">Node介绍</a><ul>
+<li><a class="reference internal" href="#id1" id="id9">ChatFlow中的节点</a><ul>
+<li><a class="reference internal" href="#flow" id="id10">基础的flow，输入和输出</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id2" id="id11">路由节点</a></li>
+<li><a class="reference internal" href="#enter" id="id12">Enter节点</a><ul>
+<li><a class="reference internal" href="#id3" id="id13">排序优先级</a></li>
+<li><a class="reference internal" href="#direct-linkenter" id="id14">只接受Direct link的Enter节点</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#state" id="id15">State节点</a><ul>
+<li><a class="reference internal" href="#id4" id="id16">结束状态</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5" id="id17">NLU</a><ul>
+<li><a class="reference internal" href="#id6" id="id18">配置NLU节点</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api" id="id19">API 节点</a></li>
+<li><a class="reference internal" href="#id7" id="id20">总结</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id1">
+<h2><a class="toc-backref" href="#id9">ChatFlow中的节点</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>ChatFlow中的对话内容是作为网络或者 <strong>flow</strong> 中的节点来呈现的，节点可以接收数据的输
+入，也可以发送数据作为输出。执行flow（运行对话）就是通过数据在网络中的节点的数据的流转
+来实现的。</p>
+<div class="section" id="flow">
+<h3><a class="toc-backref" href="#id10">基础的flow，输入和输出</a><a class="headerlink" href="#flow" title="Permalink to this headline">¶</a></h3>
+<p>在ChatFlow的对话中，消息通常是从 <strong>输入节点</strong> 进来的，也就是node组件部分bots选项下的节点。
+比如，Twilio In, Alexa In, 和Cortana In节点就可以基于用户从短信，Amazon Echo或者
+微软的Cortana的输入来创建和发送消息。这些输入节点并不会从其他节点接受消息，因此他们不会接受连进来的线。</p>
+<img alt="_images/In-Nodes.png" class="align-center" src="_images/In-Nodes.png" />
+<p>一旦一个输入节点接收了用户的输入，他就会通过他的输出的连线把数据发送出去。一个input节点
+创建的消息通常会包含一个 <code class="docutils literal notranslate"><span class="pre">payload</span></code> 属性，里面包含了用户来自于自然语言的输入。通过连接
+的线，这条消息通常会被发送到一个自然语言理解（NLU）节点上，在这里消息从自然语言转成格式化
+的符号，用于驱动ChatFlow的交互。NLU的输出会被添加到输出消息的 <code class="docutils literal notranslate"><span class="pre">NLU</span></code> 属性上。然后这条消息
+会通过连接的线发送给Router节点。</p>
+<img alt="_images/NLU-router.png" class="align-center" src="_images/NLU-router.png" />
+<p>Router节点会把消息发送给网络中的Enter节点和State节点（这些节点不会通过显式的线和router节点相连）。
+这个过程会生成一份系统的数据，router节点会把这些数据设置为 <code class="docutils literal notranslate"><span class="pre">payload</span></code> 属性，在下面的 <a class="reference internal" href="#id2">路由节点</a> 小节进行更详细的介绍。
+最后路由节点会把消息通过连接的线路把数据发送出去，通常是发送给相连的输出节点。一般来说输入
+节点和输出节点是想对应的，比如Twilio In 对应 Twilio Out, Amazon In 对应 Amazon Out。</p>
+<img alt="_images/enter-state.png" class="align-center" src="_images/enter-state.png" />
+</div>
+</div>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id11">路由节点</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>路由节点是ChatFlow最核心的部分，它的功能是在每次对话中选择系统要做出什么行为。router节点
+选择的结果就是flow要进入哪个enter节点。router节点只会选择那些预设条件中满足当前对话状态
+的enter节点。在这些符合要求的enter节点中，router节点会根据下面的准则选择其中一个。</p>
+<ol class="arabic simple">
+<li>被标记为initial state的节点将会在router节点在当前对话中收到第一条消息的时候被选择。如果有超过一个节点被标记为initial state，他们会根据其他的准则来排序。</li>
+<li>enter节点会根据特定的优先级来被选择。在enter节点那一小节会对enter节点的排序限制做出更明确的介绍。</li>
+<li>基于 <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code> 来设置进入条件的enter节点要比其他节点有更高的优先级，这样保证了整个系统会对用户的输入做出反应。</li>
+<li>拥有更明确的条件的enter节点会更容易被选择，比如拥有相等条件的判断的节点要比那些通过大于小于，非空或者正则匹配的节点有更高的优先级。当多个判断条件同时存在的时候，明确的规则更多的节点会更优先被选择。</li>
+</ol>
+<p>一旦router节点收到消息，它就会选择一个enter节点。如果没有一个是符合条件的，他机会直接把消息通过输出的线
+把消息发送出去。如果一个enter节点从router节点收到了消息，它就会通过它自己的连接的线把消息发送出去。如果
+消息最后被发送到了一个state节点，而且这个节点没有输出的线与它相连，那么state节点发出的消息会被发送回router
+节点。换句话说，enter节点和state节点是开发者定义好的一次对话内容的起点和终点。对话内容由enter节点，state节点
+和其他可用的节点来组成。比如，在这个flow里面可能有Yelp节点，这个节点封装了Yelp的开发者API，在文档后面列举的
+例子中会使用到。</p>
+<p>在每一个对话组中，系统可能会使用多个enter节点来构成一次系统的响应回复。一旦router节点收到了用户的输入，同时
+通过NLU节点把这些输入转成了对应的标签，那么路由节点会更愿意选择通过 <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code> 来做判断的enter节点，实现
+响应用户输入的目的。</p>
+<p>router节点也会记住它在对话组中已经执行过的enter节点。因此一个enter节点在一次对话中只会被选择一次，这样就
+避免了router进入无限循环。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">一个应用只能有一个router节点。</p>
+</div>
+</div>
+<div class="section" id="enter">
+<h2><a class="toc-backref" href="#id12">Enter节点</a><a class="headerlink" href="#enter" title="Permalink to this headline">¶</a></h2>
+<p>Enter节点是路由转入对话内容的入口，它通常是一系列网络连接的合集，每一个都由一个enter节点（入口）和state
+节点（出口）作为起始和结束。在enter节点和state节点中间，可能会有其他的state节点或者其他类型的节点，比如
+function节点。所有发生在接受消息的enter节点和发送消息回router的state节点的内部的交流都是通过连线进行
+的，就和其他的信息的流动一样。</p>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id13">排序优先级</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>注意，state节点的输出可以被连到一个enter节点的输入上。一旦有这种连接被连出来了，那么连接的结果在屏幕
+上看起来会是一条虚线，而不是实线。这条虚线并不代表这消息会通过这条线来传递，而是代表着选择的优先级，这样
+router节点从state节点接收到消息后会更愿意去选择这样连在state节点之后的enter节点。换句话说，连在state和
+enter节点之间的虚线并不是传递信息的线。这种连接我们称之为 <em>direct link</em> 。state节点依然会把消息发送回
+router节点，然后轮流发送给enter节点。虚线意味着，一旦state节点执行完了，并把它的消息发送给了router，
+router将会在满足条件的enter节点中选择。</p>
+<p>下面的照片显示了一个虚线连接的例子，state后面连接的enter节点产生的虚线表明了enter节点的优先级。</p>
+<img alt="_images/order-preference.png" class="align-center" src="_images/order-preference.png" />
+<p>在这个例子中，在从 <em>confirm choice</em> 这个state节点接收到消息后，router节点将会从 <em>U: accept</em> 和
+<em>U: reject</em> 两个enter节点中进行选择。比如，如果 <em>U: accept</em> 的判断条件符合，这个节点将会被router
+节点选取。即使另外一个 <em>U: accept</em> 节点条件符合，而且判断条件更精确。</p>
+</div>
+<div class="section" id="direct-linkenter">
+<h3><a class="toc-backref" href="#id14">只接受Direct link的Enter节点</a><a class="headerlink" href="#direct-linkenter" title="Permalink to this headline">¶</a></h3>
+<p>每一个enter节点都有一个选项框 <em>Enter only from direct link</em>，如果这个被选中了，那么只有对应连接的
+state节点被执行了之后，这个enter节点才可以被选择，就像上面的图片中的 <em>Confirm Choice</em> state节点。
+这对于只想在特定上下文中才让state节点生效的场景很有用。</p>
+</div>
+</div>
+<div class="section" id="state">
+<h2><a class="toc-backref" href="#id15">State节点</a><a class="headerlink" href="#state" title="Permalink to this headline">¶</a></h2>
+<p>state节点会更新对话的上下文，定义bot的行为，包括要和用户说什么内容。每一个state节点都包含一代码编辑器
+在这里你可以添加任意的JavaScript代码。这里面的代码在任何state节点接收到消息后都会执行。整个消息对象
+可以在state节点内通过 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 对象来获取到。另外，state节点包含了一个属性可以添加系统的输出。无论state
+节点什么时候收到消息，它的输出将会被添加到系统在当前对话中给用户的输出中。</p>
+<p>对state节点两个最基本的使用是：</p>
+<ol class="arabic simple">
+<li>添加系统输出，定义系统输出的内容。</li>
+<li>更新用户变脸。</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">举例来说, 在我们 <a class="reference internal" href="build_a_bot.html#build-a-bot"><span class="std std-ref">使用ChatFlow构建第一个bot</span></a> 这一章中, <code class="docutils literal notranslate"><span class="pre">msg.kitt.count</span></code> 就是一个用户定义的变量，而且在state节点中被更新了。</p>
+</div>
+<p>用户变量存在于消息的 <code class="docutils literal notranslate"><span class="pre">kitt</span></code> 属性上，不像 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 上的其他的属性，所有的 <code class="docutils literal notranslate"><span class="pre">kitt</span></code> 上的属性都会
+在整个交互过程中存在。这是用户定义的变量与 <code class="docutils literal notranslate"><span class="pre">msg</span></code> 上其他的属性最大的不同。无论enter节点什么时候收到消息，所有的用户属性都可以在 <code class="docutils literal notranslate"><span class="pre">msg.kitt</span></code> 上获取到，这些属性也可以用在enter节点的判断条件上。</p>
+<div class="section" id="id4">
+<h3><a class="toc-backref" href="#id16">结束状态</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>state节点上有一个选项框 <em>Dialogue ends here</em> 。如果这个选项框被选中了，无论什么时候这个state节点
+被执行了，那么这次对话就结束了。router节点的状态也会被重置，所有的用户变量也会被删除。</p>
+</div>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id17">NLU</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>自然语言理解节点是用来将用户输入的语料转化成有限的词汇符号的。两种符号构成了NLU的输出：intents和entities。
+Intents是语料的类型，它用来表示输入语料的主要意图。比如， <em>agreeing</em> 这个intent就表示了很多语料
+的意图，比如”I agree”, “yes”, “of course”, “yes, I agree”, 或者 “I think so too”。NLU中使用
+的intent词汇或者范例语料是用户自行定义的，由一系列任意数量的任意字符串组成。这些intent可以被认为是一个
+桶，每一个输入的语料都会被NLU节点放到某一个里面去。</p>
+<p>除了一个intent之外，每一个语料都可能含有0个或多个entities，这些是输入语料中的一系列的词汇，它们与
+开发者定义的类型相对应。这些类型和intent一样，由任意数量的标签组成。一个普通的例子是 <em>位置</em> ， <em>杂志名</em>
+， 和 <em>价格</em> 。想象有下面一个语料：“请帮我预订下午7点在Matsuhisa的一个六人位”，这个itent可能是 <em>预订餐厅</em> ，
+里面的entites可能就是 <em>人数</em> （对应“六”）， <em>餐厅名</em> （对应Matsuhisa）和 <em>时间</em> (对应下午七点）。
+需要注意的是这些匹配是在当前语料的上下文中出现的。“六”在其他语料中可能会匹配成时间，比如“我需要预订六点”。
+将正确的entities和intents对应到不同的语料中是NLU的工作。</p>
+<p>NLU节点内部的机制可能多种多样，但是每一个NLU节点必须以 <code class="docutils literal notranslate"><span class="pre">msg.payload</span></code> 的形式接受输入，然后将它的输出
+放在 <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code> 属性上。NLU的输出需要包含一个 <code class="docutils literal notranslate"><span class="pre">intent</span></code> 属性，它包含一个对应用户输入的语料的意图，
+同时需要包含一个 <code class="docutils literal notranslate"><span class="pre">entities</span></code> 属性，这是一个有着 <code class="docutils literal notranslate"><span class="pre">{entity:value}</span></code> 对的对象。
+(<code class="docutils literal notranslate"><span class="pre">{&quot;餐厅名&quot;:</span> <span class="pre">&quot;Matsuhisa&quot;,</span> <span class="pre">&quot;人数&quot;:</span> <span class="pre">&quot;六&quot;,</span> <span class="pre">&quot;时间&quot;:</span> <span class="pre">&quot;下午七点&quot;}</span></code>)。
+如果在一个语料中出现了相同的entity的多种属性值，entity的值将会成为一个数组(<code class="docutils literal notranslate"><span class="pre">{&quot;候选人&quot;:</span> <span class="pre">[&quot;张三&quot;,</span> <span class="pre">&quot;李四&quot;,</span> <span class="pre">&quot;韩梅梅&quot;],</span> <span class="pre">&quot;位置&quot;:</span> <span class="pre">&quot;245房间&quot;}</span></code>)</p>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id18">配置NLU节点</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>为了配置NLU节点，你首先需要在ChatFlow的协作平台 <a class="reference external" href="https://nlu.kitt.ai/">NLU</a> 上创建一个项目。当这个项目被创建好了之后，添加上
+intent和entities，然后部署app，从部署信息选项卡中复制部署地址，把地址粘贴到NLU节点，然后在尾部添加上 <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+</pre></div>
+</div>
+<p>当你用这种方法配置好之后，NLU节点会向NLU项目查询 <code class="docutils literal notranslate"><span class="pre">{{{payload}}}</span></code> 。它会收到 <code class="docutils literal notranslate"><span class="pre">msg.NLU</span></code> 对象，里面
+包含了对应的 <code class="docutils literal notranslate"><span class="pre">intent</span></code> 和 <code class="docutils literal notranslate"><span class="pre">entities</span></code>。</p>
+</div>
+</div>
+<div class="section" id="api">
+<h2><a class="toc-backref" href="#id19">API 节点</a><a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<p>ChatFlow代理和外部的APi交互是很有用的功能。在ChatFlow里可以通过各种封装了已有的开发者APi的node来轻松
+完成这件事，比如我们封装了Uber，Yelp，Movies，谷歌和亚马逊的API。这里面的可选项是无穷的。ChatFlow包含了
+一系列预定义的节点，还有更多会依赖社区的需求去添加。</p>
+<p>另外， <strong>http request</strong> 节点可以执行任意的http请求，因此和外部APi连接的可能性是无穷的。</p>
+</div>
+<div class="section" id="id7">
+<h2><a class="toc-backref" href="#id20">总结</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>下面是在大部分ChatFlow的对话中会用到的基础的节点类型：</p>
+<dl class="docutils">
+<dt><strong>输入节点</strong></dt>
+<dd>这个节点基于外部用户的输入生成消息，通常是用户的自然语言</dd>
+<dt><strong>输出节点</strong></dt>
+<dd>这个节点将系统想要对用户发送的内容输出给用户</dd>
+<dt><strong>Enter节点</strong></dt>
+<dd>这个节点根据预定义好的条件来进入不同的对话flow的 <strong>分支</strong></dd>
+<dt><strong>State节点</strong></dt>
+<dd>这个节点定义了bot做了什么，说了什么，如何更新上下文</dd>
+<dt><strong>NLU节点</strong></dt>
+<dd>这个节点将用户发送的语料转边变成一系列的符号，然后被对话flow剩余的部分来使用</dd>
+<dt><strong>路由节点</strong></dt>
+<dd>这个节点用户选择在对话组中系统选择什么行为</dd>
+<dt><strong>API节点 &amp; HTTP Request 节点</strong></dt>
+<dd>这些节点和外部API进行交互，来完成bot和外部API交互的工作。</dd>
+</dl>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">在ChatFlow里还有很多其他类型的节点！你可以打开信息面板区查看他们还是怎么工作的！</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="multi_turn_dialogue.html" class="btn btn-neutral float-right" title="多轮对话" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="build_a_bot.html" class="btn btn-neutral" title="使用ChatFlow构建第一个bot" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Apr 27, 2018.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

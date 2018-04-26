@@ -67,7 +67,7 @@ ________________________________
 1. Create a New Bot and Token in Telegram
 _________________________________________
 
-1. Sent the ``/newbot`` command to create a new bot by talking to the
+1. Send the ``/newbot`` command to create a new bot by talking to the
    `Bot Father <https://telegram.me/botfather>`_
 
 .. image:: _static/img/telegram/create_bot.png

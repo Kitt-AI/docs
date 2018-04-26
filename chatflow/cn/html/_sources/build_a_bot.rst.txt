@@ -1,0 +1,463 @@
+.. _build_a_bot:
+
+=============================
+使用ChatFlow构建第一个bot
+=============================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _ChatFlow: https://ChatFlow.dueros.baidu.com/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: Table of Contents
+   :depth: 4
+
+介绍
+============
+
+在这个 ChatFlow_ 教程中，我们将会演示构建一个bot的全过程。此外，我们会介绍 NLU_ - ChatFlowde **自然语言理解** 的协作平台。
+
+通过学习此教程，你将可以：
+  * 从头创建一个新的项目
+  * 配置Enter节点和State节点
+  * 创建一个 NLU_ 应用
+  * 在 ChatFlow_ 中配置 NLU 节点
+  * 导入、导出 ChatFlow Projects
+
+
+最终的bot将可以具有如下的功能：
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/buildabot/BuildABotSample.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+.. _walkthrough_video:
+
+
+从视频学习构建bot
+=============================
+
+以下视频将为你完整的演示创建 Free Lunch Bot 的全部过程：
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/buildabot/BuildABotWalkthrough.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br><br><br>
+
+The Free Lunch Bot
+==================
+
+1. 从头创建一个App
+_______________________________
+
+接下来我们创建一个功能不只是问好的简单流程吧。我们的新版bot可以向用户请求一份免费的午餐，此外，它还可以计算出在获得免费午餐前需要请求多少次。
+
+1. 点击"Create new app"。
+
+.. image:: ../source/_static/img/quickstart/CreateNewApp.png
+   :align: center
+
+
+2. 在 "Start with a clean project" 下面输入项目的名称，并点击“Create”。
+
+.. image:: ../source/_static/img/quickstart/StartFromScratch.png
+   :align: center
+
+3. 你的bot将会出现在你的 **应用列表** 中，通过点击项目名称进入 *编辑器* 。
+
+.. image:: ../source/_static/img/quickstart/AppList.png
+   :align: center
+
+4. 页面加载后，你将得到一页空白的 *画布* ，如下图所示。
+
+.. image:: ../source/_static/img/quickstart/BlankCanvas.png
+   :align: center
+
+5. 将 **Chat In** 和 **Chat Out** 节点拖入画布。
+
+.. image:: ../source/_static/img/buildabot/chatin-chatout.png
+   :align: center
+
+2. 会话路由器
+____________________________
+
+1. 将 **Router** 节点拖入空白画布，如下图所示，连接上Chat In, Router, 和 Chat Out 节点。
+
+.. image:: ../source/_static/img/buildabot/router-node.png
+      :align: center
+
+.. note::  Router用来传递我们的flow中生成的对话消息。
+
+.. warning:: 为了生效，应用里必须有一个router节点！
+
+2. 双击Router节点可以给其命名。
+
+.. image:: ../source/_static/img/buildabot/router-pop-up.png
+   :align: center
+
+3. Enter节点和State节点
+________________________
+
+除了Router节点，我们还需要 **Enter** 和 **State** 这两个节点。
+
+**State** 节点是用来定义bot所说的话。**Enter** 节点上用来制定 **进入条件** （当我们的Flow中有一个分支需要被激活时使用该节点）
+
+Enter 节点
+**********
+
+1. 在画布中增加一个 **Enter** 节点，每个Enter节点包含一系列的 *进入条件* ，这些 *进入条件* 可以指定某个特定的Enter节点被路由器选中。
+
+.. image:: ../source/_static/img/buildabot/enternode-1.png
+   :align: center
+
+2. 双击Enter节点可以对其进行编辑。
+
+.. image:: ../source/_static/img/buildabot/enternode-popup.png
+   :align: center
+
+
+3. 在这个弹出窗口中，命名该节点。我们先给它命名为 *Initial State* 。
+
+4. 在命名区域下面是 **进入条件** 区域，通过点击条件右侧的""X""，可以删除该条件。
+
+.. image:: ../source/_static/img/buildabot/highlightedx.png
+   :align: center
+
+.. note:: 默认情况是自动添加部分条件来启动该节点。
+
+5. 选中对话框底部的 *Initial state* ，将会告诉路由器此Enter节点表示该Flow的第一分支，
+你也可以通过在Enter节点上连接 :ref:`state_node` 实现变量初始化。
+
+.. image:: ../source/_static/img/buildabot/initial-state.png
+   :align: center
+
+.. _state_node:
+
+State 节点
+***********
+
+1. 在画布上拖入State节点，并放在Enter节点右侧。
+
+2. 连接Enter节点和State节电：点击Enter节点右侧的灰色圆点，然后将生成的线拖住至State节点左侧的灰色圆点上。
+
+.. image:: ../source/_static/img/buildabot/Intialstate-statenode.png
+   :align: center
+
+3. 双击此State节点，将其命名为 *Initialize state*。
+
+4. 在命名区域下方，你可以看到 **code editor**，在其中创建一个名为 ``count`` 的单变量，此变量用于记录我们的bot向用户请求免费午餐的次数。如下所示，为State节点中的代码：
+
+   .. code:: javascript
+
+       msg.kitt.count = 1;
+       return msg;
+
+.. note::  用户变量在变量 ``msg`` 中从一个节点传递到另一个节点。此外， ``msg.kitt`` 这个特殊属性将会在整个sessions中永久保存，这样你就可以在不同的对话转变中追踪你的上下文。在此例中该变量为 ``msg.kitt.count``。
+
+.. warning:: 与State节点关联的代码应以 ``return msg;`` 结尾，否则将不会输出消息，进而导致对话的终止。
+
+5. 勾选 "Request User Input After This Node"，这样bot就可以在进行前等待用户的响应。
+
+6. 在 *Output text* 区域，输入 *"Hello! Will you please buy me lunch?"*，这样在State节点被激活时将会输出相应的文字消息，如下图所示。
+
+.. image:: ../source/_static/img/buildabot/initialize-state.png
+   :align: center
+
+4. 增加输入和输出
+__________________________
+
+1. 点击Deploy来部署你的bot。
+
+.. image:: ../source/_static/img/quickstart/deploy.png
+   :align: center
+
+2. 打开 Chat Tab，在屏幕下方的输入区域输入 *hello* ，接下来你将看到系统根据State节点 *Initialize state* 自动输出的消息。
+
+.. image:: ../source/_static/img/buildabot/chat-bubble.png
+   :align: center
+
+用户反馈“No”的情况
+******************
+
+我们接下来让它学会应对用户说 *yes* 和 *no* 吧。
+
+1. 增加一个Enter节点和一个State节点，并将这二者连接起来。
+
+2. 编辑Enter节点：
+
+  * 命名为 *"U: no"* ；
+  * 设置条件为 ``Property msg.payload == no`` ；
+
+.. note:: 这一步是识别用户从 *Chat In* 节点输入到路由器的信息是否为 "no" 。
+
+.. image:: ../source/_static/img/buildabot/u-no.png
+   :align: center
+
+.. note:: 一般来说，节点输出的内容被放在 ``payload`` 中，用户从 *Chat In* 输入的内容被存储在 ``msg.payload`` 中。
+
+3. 编辑State节点：
+
+   * 命名为 *ask again* ；
+   * 在该节点主体内添加如下代码：
+
+    .. code:: javascript
+
+        msg.kitt.count += 1;
+        return msg;
+
+4. 在 *Output text* 区域，输入 *I must insist. Will you reconsider?* ，如下图所示。
+
+.. image:: ../source/_static/img/buildabot/ask-again.png
+   :align: center
+
+用户反馈 "Yes" 的情况
+**********************
+
+现在系统已经能理解 *no* 了，接下来我们再增加一个Enter节点和State节点来处理用户反馈 *yes* 的情况。
+
+1. 再增加一对Enter节点和State节点，并连接它们。
+
+2. 将Enter节点命名为 *U:yes* ，并增加如下所示的进入条件：
+
+   * ``Property msg.payload == yes``
+
+3. 将State节点命名为 *thank user*, 并添加代码 ``return msg;``。
+
+.. note:: 在达到这一节点后，我们就不需要bot再做什么了，所以 ``return msg;`` 就是简单将原始消息发送出去。
+
+4. 在 *Output text* 区域，输入 *Thank you! Number of times I asked: {{kitt.count}}*.
+
+.. note:: 在 *Output text* 区域，我们可以获取储存在 ``msg.kitt`` 中不带 ``msg`` 前缀的变量。
+
+5. 勾选 *Dialogue ends here* ，该选项是告诉系统一旦到了这个节点，对话就结束了。
+
+.. image:: ../source/_static/img/buildabot/thank-user.png
+   :align: center
+
+下图显示了整个对话网络：
+
+.. image:: ../source/_static/img/buildabot/complete-flow-1.png
+   :align: center
+
+6. 点击Deploy，然后进入Chat Tab，现在就可以与代理进行如下所示的简单对话了。
+
+.. image:: ../source/_static/img/buildabot/chat-bubble-1.png
+   :align: center
+
+无法处理的情况
+**********************
+
+我们的bot只能理解 *yes* 和 *no*, 因为我们只包含了区分大小写的 *yes* 和 *no* 的输入，
+如果输入了其他内容，代理将不会有反应。对此，我们可以通过在新建一个Enter节点来处理其他字符串的输入。
+
+1. 在画布中增加一个Enter节点和一个State节点，并将其连接。
+
+2. 编辑Enter节点，将其命名为 "U: default"，然后将其进入条件设置如下：
+
+   * Property ``msg.payload is not null``
+   * Property ``msg.NLU.intent != positive_response``
+   * Property ``msg.NLU.intent != negative_response``
+
+.. image:: ../source/_static/img/buildabot/u-default.png
+   :align: center
+
+3. 将State节点命名为 *not understanding* ，添加代码 ``return msg;``,然后在 *Output field* 区域输入以下内容：*Sorry, I didn't understand what you said. I only understand "yes" and "no".*
+
+.. image:: ../source/_static/img/buildabot/not-understanding.png
+   :align: center
+
+现在，你的bot不管是否理解用户输入的内容，都可以有反馈信息了。你的Flow将如下图所示。
+
+.. image:: ../source/_static/img/buildabot/complete-flow-2.png
+   :align: center
+
+
+我们可以与bot做如下的交互：
+
+.. image:: ../source/_static/img/buildabot/chat-bubble-2.png
+   :align: center
+
+5. NLU和处理自然语言输入
+____________________________________________
+
+我们刚才已经详述了如何在ChatFlow中创造一个具有简易功能的bot，然而我们尚未说明如何让bot理解 *自然语言* 的语料。
+为了不受限制的转换自然语言的语料，我们需要使用 **自然语言理解（NLU）** 节点。 NLU节点可以将语料转换为一组有限的intents和entities，
+我们可以将NLU节点作为Enter节点中 *进入条件* 的基础进行使用。
+
+添加一个NLU节点
+***************
+
+1. 在 *Chat In* 节点和输出的 *Router* 节点之间插入NLU节点。
+
+.. image:: ../source/_static/img/buildabot/flow-with-NLU.png
+   :align: center
+
+创建和NLU应用
+******************
+
+2. ChatFlow的协作应用里面进入 NLU_， 创造一个新的NLU应用，并命名。
+
+3. 在应用里，点击 "Set Up Intents" 来获取下拉菜单。
+
+.. image:: ../source/_static/img/buildabot/setup-intents.png
+   :align: center
+
+4. 点击add intent。
+
+5. 命名new intent为 ``positive_response`` ，并点击create。
+
+.. image:: ../source/_static/img/buildabot/positive_response.png
+   :align: center
+
+6. 在Example of Use下面，增加以下自然语言输入字符串。多增加些也可以。
+
+   * Yes
+   * yes
+   * sure
+   * of course
+   * you bet!
+   * it would be my honor
+
+7. 完成后，点击右上方红色的 "X" 关闭窗口。
+
+.. image:: ../source/_static/img/buildabot/positive-utterance.png
+   :align: center
+
+8. 点击add intent，然后将new intent命名为 ``negative_response`` ，然后点击create。
+   在Example of Use下方，增加以下自然语言输入字符串，多增加些也可以。
+
+    * Nah
+    * no
+    * No way jose!
+    * Never
+    * I shall not
+    * We are not amused
+
+.. image:: ../source/_static/img/buildabot/negative-response.png
+   :align: center
+
+9. 完成添加 ``positive_response`` 和  ``negative_response`` 这两个intents后，点击 **TRAIN APPLICATION**, 然后点击 **DEPLOY**。
+
+.. image:: ../source/_static/img/buildabot/deploy-nlu.png
+   :align: center
+
+.. warning:: 只有进行了train your model和deploy后，你的NLU模型才能进行更新并完整运行。
+
+10. 在 *"Train the model"* 中对你的NLU模型进行测试，输入一句话，然后点击Analyze。
+
+.. image:: ../source/_static/img/buildabot/train-the-model.png
+   :align: center
+
+11. 完成后，查看Analyze的结果。你可以通过点击下图所示的蓝色按钮以及选择正确的反馈来更正结果。完成后，点击submit。
+
+.. image:: ../source/_static/img/buildabot/submit-response.png
+   :align: center
+
+部署NLU应用
+******************
+
+.. warning:: 在最终部署之前，点击 "TRAIN APPLICATION" 来进行整体优化，然后即可发布 RESTful API到你的应用中。
+
+12. 点击左上角的 "Show All Apps" 回到NLU应用列表。
+
+13. 在你新创建的应用里面，点击Deployment Information。
+
+.. image:: ../source/_static/img/buildabot/deployment-information.png
+   :align: center
+
+14. 复制 **Deployment Url** 到剪贴板中。
+
+.. image:: ../source/_static/img/buildabot/deployment-url-expanded.png
+   :align: center
+
+配置NLU节点
+**********************
+
+15. 编辑NLU节点。在URL区域里粘贴 **Deployment URL** 。
+
+.. image:: ../source/_static/img/buildabot/flow-with-NLU.png
+   :align: center
+
+.. note:: NLU节点在 `msg.NLU` 中存储了所有的NLU信息，Intents,entities以及原始的语料分别被存储在 ``msg.NLU.intent`` 中， ``msg.NLU.entities``, 和 ``msg.NLU.sentence`` 。
+
+16. 在URL的末尾增加 ``{{{payload}}}`` ，URL应该如下所示::
+
+      http://api-nlu.kitt.ai/v1/api/900584f4-7360-479c?token=xxx?q={{{payload}}}
+
+.. image:: ../source/_static/img/buildabot/NLU-node-payload.png
+   :align: center
+
+6. 重新配置Enter节点
+________________________________
+
+我们刚刚为bot配置好了NLU，但仍需重新配置Enter节点 *U: Yes* 和 *U: No* ，才能在bot中应用该信息。
+
+1. 编辑 *U: Yes* 节点：在进入条件框里，移除 ``Property msg.payload == yes`` 。
+
+2. 添加新条件： ``Property msg.NLU.intent == positive_response`` 。
+
+.. image:: ../source/_static/img/buildabot/u-yes-2.png
+   :align: center
+
+3. 编辑 *U: No* 节点：在进入条件框里，移除 ``Property msg.payload == no`` 。并添加新条件：``Property msg.NLU.intent == negative_response``.
+
+
+.. image:: ../source/_static/img/buildabot/u-no-2.png
+   :align: center
+
+4. 完成后，点击Deploy。
+
+接下来测试你的bot！ 交互行为应该是如下面视频中所示的这样：
+
+.. raw:: html
+
+   <video width="640"  controls>
+     <source src="_static/img/buildabot/BuildABotSample.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
+   <br> <br> <br>
+
+导入和到导出
+=================
+
+你可以通过 **Export** 和 **Import JSON** 功能实现 *导入* 和 *导出* 项目
+
+导出：点击 *ChatFlow Editor* 中的 **Export** ，然后选择你所导出的项目是否需要带凭证。ChatFlow可以导出包含完整Flow的JSON文件。
+
+.. image:: ../source/_static/img/buildabot/export.png
+   :align: center
+
+导入：点击ChatFlow主页上的 **Import JSON** ，然后选择希望导入的JSON文件。
+
+.. image:: ../source/_static/img/buildabot/import.png
+   :align: center
+
+.. warning:: ChatFlow和NLU都有导入导出功能。但是ChatFlow应用不能在NLU中导入，同样的，NLU应用也不能在ChatFlow中导入。
+
+除了可以随意使用bot模版，还可以：
+
+* 下载我们的应用 :download:`ChatFlow json <../source/_static/json/TheFreeLunchBot.json>` ，并使用Import JSON功能导入 `applications <https://ChatFlow.kitt.ai/apps>`_ 上的内容。
+
+* 在主页上点击"CREATE NEW APP"时，可以使用"Free Lunch"样例。
+
+此外，可以下载 :download:`NLU json <../source/_static/json/TheFreeLunchBot-nlu.json>`
+并使用NLU的Import JSON功能导入 `an NLU application <https://nlu.kitt.ai>`_ 中的内容，并在ChatFlow应用中进行配置。

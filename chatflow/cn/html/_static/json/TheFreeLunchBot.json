@@ -1,0 +1,278 @@
+[
+    {
+        "id": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "type": "tab",
+        "label": "Flow 1",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "5889a5439bf455a489cf.a8b8c23a22e2",
+        "type": "chat-server",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "wires": []
+    },
+    {
+        "id": "50f157f646b44b619521.7cbb9af50b42",
+        "type": "chat-in",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 170,
+        "y": 280,
+        "wires": [
+            [
+                "92d8bb09b1596546eb8f.0308afb09df5"
+            ]
+        ],
+        "sessionField": "_sessionId",
+        "server": "5889a5439bf455a489cf.a8b8c23a22e2"
+    },
+    {
+        "id": "3df1404006d6c63303bf.e240c2b4c6cc",
+        "type": "chat-out",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 790,
+        "y": 280,
+        "wires": [],
+        "server": "5889a5439bf455a489cf.a8b8c23a22e2"
+    },
+    {
+        "id": "2c735368bec1d64914dd.dd00acf9234d",
+        "type": "router",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 550,
+        "y": 280,
+        "wires": [
+            [
+                "3df1404006d6c63303bf.e240c2b4c6cc"
+            ]
+        ],
+        "sessionprop": "kitt._session_id",
+        "userprop": "kitt._user_id",
+        "timeout": "1800"
+    },
+    {
+        "id": "a0b38724c82cc9d5a388.92ea868b4e9e",
+        "type": "enter",
+        "name": "Initial State",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 380,
+        "wires": [
+            [
+                "e8ebbe42386cff951ed7.dd5e719f2b00"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [],
+        "directlink": false,
+        "initialstate": true
+    },
+    {
+        "id": "e8ebbe42386cff951ed7.dd5e719f2b00",
+        "type": "state",
+        "name": "Initialize state",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 500,
+        "y": 380,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt.count = 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Hello! Will you please buy me lunch?",
+        "finalstate": false,
+        "requestUserInput": true
+    },
+    {
+        "id": "8aab3e329205b29de20f.b20605f6c931",
+        "type": "enter",
+        "name": "U: no",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 460,
+        "wires": [
+            [
+                "f1f48567fd48a1fa9a95.548731582c55"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "negative_response"
+            }
+        ]
+    },
+    {
+        "id": "f1f48567fd48a1fa9a95.548731582c55",
+        "type": "state",
+        "name": "Ask again",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 490,
+        "y": 460,
+        "wires": [
+            []
+        ],
+        "func": "msg.kitt.count += 1;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": false,
+        "response": "I must insist. Will you reconsider?"
+    },
+    {
+        "id": "7333f9c1e8c47cd08b5f.1505f05c959a",
+        "type": "enter",
+        "name": "U: yes",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "f56fc45fc51ef9b39e3b.5346f76b3de3"
+            ]
+        ],
+        "outputs": 1,
+        "initialstate": false,
+        "directlink": false,
+        "rules": [
+            {
+                "t": "eq",
+                "p": "NLU.intent",
+                "v": "positive_response"
+            }
+        ]
+    },
+    {
+        "id": "f56fc45fc51ef9b39e3b.5346f76b3de3",
+        "type": "state",
+        "name": "thank user",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 490,
+        "y": 540,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "requestUserInput": false,
+        "finalstate": true,
+        "response": "Thank you! Number of times I asked: {{kitt.count}}"
+    },
+    {
+        "id": "5dbf54176b0ce79e8107.58eb4b78a84e",
+        "type": "enter",
+        "name": "U: default",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 230,
+        "y": 620,
+        "wires": [
+            [
+                "590e4a3dbbe8473d8ae9.c1de77652032"
+            ]
+        ],
+        "outputs": 1,
+        "rules": [
+            {
+                "p": "payload",
+                "t": "nnull"
+            },
+            {
+                "v": "positive_response",
+                "p": "NLU.intent",
+                "t": "neq"
+            },
+            {
+                "v": "negative_response",
+                "p": "NLU.intent",
+                "t": "neq"
+            }
+        ],
+        "directlink": false,
+        "initialstate": false
+    },
+    {
+        "id": "590e4a3dbbe8473d8ae9.c1de77652032",
+        "type": "state",
+        "name": "not understanding",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 510,
+        "y": 620,
+        "wires": [
+            []
+        ],
+        "func": "// update msg.kitt:\n\n// msg.kitt.??? = ???;\n\n// update msg.kitt._responses (a list):\n// members of msg.kitt._responses will be\n// randomly selected and concatenated to\n// msg.payload by the Routher.\n// msg.kitt._responses = [???];\n\n// if you need extra debug function,\n// node.log() outputs to the debug panel.\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "response": "Sorry, I didn't understand what you said. I only understand \"yes\" and \"no\".*",
+        "finalstate": false,
+        "requestUserInput": false
+    },
+    {
+        "id": "92d8bb09b1596546eb8f.0308afb09df5",
+        "type": "KITT.AI",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "x": 350,
+        "y": 280,
+        "wires": [
+            [
+                "1b59aed5.3763b1",
+                "2c735368bec1d64914dd.dd00acf9234d"
+            ]
+        ],
+        "url": "",
+        "ret": "obj",
+        "method": "GET"
+    },
+    {
+        "id": "1b59aed5.3763b1",
+        "type": "debug",
+        "name": "",
+        "z": "6f91562d9fb7f007ff9f.bcfa9de921d0",
+        "in": [],
+        "out": [],
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 567.390625,
+        "y": 203,
+        "wires": []
+    }
+]
