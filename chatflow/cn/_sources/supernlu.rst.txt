@@ -28,8 +28,8 @@
 
 这一节我们介绍chatbot商用的一个实际例子。我们有一个Super Bot，它有如下子bot：
 
-1. 四个Intent NLU bot，每一个bot都可以进行**多轮**对话
-2. 一个FAQ bot，这个bot负责**单轮**的一问一答
+1. 四个Intent NLU bot，每一个bot都可以进行 **多轮** 对话
+2. 一个FAQ bot，这个bot负责 **单轮** 的一问一答
 
 大多数商用系统都遵循这种结构，例如酒店系统：
 
@@ -59,7 +59,6 @@
 
    SuperBot: Super NLU
 
-Multi NLU的优点是可以直接复用既有bot的NLU系统，
 
 ============= ========================================= ====================================
   比较            Multi NLU                                 Super NLU
@@ -235,8 +234,28 @@ NLU准确率       95%            96%               85%
 
 经过两次训练后，在第三天的未知数据上，我们达到了90%的FAQ准确率，85%的NLU准确率。
 
+视频教程
+----------------
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/XAQTbGg4SIo"
+       frameborder="0" allowfullscreen></iframe>
+   <br> <br> <br>
+
+
+.. raw:: html
+
+   <iframe width="640" height="360" src="https://www.youtube.com/embed/r5yiwJGT1MI"
+       frameborder="0" allowfullscreen></iframe>
+   <br> <br> <br>
+
+
 未来补充
 ================
+
+当前bot
+----------------
 
 回归测试
 ----------------
