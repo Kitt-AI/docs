@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>性能分析模式 &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="版本控制介绍" href="version_control.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://ChatFlow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/ChatFlow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">English Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">欢迎使用ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">使用ChatFlow构建第一个bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Node介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_turn_dialogue.html">多轮对话</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superbot.html">Superbot介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">调试 ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supernlu.html">多bot大规模应用实操</a></li>
+<li class="toctree-l1"><a class="reference internal" href="version_control.html">版本控制介绍</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">性能分析模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">开启并使用性能分析模式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">查看性能分析的结果</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>性能分析模式</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/performance_analysis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickstart">
+<span id="id1"></span><h1><a class="toc-backref" href="#id6">性能分析模式</a><a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><a class="reference internal" href="#quickstart" id="id6">性能分析模式</a><ul>
+<li><a class="reference internal" href="#id3" id="id7">介绍</a></li>
+<li><a class="reference internal" href="#id4" id="id8">开启并使用性能分析模式</a></li>
+<li><a class="reference internal" href="#id5" id="id9">查看性能分析的结果</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id7">介绍</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>在我们开发完一个flow之后，我们的flow可能会出现性能问题，这时候我们就需要开启flow的性能分析模式来追查具体是哪个node导致的flow执行过慢。</p>
+<p>开启性能模式后，我们可以看到每一个node执行的次数，以及执行的平均时间。</p>
+<p>下面我们以最简单的 <em>Hello Goodbye!</em> 的sample来进行介绍。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id8">开启并使用性能分析模式</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>首先我们从samples里创建一个 <em>Hello GoodBye!</em> 的应用，并部署，让我们的应用跑起来。</p>
+<p>然后我们点击deploy-&gt;Switch to performance analysis mode按钮，这时候我们的应用就会切换到性能分析模式。</p>
+<img alt="_images/pf_button.jpeg" class="align-center" src="_images/pf_button.jpeg" />
+<p>屏幕的右侧面板会多出一个 <em>PERFORMANCE</em> 的选项卡，如下图所示：</p>
+<img alt="_images/performance_tab.png" class="align-center" src="_images/performance_tab.png" />
+<p>此时应用就已经处于性能分析模式了，该flow的所有node的执行次数和执行时间都会被记录。</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id9">查看性能分析的结果</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>在我们flow处于性能分析模式，并有了一些输入和输出后，我们可以点击 <em>PERFORMANCE</em> 选项卡的刷新按钮，
+下面会以列表的形式展示出执行过的节点，以及这些节点的执行次数和执行的平均时间，并以执行时间由长到短排列。</p>
+<p>当鼠标划过面板上的node数据块时，画布上对应的node也会高亮起来，展示出该执行性能对应flow中的具体某个节点。</p>
+<img alt="_images/performance_result.jpeg" class="align-center" src="_images/performance_result.jpeg" />
+<p>当我们的flow遇到性能问题时，我们可以通过此功能来追查具体哪个node执行最慢，然后有针对性的解决性能问题。</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">当flow处于性能分析模式时，flow是不可编辑的，如果想编辑flow，需要先关闭性能分析模式。</p>
+</div>
+</div></blockquote>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="version_control.html" class="btn btn-neutral" title="版本控制介绍" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Jun 28, 2018.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

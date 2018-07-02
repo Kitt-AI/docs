@@ -1,0 +1,329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>版本控制介绍 &mdash; ChatFlow 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="ChatFlow 0.1 documentation" href="index.html"/>
+        <link rel="next" title="性能分析模式" href="performance_analysis.html"/>
+        <link rel="prev" title="多bot大规模应用实操" href="supernlu.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            
+              <a href="http://ChatFlow.kitt.ai" target="_blank" class="icon icon-home"> ChatFlow
+            
+          
+
+          
+            
+            <img src="_static/ChatFlow-logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">English Version</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">欢迎使用ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="build_a_bot.html">使用ChatFlow构建第一个bot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dialogue_nodes.html">Node介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multi_turn_dialogue.html">多轮对话</a></li>
+<li class="toctree-l1"><a class="reference internal" href="superbot.html">Superbot介绍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">调试 ChatFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dueros.html">使用ChatFlow部署小度技能</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supernlu.html">多bot大规模应用实操</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">版本控制介绍</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sandbox">部署Sandbox环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">保存一个版本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">为一个版本自定义名称</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#production">基于一个版本部署Production环境</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">预览一个版本</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="performance_analysis.html">性能分析模式</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ChatFlow</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>版本控制介绍</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+        
+          <a href="https://groups.google.com/a/kitt.ai/forum/#!forum/chat" class="fa fa-comments" style="color:#55507c" target="_blank"> Forum</a>
+        
+        
+            
+            <a href="_sources/version_control.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="version-control">
+<span id="id1"></span><h1><a class="toc-backref" href="#id7">版本控制介绍</a><a class="headerlink" href="#version-control" title="Permalink to this headline">¶</a></h1>
+<div class="contents topic" id="id2">
+<p class="topic-title first">目录</p>
+<ul class="simple">
+<li><a class="reference internal" href="#version-control" id="id7">版本控制介绍</a><ul>
+<li><a class="reference internal" href="#id3" id="id8">介绍</a></li>
+<li><a class="reference internal" href="#sandbox" id="id9">部署Sandbox环境</a></li>
+<li><a class="reference internal" href="#id4" id="id10">保存一个版本</a></li>
+<li><a class="reference internal" href="#id5" id="id11">为一个版本自定义名称</a></li>
+<li><a class="reference internal" href="#production" id="id12">基于一个版本部署Production环境</a></li>
+<li><a class="reference internal" href="#id6" id="id13">预览一个版本</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">介绍</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>版本控制在企业版中开放，版本控制将部署环境分为**Sandbox**和**Production**环境。Deploy功能也被替换为Deploy to sandbox和Deploy to production。
+不同的Deploy按钮将你的应用部署在不同的环境中，两个环境严格区分，并且用户不同的访问地址，方便调试和真实用户的区分。</p>
+<p>在任何时候都可以将应用保存为一个版本（Save and optionally deploy to production），放在右边栏的Version列表中。每一个Version都可以进行重命名、删除、Deploy to production和Preview in editor操作。
+通过重命名可以为指定版本设置一个直观的名称，例如Version 1.0。通过Preview in editor可以将指定版本拿到编辑区域进行编辑，注意任何修改都不会更改这个版本，再次保存版本会创建一个新的版本，或者直接Deploy to sandbox进行调试。
+在版本稳定时，通过Deploy to production功能将版本部署到Production环境，注意你可以随时部署任何一个版本到Production，这意味着当部署了一个不稳定的版本后，你可以迅速还原之前的版本来达到Production的稳定。</p>
+<dl class="docutils">
+<dt>在这篇教程结束之后可以：</dt>
+<dd><ul class="first last simple">
+<li>部署Sandbox环境</li>
+<li>保存一个版本</li>
+<li>为一个版本自定义名称</li>
+<li>基于一个版本部署Production环境</li>
+<li>预览一个版本</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="sandbox">
+<h2><a class="toc-backref" href="#id9">部署Sandbox环境</a><a class="headerlink" href="#sandbox" title="Permalink to this headline">¶</a></h2>
+<p>进入任何一个具有Http In节点的应用（如果还没有应用，可以选择 <a class="reference download internal" href="_downloads/笑话-ChatFlow.json" download=""><code class="xref download docutils literal notranslate"><span class="pre">讲笑话</span> <span class="pre">ChatFlow</span> <span class="pre">json</span></code></a> ）:</p>
+<p>在企业版中，你将会看到这个醒目的黄色按钮：</p>
+<img alt="_images/deploy_to_sandbox.png" src="_images/deploy_to_sandbox.png" />
+<p>点击DEPLOY TO SANDBOX后，应用即部署在Sandbox环境中，这时我们需要验证一下部署是否成功。
+双击Http In节点可以看到这里有两个URL地址：Production URL和Sandbox URL</p>
+<img alt="_images/http_in_url.png" src="_images/http_in_url.png" />
+<p>向Sandbox URL发送一条测试数据，然后再向Production URL发送一条测试数据，你会发现只有Sandbox URL地址是有效地址。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id10">保存一个版本</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>点击DEPLOY TO SANDBOX右侧的下拉箭头，选择Save and optionally deploy to production按钮，你会看到下面的弹出框：</p>
+<img alt="_images/save.png" src="_images/save.png" />
+<p>选择Save only只会保存当前的应用为一个版本，选择Save and deploy to production不仅会保存当前的应用为一个版本，还会自动将这个版本部署到Production。
+在熟悉整个操作前，我们建议你点击Save only按钮。</p>
+<p>保存后，在右侧侧边栏的Version列表中，会出现新保存的版本：</p>
+<img alt="_images/versions.png" src="_images/versions.png" />
+<p>你可以拥有非常多的版本，这些版本不会影响任何环境，直到你部署某一个版本到Production。</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id11">为一个版本自定义名称</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>在版本列表中找到一个版本，点击版本右上角的编辑图标，在弹出框中输入例如这样的名称：</p>
+<img alt="_images/rename.png" src="_images/rename.png" />
+</div>
+<div class="section" id="production">
+<h2><a class="toc-backref" href="#id12">基于一个版本部署Production环境</a><a class="headerlink" href="#production" title="Permalink to this headline">¶</a></h2>
+<p>在版本列表中找到一个版本，点击Deploy to production按钮，再次确认后即部署到Production上。
+在版本列表中，被部署到Production环境中的版本会有特殊样式进行区分，并且不能被删除：</p>
+<img alt="_images/deploy_to_production.png" src="_images/deploy_to_production.png" />
+</div>
+<div class="section" id="id6">
+<h2><a class="toc-backref" href="#id13">预览一个版本</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>在版本列表中找到一个版本，点击Deploy to production按钮右侧的下拉列表，点击Preview in editor。
+弹出的提示框会确认是否清空当前的编辑面板，建议在点击确认前已经将面板上的内容保存成另一个版本，以免造成数据丢失。</p>
+<img alt="_images/preview.png" src="_images/preview.png" />
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="performance_analysis.html" class="btn btn-neutral float-right" title="性能分析模式" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="supernlu.html" class="btn btn-neutral" title="多bot大规模应用实操" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p  style="color:#999;">
+        &copy; Copyright 2016, KITT.AI.
+      Last updated on Jun 28, 2018.
+
+    </p>
+  </div> 
+
+  <div>
+
+    <p>
+      Made with <i class="fa fa-heart" style="color:red;"></i> in the city of
+      <i class="fa fa-coffee" style="color:#6F4E37;"></i>
+      <i class="fa fa-umbrella" style="color:#007FFF;"></i>
+      <i class="fa fa-plane" style="color:#0F52BA;"></i>
+      <i class="fa fa-diamond" style="color:#50C878;"></i>
+    </p>
+  </div>
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/js/anchor.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -45,3 +45,4 @@ ChatFlow_ 可以和 NLU_ 搭配使用，NLU_ 是我们的自然语言理解引�
    dueros
    supernlu
    version_control
+   performance_analysis

@@ -1,0 +1,68 @@
+.. _performance_analysis:
+
+====================
+性能分析模式
+====================
+
+.. Bootstrap specific class labels
+
+.. role:: text-success
+.. role:: text-primary
+.. role:: text-info
+.. role:: text-warning
+.. role:: text-danger
+
+.. role:: bg-success
+.. role:: bg-primary
+.. role:: bg-info
+.. role:: bg-warning
+.. role:: bg-danger
+
+.. _KITT.AI: https://kitt.ai
+.. _ChatFlow: https://ChatFlow.dueros.baidu.com/
+.. _NLU: https://nlu.kitt.ai/
+
+.. contents:: 目录
+   :depth: 4
+
+介绍
+============
+
+在我们开发完一个flow之后，我们的flow可能会出现性能问题，这时候我们就需要开启flow的性能分析模式来追查具体是哪个node导致的flow执行过慢。
+
+开启性能模式后，我们可以看到每一个node执行的次数，以及执行的平均时间。
+
+下面我们以最简单的 *Hello Goodbye!* 的sample来进行介绍。
+
+开启并使用性能分析模式
+=================================
+
+首先我们从samples里创建一个 *Hello GoodBye!* 的应用，并部署，让我们的应用跑起来。
+
+然后我们点击deploy->Switch to performance analysis mode按钮，这时候我们的应用就会切换到性能分析模式。
+
+.. image:: ../source/_static/img/performance_analysis/pf_button.jpeg
+   :align: center
+
+屏幕的右侧面板会多出一个 *PERFORMANCE* 的选项卡，如下图所示：
+
+.. image:: ../source/_static/img/performance_analysis/performance_tab.png
+   :align: center
+
+此时应用就已经处于性能分析模式了，该flow的所有node的执行次数和执行时间都会被记录。
+
+查看性能分析的结果
+=======================
+
+在我们flow处于性能分析模式，并有了一些输入和输出后，我们可以点击 *PERFORMANCE* 选项卡的刷新按钮，
+下面会以列表的形式展示出执行过的节点，以及这些节点的执行次数(execute count)和执行的平均时间(average time)，并以执行时间由长到短排列。
+
+当鼠标划过面板上的node数据块时，画布上对应的node也会高亮起来，展示出该执行性能对应flow中的具体某个节点。
+
+.. image:: ../source/_static/img/performance_analysis/performance_result.jpeg
+   :align: center
+
+当我们的flow遇到性能问题时，我们可以通过此功能来追查具体哪个node执行最慢，然后有针对性的解决性能问题。
+
+  .. note:: 当flow处于性能分析模式时，flow是不可编辑的，如果想编辑flow，需要先关闭性能分析模式。
+

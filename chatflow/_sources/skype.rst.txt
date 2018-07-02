@@ -60,52 +60,41 @@ Here is a video tutorial demonstrating how to configure an Echo Bot to Skype.
 1. Create a New Bot for Skype
 _____________________________
 
-1. Visit Microsoft's `New Bot Framework <https://dev.botframework.com/bots/new>`_
+1. Visit `Microsoft Azure <https://portal.azure.com>`_
    page and sign in with your Microsoft Account.
 
-  .. image:: _static/img/skype/microsoft_log_in.png
+  .. image:: _static/img/skype/azure-01-login.png
      :align: center
 
-2. Once you have logged in, under the **Bot Profile** section, name your bot,
-   enter in your Bot's Handle, and write a short description.
+2. Once you have logged in, click **Create a resource**, choose **AI + Cognitive services** category, click **See all**, choose **Bot Channels Registration** service and click **Create**.
 
-  .. image:: _static/img/skype/bot_profile.png
+  .. image:: _static/img/skype/azure-02-resource.png
      :align: center
 
-3. In the configriation section, click on the
-   **Create Microsoft App ID and Password**.
+3. On Bot Channels Registration form name you bot and click **Create**.
 
-  .. image:: _static/img/skype/create_app_id.png
+  .. image:: _static/img/skype/azure-03-bot-form.png
      :align: center
 
-4. In the Microsoft App ID page, enter in your apps Name.
+4. Once service is deployed, click **All resources** and choose your bot. Open **Settings** tab and click **Manage** next to **Microsoft App ID** field.
 
-  .. image:: _static/img/skype/create_app_id.png
+  .. image:: _static/img/skype/azure-04-manage-creds.png
      :align: center
 
-  Click 'Next' to receive your Microsoft App ID.
+5. In the Microsoft Application Registration portal click **Create New Password**.
 
-  .. image:: _static/img/skype/Next.png
+  .. image:: _static/img/skype/azure-05-new-password.png
      :align: center
 
-  Click 'Generate an App Secrete to Continue' to receive your Microsoft App
-  Secret.
+  You'll see a popup with you password
 
-  .. image:: _static/img/skype/GenerateAppSecret.png
+  .. image:: _static/img/skype/azure-06-password-created.png
      :align: center
 
-  .. warning:: Copy you App Secret onto your clipboard. It is the **only time** you
+  .. warning:: Copy you App Password onto your clipboard. It is the **only time** you
       will be able to see it.
 
-  When finished, click on "Finish and Go back to Bot Framework"
-
-5. Under the Publisher Profile, enter in the Publisher Name, Publisher Email,
-   Privacy Statement, and Terms of Use.
-
-  .. image:: _static/img/skype/PublisherProfile.png
-     :align: center
-
-.. warning:: Privacy Statement and Terms of Use must be a weblink.
+  When finished, click **Ok**.
 
 2. Create a New ChatFlow App
 ____________________________
@@ -149,7 +138,7 @@ ____________________________
    .. image:: _static/img/skype/editCredentials.png
       :align: center
 
-6. In the App Password Section, paste in your App's secret from your clipboard.
+6. In the App Password Section, paste in your App's password from your clipboard.
 
   .. image:: _static/img/skype/AppPassword.png
      :align: center
@@ -167,16 +156,10 @@ ____________________________
 3. Registering Your App
 _______________________
 
-1. Back in the New Bot Framework Page, paste the Message Endpoint URL from your
-   clipboard to the Message Endpoint URL section.
+Back in the Microsoft Azure resource settings, paste the Message Endpoint URL from your
+clipboard to the Message Endpoint URL section and click **Save**.
 
-  .. image:: _static/img/skype/messaging_endpoint.png
-     :align: center
-
-2. When you are finished creating your bot, check the dialogue box and click
-   register.
-
-  .. image:: _static/img/skype/RegisterApp.png
+  .. image:: _static/img/skype/azure-09-webhook-paste.png
      :align: center
 
 4. Finishing Up
@@ -195,25 +178,29 @@ __________
 
 Microsoft provides great tools to test your app. We encourage you to use them.
 
-1. On the Preview Publishing Page, click on the **Add to Skype** to test your
-   ChatFlow App.
+1. Choose **Channels** tab in Microsoft Azure resource settings page and click on Skype icon
 
-  .. image:: _static/img/skype/AddToSkype.png
+  .. image:: _static/img/skype/azure-10-channels.png
      :align: center
 
-2. In the new pop window, click on the **Add to Contacts**. Follow the instruction
-   that will rediriect you to your Skype App.
+2. In the new channel settings you can configure you skype bot. When finished, click **Save** and go back to channels overview.
 
-  .. image:: _static/img/skype/AddToContacts.png
+  .. image:: _static/img/skype/azure-11-skype-save.png
      :align: center
 
-3. In your Skype App, search for your new bot under your Contacts.
+3. Click on skype channel.
 
-  .. image:: _static/img/skype/SkypeContact.png
+  .. image:: _static/img/skype/azure-12-skype-try.png
      :align: center
      :scale: 50 %
 
-4. Open an message window and send it a message. It should echo back to you.
+ In the new window click **Add to Contacts**
+
+  .. image:: _static/img/skype/azure-13-skype-addcontact.png
+     :align: center
+     :scale: 50 %
+
+4. Now, when your bot is added to contacts, open message window and send it a message. It should echo back to you.
 
   .. image:: _static/img/skype/EchoDemo.png
      :align: center
@@ -234,12 +221,25 @@ The Skype In node receives input from Skype and outputs the following msg:
    :linenos:
 
     msg = {
-            payload: message.text,
-            skype: {
-                    message: message,
-                    id: message.id,
-                    type: message.type,
-                    timestamp: message.timestamp,
+        payload: message.text,
+        skype: {
+            message: message
+            type: "text"/"image",
+            activity_type: message.type,
+            user: message.from.id,
+            user_name: message.from.name,
+            identity: message.recipient // your bot id
+            conversation: message.conversation.id,
+            attachments: array (message.attachments),
+            serviceUrl: message.serviceUrl
+        },
+        kitt: {
+            _session_id: message.conversation.id,
+            _user_id: message.from.id
+        }
+    }
+
+
                     user: message.from.id,
                     user_name: message.from.name,
                     conversation: message.conversation.id,
@@ -259,17 +259,19 @@ The Skype In node receives input from Skype and outputs the following msg:
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``skype.message``      | Object | the original raw incoming message                                                                |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
-| ``skype.id``           | String | the Skype Message ID                                                                             |
-+------------------------+--------+--------------------------------------------------------------------------------------------------+
-| ``skype.type``         | String | Refers to message type. Either *'message/text'*, *'message/image'*, or *'message/card.carousel'* |
+| ``skype.type``         | String | Refers to message type. Ususally its value is  *'message'*                                       |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``skype.user``         | String | the Skype User ID (determined by Skype)                                                          |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``skype.user_name``    | String | the User's Skype User Name                                                                       |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.identity``     | String | Skype identity of your bot                                                                       |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``skype.conversation`` | String | the Skype conversation ID (determined by Skype)                                                  |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``skype.attachments``  | Array  | Array of attachments attached on the message                                                     |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.serviceUrl``   | Array  | Skype server hostname to respond incoming message                                                |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``kitt``               | Object | used by the Router node for session management                                                   |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
@@ -287,14 +289,16 @@ following properties:
    :linenos:
 
     msg = {
-            payload: message_text,
-            skype: {
-                    type: message_type,
-                    user: user_id,
-                    conversation: conversation_id,
-                    attachments: array
-                  }
-          }
+        payload: message_text,
+        skype: {
+            type: message_type,
+            user: user_id,
+            conversation: conversation_id,
+            attachments: array,
+            identity: identity,
+            serviceUrl: serviceUrl
+        }
+    }
 
 
 
@@ -311,9 +315,13 @@ following properties:
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
 | ``skype.user``         | String | the Skype User ID (determined by Skype)                                                          |
 +------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.identity``     | String | Skype bot identity (determined by Skype)                                                         |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
+| ``skype.serviceUrl``   | String | Url for response to be sent (determined by Skype)                                                |
++------------------------+--------+--------------------------------------------------------------------------------------------------+
 
 .. warning:: You **MUST** have either ``skype.conversation`` or ``skype.user``
-          in order to send a message back to Skype to your user.
+      in order to send a message back to Skype to your user.
 
 .. note:: Depending on the message type, certain components of the ``msg`` are required.
       Below is a table highlighting which components are required for the different
@@ -322,11 +330,11 @@ following properties:
       +---------------------------+---------------------------------------+
       | Message Type              | Required Fields                       |
       +===========================+=======================================+
-      | *'message/text'*          | ``payload``, ``skype.type``,          |
+      | *'text'*                  | ``payload``, ``skype.type``,          |
       +---------------------------+---------------------------------------+
-      |  *'message/image'*        | ``skype.type``, ``skype.attachments`` |
+      |  *'image'*                | ``skype.type``, ``skype.attachments`` |
       +---------------------------+---------------------------------------+
-      | *'message/card.carousel'* | ``skype.type``, ``skype.attachments`` |
+      | *'card.carousel'*         | ``skype.type``, ``skype.attachments`` |
       +---------------------------+---------------------------------------+
 
 .. hint:: For more information check out the
